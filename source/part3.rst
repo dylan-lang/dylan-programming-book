@@ -19,5 +19,5 @@ airport example. This chapter illustrates many techniques described in
 the previous chapters, including collections, control-flow operators,
 initialization of slots, and libraries and modules. The chapters in Part
 :doc:`part4` describe advanced techniques that you can use to
-improve the code presented in Part `See Sample
+improve the code presented in Part `Sample
 Application <part3.htm#35424>`_.

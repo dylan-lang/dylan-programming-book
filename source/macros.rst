@@ -549,7 +549,7 @@ in the example.
 Auxiliary macros
 ----------------
 
-One difficulty with the aircraft macro that we defined in `See More
+One difficulty with the aircraft macro that we defined in `More
 complex rules <macros.htm#70458>`_ is this: suppose that we want each
 flight object to know the type of equipment used, rather than our having
 to look up the type in the aircraft registry. What looks like the
@@ -640,7 +640,7 @@ language-extension tool, and by showing a range of Dylan macros. Macros
 can be useful when you want to tailor the language to express a
 particular problem domain more concisely.
 
-`See Pattern constraints. <macros.htm#53100>`_ summarizes how
+`Pattern constraints. <macros.htm#53100>`_ summarizes how
 constraints control pattern-variable matches.
 
 Pattern constraints.

@@ -40,9 +40,9 @@ this chapter, however, so you have an idea of the options available for
 more complex situations.
 
 In this chapter, we start by describing the basic concepts of libraries
-(`See Libraries <reuse.htm#53158>`_), modules and namespaces (`See
-Modules <reuse.htm#64746>`_), and programs and source records (`See
-Source code, modules, and libraries <reuse.htm#45440>`_). In the
+(`Libraries <reuse.htm#53158>`_), modules and namespaces (
+`Modules <reuse.htm#64746>`_), and programs and source records (
+`Source code, modules, and libraries <reuse.htm#45440>`_). In the
 remainder of the chapter, we illustrate the concepts of libraries and
 modules by considering the classes and methods for times that we defined
 in ` <time-code.htm#30483>`_, and showing how they might be packaged
@@ -266,9 +266,9 @@ definition specifies which modules are exported from the library for use
 by other libraries. In our simple example, the *hello* module exports no
 variables or constants, and the *hello* library exports no modules.
 
-`See Libraries (heavy boxes) and modules (light boxes) in “Hello,
+`Libraries (heavy boxes) and modules (light boxes) in “Hello,
 world”. <reuse.htm#81752>`_ illustrates the relationships between
-libraries and modules in our example program. In `See Libraries (heavy
+libraries and modules in our example program. In `Libraries (heavy
 boxes) and modules (light boxes) in “Hello, world”. <reuse.htm#81752>`_,
 and in the other figures in this chapter, we draw libraries as heavy
 bold boxes and modules as light boxes. We have tried to illustrate how
@@ -296,7 +296,7 @@ Thus, the *hello* module overlays the *format-out* and *dylan* modules
 that it uses.
 
 Note that we intentionally do not show all the modules in the
-*format-out* and *dylan* libraries in `See Libraries (heavy boxes) and
+*format-out* and *dylan* libraries in `Libraries (heavy boxes) and
 modules (light boxes) in “Hello, world”. <reuse.htm#81752>`_. The
 *format-out* and *dylan* libraries might well have other modules, but
 either those modules are not exported or our program does not use them.
@@ -305,8 +305,8 @@ Source code, modules, and libraries
 -----------------------------------
 
 How is Dylan source code associated with modules and libraries? In
-Sections `See Libraries <reuse.htm#53158>`_ and `See
-Modules <reuse.htm#64746>`_, we looked at a Dylan program from the top
+Sections `Libraries <reuse.htm#53158>`_ and
+`Modules <reuse.htm#64746>`_, we looked at a Dylan program from the top
 down: A program contains libraries; a library contains modules; and a
 module contains variables and their definitions. We now look at a
 program from the bottom up, to see how source code is organized into
@@ -319,8 +319,8 @@ Source records and modules
 All the Dylan source code for a program is organized into units called
 *source records* . How source records are stored is dependent on the
 implementation. Some implementations may store source records in a
-database, others may simply use *interchange format* files (see `See
-Interchange files <reuse.htm#11182>`_). No matter how they are stored,
+database, others may simply use *interchange format* files (see
+`Interchange files <reuse.htm#11182>`_). No matter how they are stored,
 each source record is in a module; therefore,
 
 -  All the module’s variables and constants, including those imported by
@@ -379,7 +379,7 @@ in a module that is defined in the library; no source record can be in a
 module that is imported by the library. Within a library, it is possible
 for a name to be owned by one module and for that name’s
  definition to be provided by another module. This flexibility helps us
-to structure code, as we shall see in `See Module
+to structure code, as we shall see in `Module
 definition <reuse.htm#42490>`_.
 
 Module definition
@@ -436,8 +436,8 @@ thinking of modules as having these roles, and in this chapter we use
 that design convention.
 
 When illustrating the roles of modules, we use the conventions shown in
-`See The roles of modules: interface, implementation, and
-client. <reuse.htm#16310>`_. In `See The roles of modules: interface,
+`The roles of modules: interface, implementation, and
+client. <reuse.htm#16310>`_. In `The roles of modules: interface,
 implementation, and client. <reuse.htm#16310>`_, we show a library with
 three modules: an interface module (with its interface sticking out of
 the top of the library), an implementation module (overlapping the
@@ -515,7 +515,7 @@ client of the *format-out* module, because the *say* methods are
 implemented using the *format-out* function (which is defined in the
 *format-out* module of the *format-out* library).
 
-We can start to envision the *time* library as shown in `See Initial
+We can start to envision the *time* library as shown in `Initial
 time library. <reuse.htm#71767>`_. In a library more complicated than
 the time library, we might decompose the construction of the library
 into several implementation modules. For example, we might want to
@@ -559,7 +559,7 @@ the formality of creating a separate implementation module; we simply
 within the library. This approach is perhaps a short-sighted one. If
 later we want the *sixty-unit* functionality to be available to another
 library, we will be faced with reorganizing its module definitions (as
-we shall see in `See Component library <reuse.htm#77689>`_). Even within
+we shall see in `Component library <reuse.htm#77689>`_). Even within
 a library, it is good practice to organize modules as interface and
 implementation.
 
@@ -631,8 +631,8 @@ definitions in a module are *friend* s of all classes in the module, and
 the exported definitions of the module are *public* .
 
 Breaking out the *sixty-unit* substrate to a separate module creates a
-slightly more complicated structure to our diagram, as shown in `See
-Internal modules of time library. <reuse.htm#27846>`_.
+slightly more complicated structure to our diagram, as shown in
+`Internal modules of time library. <reuse.htm#27846>`_.
 
 Internal modules of *time* library.
                                    
@@ -644,7 +644,7 @@ Internal modules of *time* library.
 .. figure:: reuse-6.gif
    :align: center
    :alt: 
-In `See Internal modules of time library. <reuse.htm#27846>`_, we show
+In `Internal modules of time library. <reuse.htm#27846>`_, we show
 the definitions of *sixty-unit* in a separate module. The *sixty-unit*
 module is a client of *dylan* , an interface and implementation of
 definitions used by *time-implementation* (that is,
@@ -1019,10 +1019,10 @@ library in which they are created; we cannot use the create–define
 structure across libraries. We still want *encode-total-seconds* to be
 part of the interface of the *time* library, so we will have to change
 the *time* interface module to import it and to re-export it from the
-time library, as shown in `See The updated time-library
+time library, as shown in `The updated time-library
 file <reuse.htm#56612>`_.
 
-If we had followed our own recommendations in `See The implementation
+If we had followed our own recommendations in `The implementation
 module <reuse.htm#25788>`_, we would probably have discovered that
 *encode-total-seconds* belonged in the *sixty-unit* interface, and we
 would have avoided most of this
@@ -1112,7 +1112,7 @@ let(total-minutes, seconds) = truncate/(abs(total-seconds), 60);
  values(hours, minutes, seconds);
  end method decode-total-seconds;
 
-`See sixty-unit as a separate library. <reuse.htm#36394>`_ shows the
+`sixty-unit as a separate library. <reuse.htm#36394>`_ shows the
 relationships among our libraries and modules at this point. Note that
 *sixty-unit* is now a separate library. It uses the *dylan* library and
 is used by the *time* library. We illustrate the *time* module importing
@@ -1168,8 +1168,8 @@ library. Other libraries then use this component library to define their
 particular implementation of the protocol.
 
 To create the *say* protocol, we define a library and implementation
-file as shown in Sections `See The say-library file <reuse.htm#91474>`_
-through `See The angle library <reuse.htm#88788>`_.
+file as shown in Sections `The say-library file <reuse.htm#91474>`_
+through `The angle library <reuse.htm#88788>`_.
 
 The *say-library* file
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -1351,8 +1351,8 @@ We illustrated the complexity of component and protocol design.
 We discussed how to create a protocol that can be extended by multiple
 client libraries.
 
-We discussed namespaces in Dylan, and their applicable scope; see `See
-Namespace scopes. <reuse.htm#83046>`_.
+We discussed namespaces in Dylan, and their applicable scope; see
+`Namespace scopes. <reuse.htm#83046>`_.
 
 Namespace scopes.
                  
@@ -1382,7 +1382,7 @@ Namespace scopes.
 #. global
 
 We described the roles of modules and the definition clauses that
-modules use; see `See Module roles. <reuse.htm#53100>`_.
+modules use; see `Module roles. <reuse.htm#53100>`_.
 
 Module roles.
              

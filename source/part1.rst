@@ -39,5 +39,5 @@ we show how to write object-oriented programs in Dylan. We explain class
 and method definition, class inheritance, method dispatch, and
 modularity.
 
-:doc:`time-code` contains the code developed in `See Basic
+:doc:`time-code` contains the code developed in `Basic
 Concepts <part1.htm#63538>`_ as a complete working library.

@@ -290,10 +290,10 @@ Relationships of the time classes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 It is helpful to look at the relationships among the time classes. We
-show them in `See Inheritance relationships of the time
+show them in `Inheritance relationships of the time
 classes. <offset.htm#79793>`_.
 
-Referring to `See Inheritance relationships of the time
+Referring to `Inheritance relationships of the time
 classes. <offset.htm#79793>`_, we introduce terminology by example:
 
 -  The *<time-of-day>* class is a *direct subclass* of the *<time>*
@@ -333,9 +333,9 @@ Inheritance relationships of the time classes.
 Methods for classes that use inheritance
 ----------------------------------------
 
-`See Existing methods for decode-total-seconds. <offset.htm#49259>`_
+`Existing methods for decode-total-seconds. <offset.htm#49259>`_
 shows the methods that we now have defined for the
-*decode-total-seconds* generic function; `See Desired methods for
+*decode-total-seconds* generic function; `Desired methods for
 decode-total-seconds. <offset.htm#91002>`_ shows the methods that we
 want to have.
 
@@ -366,9 +366,9 @@ on *<time-of-day>* , and to add a method on *<time>* . The method on
 
 There are two important points to cover. We first discuss how to remove
 the method on *<time-of-day>* and how to add the method on *<time>* in
-`See Redefinition of a method <offset.htm#53813>`_. We then describe how
+`Redefinition of a method <offset.htm#53813>`_. We then describe how
 the *decode-total-seconds* generic function works in
- `See Method dispatch <offset.htm#10035>`_.
+ `Method dispatch <offset.htm#10035>`_.
 
 Redefinition of a method
 ------------------------
@@ -394,7 +394,7 @@ parameter lists are equivalent:
  (str :: <string>, num :: <integer>, any-old-thing :: <object>)
 
 Assume that we are working in a listener, and already have defined the
-methods shown in `See Existing methods for
+methods shown in `Existing methods for
 decode-total-seconds. <offset.htm#49259>`_. Consider what happens when
 we define the method on *<time>* . The parameter list of the new method
 is not equivalent to the parameter list of any of the existing methods,
@@ -404,7 +404,7 @@ so the new method is added to the generic function. Thus,
 The environment may offer a way to remove a method from a generic
 function. When we remove the definition of the method on *<time-of-day>*
 using the environment, the *decode-total-seconds* generic function
-contains only the desired methods, as shown in `See Desired methods for
+contains only the desired methods, as shown in `Desired methods for
 decode-total-seconds. <offset.htm#91002>`_. A typical browser will help
 you to find the methods to remove.
 
@@ -412,7 +412,7 @@ If, however, we are working in source files rather than in a listener,
 we simply need to remove the method on *<time-of-day>* with the editor,
 and to type in the method on *<time>* . When we next compile the file,
 the generic function will contain only the desired methods, as shown in
-`See Desired methods for decode-total-seconds. <offset.htm#91002>`_.
+`Desired methods for decode-total-seconds. <offset.htm#91002>`_.
 
 We can now call *decode-total-seconds* on instances of *<time-of-day>*
 and on instances of *<time-offset>* :
@@ -462,8 +462,8 @@ called the *parameter specializer* of the parameter. A method is
 *applicable* if the argument to the generic function is an instance of
 the parameter specializer of the method.
 
-For example, consider the *decode-total-seconds* generic function. `See
-Applicable methods for arguments to
+For example, consider the *decode-total-seconds* generic function.
+`Applicable methods for arguments to
 decode-total-seconds. <offset.htm#73849>`_ shows which method is
 applicable for certain arguments.
 
@@ -517,8 +517,8 @@ there is no applicable method, the “No applicable method” error is
 signaled. There is no need to continue to step 2.
 
 In other cases, there can be several applicable methods. Consider the
-generic function *say-greeting* , shown in `See The say-greeting generic
-function and its methods. <offset.htm#99019>`_. `See Applicable methods
+generic function *say-greeting* , shown in `The say-greeting generic
+function and its methods. <offset.htm#99019>`_. `Applicable methods
 for different arguments to say-greeting. <offset.htm#32788>`_ shows
 that, for certain arguments, one method is applicable, but that, for an
 integer argument, two methods are applicable.
@@ -708,7 +708,7 @@ define method say (time :: <time-offset>) => ()
  minutes);
  end method say-time-offset;
 
-`See Methods for the say generic function. <offset.htm#23128>`_ shows
+`Methods for the say generic function. <offset.htm#23128>`_ shows
 that the generic function *say* has two methods defined for it.
 
 Methods for the *say* generic function.
@@ -741,7 +741,7 @@ Use of *next-method* to call another method
 -------------------------------------------
 
 Notice that there is duplication of code in the two methods for *say* ,
-as shown in `See Methods for the say generic
+as shown in `Methods for the say generic
 function. <offset.htm#23128>`_. Both methods call *decode-total-seconds*
 to get the hours and minutes, and call *format-out* to print the hours
 and minutes. Both methods print a leading zero for the minutes, if

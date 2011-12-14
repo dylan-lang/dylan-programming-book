@@ -117,7 +117,7 @@ offset. It simply calls *+* with the order of the arguments switched —
 this call invokes the method on *<time-offset>* , *<time-of-day>* .
 
 To test these methods, we can use one of the time offsets created in
-`See Method for adding two time offsets <multi.htm#76971>`_, and define
+`Method for adding two time offsets <multi.htm#76971>`_, and define
 the *\*8-30-59\** variable, which contains a *<time-of-day>* instance,
 which we define as follows:
 
@@ -178,7 +178,7 @@ Method dispatch for multimethods
 A method is *specialized* on the required parameters that have explicit
 types. The type of the required parameter is called that parameter’s
 *specializer* . A *multimethod* is a method that specializes more than
-one of its parameters. The methods that we defined in `See Methods for
+one of its parameters. The methods that we defined in `Methods for
 the + generic function <multi.htm#89993>`_ specialize two required
 parameters, and therefore are multimethods.
 
@@ -255,7 +255,7 @@ Applicable methods, ordered by specificity
 
 #. none
 
-`See Applicable methods for different arguments to +, ordered by
+`Applicable methods for different arguments to +, ordered by
 specificity. <multi.htm#10107>`_ shows the applicable methods for
 various arguments to +. If two methods are applicable, we number the
 more specific method 1, and the less specific method 2.

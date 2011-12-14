@@ -105,7 +105,7 @@ expressions. However, it is important to know the name of the setter, so
 that you can define setter methods. For example, to define a method on
 the setter for the *total-
  seconds* slot, you define it on *total-seconds-setter* . For an example
-of a setter method, see `See Setter methods <slots.htm#88213>`_.
+of a setter method, see `Setter methods <slots.htm#88213>`_.
 
 If you do not want Dylan to define a setter method for a slot, you can
 define the slot to be constant, using the *constant* slot adjective, or
@@ -131,13 +131,13 @@ important advantages:
    of hiding the implementation.
 -  A subclass can specialize, or filter, references to superclass slots.
    For example, the classes *<latitude>* and *<longitude>* inherit the
-   *direction* slot from their superclass *<directed-angle>* . In `See
-   Virtual slots <slots.htm#97360>`_, we show how to provide a setter
+   *direction* slot from their superclass *<directed-angle>* . In
+   `Virtual slots <slots.htm#97360>`_, we show how to provide a setter
    method for the direction slot of *<latitude>* that ensures that the
    value is north or south, and a setter method for the direction slot
    of *<longitude>* that ensures that the value is east or west.
 -  A slot access can involve arbitrary computation. For example, a slot
-   can be *virtual* . See `See Virtual slots <slots.htm#97360>`_.
+   can be *virtual* . See `Virtual slots <slots.htm#97360>`_.
 
 Setter methods
 ~~~~~~~~~~~~~~
@@ -193,7 +193,7 @@ The following example show what happens when you call
 This setter method ensures that no one can assign an invalid value to
 the slot. For completeness, we must also ensure that no one can
 initialize the slot to an invalid value. The way to do that is to define
-an *initialize* method, as shown in `See Initialize
+an *initialize* method, as shown in `Initialize
 methods <slots.htm#69979>`_.
 
 Considerations for naming slots and other objects
@@ -339,14 +339,14 @@ call a getter for a slot that has not been initialized, Dylan signals an
 error. In the following sections, we describe a variety of techniques
 for avoiding the problem of accessing an uninitialized slot. The most
 general technique is to define an *initialize* method for a slot, as
-shown in `See Initialize methods <slots.htm#69979>`_.
+shown in `Initialize methods <slots.htm#69979>`_.
 
 A slot can be uninitialized. Once a slot receives a value, however, it
 will always have a value: There is no way to return a slot to the
 uninitialized state. Sometimes it is useful to store in a slot a value
 that means none. To make that possible, you need to define a new type
-for that slot, as shown in ` <classes.htm#50813>`_. In Sections `See The
-init-value: slot option <slots.htm#26295>`_ through `See The
+for that slot, as shown in ` <classes.htm#50813>`_. In Sections `The
+init-value: slot option <slots.htm#26295>`_ through `The
 init-function: slot option <slots.htm#64192>`_, we show techniques for
 initializing slots.
 
@@ -398,7 +398,7 @@ Slot options for an inherited slot
 You can define a slot in only one particular class in a set of classes
 related by inheritance. You can use the *inherited slot* specification
 to override the default initial value of an inherited slot, or the *init
-function* of an inherited slot. See `See The init-function: slot
+function* of an inherited slot. See `The init-function: slot
 option <slots.htm#64192>`_.
 
 In this example, assume that the *<sixty-unit>* class defines the
@@ -506,8 +506,8 @@ four kinds of allocation:
    the same slot in a different instance. Instance allocation is the
    default, and is the most commonly used kind of allocation.
 -  Virtual No storage is allocated for the slot. You must provide a
-   getter method that computes the value of the virtual slot. See `See
-   Virtual slots <slots.htm#97360>`_.
+   getter method that computes the value of the virtual slot. See
+   `Virtual slots <slots.htm#97360>`_.
 -  Class The class that defines the slot allocates storage for the slot.
    Instances of the class that defines the slot and instances of all
    that class’s subclasses see the same value for the slot. That is, all
@@ -567,7 +567,7 @@ alternative technique is to use enumeration types, as shown in
    to use symbols, instead of strings, to represent north, south, east,
    and west.
 -  Check the value of the *direction* slot when an instance is created
-   and initialized. We do that checking in `See Initialize method for a
+   and initialized. We do that checking in `Initialize method for a
    virtual slot <slots.htm#49511>`_.
 
 We redefine the *<directed-angle>* class to include a virtual slot and
@@ -713,7 +713,7 @@ The *error* function signals an error. For more information about
 signaling and handling errors, see ` <nexcept.htm#20153>`_.
 
 The *direction-setter* methods check the direction when the setter is
-called. In `See Initialize method for a virtual
+called. In `Initialize method for a virtual
 slot <slots.htm#49511>`_, we check the direction when an instance is
 made.
 
@@ -738,7 +738,7 @@ When you call *make* , you use the
 named *dir* .
 
 Line 3 calls the setter for the *direction* slot. We defined the methods
-for *direction-setter* in `See Getter and setter methods for a virtual
+for *direction-setter* in `Getter and setter methods for a virtual
 slot <slots.htm#46729>`_. If the argument is a latitude, then method 3
 is invoked to check the value. If the argument is a longitude, then
 method 4 is invoked to check the value.
@@ -777,13 +777,13 @@ Summary
 
 In this chapter, we covered the following:
 
--  We described techniques for initializing slots; see `See Summary of
+-  We described techniques for initializing slots; see `Summary of
    slot-initialization techniques. <slots.htm#45616>`_.
--  We discussed the syntax of calling getters and setters; see `See
-   Syntax of calling getters and setters. <slots.htm#68880>`_.
+-  We discussed the syntax of calling getters and setters; see
+   `Syntax of calling getters and setters. <slots.htm#68880>`_.
 -  We showed how to define methods for getters and setters.
 -  We showed how and why you can use symbols instead of strings.
--  We described the different kinds of slot allocation; see `See Summary
+-  We described the different kinds of slot allocation; see `Summary
    of slot allocations. <slots.htm#35729>`_.
 -  
 -  

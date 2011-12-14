@@ -120,8 +120,8 @@ that there is only one required argument:
    more specific than another if the type of its specialized parameter
    is a *proper subtype* of the type of the other method’s specialized
    parameter. For definitions of “proper subtype” in various situations,
-   see Sections `See Method dispatch and classes <classes.htm#82083>`_
-   through `See Method dispatch and limited
+   see Sections `Method dispatch and classes <classes.htm#82083>`_
+   through `Method dispatch and limited
    collections <classes.htm#20445>`_.
 
 (In the presence of multiple inheritance, the specificity rule is more

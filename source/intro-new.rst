@@ -36,7 +36,7 @@ Each language in wide use for applications has advantages and
 disadvantages. One way to compare languages is to imagine them arrayed
 along two axes. One axis ranges from *procedural* to *object-oriented*
 languages. The other axis ranges from *static* to *dynamic* languages.
-`See Object-oriented and dynamic extents of programming
+`Object-oriented and dynamic extents of programming
 languages. <intro-new.htm#50597>`_ shows the comparison of several
 popular computer-programming languages on a graph.
 
@@ -85,7 +85,7 @@ Object-oriented and dynamic extents of programming languages.
    :alt: 
 Dylan, in contrast, is a new language that integrates the best ideas
 from object-oriented, procedural, dynamic, and static languages, while
-avoiding many of the drawbacks. `See Object-oriented and dynamic extents
+avoiding many of the drawbacks. `Object-oriented and dynamic extents
 of Dylan and other languages. <intro-new.htm#38770>`_ shows where Dylan
 fits on the graph.
 

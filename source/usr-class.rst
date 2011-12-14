@@ -172,7 +172,7 @@ We would like to be able to call *make* as follows:
 *?* make(<time-of-day>, total-seconds: 120);
 
 We will be able to make this call after we have done a bit of homework,
-as we shall show in `See Init keywords: Keywords that initialize
+as we shall show in `Init keywords: Keywords that initialize
 slots <usr-class.htm#49235>`_. In the preceding call to *make* , we
 provided a keyword argument, consisting of a keyword, *total-seconds:* ,
 followed by a value, *120* . The *<time-of-day>* instance returned by
@@ -381,8 +381,8 @@ The value declaration on line 3 specifies that *decode-total-seconds*
 returns three separate values: the hours, minutes, and seconds. This
 method illustrates how to return multiple values, and how to use *let*
 to initialize multiple local variables. We describe these techniques in
-Sections `See Multiple return values <usr-class.htm#67459>`_ and `See
-Use of let to declare local variables <usr-class.htm#95572>`_.
+Sections `Multiple return values <usr-class.htm#67459>`_ and
+`Use of let to declare local variables <usr-class.htm#95572>`_.
 
 Multiple return values
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -393,7 +393,7 @@ uses the *values* function as the expression executed last in the body.
 The *values* function simply returns all its arguments as separate
 values. The ability to return multiple values allows a natural symmetry
 between *encode-total-seconds* and *decode-total-seconds* , as shown in
-`See Symmetry of encode-total-seconds and
+`Symmetry of encode-total-seconds and
 decode-total-seconds. <usr-class.htm#97902>`_.
 
 :
@@ -443,7 +443,7 @@ Use of *let* to declare local variables
 
 When a function returns multiple values, you can use *let* to store each
 returned value in a local variable, as shown in lines 2 and 3 of the
-*decode-total-seconds* method in `See Method for
+*decode-total-seconds* method in `Method for
 decode-total-seconds <usr-class.htm#28944>`_. On line 2, we use *let* to
 declare two local variables, named *total-minutes* and *seconds* , and
 to initialize their values to the two values returned by the *truncate/*
@@ -482,7 +482,7 @@ define method decode-total-seconds
  decode-total-seconds(time.total-seconds);
  end method decode-total-seconds;)
 
-`See The decode-total-seconds generic function and its
+`The decode-total-seconds generic function and its
 methods. <usr-class.htm#47266>`_ shows the two methods for the
 *decode-total-seconds* generic
  function.
@@ -497,7 +497,7 @@ The *decode-total-seconds* generic function and its methods.
 .. figure:: usr-class-3.gif
    :align: center
    :alt: 
-Looking at `See The decode-total-seconds generic function and its
+Looking at `The decode-total-seconds generic function and its
 methods. <usr-class.htm#47266>`_, we analyze what happens in this call:
 
 *?* decode-total-seconds(\*your-time-of-day\*);
@@ -582,7 +582,7 @@ In this chapter, we covered the following:
 -  We defined a method that returns multiple values (with *values* ),
    and showed how to initialize multiple local variables (with *let* ).
 -  We showed the syntax of some commonly used elements of Dylan; see
-   `See Syntax of Dylan elements. <usr-class.htm#47015>`_.
+   `Syntax of Dylan elements. <usr-class.htm#47015>`_.
 
 Syntax of Dylan elements.
                          

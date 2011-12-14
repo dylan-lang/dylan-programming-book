@@ -560,7 +560,7 @@ far in this chapter.
 
 First, we present the five key generic functions that make up our
 container protocol, followed by an implementation of that protocol for
-the container classes defined in `See Vehicle
+the container classes defined in `Vehicle
 containers <nlanding.htm#11965>`_.
 
 The container protocol and implementation

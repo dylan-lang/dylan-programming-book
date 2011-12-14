@@ -26,7 +26,7 @@ collections.
 Built-in collection classes
 ---------------------------
 
-`See Built-in collection classes. <collect.htm#96187>`_ shows the most
+`Built-in collection classes. <collect.htm#96187>`_ shows the most
 common Dylan collection classes.
 
 Built-in collection classes.
@@ -56,8 +56,8 @@ the exception is instances of *<stretchy-vector>* .
 Basic use of collections
 ------------------------
 
-In Sections `See Creation of strings and access to
-elements <collect.htm#64252>`_ through `See Creation of lists and access
+In Sections `Creation of strings and access to
+elements <collect.htm#64252>`_ through `Creation of lists and access
 to elements <collect.htm#79090>`_, we show how to create collections,
 and how to access the elements of a collection.
 
@@ -162,7 +162,7 @@ it with data.
 *?* \*my-vector\*;
  *#[5, 3]*
 
-As we saw in `See Creation of strings and access to
+As we saw in `Creation of strings and access to
 elements <collect.htm#64252>`_, certain collections have a literal
 syntax that enables you to specify a particular data structure as part
 of the program:
@@ -172,7 +172,7 @@ of the program:
 *?* \*my-vector\*;
  *#[5, 3]*
 
-`See Diagram of the vector #[5, 3]. <collect.htm#15842>`_ shows how you
+`Diagram of the vector #[5, 3]. <collect.htm#15842>`_ shows how you
 can picture the vector that we just created.
 
 Diagram of the vector *#[5, 3]* .
@@ -216,7 +216,7 @@ arguments provided:
 *?* list(4, 5, 6);
  *#(4, 5, 6)*
 
-`See Diagram of the list #(4, 5, 6). <collect.htm#39346>`_ is a diagram
+`Diagram of the list #(4, 5, 6). <collect.htm#39346>`_ is a diagram
 of the list that we just created.
 
 Diagram of the list *#(4, 5, 6)* .
@@ -252,15 +252,15 @@ A reference to the first pair of a list is exactly the same as a
 reference to the entire list.
 
 We use *head* and *tail* when we define a method for copying lists in
-`See Lists and efficiency <collect.htm#38085>`_. We use *pair* in a
-method that copies lists recursively in `See A recursive list
+`Lists and efficiency <collect.htm#38085>`_. We use *pair* in a
+method that copies lists recursively in `A recursive list
 copier <collect.htm#39033>`_.
 
 Iteration over a sequence
 -------------------------
 
-In the examples in Sections `See Building our own
-copy-sequence <collect.htm#37187>`_ through `See Changes to a generic
+In the examples in Sections `Building our own
+copy-sequence <collect.htm#37187>`_ through `Changes to a generic
 function’s signature <collect.htm#70023>`_, we show how to process each
 element of a sequence using different techniques.
 
@@ -318,17 +318,17 @@ the previous value of *index* each time through the loop. The variable
 *index* is defined only within the body of the *for* iteration
 construct. The body of the *for* iteration construct begins after the
 iteration clause(s), and finishes with the matching *end* . For the
-*while* iteration construct shown in `See Building our own
+*while* iteration construct shown in `Building our own
 copy-sequence <collect.htm#37187>`_, the body starts after the predicate
 and finishes with the matching *end* .
 
 The *for* loop can have many different kinds of iteration clauses. In
 this section, we have shown a simple iteration over a series of numbers.
-In `See Lists and efficiency <collect.htm#38085>`_, we use clauses that
+In `Lists and efficiency <collect.htm#38085>`_, we use clauses that
 bind variables to initial values for the first time through a loop, and
 use expressions to rebind the variables for the second and subsequent
 times through the loop. We also demonstrate a clause that permits
-iteration to continue until an expression is true, both in `See Lists
+iteration to continue until an expression is true, both in `Lists
 and efficiency <collect.htm#38085>`_ and ` <heap.htm#18322>`_.
 
 The *for* loop has a simple type of iteration clause that we can use to
@@ -339,7 +339,7 @@ kind of iteration clause.
 Lists and efficiency
 ~~~~~~~~~~~~~~~~~~~~
 
-The *my-copy-sequence* method in `See Iteration with
+The *my-copy-sequence* method in `Iteration with
 for <collect.htm#30468>`_ works efficiently for vectors. It does so
 because Dylan can store and retrieve arbitrary elements of vectors, and
 can determine the size of vectors in constant time.
@@ -352,7 +352,7 @@ string; when you uses lists, however, it takes about 1000 times longer
 to access the thousandth element than to access the first element. The
 difference in access times occurs because Dylan must walk over almost
 1000 pairs to get to the thousandth pair, and thus get to the thousandth
-element of the list. Although the method defined in `See Iteration with
+element of the list. Although the method defined in `Iteration with
 for <collect.htm#30468>`_ can copy lists, it will be excessively slow,
 especially for long lists.
 
@@ -406,9 +406,9 @@ Polymorphism
 ~~~~~~~~~~~~
 
 An important advantage of programming in Dylan is that we can provide a
-general method for copying a sequence (as shown in `See Iteration with
+general method for copying a sequence (as shown in `Iteration with
 for <collect.htm#30468>`_), and also can provide special copying methods
-for particular subclasses of sequences (as shown in `See Lists and
+for particular subclasses of sequences (as shown in `Lists and
 efficiency <collect.htm#38085>`_). Method dispatch takes care of picking
 the best method for the argument. Callers of *my-copy-sequence* do not
 need to worry about any performance optimizations that we have installed
@@ -423,7 +423,7 @@ Mapping functions
 Iterating over all the elements of a collection is a common idiom, and
 Dylan provides several different mapping functions that accomplish these
 kinds of iterations in different ways. In the following example, we
-redefine the *my-copy-sequence* method originally defined in `See Lists
+redefine the *my-copy-sequence* method originally defined in `Lists
 and efficiency <collect.htm#38085>`_. Here, we use the *do* iteration
 construct, instead of a *for* loop.
 
@@ -500,7 +500,7 @@ Thus, the *rev* method can be optimized by the Dylan compiler into code
 that is exactly as efficient as if it was written with iteration.
 
 Alternative ways of defining the *my-reverse* function are discussed in
-`See Reversal of sequences <collect.htm#88876>`_.
+`Reversal of sequences <collect.htm#88876>`_.
 
 Using *map* and *curry*
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -562,7 +562,7 @@ operate over the entire collection. The *map* function works well only
 if there is a one-to-one correspondence between input-collection sizes
 and output-collection size. However, the other techniques that we have
 presented, such as using *for* and *while* , can work better when you
-want to operate on only part of a sequence. In `See A sequence copier
+want to operate on only part of a sequence. In `A sequence copier
 that can copy a portion of a sequence <collect.htm#56086>`_, we take
 another look at how a *for* loop can help us to solve the problem of
 iterating over only part of a collection.
@@ -608,14 +608,14 @@ sequence being created.
 Changes to a generic function’s signature
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Note that the *my-copy-sequence* method defined in `See A sequence
+Note that the *my-copy-sequence* method defined in `A sequence
 copier that can copy a portion of a sequence <collect.htm#56086>`_ has a
 parameter list that is not congruent with the parameter list of the
 generic function. That is, that method accepts the *start:* and *end:*
 keyword arguments, when previously only required arguments were allowed
 for that generic function. We did not explicitly define the
 *my-copy-sequence* generic function; Dylan created the generic function
-implicitly, when we defined the first method for it, in `See Building
+implicitly, when we defined the first method for it, in `Building
 our own copy-sequence <collect.htm#37187>`_. The generic function
 accepts two required parameters, and no keyword parameters.
 
@@ -719,14 +719,14 @@ to contain the elements of the old sequence, we still share those old
 elements with the new sequence. If two elements of a collection refer to
 the same object, then modifying the element of one of the collections
 affects the value of the element of the other collection. We illustrate
-this behavior in `See Destructive operations and shared
+this behavior in `Destructive operations and shared
 structure <collect.htm#75418>`_.
 
 Destructive operations and shared structure
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Consider the following example, and Figures `See State before the
-element is changed. <collect.htm#13263>`_ and `See State after the
+Consider the following example, and Figures `State before the
+element is changed. <collect.htm#13263>`_ and `State after the
 element is changed. <collect.htm#38430>`_.
 
 *// Firste we construct a vector of two vectors
@@ -741,7 +741,7 @@ element is changed. <collect.htm#38430>`_.
 my-reverse(\*switch-states\*);
 
 At this point, the states of the variables and vectors correspond to
-`See State before the element is changed. <collect.htm#13263>`_.
+`State before the element is changed. <collect.htm#13263>`_.
 
 We examine the two sequences:
 
@@ -775,7 +775,7 @@ other
  *"master switch"*
 
 At this point, the states of the variables and vectors correspond to
-`See State after the element is changed. <collect.htm#38430>`_.
+`State after the element is changed. <collect.htm#38430>`_.
 
 State after the element is changed.
                                    
@@ -795,12 +795,12 @@ We can look at the values of the variables:
 *?* \*rev-switch-states\*;
  *#[#["switch", "off"], #["master switch", "on"]]*
 
-Each object pictured in Figures `See State before the element is
-changed. <collect.htm#13263>`_ and `See State after the element is
+Each object pictured in Figures `State before the element is
+changed. <collect.htm#13263>`_ and `State after the element is
 changed. <collect.htm#38430>`_ is a vector. The strings in the figures
 are vectors, although we did not draw them as such, to keep the diagrams
 relatively simple. Variables are not objects in Dylan, but they are
-shown referring to objects. In `See State after the element is
+shown referring to objects. In `State after the element is
 changed. <collect.htm#38430>`_, the string *"switch"* is not referenced
 by any other object and is therefore garbage; eventually, it will be
 reclaimed by a garbage collector.
@@ -820,8 +820,8 @@ data consistent.
 Conditional execution
 ---------------------
 
-In Sections `See if, else, and elseif <collect.htm#95947>`_ through `See
-Search of arrays with find-key <collect.htm#32578>`_, we consider ways
+In Sections `if, else, and elseif <collect.htm#95947>`_ through
+`Search of arrays with find-key <collect.htm#32578>`_, we consider ways
 to execute different code depending on the results of one or more tests.
 
 *if* , *else* , and *elseif*
@@ -908,7 +908,7 @@ Branching with *case*
 ~~~~~~~~~~~~~~~~~~~~~
 
 Dylan also provides the *case* control structure to give you an
-alternative way to express the branching style shown in `See if, else,
+alternative way to express the branching style shown in `if, else,
 and elseif <collect.htm#95947>`_:
 
 define method interpret-votes
@@ -968,7 +968,7 @@ other cases, it returns *"senior"* .
 Tables: Dynamic associations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In `See Branching with select <collect.htm#22974>`_, we saw how the
+In `Branching with select <collect.htm#22974>`_, we saw how the
 *color-action* method associated traffic-light colors with actions by
 using *select* . These associations are *static* . They are determined
 at compile time, and you cannot change them without recompiling the

@@ -43,7 +43,7 @@ The remainder of this section describes these syntactic forms and the
 equivalent function calls. Unless otherwise noted, all expressions that
 make up any of these function calls are evaluated from left to right. (A
 notable exception is an expression containing the assignment operator,
-discussed in `See Assignment <func.htm#14793>`_.) The common
+discussed in `Assignment <func.htm#14793>`_.) The common
 left-to-right rule makes it easy to understand the order of execution of
 Dylan code. But it also means that certain syntactic forms that we call
 *equivalent* — that is, syntactic forms that generally result in calls
@@ -62,8 +62,8 @@ The Dylan syntax for an explicit function call has two parts:
    yield the function itself. Usually, the operand is a reference to a
    variable or constant that names the function, although it can be any
    expression (except an operator call) whose value is a function. (For
-   information on operator calls, see Sections `See Unary operator
-   calls <func.htm#97202>`_ and `See Binary-operator
+   information on operator calls, see Sections `Unary operator
+   calls <func.htm#97202>`_ and `Binary-operator
    calls <func.htm#56177>`_.)
 #. The arguments to which the function is applied — The arguments are
    represented by a series of expressions, enclosed in parentheses and
@@ -409,8 +409,8 @@ whereas the previous method had two. The parameter list of this new
 method is not compatible with that of the previous method, and, if we
 actually tried to define the second *called-function* method, Dylan
 would signal an error. For more information on compatibility of
-parameter lists for generic functions and methods, see `See
-Parameter-list congruence <func.htm#18741>`_.
+parameter lists for generic functions and methods, see
+`Parameter-list congruence <func.htm#18741>`_.
 
 A call to *calling-function* now produces the following output:
 
@@ -605,7 +605,7 @@ any order. Note also that all keyword arguments are optional; however,
 if we try to call a function with a keyword argument that the function
 does not accept — such as *days:* , in this example — Dylan signals an
 error. For more information on function calls and keyword arguments, see
-`See Keyword-argument checking <func.htm#40180>`_.
+`Keyword-argument checking <func.htm#40180>`_.
 
 Following are additional features and restrictions of keyword arguments:
 
@@ -625,8 +625,8 @@ Following are additional features and restrictions of keyword arguments:
 
 The restrictions on a generic function’s parameter list have to do with
 parameter-list congruency and keyword-argument checking in generic
-function calls. For more information, see Sections `See Parameter-list
-congruence <func.htm#18741>`_ and `See Keyword-argument
+function calls. For more information, see Sections `Parameter-list
+congruence <func.htm#18741>`_ and `Keyword-argument
 checking <func.htm#40180>`_.
 
 Value declarations
@@ -957,7 +957,7 @@ The *apply* function is perhaps most useful in the body of a function
 that receives a variable number of arguments and must pass those
 arguments to another function that also takes a variable number of
 arguments. For example, we can use *apply* to write a recursive version
-of the *sum* function that we defined iteratively in `See Parameter
+of the *sum* function that we defined iteratively in `Parameter
 lists <func.htm#18170>`_:
 
 *// Sum one or more values
@@ -996,7 +996,7 @@ elements of a vector to perform a scalar multiplication of the vector.
 
 In fact, Dylan has a set of functions that map other functions over the
 elements of collections in different ways. We used one of these,
-*choose* , in `See Creation of methods <func.htm#94662>`_. Some of these
+*choose* , in `Creation of methods <func.htm#94662>`_. Some of these
 functions return new collections; others return single values. For more
 examples, see ` <collect.htm#68154>`_.
 

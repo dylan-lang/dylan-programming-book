@@ -122,7 +122,7 @@ define abstract class <time> (<object>)
 
 If we tried to make an instance of *<position>* or *<time>* now, *make*
 would signal an error. For more information about abstract classes, see
-`See Abstract, concrete, and instantiable classes <pos.htm#16672>`_.
+`Abstract, concrete, and instantiable classes <pos.htm#16672>`_.
 
 Absolute position
 -----------------
@@ -180,7 +180,7 @@ that is applicable to *<directed-angle>* (the type of the objects
 returned by
  *position.latitude* and *position.longtude* ). We define such a method
 in
- `See Meeting of angles and times <pos.htm#51176>`_.
+ `Meeting of angles and times <pos.htm#51176>`_.
 
 *Modularity note:* The preceding *say* method does not take advantage of
 the similarity between latitude and longitude. One clue that there is a
@@ -251,7 +251,7 @@ classes are shown in *oblique* *typewriter* *font* .
    :align: center
    :alt: 
 
-`See Inheritance relationships among the position and angle classes.
+`Inheritance relationships among the position and angle classes.
 Abstract classes are shown in oblique typewriter font. <pos.htm#85432>`_
 shows the inheritance relationships among the position and angle
 classes.
@@ -270,14 +270,14 @@ define method say (longitude :: <longitude>) => ()
 
 The calls to *next-method* in the methods on *<latitude>* and
 *<longitude>* will call the method on *<directed-angle>* , shown on page
-`See define abstract class <directed-angle> (<object>) slot
+`define abstract class <directed-angle> (<object>) slot
 total-seconds :: <integer>, init-keyword: total-seconds:; slot direction
 :: <string>, init-keyword: direction:; end class
-<directed-angle>; <pos.htm#23811>`_`See define method say (angle ::
+<directed-angle>; <pos.htm#23811>`_`define method say (angle ::
 <directed-angle>) => () let(degrees, minutes, seconds) =
 decode-total-seconds(angle); format-out("%d degrees %d minutes %d
 seconds %s", degrees, minutes, seconds, angle.direction); end method
-say; <pos.htm#33994>`_`See define method say (angle :: <directed-angle>)
+say; <pos.htm#33994>`_`define method say (angle :: <directed-angle>)
 => () let(degrees, minutes, seconds) = decode-total-seconds(angle);
 format-out("%d degrees %d minutes %d seconds %s", degrees, minutes,
 seconds, angle.direction); end method say; <pos.htm#33994>`_.
@@ -451,7 +451,7 @@ define method say (position :: <relative-position>) => ()
 To see the complete library, and the test code that creates position
 instances and calls *say* on them, see ` <time-code.htm#30483>`_.
 
-`See Is-a relationships (inheritance) among classes, shown by arrows.
+`Is-a relationships (inheritance) among classes, shown by arrows.
 Abstract classes are shown in oblique typewriter font. <pos.htm#86548>`_
 shows the inheritance relationships of the classes. When one class
 inherits from another, the relationship is sometimes called the *is-a
@@ -471,7 +471,7 @@ Abstract classes are shown in *oblique* *typewriter* *font* .
    :alt: 
 The classes have another kind of relationship as well — one class can
 use another class as the type of a slot, in what is called the *has-a
-relationship* . `See Has-a relationships among classes, shown by dashed
+relationship* . `Has-a relationships among classes, shown by dashed
 arrows. <pos.htm#89080>`_ shows both the inheritance relationships, and
 the relationships of one class using another class as the type of a
 slot.
@@ -541,7 +541,7 @@ The built-in Dylan classes follow a design principle in which concrete
 classes do not inherit from other concrete classes, but rather inherit
 from abstract classes only. In other words, the branches of the tree are
 abstract classes, and the leaves of the tree are concrete classes. We
-follow that design principle in this book as well. `See Is-a
+follow that design principle in this book as well. `Is-a
 relationships (inheritance) among classes, shown by arrows. Abstract
 classes are shown in oblique typewriter font. <pos.htm#86548>`_ shows
 our classes graphically; the branches of the tree (abstract classes)

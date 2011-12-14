@@ -324,8 +324,8 @@ be a *<gate-vector>* , it would be an error to return a *<vector>*
 instead; hence, we changed the argument to *make* when constructing
 *result* to be *<gate-vector>* instead of the original *<vector>* .
 
-If *<gate>* and *connected-to* are not *open* (as described in `See Open
-generic functions <perform.htm#92395>`_ and `See Open
+If *<gate>* and *connected-to* are not *open* (as described in `Open
+generic functions <perform.htm#92395>`_ and `Open
 classes <perform.htm#82381>`_), the compiler can infer that
 *connected-to* is used here to set a slot in the gate instance and to
 further optimize the code generated. We do not delve into the exact
@@ -568,7 +568,7 @@ subclass of the argument types for which no method is applicable.
 
 In addition to establishing a contract, specifying the types of the
 parameters and return values of generic functions can allow the compiler
-to make additional inferences, as described in `See Type
+to make additional inferences, as described in `Type
 constraints <perform.htm#19965>`_ with regard to *truncate/* . In the
 absence of other information, the compiler is limited in the
 optimizations that it can make based solely on the parameter types in
@@ -611,7 +611,7 @@ functions if the program is too finely divided. This balance is
 illustrated by the considerations we made in designing a protocol in
 ` <reuse.htm#26511>`_. When we chose to split the *time* and *angle*
 libraries, we were forced to create the *say* protocol library and open
-the generic function *say* . In `See Sealed
+the generic function *say* . In `Sealed
 domains <perform.htm#50373>`_, we show how to regain certain
 optimizations when you decide that opening a generic function is
 required.
@@ -830,7 +830,7 @@ most general types for the parameters and return values that are
 compatible with the method. The most common case of implicit generic
 functions is for the slot-accessor methods that are created when a new
 class is defined. Because these generic functions typically have only a
-single method and are *sealed* by default (see `See Open generic
+single method and are *sealed* by default (see `Open generic
 functions <perform.htm#92395>`_), the compiler can make extensive
 optimizations for slot accessors, ideally making slot access no more
 expensive than an array reference or structure-member access in other
@@ -839,7 +839,7 @@ languages.
 Even when a slot is inherited by subclassing, a good Dylan compiler will
 use a *coloring algorithm* to assign slots to the same offset in each
 subclass, keeping the cost of slot access to a minimum. You can use
-primary classes (see `See Primary classes <perform.htm#14126>`_) to
+primary classes (see `Primary classes <perform.htm#14126>`_) to
 guarantee efficient slot access.When a program defines explicit methods
 for a slot getter or setter generic function, of course, the overhead is
 greater.
@@ -1172,7 +1172,7 @@ In this chapter, we covered the following:
    conceptual model of how a program in Dylan runs, and what the
    relative cost of different program elements are.
 -  We examined the method constructs for flexibility and performance
-   available in Dylan; see `See Methods: flexibility versus
+   available in Dylan; see `Methods: flexibility versus
    performance. <perform.htm#53100>`_.
 
 Methods: flexibility versus performance.
@@ -1215,7 +1215,7 @@ Effects
 
 We discussed the constructs that can have type constraints, and the
 influence on performance or flexibility of using such a declaration; see
-`See Type constraint: flexibility versus
+`Type constraint: flexibility versus
 performance. <perform.htm#57334>`_.
 
 Type constraint: flexibility versus performance.

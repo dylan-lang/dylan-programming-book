@@ -28,7 +28,7 @@ Example of multiple inheritance
 -------------------------------
 
 In our airport example, we defined a *<vehicle>* class, and used it as a
-superclass for classes of aircraft. `See Hierarchy of vehicle
+superclass for classes of aircraft. `Hierarchy of vehicle
 classes. <inherit.htm#73249>`_ shows the hierarchy of vehicle classes
 that we defined.
 
@@ -294,7 +294,7 @@ what is the default initial value for the *fuel-remaining* slot: *30* or
 *3000* ?
 
 To answer this question, Dylan needs an additional way of ordering
-classes, called a *class precedence list* . In `See The class precedence
+classes, called a *class precedence list* . In `The class precedence
 list <inherit.htm#13460>`_, we describe how Dylan constructs the class
 precedence list. The short answer to our question about default initial
 slot values is that Dylan uses the default value provided by the class
@@ -318,7 +318,7 @@ tree, there is a well-defined ordering in terms of *specificity* for
 that class and all its superclasses. A subclass is always more specific
 than are any of its superclasses. When each class has only one
 superclass, we can order unambiguously any given class and all its
-superclasses, from *most specific* to *least specific* . `See Hierarchy
+superclasses, from *most specific* to *least specific* . `Hierarchy
 of vehicle classes. <inherit.htm#73249>`_ illustrates part of such an
 ordering for our original, single-inheritance definitions of *<vehicle>*
 and *<vehicle>* ’s subclasses.
@@ -330,7 +330,7 @@ It is still true that a subclass is more specific than are any of its
 superclasses. But we cannot always order its superclasses in terms of
 specificity.
 
-`See Graph of vehicle classes that use multiple
+`Graph of vehicle classes that use multiple
 inheritance. <inherit.htm#99930>`_ illustrates our current definitions
 of *<vehicle>* and of *<vehicle>* ’s subclasses.
 
@@ -438,7 +438,7 @@ compute recursively the class precedence list of the only direct
 superclass of *<commercial-aircraft>* : *<aircraft>* . This process
 continues until Dylan has recursively computed the class precedence
 lists for all superclasses of *<B707>* . Finally, Dylan finishes
-constructing the class precedence list for *<B707>* itself. `See Class
+constructing the class precedence list for *<B707>* itself. `Class
 precedence lists for <B707> and its superclasses. <inherit.htm#87328>`_
 shows the results.
 
@@ -521,8 +521,8 @@ More complicated class precedence lists
 Sometimes, more than one class precedence list is consistent with the
 procedure that we have outlined so far. Suppose, for example, that we
 had defined two additional classes, *<wheeled-vehicle>* and
-*<winged-vehicle>* , with the class relations illustrated in `See
-Expanded graph of vehicle classes that use multiple
+*<winged-vehicle>* , with the class relations illustrated in
+`Expanded graph of vehicle classes that use multiple
 inheritance. <inherit.htm#17457>`_.
 
 Expanded graph of vehicle classes that use multiple inheritance.

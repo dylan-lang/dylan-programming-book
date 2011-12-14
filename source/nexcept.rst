@@ -30,7 +30,7 @@ a *<time-of-day>* instance. We redefine that method to detect overflow
 beyond the 24-hour period covered by a time of day, and to take special
 action in that case. In this section, we show a simple way to indicate
 and handle exceptions, without using the Dylan exception protocol. We
-then discuss the problems with this informal approach. In `See A simple
+then discuss the problems with this informal approach. In `A simple
 Dylan exception protocol <nexcept.htm#65351>`_, we achieve the same goal
 using Dylan conditions, and discuss the advantages of that approach.
 
@@ -104,8 +104,8 @@ define method say-corrected-time
 Problems with the informal exception protocol
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-There are several significant problems with the approach used in `See
-The + method using informal exceptions <nexcept.htm#18519>`_:
+There are several significant problems with the approach used in
+`The + method using informal exceptions <nexcept.htm#18519>`_:
 
 -  As we saw in the *correct-arrival-time* method, most callers of the
    *+* function must check the type of the value returned. This type
@@ -147,9 +147,9 @@ The + method using informal exceptions <nexcept.htm#18519>`_:
 A simple Dylan exception protocol
 ---------------------------------
 
-In Sections `See Signaling conditions <nexcept.htm#23527>`_ through `See
-Continuation from errors <nexcept.htm#63273>`_, we show how to modify
-the three methods in `See The + method using informal
+In Sections `Signaling conditions <nexcept.htm#23527>`_ through
+`Continuation from errors <nexcept.htm#63273>`_, we show how to modify
+the three methods in `The + method using informal
 exceptions <nexcept.htm#18519>`_ to use the basic tools that Dylan
 provides for indicating and responding to exceptional situations.
 
@@ -345,10 +345,10 @@ clause. The body calls the *say* generic function on the condition
 instance, which causes an appropriate error message (instead of the
 time) to be displayed to the user. Execution then continues normally
 after the end of the block; in this case, that results in the normal
-exit from the *say-corrected-time* method. `See Context transition from
+exit from the *say-corrected-time* method. `Context transition from
 signaler to handler. <nexcept.htm#37059>`_ shows the state of execution
 when *error* is called, and after the execution of the *exception*
-clause body for *<time-error>* begins. `See Context transition from
+clause body for *<time-error>* begins. `Context transition from
 signaler to handler. <nexcept.htm#37059>`_ is a simplified diagram of
 the internal calling stack of a hypothetical Dylan implementation. It is
 similar to what a debugger might produce when asked to print a backtrace
@@ -406,7 +406,7 @@ Dylan supports two models of handler execution. The *exception* clause
 of *block* implements the exit model. When you establish handlers by the
 *exception* clause of *block* , you do not have the ability to restart a
 computation in the context of the signaler, or in a context closer to
-the signaler than the handler. In `See Definition of a recovery
+the signaler than the handler. In `Definition of a recovery
 protocol <nexcept.htm#19718>`_, we explore the calling model of handler
 execution, which allows you to recover from an exception without a
 nonlocal exit back to the point where the handler was established.
@@ -609,7 +609,7 @@ If the restart is signaled, a nonlocal exit to the restart exception
 clause in *+* method is initiated, which returns the sum suitably
 wrapped such that it lies within the 24-hour boundary.
 
-`See Context transition from handler to restart
+`Context transition from handler to restart
 handler. <nexcept.htm#38563>`_ shows the state of execution after the
 handler function for *<time-error>* is invoked, and the state after the
 restart handler function for *<return-modulus-restart>* is invoked. As
@@ -691,7 +691,7 @@ description can be especially useful for interactive handlers, such as
 debuggers.
 
 The *return-24-hour-modulus* method has been generalized compared to the
-exception-specific restart defined in `See Definition of a recovery
+exception-specific restart defined in `Definition of a recovery
 protocol <nexcept.htm#19718>`_. This method may return either an
 instance of *<time-of-day>* or *<time-offset>* , depending on the class
 of time that overflowed. Thus, it could be reused for exception handling

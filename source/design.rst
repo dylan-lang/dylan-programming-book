@@ -9,7 +9,7 @@ Goals of the airport application
 
 Throughout this book, we have been developing components for an airport
 application. This application deals with airports, aircraft, gates, and
-related objects. `See Objects in a simple airport. <design.htm#83800>`_
+related objects. `Objects in a simple airport. <design.htm#83800>`_
 shows a diagram of a simple airport.
 
 Objects in a simple airport.
@@ -34,12 +34,12 @@ Transitions between sky and gate for outbound and inbound aircraft.
    :align: center
    :alt: 
 
-In `See Objects in a simple airport. <design.htm#83800>`_, we see a
+In `Objects in a simple airport. <design.htm#83800>`_, we see a
 single *terminal* , A. It has two *gates* , A1 and A2, a *taxiway* ,
 Echo, a *runway* , 11R-29L, and an *aircraft* approaching the runway.
 
 When landing, an aircraft goes from the sky to a runway to a taxiway to
-a gate. `See Transitions between sky and gate for outbound and inbound
+a gate. `Transitions between sky and gate for outbound and inbound
 aircraft. <design.htm#41337>`_ is a state diagram showing these
 transitions for both inbound and outbound aircraft.
 
@@ -66,8 +66,8 @@ aircraft.
 Objects that model an airport
 -----------------------------
 
-We need to define classes that represent the objects in Figures `See
-Objects in a simple airport. <design.htm#83800>`_ and `See Transitions
+We need to define classes that represent the objects in Figures
+`Objects in a simple airport. <design.htm#83800>`_ and `Transitions
 between sky and gate for outbound and inbound
 aircraft. <design.htm#41337>`_. Note that the application displays
 information about the path of an aircraft from gate to sky and sky to
@@ -91,7 +91,7 @@ containers:
 <vehicle-storage>
 
 In our design, containers are connected to other containers. In the
-airport diagram in `See Objects in a simple
+airport diagram in `Objects in a simple
 airport. <design.htm#83800>`_, gate A1 is connected to taxiway Echo,
 which is connected to runway 11R-29L. We can use a slot in the
 *<vehicle-storage>* class to model these connections.
@@ -132,7 +132,7 @@ Inheritance relationships among classes that represent physical objects.
 .. figure:: design-5.gif
    :align: center
    :alt: 
-Figure `See Inheritance relationships among classes that represent
+Figure `Inheritance relationships among classes that represent
 physical objects. <design.htm#11298>`_ shows the inheritance
 relationships among the classes that represent physical objects.
 
@@ -157,7 +157,7 @@ protocol help us to generate and simulate the transitions of the
 aircraft from container to container.
 
 We summarize some of the operations in our design here; we summarize the
-vehicle-storage protocol in `See The vehicle-container
+vehicle-storage protocol in `The vehicle-container
 protocol <design.htm#18846>`_.
 
 process-aircraft *airport time*

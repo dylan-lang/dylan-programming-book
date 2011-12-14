@@ -466,7 +466,7 @@ files that make up a program; this file is called a *library-interchange
 
 The details of how the files are named and stored depends on your Dylan
 implementation. Typically, however, you have a directory containing all
-the files of the program. As shown in `See The hello directory and the
+the files of the program. As shown in `The hello directory and the
 three files that it contains. <start.htm#11859>`_, we name our program
 directory *hello* , and name the files *hello.lid* , *library.dylan* ,
 and *hello.dylan* (the latter is the program file).
@@ -595,7 +595,7 @@ In this chapter, we covered the following:
    output.
 -  We used simple arithmetic functions: *+* , *\** , *-* . We used
    predicates: *=* , *<* , *>* , *even?* , and *zero?* .
--  We described certain naming conventions in Dylan; see `See Dylan
+-  We described certain naming conventions in Dylan; see `Dylan
    naming conventions shown in this chapter. <start.htm#44550>`_.
 
 Dylan naming conventions shown in this chapter.
@@ -659,7 +659,7 @@ any value that is not *#f*
 *max(2, 3);*
 
 -  We described the syntax of some commonly used elements of Dylan; see
-   `See Syntax of Dylan elements. <start.htm#68880>`_.
+   `Syntax of Dylan elements. <start.htm#68880>`_.
 -  We defined module variables (with *define variable* ), constants
    (with *define constant* ), and local variables (with *let* ).
 -  We set the value of variables by using *:=* , the assignment

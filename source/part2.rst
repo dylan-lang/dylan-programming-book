@@ -29,6 +29,6 @@ function-calling protocol, and the uses of functions as objects.
 :doc:`reuse`, shows how you can package your code into a
 reusable software component by designing libraries and modules.
 
-:doc:`time-mod`, pulls together the techniques shown in `See
-Intermediate Topics <part2.htm#19071>`_ in the context of a set of
+:doc:`time-mod`, pulls together the techniques shown in
+`Intermediate Topics <part2.htm#19071>`_ in the context of a set of
 complete working libraries.

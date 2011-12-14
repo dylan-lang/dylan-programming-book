@@ -108,7 +108,7 @@ define method say-greeting (greeting :: <integer>)
 A Dylan method is similar to a procedure or subroutine in other
 languages, but there is an important difference. You can define more
 than one method with the same name. Each one is a method for the same
-*generic function* . `See The say-greeting generic function and its
+*generic function* . `The say-greeting generic function and its
 methods. <oo-1.htm#16310>`_ shows how you can picture a generic
 function.
 
@@ -206,12 +206,12 @@ All objects are instances of the class *<object>* :
 *?* instance?("hello, world", <object>);
  *#t*
 
-`See Classes and subclasses. Each arrow points from a class to a
+`Classes and subclasses. Each arrow points from a class to a
 subclass. <oo-1.htm#37637>`_ shows the inheritance relationships among
 several of the built-in classes. If class A is a superclass of class B,
 then class B is a *subclass* of class A. For example, *<object>* is a
 superclass of *<string>* , and *<string>* is a subclass of *<object>* .
-For simplicity, `See Classes and subclasses. Each arrow points from a
+For simplicity, `Classes and subclasses. Each arrow points from a
 class to a subclass. <oo-1.htm#37637>`_ omits certain classes that
 intervene between the classes shown.
 
@@ -295,7 +295,7 @@ decision enables these powerful features of Dylan:
 -  You can restrict generic functions to operate on specific classes of
    objects.
 
-In Dylan, a method belongs to a generic function, as shown in `See The
+In Dylan, a method belongs to a generic function, as shown in `The
 say-greeting generic function and its methods. <oo-1.htm#16310>`_.
 Although methods are independent of classes, methods operate on
 instances of classes. A method states the types of objects for which it
@@ -320,13 +320,13 @@ values, *#t* , and *#f* , are objects. Methods, generic functions, and
 classes are objects. What does it mean to be an object?
 
 -  Most important, an object has a unique identity. You can use the *==*
-   predicate to test whether two operands are the same object. See `See
-   Predicates for testing equality <oo-1.htm#31376>`_.
+   predicate to test whether two operands are the same object. See
+   `Predicates for testing equality <oo-1.htm#31376>`_.
 -  An object is a direct instance of a particular class. You can use the
    *object-class* predicate to determine the direct class of an object.
 -  You can give an object a name. For example, if you define a variable
    or constant to contain an object, you have given that object a name.
-   See `See Bindings: Mappings between objects and
+   See `Bindings: Mappings between objects and
    names <oo-1.htm#73751>`_.
 -  You can pass an object as an argument or return value — because
    generic functions and methods are objects, you can manipulate them
@@ -456,7 +456,7 @@ name and a method object:
 
 All the bindings that we have created in this section so far are
 accessible within a module. (For information about modules, see
-` <reuse.htm#84851>`_.) `See Bindings as links (shown as arrows) between
+` <reuse.htm#84851>`_.) `Bindings as links (shown as arrows) between
 names (enclosed in ovals) and objects (enclosed in rectangles) within a
 module. <oo-1.htm#20525>`_ shows how you can picture each binding as a
 link between a name and another object.
