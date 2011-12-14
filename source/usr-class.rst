@@ -29,10 +29,10 @@ There are several ways to represent time. We could say that an event
 happened 2 hours ago (a time offset). We could say that an event
 happened at 21:30 (a time of day). We must represent both kinds of time
 in our time library, and we must provide a way to print representations
-of both. In this chapter, we define a class named *<time-of-day>* , and
-we define a method that prints a representation of *<time-of-day>* . In
-` <offset.htm#39530>`_, we define the *<time-offset>* class, and a
-method that prints a representation of *<time-offset>* .
+of both. In this chapter, we define a class named ``<time-of-day>`` , and
+we define a method that prints a representation of ``<time-of-day>`` . In
+` <offset.htm#39530>`_, we define the ``<time-offset>`` class, and a
+method that prints a representation of ``<time-offset>`` .
 
 The airport application also requires us to represent physical objects
 (such as aircraft), and the positions (locations) of physical objects.
@@ -59,11 +59,11 @@ each instance stores its own value for the slot. A class inherits the
 slots defined by its superclasses, and it can define more slots if it
 needs them.
 
-The *<time-of-day>* class
+The ``<time-of-day>`` class
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We start by defining a class to represent the concept of a time of day,
-such as 21:30. The definition of the *<time-of-day>* class is as
+such as 21:30. The definition of the ``<time-of-day>`` class is as
 follows:
 
 *// A specific time of day from 00:00 (midnight) to below 24:00
@@ -80,16 +80,16 @@ in source files. You can also have multiline comments that start with
 */\** and end with *\*/* .
 
 On line 1, the words *define class* start the class definition. The name
-of the class is *<time-of-day>* . The list following the name of the
+of the class is ``<time-of-day>`` . The list following the name of the
 class is a list of the direct superclasses of this class. The
-*<time-of-day>* class has one direct superclass, which is the class
-*<object>* . Each user-defined class must have at least one direct
+``<time-of-day>`` class has one direct superclass, which is the class
+``<object>`` . Each user-defined class must have at least one direct
 superclass. If no other class is appropriate, the class must have
-*<object>* as its superclass.
+``<object>`` as its superclass.
 
 Line 2 contains the only slot definition of this class. This class has
 one slot, named *total-seconds* . The slot’s type constraint is
-*<integer>* . The double colon, *::* , specifies the type constraint of
+``<integer>`` . The double colon, *::* , specifies the type constraint of
 a slot, just as it specifies the type constraint of a module variable or
 of a method’s parameter.
 
@@ -104,28 +104,28 @@ difficult to see which language construct is ending.
 The type constraint of a slot
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The type constraint of the *total-seconds* slot is *<integer>* . This
-slot can hold instances of *<integer>* , and cannot hold any other kind
+The type constraint of the *total-seconds* slot is ``<integer>`` . This
+slot can hold instances of ``<integer>`` , and cannot hold any other kind
 of object.
 
 The type constraint of a slot is optional. Specifying a slot with no
-explicit type constraint is equivalent to specifying *<object>* as the
-type constraint. A slot whose type constraint is *<object>* can hold any
-object. The ability to have slots with the type constraint *<object>*
+explicit type constraint is equivalent to specifying ``<object>`` as the
+type constraint. A slot whose type constraint is ``<object>`` can hold any
+object. The ability to have slots with the type constraint ``<object>``
 provides flexibility that can be valuable; for more information, see
 ` <perform.htm#66157>`_.
 
 Use of *make* to create an instance
 -----------------------------------
 
-We want to make an instance of *<time-of-day>* , but first we need a
+We want to make an instance of ``<time-of-day>`` , but first we need a
 place to store it. We define a module variable called
 *\*my-time-of-day\** , and initialize it to contain a new instance of
-*<time-of-day>* :
+``<time-of-day>`` :
 
 *?* define variable \*my-time-of-day\* = make(<time-of-day>);
 
-The *make* function creates an instance of *<time-of-day>* . The
+The *make* function creates an instance of ``<time-of-day>`` . The
 argument to *make* is the class to create. The *make* function returns
 the new instance.
 
@@ -135,7 +135,7 @@ with no value. The next logical step is to store a value in that slot.
 Getters and setters of slot values
 ----------------------------------
 
-We can store a value in the *total-seconds* slot of the *<time-of-day>*
+We can store a value in the *total-seconds* slot of the ``<time-of-day>``
 instance by using the assignment operator, *:=* , as follows:
 
 *?* \*my-time-of-day\*.total-seconds := 180;
@@ -175,7 +175,7 @@ We will be able to make this call after we have done a bit of homework,
 as we shall show in `Init keywords: Keywords that initialize
 slots <usr-class.htm#49235>`_. In the preceding call to *make* , we
 provided a keyword argument, consisting of a keyword, *total-seconds:* ,
-followed by a value, *120* . The *<time-of-day>* instance returned by
+followed by a value, *120* . The ``<time-of-day>`` instance returned by
 *make* has its *total-seconds* slot set to *120* .
 
 A *keyword argument* consists of a keyword followed by the keyword’s
@@ -210,7 +210,7 @@ possible to give an init keyword to *make* , we need to use the
 lets us specify a characteristic of a slot. Slot options appear after
 the optional type specifier of a slot.
 
-Here, we redefine the *<time-of-day>* class to use the *init-keyword:*
+Here, we redefine the ``<time-of-day>`` class to use the *init-keyword:*
 slot option:
 
 *// A specific time of day from 00:00 (midnight) to below 24:00
@@ -219,9 +219,9 @@ slot option:
 * slot total-seconds :: <integer>, init-keyword: total-seconds:; *// 2
 * end class <time-of-day>; *// 3*
 
-The preceding definition *redefines* the class *<time-of-day>* . That
-is, this new definition of *<time-of-day>* replaces the old definition
-of *<time-of-day>* .
+The preceding definition *redefines* the class ``<time-of-day>`` . That
+is, this new definition of ``<time-of-day>`` replaces the old definition
+of ``<time-of-day>`` .
 
 In line 2, the *init-keyword:* slot option defines *total-seconds:* as a
 keyword parameter that we can give to *make* when we make an instance of
@@ -231,11 +231,11 @@ keyword, we can provide the keyword argument as follows:
 *?* \*my-time-of-day\* := make(<time-of-day>, total-seconds: 120);
  *{instance of <time-of-day>}*
 
-The preceding expression creates a new instance of *<time-of-day>* , and
+The preceding expression creates a new instance of ``<time-of-day>`` , and
 stores that instance in the variable *\*my-time-of-day\** . The value of
 the *total-seconds* slot of this instance is initialized to *120* . The
 assignment operator returns the new value stored; in the preceding call,
-the new value is the newly created instance of *<time-of-day>* , which
+the new value is the newly created instance of ``<time-of-day>`` , which
 the listener displays as *{instance of <time-of-day>}* .
 
 We can use the getter to verify that the slot has an initial value:
@@ -257,7 +257,7 @@ Dylan’s automatic storage management will recycle the storage used by
 that object. In this section, there are two examples of objects that
 become inaccessible:
 
--  We redefined the *<time-of-day>* class. The storage used by the old
+-  We redefined the ``<time-of-day>`` class. The storage used by the old
    class definition can be recycled.
 -  We stored a new instance in *\*my-time-of-day\** . The storage used
    by the instance previously stored in that variable can be recycled.
@@ -285,7 +285,7 @@ meeting will be held at 11:30. It is easier to operate on a single
 value, rather than on three values of hours, minutes, and seconds. On
 the other hand, it is convenient to see times expressed as hours,
 minutes, and seconds. We can represent the instances with a single slot,
-and can provide methods that let users create and see *<time-of-day>*
+and can provide methods that let users create and see ``<time-of-day>``
 instances as being hours, minutes, and seconds.
 
 Method for *encode-total-seconds*
@@ -302,15 +302,15 @@ define method encode-total-seconds *// 1
 
 Line 2 contains the parameter list of the method *encode-total-seconds*
 . The method has three required parameters, named *hours* , *minutes* ,
-and *seconds* , each of type *<integer>* . This method is invoked when
+and *seconds* , each of type ``<integer>`` . This method is invoked when
 *encode-total-seconds* is called with three integer arguments.
 
 Line 3 contains the *value declaration* , which starts with the
 characters *=>* . It is a list declaring the values returned by the
 method. Each element of the list contains a descriptive name of the
 return value and the type of the value (if the type is omitted, it is
-*<object>* ). In this case, there is one value returned, named
-*total-seconds* , which is of the type *<integer>* . The name of a
+``<object>`` ). In this case, there is one value returned, named
+*total-seconds* , which is of the type ``<integer>`` . The name of a
 return value is used purely for documentation purposes. Although methods
 are not required to have value declarations, there are advantages to
 supplying those declarations. When you provide a value declaration for a
@@ -339,7 +339,7 @@ We can call *encode-total-seconds* with arguments representing 8 hours,
 
 We find it convenient to call *encode-total-seconds* to initialize the
 *total-
- seconds* slot when we create an instance of *<time-of-day>* , or when
+ seconds* slot when we create an instance of ``<time-of-day>`` , or when
 we store
  a new value in that slot. Here, for example, we create a new instance:
 
@@ -466,14 +466,14 @@ The *decode-total-seconds* method is called as follows:
 *?* decode-total-seconds(\*your-time-of-day\*.total-seconds);
 
 If we envision calling *decode-total-seconds* frequently to see the
-hours, minutes, and seconds stored in a *<time-of-day>* instance, we can
-make it possible to decode *<time-of-day>* instances, as well as
+hours, minutes, and seconds stored in a ``<time-of-day>`` instance, we can
+make it possible to decode ``<time-of-day>`` instances, as well as
 integers. For example, we can make it possible to make this call:
 
 *?* decode-total-seconds(\*your-time-of-day\*);
 
 We can implement this behavior easily, by defining another method for
-*decode-total-seconds* , which takes a *<time-of-day>* instance as its
+*decode-total-seconds* , which takes a ``<time-of-day>`` instance as its
 argument:
 
 define method decode-total-seconds
@@ -502,27 +502,27 @@ methods. <usr-class.htm#47266>`_, we analyze what happens in this call:
 
 *?* decode-total-seconds(\*your-time-of-day\*);
 
-#. The argument is an instance of *<time-of-day>* , so the method on
-   *<time-of-day>* is called.
-#. The body of the method on *<time-of-day>* calls
-   *decode-total-seconds* on an instance of *<integer>* , the value of
-   the *total-seconds* slot of the *<time-of-day>* instance. In this
-   call, the argument is an integer, so the method on *<integer>* is
+#. The argument is an instance of ``<time-of-day>`` , so the method on
+   ``<time-of-day>`` is called.
+#. The body of the method on ``<time-of-day>`` calls
+   *decode-total-seconds* on an instance of ``<integer>`` , the value of
+   the *total-seconds* slot of the ``<time-of-day>`` instance. In this
+   call, the argument is an integer, so the method on ``<integer>`` is
    called.
-#. The method on *<integer>* returns three values to its caller — the
-   method on *<time-of-day>* . The method on *<time-of-day>* returns
+#. The method on ``<integer>`` returns three values to its caller — the
+   method on ``<time-of-day>`` . The method on ``<time-of-day>`` returns
    those three
     values.
 
-The purpose of the method on *<time-of-day>* is simply to allow a
+The purpose of the method on ``<time-of-day>`` is simply to allow a
 different kind of argument to be used. The method extracts the integer
-from the *<time-of-day>* instance, and calls *decode-total-seconds* with
+from the ``<time-of-day>`` instance, and calls *decode-total-seconds* with
 that integer.
 
 Method for *say-time-of-day*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We can provide a way to ask an instance of *<time-of-day>* to describe
+We can provide a way to ask an instance of ``<time-of-day>`` to describe
 the time in a conventional format, such as 8:30. For the application
 that we are planning, there is no need to view the seconds. We want the
 method to print the description in a window on the screen. We define a

@@ -86,11 +86,11 @@ define method say (physical-object :: <physical-object>) => ()
  end method say;
 
 In the preceding portion of the *airport-classes.dylan* file, we define
-the class *<size>* , which allows us to specify the external dimensions
+the class ``<size>`` , which allows us to specify the external dimensions
 and container volume of various objects. For example, we might want to
 specify that certain gate areas might be too small to hold the large
 aircraft. We also define the base class for all tangible objects,
-*<physical-object>* .
+``<physical-object>`` .
 
 Next, we define the classes where aircraft are normally located.
 
@@ -245,21 +245,21 @@ In the preceding portion of the *airport-classes.dylan* file, we define
 the tangible objects that represent the various normal locations for
 aircraft in and around an airport. These locations are known as
 containers or vehicle storage. We can connect vehicle-storage instances
-to one another to form an airport. Instances of *<single-storage>* can
+to one another to form an airport. Instances of ``<single-storage>`` can
 hold only one aircraft at a time, whereas instances of
-*<multiple-storage>* can hold more than one aircraft at a time. Also,
-instances of *<multiple-storage>* treat inbound aircraft separately from
+``<multiple-storage>`` can hold more than one aircraft at a time. Also,
+instances of ``<multiple-storage>`` treat inbound aircraft separately from
 outbound aircraft. We define the *object-fits?* method, which determines
 whether a physical object can fit into a container. We also define
 methods for creating, initializing, and describing various containers.
 Note the use of the *each-subclass* slot *name-prefix* , which permits
-one *say* method on the *<vehicle-storage>* class to cover all the
+one *say* method on the ``<vehicle-storage>`` class to cover all the
 vehicle-container classes. Each subclass of vehicle storage can override
 the inherited value of this slot, to ensure that the proper name of the
 vehicle storage is used in the description of instances of that
 subclass.
 
-The *<vehicle-storage>* , *<multiple-storage>* , and *<single-storage>*
+The ``<vehicle-storage>`` , ``<multiple-storage>`` , and ``<single-storage>``
 classes are all abstract, because it is not sensible to instantiate
 them. They contain partial implementations that they contribute to their
 subclasses.

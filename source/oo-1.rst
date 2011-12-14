@@ -67,11 +67,11 @@ define method say-greeting (greeting :: <object>);
 The *say-greeting* method has one required parameter, named *greeting* .
 The type constraint of the required parameter indicates the type that
 the argument must be. The *greeting* parameter has the type constraint
-*<object>* , which is the most general class. All objects are of the
-type *<object>* , so using this class as the type constraint allows the
+``<object>`` , which is the most general class. All objects are of the
+type ``<object>`` , so using this class as the type constraint allows the
 argument to be any object. You can omit the type constraint of a
 required parameter; that omission has the same effect as specifying
-*<object>* as the type constraint.
+``<object>`` as the type constraint.
 
 We can call *say-greeting* on a string:
 
@@ -96,7 +96,7 @@ integers, such as to print a message:
 
 To make this change, we define another method, also called
 *say-greeting* . This method has one required parameter named *greeting*
-, which has the type constraint *<integer>* .
+, which has the type constraint ``<integer>`` .
 
 define method say-greeting (greeting :: <integer>)
  format-out("Your lucky number is %s.\\n", greeting);
@@ -115,13 +115,13 @@ function.
 When a generic function is called, it chooses the most appropriate
 method to call for the arguments. For example, when we call the
 *say-greeting* generic function with an integer, the method whose
-parameter is of the type *<integer>* is called:
+parameter is of the type ``<integer>`` is called:
 
 *?* say-greeting(1000);
  *Your lucky number is 1000.*
 
 When we call the *say-greeting* generic function with an argument that
-is not an integer, the method whose parameter is of the type *<object>*
+is not an integer, the method whose parameter is of the type ``<object>``
 is called:
 
 *?* say-greeting("Buenos Dias");
@@ -140,19 +140,19 @@ The *say-greeting* generic function and its methods.
 Classes
 -------
 
-We have already seen examples of classes in Dylan: *<integer>* ,
-*<single-float>* , *<string>* , and *<object>* .
+We have already seen examples of classes in Dylan: ``<integer>`` ,
+``<single-float>`` , ``<string>`` , and ``<object>`` .
 
 Individual values are called *objects* . Each object is a *direct
 instance* of one particular class. You can use the *object-class*
 function to determine the direct class of an object. For example, in
 certain implementations, *7* , *12* , and *1000* are direct instances of
-the class *<integer>* :
+the class ``<integer>`` :
 
 *?* object-class(1000);
  *{class <integer>}*
 
-The value returned by *object-class* is the *<integer>* class itself.
+The value returned by *object-class* is the ``<integer>`` class itself.
 The appearance of a class, method, or generic function in a listener
 depends on the Dylan environment. We have chosen a simple appearance of
 classes for this book.
@@ -170,7 +170,7 @@ by
 to one another to share the behaviors and attributes that they have in
 common. Each class inherits from one or more classes, called its
 *superclasses* . If no other class is appropriate, then the class
-inherits from the class *<object>* . This class is the *root* of all
+inherits from the class ``<object>`` . This class is the *root* of all
 classes: All classes inherit from it, either directly or indirectly, and
 it does not have any direct superclasses.
 
@@ -198,7 +198,7 @@ whether an object is an instance of a given class:
 *?* instance?("hello, world", <integer>);
  *#f*
 
-All objects are instances of the class *<object>* :
+All objects are instances of the class ``<object>`` :
 
 *?* instance?(1000, <object>);
  *#t*
@@ -209,8 +209,8 @@ All objects are instances of the class *<object>* :
 `Classes and subclasses. Each arrow points from a class to a
 subclass. <oo-1.htm#37637>`_ shows the inheritance relationships among
 several of the built-in classes. If class A is a superclass of class B,
-then class B is a *subclass* of class A. For example, *<object>* is a
-superclass of *<string>* , and *<string>* is a subclass of *<object>* .
+then class B is a *subclass* of class A. For example, ``<object>`` is a
+superclass of ``<string>`` , and ``<string>`` is a subclass of ``<object>`` .
 For simplicity, `Classes and subclasses. Each arrow points from a
 class to a subclass. <oo-1.htm#37637>`_ omits certain classes that
 intervene between the classes shown.
@@ -306,10 +306,10 @@ define method say-greeting (greeting :: <integer>);
  format-out("Your lucky number is %s.\\n", greeting);
  end;
 
-This method operates on instances of the *<integer>* class. Notice how
+This method operates on instances of the ``<integer>`` class. Notice how
 easy
  and convenient it is to define a method intended for use on the
-built-in class *<integer>* .
+built-in class ``<integer>`` .
 
 Objects
 -------
@@ -337,7 +337,7 @@ an object (an instance of a class); we say that Dylan and Smalltalk have
 “objects all the way down.” In contrast, in C++, some values are not
 objects; they have primitive types that are not classes. For example, in
 Dylan, 7 is an instance of
- *<integer>* . In C++, 7 is not an instance; it has the type *int* .
+ ``<integer>`` . In C++, 7 is not an instance; it has the type *int* .
 This design decision enables Dylan users to define methods on built-in
 classes in the same way that they define methods on user-defined classes
 — a technique that cannot be done in C++.
@@ -495,8 +495,8 @@ In this chapter, we covered the following:
    method has parameters of different types, and thus is intended for
    different arguments. The *say-greeting* generic function has two
    methods.
--  Dylan provides built-in classes, including *<integer>* ,
-   *<single-float>* , *<string>* , and *<object>* . These classes are
+-  Dylan provides built-in classes, including ``<integer>`` ,
+   ``<single-float>`` , ``<string>`` , and ``<object>`` . These classes are
    related by inheritance.
 -  In Dylan, almost everything is an object. Each object has a unique
    identity.

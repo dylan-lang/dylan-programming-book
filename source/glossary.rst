@@ -37,8 +37,8 @@ Glossary
         the end of the smallest body that surrounds it.
 
     built-in class
-        A class provided by Dylan, such as *<object>* , *<integer>* , or
-        *<string>* .
+        A class provided by Dylan, such as ``<object>`` , ``<integer>`` , or
+        ``<string>`` .
 
     *class*
         A definition of a type of other objects, which are called its instances.
@@ -49,7 +49,7 @@ Glossary
     *class precedence list*
         For a particular class, a list of the class and all its superclasses,
         ordered from most specific (the class itself) to least specific (the
-        *<object>* class).
+        ``<object>`` class).
 
     *closure*
         A method that closes over some local variables. The closure can access
@@ -61,14 +61,14 @@ Glossary
         A kind of container that can hold zero or more objects. Dylan provides
         the usual kinds of collections, including arrays, vectors, strings,
         singly linked lists, queues, hash tables, and so on. In Dylan, a
-        collection is an instance of a class. For example, the *<array>* class
-        represents arrays, and the *<vector>* class represents vectors.
+        collection is an instance of a class. For example, the ``<array>`` class
+        represents arrays, and the ``<vector>`` class represents vectors.
 
     *concrete class*
         A class that can have direct instances. By default, a class is concrete.
 
     *condition*
-        An instance (direct or indirect) of the *<condition>* class, that
+        An instance (direct or indirect) of the ``<condition>`` class, that
         represents a problem or unusual situation encountered during program
         execution.
 
@@ -193,7 +193,7 @@ Glossary
         another to share the behaviors and data attributes that they have in
         common. Each class inherits from one or more other classes, called its
         superclasses. If no other class is an appropriate superclass, the class
-        inherits from the class *<object>* .
+        inherits from the class ``<object>`` .
 
     init expression
         A technique for initializing slots. An init expression provides an
@@ -274,7 +274,7 @@ Glossary
 
     *limited type*
         A type that is a more restricted version of its base type. For example,
-        a limited-integer type is based on *<integer>* , but has a given minimum
+        a limited-integer type is based on ``<integer>`` , but has a given minimum
         or maximum value. Another example of a limited type is a
         limited-collection type, which is a collection type that specifies the
         type of elements, and/or the size of the collection. Limited types are
@@ -333,7 +333,7 @@ Glossary
     multiple inheritance
         Inheritance of a class from more than one direct superclass.
 
-    *<object>* class
+    ``<object>`` class
         The class from which all classes inherit, either directly or indirectly.
 
     object
@@ -387,7 +387,7 @@ Glossary
         restart condition.
 
     root
-        The starting point of Dylan class inheritance — the class *<object>* ,
+        The starting point of Dylan class inheritance — the class ``<object>`` ,
         from which all Dylan classes inherit, either directly or indirectly.
 
     *setter*
@@ -438,7 +438,7 @@ Glossary
     superclass
         The superclasses of a class include all that class’s direct
         superclasses, and all their direct superclasses, and so on, all the way
-        to the root of class inheritance, which is the *<object>* class. You can
+        to the root of class inheritance, which is the ``<object>`` class. You can
         use *all-superclasses* to find all the superclasses of a class.
 
     supertype
@@ -446,7 +446,7 @@ Glossary
         inherits, directly or indirectly.
 
     symbol
-        An instance of the *<symbol>* type. Symbols are much like strings. There
+        An instance of the ``<symbol>`` type. Symbols are much like strings. There
         are two reasons to use symbols in certain cases where you might consider
         strings. First, symbol comparison is not case sensitive. Second,
         comparison of two symbols is much faster than is comparison of two

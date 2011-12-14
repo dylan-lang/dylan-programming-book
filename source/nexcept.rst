@@ -25,8 +25,8 @@ an application.
 An informal exception protocol
 ------------------------------
 
-Our goal is to modify the method that adds a *<time-offset>* instance to
-a *<time-of-day>* instance. We redefine that method to detect overflow
+Our goal is to modify the method that adds a ``<time-offset>`` instance to
+a ``<time-of-day>`` instance. We redefine that method to detect overflow
 beyond the 24-hour period covered by a time of day, and to take special
 action in that case. In this section, we show a simple way to indicate
 and handle exceptions, without using the Dylan exception protocol. We
@@ -37,8 +37,8 @@ using Dylan conditions, and discuss the advantages of that approach.
 The *+* method using informal exceptions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-First, we redefine the method for adding *<time-offset>* and
-*<time-of-day>* (this method was last defined in
+First, we redefine the method for adding ``<time-offset>`` and
+``<time-of-day>`` (this method was last defined in
 ` <time-mod.htm#54143>`_, ` <time-mod.htm#97385>`_). The method now
 returns an error string in the event that the computed sum is beyond the
 permitted 24-hour range:
@@ -58,7 +58,7 @@ define method \\+ (offset :: <time-offset>, time-of-day ::
 
 We have altered the *+* method in two important ways. First, we have
 modified the original values declaration, *(sum :: <time-of-day>)* , to
-allow the return of either a *<time-of-day>* instance or a string
+allow the return of either a ``<time-of-day>`` instance or a string
 describing a problem. Second, we have added code that checks the
 computed time of day, and returns an error string if the sum is out of
 bounds.
@@ -133,7 +133,7 @@ There are several significant problems with the approach used in
    obey at the call site; programmers will have to check the convention
    in the source code or programmer documentation.
 -  In this example, the ability to restrict the return value to only
-   *<time-of-day>* is lost. This loss might prevent compile-time error
+   ``<time-of-day>`` is lost. This loss might prevent compile-time error
    checking that could catch errors that would be difficult or
    inconvenient to catch at run time. It might also prevent the compiler
    from optimizing code that uses the results of this function, thus
@@ -159,20 +159,20 @@ Signaling conditions
 Dylan provides a structured mechanism for indicating that an unusual
 event or exceptional situation has occurred during the execution of a
 program. Using this mechanism is called *signaling a condition* . A
-*condition* is an instance of the *<condition>* class, which represents
+*condition* is an instance of the ``<condition>`` class, which represents
 a problem or unusual situation encountered during program execution.
 
 To signal a condition, we need to take these steps:
 
-#. Define a condition class, which must be a subclass of *<condition>* .
+#. Define a condition class, which must be a subclass of ``<condition>`` .
    The condition class should have slots that are appropriate for the
    application. In this example, we define a condition class named
-   *<time-error>* to be a direct subclass of *<error>* . Note that
-   *<error>* is a subclass of *<condition>* . We defined *<time-error>*
-   to inherit from *<error>* , because in case our application does not
+   ``<time-error>`` to be a direct subclass of ``<error>`` . Note that
+   ``<error>`` is a subclass of ``<condition>`` . We defined ``<time-error>``
+   to inherit from ``<error>`` , because in case our application does not
    handle the exception, we want Dylan always to take some action, such
-   as entering a debugger. If *<time-error>* inherited from
-   *<condition>* and the application failed to handle the exception,
+   as entering a debugger. If ``<time-error>`` inherited from
+   ``<condition>`` and the application failed to handle the exception,
    then the exception might simply be ignored.
 #. Modify the functions that might detect the exception. These functions
    must make an instance of the condition class, and must use an
@@ -180,9 +180,9 @@ To signal a condition, we need to take these steps:
    example, we redefine the *+* method to signal the condition with the
    *error* function.
 
-In the following code, we define a condition named *<time-error>* to
+In the following code, we define a condition named ``<time-error>`` to
 represent any kind of time error, and we define a condition named
-*<time-boundary-error>* to represent violations of time-of-day bounds.
+``<time-boundary-error>`` to represent violations of time-of-day bounds.
 
 define abstract class <time-error> (<error>)
  constant slot invalid-time :: <time>, required-init-keyword:
@@ -213,7 +213,7 @@ define method say (condition :: <time-boundary-error>) => ()
  format-out(".");
  end method say;
 
-We redefine the *+* method to signal the *<time-boundary-error>*
+We redefine the *+* method to signal the ``<time-boundary-error>``
 condition (instead of returning an error string) to indicate that this
 problem has occurred:
 
@@ -243,9 +243,9 @@ addition.
 In previous chapters (for example, in ` <multi.htm#97223>`_), we called
 the *error* function with a string. Given a string as its first
 argument, the *error* function creates a general-purpose condition named
-*<simple-error>* and stores its arguments in the condition instance. In
+``<simple-error>`` and stores its arguments in the condition instance. In
 the preceding example, however, we created an instance of a condition
-that is customized for our program (*<time-boundary-error>* ), and then
+that is customized for our program (``<time-boundary-error>`` ), and then
 supplied that condition to the *error* function. This approach provides
 information that is more readily accessible to the code that will handle
 the condition. Conditions, like any other Dylan class, can use
@@ -261,7 +261,7 @@ power of Dylan’s object-oriented programming capabilities to the task of
 signaling and handling exceptional situations.
 
 Once the *error* function receives a condition instance, or makes an
-instance of *<simple-error>* itself, Dylan begins a process of
+instance of ``<simple-error>`` itself, Dylan begins a process of
 attempting to resolve the situation represented by the condition. We
 present the details of condition resolution in the next section.
 
@@ -271,9 +271,9 @@ Simple condition handling
 A *handler* can potentially resolve an exceptional situation, although a
 handler can decline to resolve a particular exception. If an application
 provides no handlers, then the generic function *default-handler* is
-called on the condition. There is a method on *<condition>* that just
-returns false, and there is a method on *<serious-condition>* (a
-superclass of *<error>* ) that causes some kind of
+called on the condition. There is a method on ``<condition>`` that just
+returns false, and there is a method on ``<serious-condition>`` (a
+superclass of ``<error>`` ) that causes some kind of
 implementation-specific response to be invoked. Most development
 environments provide a debugger that deals with any serious conditions
 not handled by the application. Typically, the debugger describes the
@@ -331,10 +331,10 @@ executed, and the value of the last statement in that body is then
 returned as the value of the block.
 
 In this example, the *+* method (called by *correct-arrival-time* ) may
-signal a *<time-boundary-error>* condition using the *error* function
+signal a ``<time-boundary-error>`` condition using the *error* function
 during the execution of *say-corrected-time* . If this error is
-signaled, then the handler established by the *block* for *<time-error>*
-will match the *<time-boundary-error>* condition. This *exception*
+signaled, then the handler established by the *block* for ``<time-error>``
+will match the ``<time-boundary-error>`` condition. This *exception*
 clause will always accept the condition, so a nonlocal exit will occur,
 and will terminate execution of the *error* function, the *+* method,
 and the *correct-arrival-time* method. Within the context of the
@@ -348,13 +348,13 @@ after the end of the block; in this case, that results in the normal
 exit from the *say-corrected-time* method. `Context transition from
 signaler to handler. <nexcept.htm#37059>`_ shows the state of execution
 when *error* is called, and after the execution of the *exception*
-clause body for *<time-error>* begins. `Context transition from
+clause body for ``<time-error>`` begins. `Context transition from
 signaler to handler. <nexcept.htm#37059>`_ is a simplified diagram of
 the internal calling stack of a hypothetical Dylan implementation. It is
 similar to what a debugger might produce when asked to print a backtrace
 at these two points in the execution of the example. The *error*
 function called within the *+* method signals the
-*<time-boundary-error>* error, and the *exception* clause of *block* in
+``<time-boundary-error>`` error, and the *exception* clause of *block* in
 the *say-corrected-time* method establishes the handler for that error.
 Once the handling of the exception is in progress, the handler selected
 is no longer established. If there is relevant local state, it may be
@@ -387,7 +387,7 @@ conditions are significant:
 -  We allow room for expansion in the code. For example, at some point,
     *correct-arrival-time* might do more sophisticated computations with
    time, which might signal other kinds of time errors. As long as these
-   new time errors inherit from *<time-error>* , they can be resolved by
+   new time errors inherit from ``<time-error>`` , they can be resolved by
    the same handler established by *say-corrected-time* . As the
    application evolves, we can build various families of error
    conditions, and can provide application-specific handlers that
@@ -414,8 +414,8 @@ nonlocal exit back to the point where the handler was established.
 Definition of a recovery protocol
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-With the new definition of our *+* method on *<time-offset>* and
-*<time-of-day>* , if we add 5 hours to 10:00 P.M., a condition instance
+With the new definition of our *+* method on ``<time-offset>`` and
+``<time-of-day>`` , if we add 5 hours to 10:00 P.M., a condition instance
 is signaled. The *say-corrected-time* method handles that condition, and
 prints a suitable error message. By the time the handler in
 *say-corrected-time* takes control, the addition that we were performing
@@ -426,17 +426,17 @@ nonlocal exits out of the current computation back to the block where
 the handler was established. Suppose that we, instead of aborting the
 addition, wanted to continue with the addition, perhaps modifying the
 value returned by the *+* method such that it would still be within the
-correct 24-hour range for *<time-of-day>* instances. In this section, we
+correct 24-hour range for ``<time-of-day>`` instances. In this section, we
 modify *say-corrected-time* to use a different technique for
 establishing a handler that does not abort the computation in progress,
-and we modify the *+* method for *<time-offset>* and *<time-of-day>* to
+and we modify the *+* method for ``<time-offset>`` and ``<time-of-day>`` to
 offer and implement a way to modify the value returned to be a legal
 time of day.
 
 First, we must find a way to execute a handler in the context of the
 signaler, instead of at the point where the handler was established.
 Then, we must find a way to activate special code in the *+* method to
-return a legal *<time-of-day>* instance as a way of recovering from the
+return a legal ``<time-of-day>`` instance as a way of recovering from the
 time-boundary exception.
 
 -  The *let* *handler* local declaration provides a way to establish a
@@ -448,14 +448,14 @@ time-boundary exception.
    progress.
 
 In this case, continuing with the computation means that the *+* method
-will return a legal *<time-of-day>* instance to *correct-arrival-time* ,
+will return a legal ``<time-of-day>`` instance to *correct-arrival-time* ,
 and *correct-arrival-time* will finish any additional processing and
 return normally to its caller.
 
 To recover from an exception, we use a signaling and handling technique
 as similar to that we used to indicate the exception in the first place.
 This time, we signal a particular condition that is a subclass of
-*<restart>* , to indicate how the exception handler wishes to recover.
+``<restart>`` , to indicate how the exception handler wishes to recover.
 We use a *restart handler* to implement the particular recovery action.
 You can think of a restart as a special condition that represents an
 opportunity to recover from an exception. Establishing a restart handler
@@ -466,9 +466,9 @@ place. Restart signaling and handling connects recovery requests with
 recovery actions.
 
 For example, adding 5 hours to 10:00 P.M. is an error for
-*<time-offset>* and *<time-of-day>* instances. One way to recover from
+``<time-offset>`` and ``<time-of-day>`` instances. One way to recover from
 this error would be to wrap around the result to 3:00 A.M. Here, we
-define the restart class *<return-modulus-restart>* , which represents
+define the restart class ``<return-modulus-restart>`` , which represents
 an offer to return from a time-of-day computation by wrapping the
 result:
 
@@ -501,8 +501,8 @@ define method \\+ (offset :: <time-offset>, time-of-day ::
  end method \\+;
 
 If a handler (established with *let handler* ) signals a
-*<return-modulus-restart>* during the handling of the
-*<time-boundary-error>* exception, then the sum will be wrapped around
+``<return-modulus-restart>`` during the handling of the
+``<time-boundary-error>`` exception, then the sum will be wrapped around
 so that it will stay within the bounds of the time-of-day specification,
 and the result will be returned from the *+* method.
 
@@ -556,8 +556,8 @@ Next, we need to define a method to be called by the exception handler
 to invoke the restart whether it is available. If the restart is not
 available, the method will call the *next-handler* method, which will
 allow another handler the opportunity to decide if it will handle the
-exception. In other words, if the *<return-modulus-restart>* restart is
-not established, the handler for *<time-error>* established by
+exception. In other words, if the ``<return-modulus-restart>`` restart is
+not established, the handler for ``<time-error>`` established by
 *say-corrected-time* will *decline* to handle the *<time-
  boundary-error>* condition being signaled.
 
@@ -583,9 +583,9 @@ define method say-corrected-time
  end method say-corrected-time;
 
 The *let handler* local declaration establishes a handler for the
-*<time-error>* condition and for all that condition’s subclasses. When
+``<time-error>`` condition and for all that condition’s subclasses. When
 the *error* function inside the *+* method signals the
-*<time-boundary-error>* condition instance, Dylan conducts a search for
+``<time-boundary-error>`` condition instance, Dylan conducts a search for
 the nearest matching handler that accepts. In this case, the nearest
 matching handler that accepts is the handler established by *say-
  corrected-time* . Because this handler was established by a *let
@@ -599,10 +599,10 @@ function is passed the condition instance being signaled, and the
 condition. In our example, the *invoke-modulus-restart-if-available*
 function will be called from *error* . Once called,
 *invoke-modulus-restart-if-available* will first see whether the
-*<return-modulus-restart>* restart is established. If the restart is
+``<return-modulus-restart>`` restart is established. If the restart is
 established, we will invoke it by signaling an instance of the restart.
 If the restart is not established, we decline to process the
-*<time-boundary-error>* condition in this handler. Assuming that no
+``<time-boundary-error>`` condition in this handler. Assuming that no
 other handlers exist, the debugger will be invoked.
 
 If the restart is signaled, a nonlocal exit to the restart exception
@@ -611,8 +611,8 @@ wrapped such that it lies within the 24-hour boundary.
 
 `Context transition from handler to restart
 handler. <nexcept.htm#38563>`_ shows the state of execution after the
-handler function for *<time-error>* is invoked, and the state after the
-restart handler function for *<return-modulus-restart>* is invoked. As
+handler function for ``<time-error>`` is invoked, and the state after the
+restart handler function for ``<return-modulus-restart>`` is invoked. As
 you can see, although establishing a handler with *let handler* can be
 far removed from the signaler, the handler function itself is executed
 in the context of the signaler.
@@ -693,14 +693,14 @@ debuggers.
 The *return-24-hour-modulus* method has been generalized compared to the
 exception-specific restart defined in `Definition of a recovery
 protocol <nexcept.htm#19718>`_. This method may return either an
-instance of *<time-of-day>* or *<time-offset>* , depending on the class
+instance of ``<time-of-day>`` or ``<time-offset>`` , depending on the class
 of time that overflowed. Thus, it could be reused for exception handling
 in other parts of the application.
 
 In this implementation approach, there is an implicit contract between
 the signaler in the *\\+* method and any handler that matches and
-accepts *<time-boundary-errors>* . The contract is that the handler will
-always return a valid *<time>* value, or will never return at all. If
+accepts ``<time-boundary-errors>`` . The contract is that the handler will
+always return a valid ``<time>`` value, or will never return at all. If
 any handler violates this implicit contract, then the reliability of the
 program will be placed at risk. It is important to document these
 error-handling contracts.
@@ -751,7 +751,7 @@ instances of such a class to avoid conflicting concurrent access in a
 multithreaded implementation of Dylan, or you might use instances of
 such a class to represent files or other operating-
  system objects that might be accessed reliably by only one process at a
-time. Let’s assume that the *<lock>* class and the *get-lock* and
+time. Let’s assume that the ``<lock>`` class and the *get-lock* and
 *release-lock* functions are supplied by an external library. The
 *get-lock* function atomically obtains the lock if that lock is
 available; otherwise, it waits until the lock becomes free, and then
@@ -770,7 +770,7 @@ define abstract class <protected-object> (<object>)
  slot object-lock :: <lock> = make(<lock>);
  end class <protected-object>;
 
-Each subclass of *<protected-object>* would inherit an *object-lock*
+Each subclass of ``<protected-object>`` would inherit an *object-lock*
 slot. The lock instance stored in this slot must be acquired prior to
 any operation on the protected object, and released when the operation
 is complete. One naive way to implement *call-using-lock* would be as

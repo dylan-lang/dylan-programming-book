@@ -7,12 +7,12 @@ another kind of time to represent time offsets, such as 2 hours ago, and
 advantage, so we redefine some classes and a method to take advantage of
 inheritance. We also show how to define a generic function explicitly.
 
-The *<time-offset>* class and methods
+The ``<time-offset>`` class and methods
 -------------------------------------
 
 In this section, we define a class to represent time offsets, and a
 method that describes a time offset. We start by defining the
-*<time-offset>* class:
+``<time-offset>`` class:
 
 *// A relative time between -24:00 and +24:00
 * define class <time-offset> (<object>)*
@@ -22,45 +22,45 @@ method that describes a time offset. We start by defining the
 Reasons for defining two similar classes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The *<time-offset>* class is similar to the *<time-of-day>* class. They
+The ``<time-offset>`` class is similar to the ``<time-of-day>`` class. They
 both define a *total-seconds* slot. Why do we need to have two classes
 that are so similar?
 
--  A *<time-of-day>* is conceptually different from a *<time-offset>* .
-   If the *total-seconds* slot of a *<time-of-day>* is *180* , that
+-  A ``<time-of-day>`` is conceptually different from a ``<time-offset>`` .
+   If the *total-seconds* slot of a ``<time-of-day>`` is *180* , that
    means the time of day at 0:03 (that is, 3 minutes past midnight). If
-   the *total-seconds* slot of a *<time-offset>* is *180* , that means 3
+   the *total-seconds* slot of a ``<time-offset>`` is *180* , that means 3
    minutes in the future. If you ask what time it is, the answer is a
-   *<time-of-day>* . If you ask how long it takes to wash the dog, the
-   answer is a *<time-offset>* .
--  A *<time-offset>* can represent time in the past by having a negative
-   value of *total-seconds* . A *<time-of-day>* , in contrast, should
+   ``<time-of-day>`` . If you ask how long it takes to wash the dog, the
+   answer is a ``<time-offset>`` .
+-  A ``<time-offset>`` can represent time in the past by having a negative
+   value of *total-seconds* . A ``<time-of-day>`` , in contrast, should
    not have a negative value of *total-seconds* . Later in this book, we
    provide methods that guarantee that the *total-seconds* slot of
-   *<time-of-day>* instances is not negative; see ` <slots.htm#88213>`_,
+   ``<time-of-day>`` instances is not negative; see ` <slots.htm#88213>`_,
    and ` <slots.htm#69979>`_.
--  We need different methods for describing instances of *<time-offset>*
-   and instances of *<time-of-day>* . The *<time-of-day>* method prints
-   *8:30* , and the *<time-offset>* method should print *minus 8:30* or
+-  We need different methods for describing instances of ``<time-offset>``
+   and instances of ``<time-of-day>`` . The ``<time-of-day>`` method prints
+   *8:30* , and the ``<time-offset>`` method should print *minus 8:30* or
    *plus 8:30* .
--  Eventually, we will need to be able to add a *<time-of-day>* to a
-   *<time-offset>* . For example, we can add the *<time-of-day>* 9:03 to
-   the *<time-offset>* 2:50 and get the *<time-of-day>* 11:53. We will
-   also need to add two *<time-offset>* instances. For example, 2
+-  Eventually, we will need to be able to add a ``<time-of-day>`` to a
+   ``<time-offset>`` . For example, we can add the ``<time-of-day>`` 9:03 to
+   the ``<time-offset>`` 2:50 and get the ``<time-of-day>`` 11:53. We will
+   also need to add two ``<time-offset>`` instances. For example, 2
    minutes plus 8 minutes is equal to 10 minutes. But we cannot add two
-   *<time-of-day>* instances, because it does not make sense to add
+   ``<time-of-day>`` instances, because it does not make sense to add
    three o’clock to four o’clock.
 
-Creation of instances of *<time-offset>*
+Creation of instances of ``<time-offset>``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We can create an instance of *<time-offset>* representing 15:20:10 in
+We can create an instance of ``<time-offset>`` representing 15:20:10 in
 the future:
 
 *?* define variable \*my-time-offset\* :: <time-offset>
  = make(<time-offset>, total-seconds: encode-total-seconds(15, 20, 10));
 
-We can create an instance of *<time-offset>* representing 6:45:30 in the
+We can create an instance of ``<time-offset>`` representing 6:45:30 in the
 past, by using the unary minus function, *-* , which returns the
 negative of the value that follows it:
 
@@ -68,19 +68,19 @@ negative of the value that follows it:
  = make(<time-offset>, total-seconds: - encode-total-seconds(6, 45,
 30));
 
-Methods on *<time-offset>*
+Methods on ``<time-offset>``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Because a *<time-offset>* can represent future time or past time, it
+Because a ``<time-offset>`` can represent future time or past time, it
 will be useful to provide a convenient way to determine whether a
-*<time-offset>* is in the past. We define a new predicate named *past?*
+``<time-offset>`` is in the past. We define a new predicate named *past?*
 as follows:
 
 define method past? (time :: <time-offset>) => (past? :: <boolean>)
  time.total-seconds < 0;
  end method past?;
 
-The *past?* method returns an instance of *<boolean>* , which is *#t* if
+The *past?* method returns an instance of ``<boolean>`` , which is *#t* if
 the time offset is in the past, and otherwise is *#f* . Here is an
 example:
 
@@ -90,7 +90,7 @@ example:
 *?* past?(\*your-time-offset\*)
  *#t*
 
-We need a method to describe instances of *<time-offset>* . The output
+We need a method to describe instances of ``<time-offset>`` . The output
 should look like this:
 
 *?* say-time-offset(\*my-time-offset\*);
@@ -120,8 +120,8 @@ If we test this method in a listener, however, the result is different:
 function that is appropriate for the arguments. To understand this
 error, we can look at the methods for *decode-total-seconds* in
 ` <usr-class.htm#47266>`_. One method takes an argument of the type
-*<integer>* . Another method takes an argument of the type
-*<time-of-day>* . There is no method for instances of *<time-offset>* ,
+``<integer>`` . Another method takes an argument of the type
+``<time-of-day>`` . There is no method for instances of ``<time-offset>`` ,
 so Dylan signals an error. There are three possible approaches to
 solving this problem.
 
@@ -146,12 +146,12 @@ call it with the absolute value (returned by the *abs* function) of the
 This approach works, but it is awkward because we need to remember what
 kinds of arguments *decode-total-seconds* can take. The convenient
 calling syntax that we introduced for calling *decode-total-seconds*
-with an instance of *<time-of-day>* is not available for other kinds of
+with an instance of ``<time-of-day>`` is not available for other kinds of
 time.
 
 As a second approach, we could to define a third method for
 *decode-total-seconds* that takes as its argument an instance of
-*<time-offset>* :
+``<time-offset>`` :
 
 *// Second approach: Define a method on <time-offset>
 * define method decode-total-seconds (time :: <time-offset>) => ()
@@ -171,13 +171,13 @@ define method say-time-offset (time :: <time-offset>) => ()
  end method say-time-offset;
 
 This approach works, and it preserves the flexibility of calling
-*decode-total-seconds* on instances of *<integer>* , *<time-of-day>* ,
-and *<time-offset>* . However, the body of the method on *<time-offset>*
+*decode-total-seconds* on instances of ``<integer>`` , ``<time-of-day>`` ,
+and ``<time-offset>`` . However, the body of the method on ``<time-offset>``
 (defined in this section) is nearly identical to the body of the method
-on *<time-of-day>* (defined in ` <usr-class.htm#93508>`_). The only
-difference is that we use *abs* in the method on *<time-offset>* but not
-in the method on *<time-of-day>* . If we used it in the method on
-*<time-of-day>* , it would be harmless. Duplication of code is ugly,
+on ``<time-of-day>`` (defined in ` <usr-class.htm#93508>`_). The only
+difference is that we use *abs* in the method on ``<time-offset>`` but not
+in the method on ``<time-of-day>`` . If we used it in the method on
+``<time-of-day>`` , it would be harmless. Duplication of code is ugly,
 adds maintenance overhead, and is particularly undesirable when
 programming in an object-oriented language, where it may indicate a flaw
 in the overall design.
@@ -189,7 +189,7 @@ inheritance. We show this solution in the next section.
 Class inheritance
 -----------------
 
-We have defined two simple classes, *<time-of-day>* and *<time-offset>*
+We have defined two simple classes, ``<time-of-day>`` and ``<time-offset>``
 . We repeat the definitions here:
 
 *// A specific time of day from 00:00 (midnight) to before 24:00
@@ -215,23 +215,23 @@ There is commonality between the two classes:
     common.
 
 We can use inheritance to model the shared aspects of these two classes
-directly. We need to define a new class, such as *<time>* , and to
-redefine the two classes to inherit from *<time>* . The *<time>* class
+directly. We need to define a new class, such as ``<time>`` , and to
+redefine the two classes to inherit from ``<time>`` . The ``<time>`` class
 will contain the slot *total-seconds,* and the other two classes will
 inherit that slot. We shall redefine the *decode-total-seconds* method
-such that its parameter is of the *<time>* type, which means that it can
-be called for instances of *<time-of-day>* and of *<time-offset>* .
+such that its parameter is of the ``<time>`` type, which means that it can
+be called for instances of ``<time-of-day>`` and of ``<time-offset>`` .
 
 New definitions of the time classes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We define the new class *<time>* :
+We define the new class ``<time>`` :
 
 define class <time> (<object>)
  slot total-seconds :: <integer>, init-keyword: total-seconds:;
  end class <time>;
 
-We redefine *<time-of-day>* and *<time-offset>* to inherit from *<time>*
+We redefine ``<time-of-day>`` and ``<time-offset>`` to inherit from ``<time>``
 :
 
 *// A specific time of day from 00:00 (midnight) to before 24:00
@@ -255,9 +255,9 @@ Slot inheritance
 ~~~~~~~~~~~~~~~~
 
 A class inherits the slots of its superclasses, and can define more
-slots if they are needed. For example, the *<time-of-day>* and
-*<time-offset>* classes inherit the *total-seconds* slot from their
-superclass, *<time>* . A class inherits the slot options from its
+slots if they are needed. For example, the ``<time-of-day>`` and
+``<time-offset>`` classes inherit the *total-seconds* slot from their
+superclass, ``<time>`` . A class inherits the slot options from its
 superclasses as well. A class cannot remove or replace any slots defined
 by its superclasses. It is an error for a class to define a slot with
 the same name as a slot inherited from one of that class’s superclasses.
@@ -296,13 +296,13 @@ classes. <offset.htm#79793>`_.
 Referring to `Inheritance relationships of the time
 classes. <offset.htm#79793>`_, we introduce terminology by example:
 
--  The *<time-of-day>* class is a *direct subclass* of the *<time>*
+-  The ``<time-of-day>`` class is a *direct subclass* of the ``<time>``
    class.
--  The *<time-of-day>* class is a *subclass* of the *<object>* class.
--  The *<time>* class is a *direct superclass* of the *<time-of-day>*
+-  The ``<time-of-day>`` class is a *subclass* of the ``<object>`` class.
+-  The ``<time>`` class is a *direct superclass* of the ``<time-of-day>``
    class.
--  The *<object>* class is a *superclass* of the *<time-of-day>* class.
--  When you make an instance of the *<time-of-day>* class, the result is
+-  The ``<object>`` class is a *superclass* of the ``<time-of-day>`` class.
+-  When you make an instance of the ``<time-of-day>`` class, the result is
    a *direct instance* of that class.
 
 Inheritance relationships of the time classes.
@@ -316,19 +316,19 @@ Inheritance relationships of the time classes.
    :align: center
    :alt: 
 
--  A direct instance of *<time-of-day>* is an *indirect instance* of
-   *<time>* and *<object>* .
+-  A direct instance of ``<time-of-day>`` is an *indirect instance* of
+   ``<time>`` and ``<object>`` .
 -  An object is a *general instance* of a class if it is either a direct
    or an indirect instance of that class. The term *instance* is
-   equivalent to general instance. A direct instance of *<time-of-day>*
-   is both a general instance and an instance of *<time-of-day>* ,
-   *<time>* , and *<object>* .
--  The *<time-of-day>* class is a *subtype* of the *<time>* and
-   *<object>* classes. A class is also a subtype of itself. All classes
+   equivalent to general instance. A direct instance of ``<time-of-day>``
+   is both a general instance and an instance of ``<time-of-day>`` ,
+   ``<time>`` , and ``<object>`` .
+-  The ``<time-of-day>`` class is a *subtype* of the ``<time>`` and
+   ``<object>`` classes. A class is also a subtype of itself. All classes
    are types.
--  The *<object>* class is a *supertype* of all the other classes shown.
-   All classes are subtypes of the *<object>* class. All objects are
-   instances of the *<object>* class.
+-  The ``<object>`` class is a *supertype* of all the other classes shown.
+   All classes are subtypes of the ``<object>`` class. All objects are
+   instances of the ``<object>`` class.
 
 Methods for classes that use inheritance
 ----------------------------------------
@@ -360,12 +360,12 @@ Desired methods for *decode-total-seconds* .
    :align: center
    :alt: 
 To take advantage of the redefined classes, we want to remove the method
-on *<time-of-day>* , and to add a method on *<time>* . The method on
-*<time>* is appropriate for instances of both *<time-of-day>* and
-*<time-offset>* .
+on ``<time-of-day>`` , and to add a method on ``<time>`` . The method on
+``<time>`` is appropriate for instances of both ``<time-of-day>`` and
+``<time-offset>`` .
 
 There are two important points to cover. We first discuss how to remove
-the method on *<time-of-day>* and how to add the method on *<time>* in
+the method on ``<time-of-day>`` and how to add the method on ``<time>`` in
 `Redefinition of a method <offset.htm#53813>`_. We then describe how
 the *decode-total-seconds* generic function works in
  `Method dispatch <offset.htm#10035>`_.
@@ -387,7 +387,7 @@ do one of the following:
 
 Two parameter lists are equivalent if the types of each required
 parameter are the same. A parameter with no type is the same as a
-parameter whose type is *<object>* . For example, the following
+parameter whose type is ``<object>`` . For example, the following
 parameter lists are equivalent:
 
 (a :: <string>, b :: <integer>, c)
@@ -396,26 +396,26 @@ parameter lists are equivalent:
 Assume that we are working in a listener, and already have defined the
 methods shown in `Existing methods for
 decode-total-seconds. <offset.htm#49259>`_. Consider what happens when
-we define the method on *<time>* . The parameter list of the new method
+we define the method on ``<time>`` . The parameter list of the new method
 is not equivalent to the parameter list of any of the existing methods,
 so the new method is added to the generic function. Thus,
 *decode-total-seconds* has three methods: a method on
- *<integer>* , a method on *<time-of-day>* , and a method on *<time>* .
+ ``<integer>`` , a method on ``<time-of-day>`` , and a method on ``<time>`` .
 The environment may offer a way to remove a method from a generic
-function. When we remove the definition of the method on *<time-of-day>*
+function. When we remove the definition of the method on ``<time-of-day>``
 using the environment, the *decode-total-seconds* generic function
 contains only the desired methods, as shown in `Desired methods for
 decode-total-seconds. <offset.htm#91002>`_. A typical browser will help
 you to find the methods to remove.
 
 If, however, we are working in source files rather than in a listener,
-we simply need to remove the method on *<time-of-day>* with the editor,
-and to type in the method on *<time>* . When we next compile the file,
+we simply need to remove the method on ``<time-of-day>`` with the editor,
+and to type in the method on ``<time>`` . When we next compile the file,
 the generic function will contain only the desired methods, as shown in
 `Desired methods for decode-total-seconds. <offset.htm#91002>`_.
 
-We can now call *decode-total-seconds* on instances of *<time-of-day>*
-and on instances of *<time-offset>* :
+We can now call *decode-total-seconds* on instances of ``<time-of-day>``
+and on instances of ``<time-offset>`` :
 
 *?* decode-total-seconds(\*your-time-of-day\*);
  *8
@@ -481,35 +481,35 @@ Applicable methods
 
 #. *\*my-time-of-day\**
 
-#. *<time-of-day>*
+#. ``<time-of-day>``
 
-#. method on *<time>*
+#. method on ``<time>``
 
 #. *\*my-time-offset\**
 
-#. *<time-offset>*
+#. ``<time-offset>``
 
-#. method on *<time>*
+#. method on ``<time>``
 
 #. *1000*
 
-#. *<integer>*
+#. ``<integer>``
 
-#. method on *<integer>*
+#. method on ``<integer>``
 
 #. *"hello, world"*
 
-#. *<string>*
+#. ``<string>``
 
 #. none
 
 The first row of the table shows that, when the argument is a direct
-instance of *<time-of-day>* , the method on *<time>* is applicable,
-because the argument is an instance of *<time>* (the method’s parameter
+instance of ``<time-of-day>`` , the method on ``<time>`` is applicable,
+because the argument is an instance of ``<time>`` (the method’s parameter
 specializer). The final row of the table shows that, when the argument
 is *"hello, world"* , none of the defined methods are applicable,
-because *"hello, world"* is not an instance of *<time>* or
- *<integer>* .
+because *"hello, world"* is not an instance of ``<time>`` or
+ ``<integer>`` .
 
 For *decode-total-seconds* , there is either no or one applicable method
 for any argument. If there is one applicable method, it is called. If
@@ -523,10 +523,10 @@ for different arguments to say-greeting. <offset.htm#32788>`_ shows
 that, for certain arguments, one method is applicable, but that, for an
 integer argument, two methods are applicable.
 
-When the argument is *7* , a direct instance of *<integer>* , the method
-on *<object>* is applicable, because *7* is an instance of *<object>*
-(the method’s parameter specializer); the method on *<integer>* also is
-applicable, because *7* is an instance of *<integer>* (the method’s
+When the argument is *7* , a direct instance of ``<integer>`` , the method
+on ``<object>`` is applicable, because *7* is an instance of ``<object>``
+(the method’s parameter specializer); the method on ``<integer>`` also is
+applicable, because *7* is an instance of ``<integer>`` (the method’s
 parameter specializer).
 
 The *say-greeting* generic function and its methods.
@@ -552,15 +552,15 @@ Applicable method(s)
 
 #. *7*
 
-#. method on *<object>* method on *<integer>*
+#. method on ``<object>`` method on ``<integer>``
 
 #. *$pi*
 
-#. method on *<object>*
+#. method on ``<object>``
 
 #. *"hello, world"*
 
-#. method on *<object>*
+#. method on ``<object>``
 
 Step 2: Sort applicable methods by specificity
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -573,9 +573,9 @@ least specific.
 
 Let’s continue with the example of calling *say-greeting* with an
 argument of *7* . The parameter specializers of the two methods are
-*<objec* t> and *<integer>* . Because *<integer>* is a subtype of
-*<object>* , the method on *<integer>* is more specific than the method
-on *<object>* .
+*<objec* t> and ``<integer>`` . Because ``<integer>`` is a subtype of
+``<object>`` , the method on ``<integer>`` is more specific than the method
+on ``<object>`` .
 
 Step 3: Call the most specific method
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -624,7 +624,7 @@ define method say-time-offset (time :: <time-offset>) => ()
  end method say-time-offset;
 
 Now that *decode-total-seconds* has an applicable method for instances
-of *<time-offset>* and *<time-of-day>* , both these methods work
+of ``<time-offset>`` and ``<time-of-day>`` , both these methods work
 correctly:
 
 *?* say-time-of-day(\*my-time-of-day\*);
@@ -661,8 +661,8 @@ We use *define generic* to define the generic function explicitly:
 * define generic say (any-object :: <object>) => ();
 
 This generic function has a name: *say* . It receives one argument: the
-object to describe. That argument must be of the type *<object>* . All
-objects are of the type *<object>* , so this generic function does not
+object to describe. That argument must be of the type ``<object>`` . All
+objects are of the type ``<object>`` , so this generic function does not
 restrict the type of its argument.
 
 Our definition for the generic function *say* is similar to that of the
@@ -678,14 +678,14 @@ the generic function as a whole. The generic function defines the
 contract of the *say* generic function is as follows:
 
 The *say* generic function receives one required argument, which must be
-of the type *<object>* . It prints a description of the object. The
+of the type ``<object>`` . It prints a description of the object. The
 *say* generic function returns no values.
 
 Dylan requires all the methods for a generic function to have congruent
 parameter lists and values declarations. See ` <func.htm#18741>`_.
 
 Now, we define two methods for *say* . The method for *say* on
-*<time-of-day>* fulfills the same purpose (and has the same body) as the
+``<time-of-day>`` fulfills the same purpose (and has the same body) as the
 *say-time-of-day* method, which we remove from the library with an
 editor or a gesture in the
  environment.
@@ -696,7 +696,7 @@ define method say (time :: <time-of-day>) => ()
  ("%d:%s%d", hours, if (minutes < 10) "0" else "" end, minutes);
  end method say;
 
-Similarly, the method for *say* on *<time-offset>* is intended to
+Similarly, the method for *say* on ``<time-offset>`` is intended to
 replace *say-time-offset* , which we remove.
 
 define method say (time :: <time-offset>) => ()
@@ -726,15 +726,15 @@ We can call *say* :
 *?* say(\*my-time-of-day\*);
  *0:02*
 
-In the preceding call, the argument is of the type *<time-of-day>* , so
-the method on *<time-of-day>* is the only applicable method. That method
+In the preceding call, the argument is of the type ``<time-of-day>`` , so
+the method on ``<time-of-day>`` is the only applicable method. That method
 is invoked.
 
 *?* say(\*my-time-offset\*);
  *plus 15:20*
 
-In the preceding call, the argument is of the type *<time-offset>* , so
-the method on *<time-offset>* is the only applicable method. That method
+In the preceding call, the argument is of the type ``<time-offset>`` , so
+the method on ``<time-offset>`` is the only applicable method. That method
 is invoked.
 
 Use of *next-method* to call another method
@@ -745,17 +745,17 @@ as shown in `Methods for the say generic
 function. <offset.htm#23128>`_. Both methods call *decode-total-seconds*
 to get the hours and minutes, and call *format-out* to print the hours
 and minutes. Both methods print a leading zero for the minutes, if
-appropriate. These two tasks are all that the method on *<time-of-day>*
-does. The method on *<time-offset>* does a bit more; it prints either
+appropriate. These two tasks are all that the method on ``<time-of-day>``
+does. The method on ``<time-offset>`` does a bit more; it prints either
 *minus* or *plus* , depending on the value of the *past?* slot.
 
 We can eliminate this duplication by defining another method that does
-the shared work. This method will be on the *<time>* class, so it will
-be applicable to instances of *<time-of-day>* and *<time-offset>* . The
-method for *<time-of-day>* is no longer needed, because the new method
-does the same work. However, a revised method for *<time-offset>* is
+the shared work. This method will be on the ``<time>`` class, so it will
+be applicable to instances of ``<time-of-day>`` and ``<time-offset>`` . The
+method for ``<time-of-day>`` is no longer needed, because the new method
+does the same work. However, a revised method for ``<time-offset>`` is
 needed, to do the extra work of printing *minus* or *plus* , and to call
-the method on *<time>* , which is the next most specific method.
+the method on ``<time>`` , which is the next most specific method.
 
 You can use the *next-method* function to call the next most specific
 method. Recall that the result of Dylan’s method dispatch procedure is a
@@ -783,26 +783,26 @@ We can call *say* :
 *?* say(\*my-time-of-day\*);
  *0:02*
 
-In the preceding call, the argument is of the type *<time-of-day>* , so
-the method on *<time>* is the only applicable method. That method is
+In the preceding call, the argument is of the type ``<time-of-day>`` , so
+the method on ``<time>`` is the only applicable method. That method is
 invoked.
 
 *?* say(\*my-time-offset\*);
  *plus 15:20*
 
-In the preceding call, the argument is of the type *<time-offset>* , so
-two methods are applicable. The method on *<time-offset>* is more
-specific than is the method on *<time>* , so the method on
-*<time-offset>* is called. That method on *<time-offset>* prints *minus*
+In the preceding call, the argument is of the type ``<time-offset>`` , so
+two methods are applicable. The method on ``<time-offset>`` is more
+specific than is the method on ``<time>`` , so the method on
+``<time-offset>`` is called. That method on ``<time-offset>`` prints *minus*
 or *plus* , and calls *next-method* . The *next-method* function calls
-the method on *<time>* , which prints the hours and minutes.
+the method on ``<time>`` , which prints the hours and minutes.
 
 Using *next-method* is convenient in cases such as this, where a method
 on a superclass can do most of the work, but a method on a subclass
 needs to do additional work.
 
 When *next-method* is called with no arguments, as it is in the method
-on *<time-offset>* , Dylan calls the next most specific method with the
+on ``<time-offset>`` , Dylan calls the next most specific method with the
 same arguments provided to the method that calls *next-method* .
 
 You can provide arguments to *next-method* . For example, you could
@@ -956,7 +956,7 @@ say(\*my-time-of-day\*);
 say(\*your-time-of-day\*);
 
 When we run the *test.dylan* file, Dylan creates two instances of
-*<time-offset>* and two instances of *<time-of-day>* . It calls *say* on
+``<time-offset>`` and two instances of ``<time-of-day>`` . It calls *say* on
 all four instances. The output of the test is
 
 *plus 15:20

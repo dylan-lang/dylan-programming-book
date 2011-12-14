@@ -88,7 +88,7 @@ is represented by the unique value *#f* only, but any object that is not
 
 #. *Comparison with C and C++: Caution!* C and C++ use integers to
    represent Boolean values — 0 represents false, and any nonzero value
-   is considered true. Dylan has an explicit *<boolean>* type with two
+   is considered true. Dylan has an explicit ``<boolean>`` type with two
    instances: *#f* represents false, and *#t* represents the *canonical*
    true value. However, any value other than *#f* is also considered
    true in a Boolean test. Thus, in Dylan, 0 is considered true.
@@ -268,12 +268,12 @@ What happens if we try to store a string in one of the variables?
 *?* \*my-number\* := "seven";
  *ERROR: The value assigned to \*my-number\* must be of type <integer>*
 
-Both *<integer>* and *<single-float>* are *classes.* For now, you can
+Both ``<integer>`` and ``<single-float>`` are *classes.* For now, you can
 think of a class as being like a datatype in another language. Dylan
 provides a set of built-in classes, and you can also define new classes.
 
 #. *Convention:* Class names start with an open angle bracket and end
-   with a close angle bracket — for example, *<integer>* . The angle
+   with a close angle bracket — for example, ``<integer>`` . The angle
    brackets are part of the name, and do not have any special behavior.
 
 The *+* function can operate on numbers of different types:
@@ -618,7 +618,7 @@ Example of name
 
 #. class
 
-#. *<integer>*
+#. ``<integer>``
 
 #. predicate
 

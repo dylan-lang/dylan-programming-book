@@ -37,10 +37,10 @@ second object. For example, a particular aircraft might be 200 miles
 west of a given airport. This kind of description is a *relative
 position* .
 
-We shall define the classes *<absolute-position>* and *<relative-
- position>* . The slots of *<absolute-position>* will store information
+We shall define the classes ``<absolute-position>`` and *<relative-
+ position>* . The slots of ``<absolute-position>`` will store information
 about the latitude or longitude of that position. The slots of
-*<relative-position>* will include a distance (such as 200 miles), and a
+``<relative-position>`` will include a distance (such as 200 miles), and a
 direction (such as south).
 
 We need to provide *say* methods for absolute and relative positions.
@@ -77,31 +77,31 @@ classes,
  and the names of the slots show the information that the classes must
 provide. At this point, we omit the type declarations of the slots,
 which is equivalent to
- specifying the type *<object>* . We will fill in the implementation
+ specifying the type ``<object>`` . We will fill in the implementation
 later, by deciding on the types of the slots, and providing the *say*
 methods.
 
-Our requirements mention only *<absolute-position>* and
-*<relative-position>* , but we choose to define a superclass of both of
+Our requirements mention only ``<absolute-position>`` and
+``<relative-position>`` , but we choose to define a superclass of both of
 them, named
- *<position>* .
+ ``<position>`` .
 
-*Modularity note:* The benefits of defining the *<position>* class are
+*Modularity note:* The benefits of defining the ``<position>`` class are
 these:
 
--  The *<position>* class creates an explicit relationship between the
+-  The ``<position>`` class creates an explicit relationship between the
    other position classes, which are related
     conceptually.
--  We can use the *<position>* class as the type of a slot or other
+-  We can use the ``<position>`` class as the type of a slot or other
    object, in cases where either an absolute or relative position is
    appropriate.
 
 Abstract classes
 ----------------
 
-We intend that the *<position>* class will not have direct instances.
-Any position objects should be direct instances of *<absolute-position>*
-and *<relative-position>* . In Dylan, a class that is intended to be a
+We intend that the ``<position>`` class will not have direct instances.
+Any position objects should be direct instances of ``<absolute-position>``
+and ``<relative-position>`` . In Dylan, a class that is intended to be a
 superclass and not to have direct instances is an *abstract* class. A
 class that is intended to have direct instances is a *concrete* class.
 
@@ -113,41 +113,41 @@ example:
 * define abstract class <position> (<object>)
  end class <position>;
 
-The *<time>* class is another one that we intend to have no direct
+The ``<time>`` class is another one that we intend to have no direct
 instances, so we redefine it to be abstract:
 
 define abstract class <time> (<object>)
  slot total-seconds :: <integer>, init-keyword: total-seconds:;
  end class <time>;
 
-If we tried to make an instance of *<position>* or *<time>* now, *make*
+If we tried to make an instance of ``<position>`` or ``<time>`` now, *make*
 would signal an error. For more information about abstract classes, see
 `Abstract, concrete, and instantiable classes <pos.htm#16672>`_.
 
 Absolute position
 -----------------
 
-The *<absolute-position>* class represents latitude and longitude. One
+The ``<absolute-position>`` class represents latitude and longitude. One
 way to represent latitude and longitude is with degrees, minutes,
 seconds, and a direction. We can use the approach of combining degrees,
-minutes, and seconds into a total-seconds slot as we did for *<time>* .
+minutes, and seconds into a total-seconds slot as we did for ``<time>`` .
 We can also define a class that represents total seconds and a
-direction, and call it *<directed-angle>* :
+direction, and call it ``<directed-angle>`` :
 
 define abstract class <directed-angle> (<object>)
  slot total-seconds :: <integer>, init-keyword: total-seconds:;
  slot direction :: <string>, init-keyword: direction:;
  end class <directed-angle>;
 
-We use the *<directed-angle>* class in the definition of
-*<absolute-position>* :
+We use the ``<directed-angle>`` class in the definition of
+``<absolute-position>`` :
 
 define class <absolute-position> (<position>)
  slot latitude :: <directed-angle>, init-keyword: latitude:;
  slot longitude :: <directed-angle>, init-keyword: longitude:;
  end class <absolute-position>;
 
-*Modularity note:* The *<directed-angle>* class represents the
+*Modularity note:* The ``<directed-angle>`` class represents the
 characteristics that latitude and longitude have in common.
 
 *Comparison to C:* If you are familiar with a language that uses
@@ -176,7 +176,7 @@ define method say (position :: <absolute-position>) => ()
  end method say;
 
 The preceding method depends on *decode-total-seconds* having a method
-that is applicable to *<directed-angle>* (the type of the objects
+that is applicable to ``<directed-angle>`` (the type of the objects
 returned by
  *position.latitude* and *position.longtude* ). We define such a method
 in
@@ -187,11 +187,11 @@ the similarity between latitude and longitude. One clue that there is a
 modularity problem is that the two calls to *format-out* are nearly
 identical.
 
-The *say* method on *<absolute-position>* should not call *format-out*
-directly on the two instances of *<directed-angle>* stored in the
+The *say* method on ``<absolute-position>`` should not call *format-out*
+directly on the two instances of ``<directed-angle>`` stored in the
 latitude and longitude slots. Instead, we can define a *say* method on
-*<directed-angle>* , and can call it in the method on
-*<absolute-position>* :
+``<directed-angle>`` , and can call it in the method on
+``<absolute-position>`` :
 
 define method say (angle :: <directed-angle>) => ()
  let(degrees, minutes, seconds) = decode-total-seconds(angle);
@@ -207,21 +207,21 @@ define method say (position :: <absolute-position>) => ()
  end method say;
 
 *Modularity note:* Our modularity is improved, now that the
-*<directed-angle>* class is responsible for describing its instances.
+``<directed-angle>`` class is responsible for describing its instances.
 This division of labor reduces duplication of code.
 
 There is still a problem with this approach, because the *say* method on
-*<absolute-position>* must print “latitude” and “longitude” after
+``<absolute-position>`` must print “latitude” and “longitude” after
 calling *say* on the directed angles stored in its two slots. The
-modularity is still flawed, because the method on *<absolute-position>*
-acts on the knowledge that the method on *<directed-angle>* does not
+modularity is still flawed, because the method on ``<absolute-position>``
+acts on the knowledge that the method on ``<directed-angle>`` does not
 print “latitude” or “longitude.”
 
-We defined the *<directed-angle>* class to represent what latitude and
+We defined the ``<directed-angle>`` class to represent what latitude and
 longitude have in common. It is useful to recognize that latitude and
 longitude have differences as well as similarities. We represented
-latitude and longitude by the names of slots in *<absolute-position>* ,
-and their implementations as instances of *<directed-angle>* . We can
+latitude and longitude by the names of slots in ``<absolute-position>`` ,
+and their implementations as instances of ``<directed-angle>`` . We can
 elevate the visibility of latitude and longitude by providing classes
 that represent each of them:
 
@@ -231,7 +231,7 @@ define class <latitude> (<directed-angle>)
 define class <longitude> (<directed-angle>)
  end class <longitude>;
 
-We redefine *<absolute-position>* to use *<latitude>* and *<longitude>*
+We redefine ``<absolute-position>`` to use ``<latitude>`` and ``<longitude>``
 :
 
 define class <absolute-position> (<position>)
@@ -268,8 +268,8 @@ define method say (longitude :: <longitude>) => ()
  format-out(" longitude\\n");
  end method say;
 
-The calls to *next-method* in the methods on *<latitude>* and
-*<longitude>* will call the method on *<directed-angle>* , shown on page
+The calls to *next-method* in the methods on ``<latitude>`` and
+``<longitude>`` will call the method on ``<directed-angle>`` , shown on page
 `define abstract class <directed-angle> (<object>) slot
 total-seconds :: <integer>, init-keyword: total-seconds:; slot direction
 :: <string>, init-keyword: direction:; end class
@@ -282,7 +282,7 @@ say; <pos.htm#33994>`_`define method say (angle :: <directed-angle>)
 format-out("%d degrees %d minutes %d seconds %s", degrees, minutes,
 seconds, angle.direction); end method say; <pos.htm#33994>`_.
 
-We redefine the *say* method on *<absolute-position>* :
+We redefine the *say* method on ``<absolute-position>`` :
 
 define method say (position :: <absolute-position>) => ()
  say(position.latitude);
@@ -290,7 +290,7 @@ define method say (position :: <absolute-position>) => ()
  end method say;
 
 *Modularity note:* The approach of defining the classes
- *<latitude>* and *<longitude>* provides the following benefits:
+ ``<latitude>`` and ``<longitude>`` provides the following benefits:
 
 -  Each class is responsible for describing its instances. Each method
    depends on *say* working for all the classes. No method on one class
@@ -300,7 +300,7 @@ define method say (position :: <absolute-position>) => ()
    when we introduce more differences between the classes. For example,
    the direction of a latitude is north or south, and the direction of a
    longitude is west or east. We can provide methods that ensure that
-   the directions stored in a *<latitude>* instance are appropriate for
+   the directions stored in a ``<latitude>`` instance are appropriate for
    latitude — and we can do the same for longitude. We show two
    techniques for implementing that type checking: See
    ` <slots.htm#97360>`_, and ` <perform.htm#95189>`_.
@@ -313,7 +313,7 @@ define method say (position :: <absolute-position>) => ()
 Relative position
 -----------------
 
-We define the *<relative-position>* class as follows:
+We define the ``<relative-position>`` class as follows:
 
 define class <relative-position> (<position>)
  *// distance is in miles
@@ -323,14 +323,14 @@ define class <relative-position> (<position>)
 
 The *distance* slot stores the distance to the other object, and the
 *angle* slot stores the direction to the other object. Unfortunately,
-the angle needed here is different from the *<directed-angle>* class,
-because the *<directed-angle>* class has a direction, such as south,
+the angle needed here is different from the ``<directed-angle>`` class,
+because the ``<directed-angle>`` class has a direction, such as south,
 which is not needed for the angle of *<relative-
  position>* .
 
 We need to provide a class of angle without direction, which we can use
-for the *angle* slot of the *<relative-position>* class). Therefore, we
-define two new classes, and redefine *<directed-angle>* :
+for the *angle* slot of the ``<relative-position>`` class). Therefore, we
+define two new classes, and redefine ``<directed-angle>`` :
 
 *// Superclass of all angle classes
 * define abstract class <angle> (<object>)
@@ -344,15 +344,15 @@ define abstract class <directed-angle> (<angle>)
  slot direction :: <string>, init-keyword: direction:;
  end class <directed-angle>;
 
-*Modularity note:* Why provide both the classes *<angle>* and
-*<relative-angle>* , when the *<relative-angle>* class has no additional
+*Modularity note:* Why provide both the classes ``<angle>`` and
+``<relative-angle>`` , when the ``<relative-angle>`` class has no additional
 slots? We need a class that has only the *total-seconds* slot, and no
 others. We need to use such a class as the type of the *angle* slot of
-*<relative-angle>* . We might consider making the *<angle>* class
+``<relative-angle>`` . We might consider making the ``<angle>`` class
 concrete, and using that class, which has only the *total-seconds* slot.
 However, that approach would not prevent someone from storing a
-*<directed-angle>* instance in the *angle* slot of *<relative-angle>* ,
-because *<directed-angle>* instances are also instances of *<angle>* .
+``<directed-angle>`` instance in the *angle* slot of ``<relative-angle>`` ,
+because ``<directed-angle>`` instances are also instances of ``<angle>`` .
 
 In Dylan, by defining classes as specifically as possible, you enhance
 the reliability of your program, because the compiler (or run-time
@@ -362,7 +362,7 @@ as an integer — in that style of program, someone could far too easily
 introduce a programming error in which a time was stored where a
 latitude was needed.
 
-The *<angle>* class looks remarkably similar to the *<time>* class
+The ``<angle>`` class looks remarkably similar to the ``<time>`` class
 defined earlier:
 
 *// Superclass of all angle classes
@@ -375,9 +375,9 @@ defined earlier:
  slot total-seconds :: <integer>, init-keyword: total-seconds:;
  end class <time>;
 
-We would like to call *decode-total-seconds* on instances of *<angle>* ,
-but currently the method is defined to work on *<time>* . The next step
-is to take advantage of the similarity between *<angle>* and *<time>* .
+We would like to call *decode-total-seconds* on instances of ``<angle>`` ,
+but currently the method is defined to work on ``<time>`` . The next step
+is to take advantage of the similarity between ``<angle>`` and ``<time>`` .
 
 Meeting of angles and times
 ---------------------------
@@ -385,7 +385,7 @@ Meeting of angles and times
 We can create a new superclass to combine times and angles. Sometimes,
 the trickiest part of defining superclasses that model characteristics
 shared by other classes is thinking of the right name for the
-superclass. Here, we use *<sixty-unit>* to name the class that has
+superclass. Here, we use ``<sixty-unit>`` to name the class that has
 *total-seconds* that can be converted to either hours, minutes, and
 seconds, or to degrees, minutes, and seconds. In the methods for
 decoding and encoding total seconds, we use the name *max-unit* to refer
@@ -408,7 +408,7 @@ define method encode-total-seconds
  end method encode-total-seconds;
 
 We redefine the time and angle classes and methods to take advantage of
-the new *<sixty-unit>* class:
+the new ``<sixty-unit>`` class:
 
 define abstract class <time> (<sixty-unit>)
  end class <time>;
@@ -455,8 +455,8 @@ instances and calls *say* on them, see ` <time-code.htm#30483>`_.
 Abstract classes are shown in oblique typewriter font. <pos.htm#86548>`_
 shows the inheritance relationships of the classes. When one class
 inherits from another, the relationship is sometimes called the *is-a
-relationship* . For example, a direct instance of *<time-offset>* *is a*
-*<time>* as well, and it *is a* *<sixty-unit>* .
+relationship* . For example, a direct instance of ``<time-offset>`` *is a*
+``<time>`` as well, and it *is a* ``<sixty-unit>`` .
 
 Is-a relationships (inheritance) among classes, shown by arrows.
 Abstract classes are shown in *oblique* *typewriter* *font* .
@@ -531,8 +531,8 @@ example, a program might need to store data in a vector, but might not
 be concerned about the specific implementation of the vector that it
 uses. Such a program can create a vector by calling *make* with the
 argument
- *<vector>* , and *make* will create an instance of a concrete subclass.
-The built-in *<vector>* class is abstract, but is instantiable.
+ ``<vector>`` , and *make* will create an instance of a concrete subclass.
+The built-in ``<vector>`` class is abstract, but is instantiable.
 
 Design considerations for abstract classes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -549,17 +549,17 @@ appear in *oblique* *typewriter* *font* , and the leaves (concrete
 classes) appear in *bold typewriter font* .
 
 Abstract classes can fill two roles. First, they act as an interface.
-For example, the *<sixty-unit>* class is an interface. If an object is
-of the *<sixty-unit>* type, you can expect certain behaviors from that
+For example, the ``<sixty-unit>`` class is an interface. If an object is
+of the ``<sixty-unit>`` type, you can expect certain behaviors from that
 object. Those behaviors are the generic functions that are specialized
-on *<sixty-unit>* , including *decode-total-
+on ``<sixty-unit>`` , including *decode-total-
  seconds* , and *total-seconds* .
 
 Abstract classes can also act as a partial implementation, if they
 define slots. The slots in an abstract class are useful for the classes
-that inherit from that class. For example, the *<sixty-unit>* class
-defines the *total-seconds* slot, which is useful for *<time>* and
-*<position>* .
+that inherit from that class. For example, the ``<sixty-unit>`` class
+defines the *total-seconds* slot, which is useful for ``<time>`` and
+``<position>`` .
 
 Summary
 -------
@@ -567,19 +567,19 @@ Summary
 In this chapter, we covered the following:
 
 -  A class can represent characteristics and behavior in common across
-   other classes. For example, the *<directed-angle>* class represents
+   other classes. For example, the ``<directed-angle>`` class represents
    the degrees-minutes-seconds aspects that are common to latitude and
-   longitude. Also, the *<sixty-unit>* class represents the
-   *total-seconds* that are common to *<time>* and *<angle>* .
+   longitude. Also, the ``<sixty-unit>`` class represents the
+   *total-seconds* that are common to ``<time>`` and ``<angle>`` .
 -  Classes can be used to represent differences between two similar
-   kinds of objects. For example, the *<latitude>* and *<longitude>*
+   kinds of objects. For example, the ``<latitude>`` and ``<longitude>``
    classes are similar in that both classes inherit from
-   *<directed-angle>* , and neither class defines additional slots.
+   ``<directed-angle>`` , and neither class defines additional slots.
    However, by providing the two classes,
-    *<latitude>* and *<longitude>* , we make it possible to identify
-   objects as being of type *<latitude>* or *<longitude>* , and we make
-   it possible to customize the behavior of operations on *<latitude>*
-   and *<longitude>* as needed.
+    ``<latitude>`` and ``<longitude>`` , we make it possible to identify
+   objects as being of type ``<latitude>`` or ``<longitude>`` , and we make
+   it possible to customize the behavior of operations on ``<latitude>``
+   and ``<longitude>`` as needed.
 -  In many object-oriented libraries and programs, certain classes are
    not intended to have direct instances. You can define those classes
    as abstract classes to document their purpose.
@@ -588,17 +588,17 @@ In this chapter, we covered the following:
    superclass of the two other classes. The superclass is abstract, and
    the other two classes are concrete. We used this style in the time
    classes, the angle classes, and the position classes. People can use
-   the abstract superclasses, such as *<position>* , as the type of
+   the abstract superclasses, such as ``<position>`` , as the type of
    objects that can be any kind of position.
 -  In proper modularity, a method on a particular class should not
    depend on information that is private to second class. If someone
    changes the representation of the second class, the method could
    break. We showed an
     example of breaking this rule when one version of the *say* method
-   on *<absolute-position>* printed “latitude” and “longitude” after
+   on ``<absolute-position>`` printed “latitude” and “longitude” after
    calling *say* on the directed angles stored in its two slots. The
-   method on *<absolute-position>* acted on the knowledge that the
-   method on *<directed-angle>* does not print “latitude” or
+   method on ``<absolute-position>`` acted on the knowledge that the
+   method on ``<directed-angle>`` does not print “latitude” or
    “longitude.”
 
 One of the challenges of modular design is for you to decide which

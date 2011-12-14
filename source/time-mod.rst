@@ -324,8 +324,8 @@ The *angle* library
 
 The *angle* library is the second client of the *sixty-unit* substrate.
 The *angle* library extends the *say* protocol to handle objects of the
-classes that it defines, such as *<latitude>* , *<longitude>* , and
-*<absolute-position>* . For the time being, we have included positions
+classes that it defines, such as ``<latitude>`` , ``<longitude>`` , and
+``<absolute-position>`` . For the time being, we have included positions
 with angles, as we do not foresee any benefit to breaking them out into
 yet another library, at least for the current application. Nevertheless,
 we have defined separate interface and implementation modules for
@@ -347,7 +347,7 @@ need arise.
 Also note that we have used the *angle* interface module to enforce
 access control on the *internal-direction* slot. It should be accessed
 only through the *direction* and *direction-setter* methods, which
-ensure that valid values are used for our *<latitude>* and *<longitude>*
+ensure that valid values are used for our ``<latitude>`` and ``<longitude>``
 classes. Because only the approved generic functions are created in the
 interface module, only they will be accessible to clients of the *angle*
 library. The *internal-direction* slot is truly internal to the *angle*

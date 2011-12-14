@@ -58,10 +58,10 @@ generic function), and that we are not trying to call the
 
 On line 4, we add the values stored in the *total-seconds* slots of the
 two instances. On line 5, we make and return a new instance of
-*<time-offset>* . We initialize the *total-seconds* slot to contain the
+``<time-offset>`` . We initialize the *total-seconds* slot to contain the
 sum calculated in line 4.
 
-To test the method, we need to create two instances of *<time-offset>* :
+To test the method, we need to create two instances of ``<time-offset>`` :
 
 define variable \*minus-2-hours\* =
  make(<time-offset>, total-seconds: - encode-total-seconds (2, 0, 0));
@@ -74,7 +74,7 @@ We can add the time offsets:
 *?* \*minus-2-hours\* + \*plus-15-20-45\*;
  *{instance <time-offset>}*
 
-The result is a new instance of *<time-offset>* . We did not save the
+The result is a new instance of ``<time-offset>`` . We did not save the
 value returned. (Many environments offer a way to access values returned
 by the listener.) We can add the time offsets again, and view the
 *total-seconds* slot of the result:
@@ -98,9 +98,9 @@ day:
  total-seconds: offset.total-seconds + time-of-day.total-seconds);
  end method \\+;
 
-The method on *<time-offset>* , *<time-of-day>* is invoked when the
+The method on ``<time-offset>`` , ``<time-of-day>`` is invoked when the
 first argument is a time offset and the second argument is a time of
-day. It does the work of creating a new *<time-of-day>* instance with
+day. It does the work of creating a new ``<time-of-day>`` instance with
 the *total-seconds* slot initialized to the sum of the *total-seconds*
 slots of the two arguments.
 
@@ -111,14 +111,14 @@ slots of the two arguments.
  offset + time-of-day;
  end method \\+;
 
-The method on *<time-of-day>* , *<time-offset>* is invoked when the
+The method on ``<time-of-day>`` , ``<time-offset>`` is invoked when the
 first argument is a time of day and the second argument is a time
 offset. It simply calls *+* with the order of the arguments switched —
-this call invokes the method on *<time-offset>* , *<time-of-day>* .
+this call invokes the method on ``<time-offset>`` , ``<time-of-day>`` .
 
 To test these methods, we can use one of the time offsets created in
 `Method for adding two time offsets <multi.htm#76971>`_, and define
-the *\*8-30-59\** variable, which contains a *<time-of-day>* instance,
+the *\*8-30-59\** variable, which contains a ``<time-of-day>`` instance,
 which we define as follows:
 
 define variable \*8-30-59\* =
@@ -144,7 +144,7 @@ Method for adding other kinds of times
 We have already defined methods for adding the kinds of time that it
 makes sense to add together. It is not logical to add one time of day to
 another time of day — what would three o’clock plus two o’clock mean?
-Someone could create another concrete subclass of *<time>* , without
+Someone could create another concrete subclass of ``<time>`` , without
 providing any methods for adding that time to other times. If someone
 tries to add times that we do not intend them to add, the result will be
 a “No applicable method” error.
@@ -161,7 +161,7 @@ them. We define such a method here:
  end method \\+;
 
 This method is called only when the arguments are both general instances
-of *<time>* , and none of the more specific methods are applicable to
+of ``<time>`` , and none of the more specific methods are applicable to
 the arguments. The *error* function signals an error. For more
 information about signaling and handling errors, see
 ` <nexcept.htm#20153>`_.
@@ -222,36 +222,36 @@ Type of second argument
 
 Applicable methods, ordered by specificity
 
-#. *<time-offset>*
+#. ``<time-offset>``
 
-#. *<time-offset>*
+#. ``<time-offset>``
 
-#. 1. method on *<time-offset>* , *<time-offset>*
-    2. method on *<time>* , *<time>*
+#. 1. method on ``<time-offset>`` , ``<time-offset>``
+    2. method on ``<time>`` , ``<time>``
 
-#. *<time-of-day>*
+#. ``<time-of-day>``
 
-#. *<time-offset>*
+#. ``<time-offset>``
 
-#. 1. method on *<time-of-day>* , *<time-offset>
-   * 2. method on *<time>* , *<time>*
+#. 1. method on ``<time-of-day>`` , *<time-offset>
+   * 2. method on ``<time>`` , ``<time>``
 
-#. *<time-offset>*
+#. ``<time-offset>``
 
-#. *<time-of-day>*
+#. ``<time-of-day>``
 
-#. 1. method on *<time-offset>* , *<time-of-day>
-   * 2. method on *<time>* , *<time>*
+#. 1. method on ``<time-offset>`` , *<time-of-day>
+   * 2. method on ``<time>`` , ``<time>``
 
-#. *<time-of-day>*
+#. ``<time-of-day>``
 
-#. *<time-of-day>*
+#. ``<time-of-day>``
 
-#. method on*<time>* , *<time>*
+#. method on``<time>`` , ``<time>``
 
-#. *<integer>*
+#. ``<integer>``
 
-#. *<time-offset>*
+#. ``<time-offset>``
 
 #. none
 
@@ -260,19 +260,19 @@ specificity. <multi.htm#10107>`_ shows the applicable methods for
 various arguments to +. If two methods are applicable, we number the
 more specific method 1, and the less specific method 2.
 
-We call *+* on two instances of *<time-offset>* :
+We call *+* on two instances of ``<time-offset>`` :
 
 *?* \*minus-2-hours\* + \*plus-15-20-45\*;
  *{instance of <time-offset>}*
 
-When both arguments are instances of *<time-offset>* , the first row of
+When both arguments are instances of ``<time-offset>`` , the first row of
 the table applies. Two methods are applicable. The method on
-*<time-offset>* , *<time-offset>* is more specific than the method on
-*<time>* , *<time>* . The parameter specializers of the method on
-*<time-offset>* , *<time-offset>* are subtypes of the parameter
-specializers of the method on *<time>* , *<time>* . That is, for the
-first parameter, *<time-offset>* is a subtype of *<time>* ; for the
-second parameter, *<time-offset>* is a subtype of *<time>* .
+``<time-offset>`` , ``<time-offset>`` is more specific than the method on
+``<time>`` , ``<time>`` . The parameter specializers of the method on
+``<time-offset>`` , ``<time-offset>`` are subtypes of the parameter
+specializers of the method on ``<time>`` , ``<time>`` . That is, for the
+first parameter, ``<time-offset>`` is a subtype of ``<time>`` ; for the
+second parameter, ``<time-offset>`` is a subtype of ``<time>`` .
 
 Methods for comparison of times
 -------------------------------

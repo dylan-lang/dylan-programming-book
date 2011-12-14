@@ -16,7 +16,7 @@ functions. Dylan’s forward-iteration protocol is a well-defined
 interface that collection implementors and collection-iterator
 implementors can use to enable iterators to operate over new
 collections, and to enable collections to work with new iterators. Once
-the forward iteration protocol is defined on *<sorted-sequence>* , many
+the forward iteration protocol is defined on ``<sorted-sequence>`` , many
 of the standard Dylan collection generic functions that we covered in
 ` <collect.htm#15470>`_, will work with instances of the new sequence.
 
@@ -29,7 +29,7 @@ The *sorted-sequence.dylan* file
 
 The *sorted-sequence.dylan* file contains the module constants, classes,
 and methods that build on Dylan’s collection framework to define the
-structure and behavior of the new *<sorted-sequence>* collection.
+structure and behavior of the new ``<sorted-sequence>`` collection.
 
 A new collection class
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -53,9 +53,9 @@ order
  end class <sorted-sequence>;
 
 Because is there is a well-defined ordering of the elements of sorted
-sequences, we choose *<sequence>* to be the superclass of
-*<sorted-sequence>* . We use the built-in collection class called
-*<stretchy-vector>* to store the elements of our sorted sequence,
+sequences, we choose ``<sequence>`` to be the superclass of
+``<sorted-sequence>`` . We use the built-in collection class called
+``<stretchy-vector>`` to store the elements of our sorted sequence,
 because we want to be able to have the sorted sequence grow to any size
 in a convenient way.
 

@@ -6,7 +6,7 @@ objects. In this chapter, we illustrate several useful built-in
 collections including strings, lists, vectors, arrays, and tables.
 
 In Dylan, a collection is an instance of the built-in class
-*<collection>* . Dylan provides a rich set of collection classes, and a
+``<collection>`` . Dylan provides a rich set of collection classes, and a
 rich set of generic functions to iterate over and to manipulate
 instances of those classes. In addition to using the built-in collection
 classes, you can define new collection classes. We present an example of
@@ -46,12 +46,12 @@ restrictions on keys or elements.
 Sequences are an important subclass of collections. Sequences restrict
 their keys to be nonnegative integers starting at 0, and increasing by
 one for each additional value in the collection. Arrays, vectors,
-strings, and lists are sequences. Instances of *<string>* are sequences
-that can hold only characters. You can access instances of *<array>*
-using several subscripts. Instances of *<vector>* are one-dimensional
-arrays. Instances of *<simple-object-vector>* can hold any kind of Dylan
-object. Instances of most subclasses of *<vector>* cannot change size;
-the exception is instances of *<stretchy-vector>* .
+strings, and lists are sequences. Instances of ``<string>`` are sequences
+that can hold only characters. You can access instances of ``<array>``
+using several subscripts. Instances of ``<vector>`` are one-dimensional
+arrays. Instances of ``<simple-object-vector>`` can hold any kind of Dylan
+object. Instances of most subclasses of ``<vector>`` cannot change size;
+the exception is instances of ``<stretchy-vector>`` .
 
 Basic use of collections
 ------------------------
@@ -185,13 +185,13 @@ Diagram of the vector *#[5, 3]* .
 .. figure:: collect-4.gif
    :align: center
    :alt: 
-You might think that *\*my-vector\** is a direct instance of *<vector>*
-, but it is not: The *<vector>* class is abstract, but instantiable.
-When you use the *vector* function, or use *make* with *<vector>* , the
-result is a general instance of *<simple-object-vector>* . You specify
-the size of a *<simple-object-vector>* when you create one, and you
+You might think that *\*my-vector\** is a direct instance of ``<vector>``
+, but it is not: The ``<vector>`` class is abstract, but instantiable.
+When you use the *vector* function, or use *make* with ``<vector>`` , the
+result is a general instance of ``<simple-object-vector>`` . You specify
+the size of a ``<simple-object-vector>`` when you create one, and you
 cannot change that size later. If you need a vector that can change
-size, use the *<stretchy-vector>* class. See ` <heap.htm#26097>`_, for
+size, use the ``<stretchy-vector>`` class. See ` <heap.htm#26097>`_, for
 an example that uses stretchy vectors.
 
 Creation of lists and access to elements
@@ -864,9 +864,9 @@ define method interpret-votes
  end if;
  end method interpret-votes;
 
-We defined the *<nonnegative-integer>* type in ` <classes.htm#50813>`_,
+We defined the ``<nonnegative-integer>`` type in ` <classes.htm#50813>`_,
 using *limited* . Only positive integers and the integer 0 are instances
-of *<nonnegative-integer>* . We use this type in the *interpret-votes*
+of ``<nonnegative-integer>`` . We use this type in the *interpret-votes*
 method parameter list to ensure that no negative vote counts are
 accepted.
 

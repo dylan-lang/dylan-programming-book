@@ -45,7 +45,7 @@ past?(\*my-time-offset\*);
 
 In the remainder of this book, we use the dot syntax for function calls
 that return a property of an object (such as the *past?* property of a
-*<time-offset>* instance), and that take a single argument and return a
+``<time-offset>`` instance), and that take a single argument and return a
 single value.
 
 Getters and setters for slots
@@ -130,12 +130,12 @@ important advantages:
    compiler can optimize slot references to reduce or eliminate the cost
    of hiding the implementation.
 -  A subclass can specialize, or filter, references to superclass slots.
-   For example, the classes *<latitude>* and *<longitude>* inherit the
-   *direction* slot from their superclass *<directed-angle>* . In
+   For example, the classes ``<latitude>`` and ``<longitude>`` inherit the
+   *direction* slot from their superclass ``<directed-angle>`` . In
    `Virtual slots <slots.htm#97360>`_, we show how to provide a setter
-   method for the direction slot of *<latitude>* that ensures that the
+   method for the direction slot of ``<latitude>`` that ensures that the
    value is north or south, and a setter method for the direction slot
-   of *<longitude>* that ensures that the value is east or west.
+   of ``<longitude>`` that ensures that the value is east or west.
 -  A slot access can involve arbitrary computation. For example, a slot
    can be *virtual* . See `Virtual slots <slots.htm#97360>`_.
 
@@ -147,11 +147,11 @@ slot are perfectly adequate. In certain cases, however, you might want
 to change the way a getter or setter works.
 
 For example, we can define a setter method to solve a problem in our
-time library. The class *<time-of-day>* inherits the *total-seconds*
-slot from the class *<sixty-unit>* . The type of the slot is *<integer>*
-. However, the semantics of *<time-of-day>* state that the
+time library. The class ``<time-of-day>`` inherits the *total-seconds*
+slot from the class ``<sixty-unit>`` . The type of the slot is ``<integer>``
+. However, the semantics of ``<time-of-day>`` state that the
 *total-seconds* should not be less than 0. We can define a setter method
-for *<time-of-day>* to ensure that the new value for the total-seconds
+for ``<time-of-day>`` to ensure that the new value for the total-seconds
 slot is 0 or greater.
 
 In our setter method, we will use the type defined in
@@ -174,11 +174,11 @@ total-seconds);
  end method total-seconds-setter;
 
 When the setter for the *total-seconds* slot is called with an instance
-of *<time-of-day>* , the preceding method will be invoked, because it is
-more specific than the method that Dylan generated on the *<sixty-unit>*
+of ``<time-of-day>`` , the preceding method will be invoked, because it is
+more specific than the method that Dylan generated on the ``<sixty-unit>``
 class. If the new value for the *total-seconds* slot is valid (that is,
 is greater than or equal to 0), then this method calls *next-method* ,
-which invokes the setter method on *<sixty-unit>* . If the new value is
+which invokes the setter method on ``<sixty-unit>`` . If the new value is
 less than 0, an error is signaled.
 
 The following example show what happens when you call
@@ -227,7 +227,7 @@ then use an interface that no longer matches its documentation.
 Therefore, for getters that you intend to export, it makes sense prevent
 clashes by considering the name of the slot carefully. One technique is
 to prefix the name of the property with the name of the class. For
-example, you might define a *<person>* class with a slot *person-name* ,
+example, you might define a ``<person>`` class with a slot *person-name* ,
 instead of the shorter possibility, *name* . One drawback of this
 technique is that it might expose too much information about the
 implementation — that is, the name betrays the class that happens to
@@ -237,8 +237,8 @@ superclass introduces a property if you are to access that property.
 There is a compromise between using short names and using the class name
 as a prefix — you can choose a prefix for a whole group of classes
 beneath a given class. For example, you might use the prefix *person-*
-for slots of many classes that inherit from the *<person>* class,
-including *<employee>* , *<consultant>* , and so on.
+for slots of many classes that inherit from the ``<person>`` class,
+including ``<employee>`` , ``<consultant>`` , and so on.
 
 define class <person> (<object>)
  slot person-name;
@@ -255,7 +255,7 @@ define class <consultant> (<employee>)
  slot person-parking-lot;
  end class <consultant>;
 
-Now, in a method on *<consultant>* , all accesses are consistent, and we
+Now, in a method on ``<consultant>`` , all accesses are consistent, and we
 do not have to remember where the slots actually originate:
 
 *// Method 1
@@ -361,8 +361,8 @@ define abstract class <sixty-unit> (<object>)
  init-keyword: total-seconds:, init-value: 0;
  end class <sixty-unit>;
 
-When we use *make* to create any subclass of *<sixty-unit>* (such as
-*<time-of-day>* ), and we do not supply the *total-seconds:* keyword to
+When we use *make* to create any subclass of ``<sixty-unit>`` (such as
+``<time-of-day>`` ), and we do not supply the *total-seconds:* keyword to
 *make* , the *total-seconds* slot is initialized to 0.
 
 The *init-value:* slot option specifies an expression that is evaluated
@@ -387,10 +387,10 @@ define abstract class <sixty-unit> (<object>)
  slot total-seconds :: <integer>, required-init-keyword: total-seconds:;
  end class <sixty-unit>;
 
-The *total-seconds* slot is defined in the *<sixty-unit>* class. By
+The *total-seconds* slot is defined in the ``<sixty-unit>`` class. By
 making *total-seconds:* a required init keyword in this class, we make
-it required for every class that inherits from it, including *<time>* ,
-*<angle>* , and all their subclasses.
+it required for every class that inherits from it, including ``<time>`` ,
+``<angle>`` , and all their subclasses.
 
 Slot options for an inherited slot
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -401,7 +401,7 @@ to override the default initial value of an inherited slot, or the *init
 function* of an inherited slot. See `The init-function: slot
 option <slots.htm#64192>`_.
 
-In this example, assume that the *<sixty-unit>* class defines the
+In this example, assume that the ``<sixty-unit>`` class defines the
 *total-seconds* slot and the init keyword *total-seconds:* , and
 provides the default initial value of 0 for that slot, as shown:
 
@@ -413,7 +413,7 @@ define abstract class <sixty-unit> (<object>)
 define abstract class <time> (<sixty-unit>)
  end class <time>;
 
-The *<time-offset>* class provides a different default initial value for
+The ``<time-offset>`` class provides a different default initial value for
 the inherited slot *total-seconds* :
 
 define class <time-offset> (<time>)
@@ -439,7 +439,7 @@ define class <time-of-day> (<time>)
  inherited slot total-seconds, init-function: get-current-time;
  end class <time-of-day>;
 
-Every time that we make an instance of the *<time-of-day>* class and we
+Every time that we make an instance of the ``<time-of-day>`` class and we
 need a default value for the *total-seconds* slot, the
 *get-current-time* function is called to provide an initial value. Here,
 we assume that *get-current-time* is available as a library function; it
@@ -464,7 +464,7 @@ define class <time-of-day> (<time>)
  inherited slot total-seconds = get-current-time();
  end class <time-of-day>;
 
-Every time that we make an instance of the *<time-of-day>* class and we
+Every time that we make an instance of the ``<time-of-day>`` class and we
 need a default value for the *total-seconds* slot, the expression
 *get-current-time();* is evaluated to provide an initial value.
 
@@ -519,7 +519,7 @@ four kinds of allocation:
    slot.
 
 We can give an example of an each-subclass slot by defining a
-*<vehicle>* class:
+``<vehicle>`` class:
 
 define class <vehicle> (<physical-object>)
  *// Every vehicle has a unique identification code
@@ -558,7 +558,7 @@ you can define an *initialize* method.
 
 We can use virtual slots to control the access to a slot. For example,
 we want to ensure that the value of the *direction* slot is north or
-south for *<latitude>* , and is east or west for *<longitude>* . (An
+south for ``<latitude>`` , and is east or west for ``<longitude>`` . (An
 alternative technique is to use enumeration types, as shown in
 ` <perform.htm#95189>`_.) To enforce this restriction, we must
 
@@ -570,7 +570,7 @@ alternative technique is to use enumeration types, as shown in
    and initialized. We do that checking in `Initialize method for a
    virtual slot <slots.htm#49511>`_.
 
-We redefine the *<directed-angle>* class to include a virtual slot and
+We redefine the ``<directed-angle>`` class to include a virtual slot and
 an ordinary slot:
 
 define abstract class <directed-angle> (<angle>)
@@ -583,7 +583,7 @@ Notice that the slot’s allocation appears before the name of the slot
 (as contrasted with slot options, which appear after the name of the
 slot).
 
-In the *<directed-angle>* class, we use the slot *internal-direction*
+In the ``<directed-angle>`` class, we use the slot *internal-direction*
  to store the direction. We shall provide a setter method for the
 virtual slot
  *direction* that checks the validity of the value of the direction
@@ -595,7 +595,7 @@ Symbols
 
 Symbols are much like strings. A *symbol* is an instance of the built-in
 class
- *<symbol>* . The key difference between strings and symbols lies in the
+ ``<symbol>`` . The key difference between strings and symbols lies in the
 way similarity (as tested by *=* ) and identity (as tested by *==* ) are
 defined for each of them. Two string operands can be similar but not
 identical. However, two symbol operands that are similar are always
@@ -607,14 +607,14 @@ Second, comparison of two symbols is much faster than is comparison of
 two strings, because symbols are compared by identity, and strings are
 usually compared element by element.
 
-In the *<directed-angle>* class, we define the type of the two slots as
- *<symbol>* , instead of *<string>* , which we used in previous versions
+In the ``<directed-angle>`` class, we define the type of the two slots as
+ ``<symbol>`` , instead of ``<string>`` , which we used in previous versions
 of this class. If we use strings, then when we checked whether the
 direction slot of a latitude was *"north"* or *"south"* , we would have
 to worry about uppercase versus lowercase. For example, we would have to
 decide whether each of these were valid values: *"north"* , *"NORTH"* ,
 *"North"* , *"NOrth"* , and so on. We simplify that decision by using
-the *<symbol>* type instead of *<string>* .
+the ``<symbol>`` type instead of ``<string>`` .
 
 There are two equivalent syntaxes for specifying symbols:
 
@@ -682,23 +682,23 @@ Here are the setter methods for the virtual slot *direction* :
 
 The preceding methods work as follows:
 
--  When you call *direction* on an instance of *<directed-angle>* or any
+-  When you call *direction* on an instance of ``<directed-angle>`` or any
    of its subclasses, method 1 is invoked. Method 1 calls the getter
    *internal-direction* , and returns the value of the
    *internal-direction* slot.
--  When you call *direction-setter* on a direct instance of *<latitude>*
+-  When you call *direction-setter* on a direct instance of ``<latitude>``
    , method 3 is invoked. Method 3 checks that the direction is valid
    for latitude; if it finds that the direction is valid, it calls
    *next-method* , which invokes method 2. Method 2 stores the direction
    in the *internal-
     direction* slot.
 -  When you call *direction-setter* on a direct instance of
-   *<longitude>* , method 4 is called. Method 4 checks that the
+   ``<longitude>`` , method 4 is called. Method 4 checks that the
    direction is valid for longitude; if it finds that the direction is
    valid, it calls *next-method* , which invokes method 2. Method 2
    stores the direction in the *internal-direction* slot.
 -  When you call *direction-setter* on a direct instance of
-   *<directed-angle>* , method 2 is invoked. Method 2 stores the
+   ``<directed-angle>`` , method 2 is invoked. Method 2 stores the
    direction in the
     *internal-direction* slot.
 
@@ -743,7 +743,7 @@ slot <slots.htm#46729>`_. If the argument is a latitude, then method 3
 is invoked to check the value. If the argument is a longitude, then
 method 4 is invoked to check the value.
 
-We can create a new instance of *<absolute-position>* .
+We can create a new instance of ``<absolute-position>`` .
 
 *?* define variable \*my-absolute-position\* =
  make(<absolute-position>,

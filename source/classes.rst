@@ -21,7 +21,7 @@ arguments.
 
 *limited* Takes a type and creates a new type, which is a more
 restricted version of the type that is its argument (the *base type* ).
-For example, you can define a new type that is based on *<integer>* ,
+For example, you can define a new type that is based on ``<integer>`` ,
 but has a given minimum or maximum value. Another example is to define a
 new collection type that specifies the type of elements, such as a type
 that is a vector of integers. The main reasons for defining types with
@@ -30,7 +30,7 @@ information about the performance of limited types, see
 ` <perform.htm#95673>`_.
 
 #. *Convention:* Type names, like class names, are surrounded with angle
-   brackets — for example, *<nonnegative-integer>* .
+   brackets — for example, ``<nonnegative-integer>`` .
 
 Examples of types that are not classes
 --------------------------------------
@@ -52,7 +52,7 @@ define method encode-total-seconds
  ((max-unit \* 60) + minutes) \* 60 + seconds;
  end method encode-total-seconds;
 
-To see how we use *<nonnegative-integer>* in the time library, see
+To see how we use ``<nonnegative-integer>`` in the time library, see
 ` <slots.htm#88213>`_.
 
 We can define a type whose only member is the false value, *#f* :
@@ -60,7 +60,7 @@ We can define a type whose only member is the false value, *#f* :
 singleton(#f);
 
 We can define a type that is the union of the false value and
-*<integer>* :
+``<integer>`` :
 
 type-union(singleton(#f), <integer>);
 
@@ -82,7 +82,7 @@ false-or type as the type of a slot that stores “the next vehicle, if
 there is one.” If there is no next vehicle, the slot contains *#f* . We
 create the type by calling *false-or(<vehicle>)* , and use the result as
 the type of the slot. Note that, if the type of the slot were just
-*<vehicle>* , we could not store *#f* in the slot, and there would be no
+``<vehicle>`` , we could not store *#f* in the slot, and there would be no
 way to represent none.
 
 You can use *type-union* and *singleton* together to define a type that
@@ -91,7 +91,7 @@ is an enumeration of multiple-choice objects. For example,
 define constant <latitude-direction>
  = type-union(singleton(#"north"), singleton(#"south"));
 
-The *<latitude-direction>* type has two valid values: the keywords
+The ``<latitude-direction>`` type has two valid values: the keywords
 *#"north"* and *#"south"* . For an explanation of how we could use that
 type to enforce the correct values of a latitude slot, and for
 information about the performance of enumerations, see
@@ -235,9 +235,9 @@ When a type is a limited-integer type, Dylan uses the following rules:
 
 #. An object is an instance of a limited-integer type if it is an
    instance of
-    *<integer>* and if it is (inclusively) within the specified range.
-#. A limited-integer type is a proper subtype of *<integer>* , as long
-   as it is not equivalent to *<integer>* .
+    ``<integer>`` and if it is (inclusively) within the specified range.
+#. A limited-integer type is a proper subtype of ``<integer>`` , as long
+   as it is not equivalent to ``<integer>`` .
 
 One limited-integer type is a proper subtype of another limited-integer
 type if the range of the first type is entirely within the range of the
@@ -287,7 +287,7 @@ rules:
    type; the two element types are equivalent; and, if the
    limited-collection type restricts the size or dimensions, the size or
    dimensions of the object are the same as those specified for the
-   type. If the object is an instance of *<strectchy-collection>* , the
+   type. If the object is an instance of ``<strectchy-collection>`` , the
    limited-collection type cannot restrict the size or dimensions.
 #. A limited-collection type is a proper subtype of its base type, as
    long as it is not equivalent to the base type.
@@ -325,8 +325,8 @@ say;
 
 Now, if *say* is called with an argument of *$v1* , both method 1 and
 method 2 are applicable, and method 2 is more specific than method 1.
-Note that *$v1* is an instance of *<limited-vector-of-3-integers>* but
-is not an instance of *<limited-vector-of-3-numbers>* , because the
+Note that *$v1* is an instance of ``<limited-vector-of-3-integers>`` but
+is not an instance of ``<limited-vector-of-3-numbers>`` , because the
 element type of *$v1* is not equivalent to the element type of
 *<limited-vector-of-3-numbers>.*
 
@@ -355,7 +355,7 @@ type-union(singleton(#f), <integer>);
 
 -  A *limited type* is a type that is a more restricted version of its
    base type. For example, a limited-integer type is based on
-   *<integer>* , but has a given minimum or maximum value:
+   ``<integer>`` , but has a given minimum or maximum value:
 
 limited(<integer>, min: 0);
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^

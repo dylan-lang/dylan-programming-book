@@ -392,7 +392,7 @@ showing how they might be packaged into a reusable software component.
 
 First, let’s examine what the external protocol of our time library
 might be. We have defined two kinds of time that can be created:
-*<time-of-day>* and *<time-offset>* . We have a generic function for
+``<time-of-day>`` and ``<time-offset>`` . We have a generic function for
 printing times, *say* , and one, perhaps not so obvious, utility
 function for creating new times, *encode-total-
  seconds* .
@@ -403,18 +403,18 @@ Dylan library, which already exports it, for any Dylan program. When we
 define our method for adding times, we are extending that protocol; we
 are not creating a new one.
 
-The *decode-total-seconds* function, the *<sixty-unit>* class, and
+The *decode-total-seconds* function, the ``<sixty-unit>`` class, and
 several other functions are used internally only, so they are not part
 of the external
  protocol.
 
-Although *<time>* is used internally only within our library, it is good
-practice to make abstract superclasses such as *<time>* part of a
+Although ``<time>`` is used internally only within our library, it is good
+practice to make abstract superclasses such as ``<time>`` part of a
 library interface. When we do so, a client of the library that does not
 care which specific kind of time is being manipulated can simply use
-*<time>* .
+``<time>`` .
 
-Thus, five items (*<time>* , *<time-of-day>* , *<time-offset>* , *say* ,
+Thus, five items (``<time>`` , ``<time-of-day>`` , ``<time-offset>`` , *say* ,
 and *encode-total-seconds* ) define the external protocol of the time
 library.
 
@@ -509,7 +509,7 @@ In the preceding definition, the implementation module uses the *time*
 interface module so that it can give definitions to the names that the
 interface created. The implementation module is also a client module: It
 is a client of the *dylan* module, because its definitions use
-definitions such as *define class* , *<integer>* , and *\** (which are
+definitions such as *define class* , ``<integer>`` , and *\** (which are
 defined by the *dylan* module of the *dylan* library); it is also a
 client of the *format-out* module, because the *say* methods are
 implemented using the *format-out* function (which is defined in the
@@ -519,7 +519,7 @@ We can start to envision the *time* library as shown in `Initial
 time library. <reuse.htm#71767>`_. In a library more complicated than
 the time library, we might decompose the construction of the library
 into several implementation modules. For example, we might want to
-assign the implementation of the *<sixty-unit>* substrate to another
+assign the implementation of the ``<sixty-unit>`` substrate to another
 programmer, and to create an interface between that substrate and the
 rest of the implementation so that work on either side of the interface
 can proceed in parallel. In that case, we might use the following module
@@ -595,7 +595,7 @@ interface is implemented completely, even if its implementation is
 spread over several modules, by checking when the library is compiled
 that each created name has a definition.
 
-The *sixty-unit* module exports the class *<sixty-unit>* , because
+The *sixty-unit* module exports the class ``<sixty-unit>`` , because
 *time-implementation* will subclass that class. The *sixty-unit* module
 also exports the generic functions *total-seconds* , and
 *decode-total-seconds* . The export of *total-seconds* might seem
@@ -826,8 +826,8 @@ let(total-minutes, seconds) = truncate/(abs(total-seconds), 60);
 The preceding implementation file is the first file in which we use one
 of our own modules. The header statement *Module: sixty-unit* tells the
 Dylan compiler where to look to resolve the names that we are using — it
-tells Dylan that, when we say *define class* or *<integer>* or *\** , we
-mean the Dylan definitions of *define class* , *<integer>* , and *\** ,
+tells Dylan that, when we say *define class* or ``<integer>`` or *\** , we
+mean the Dylan definitions of *define class* , ``<integer>`` , and *\** ,
 because *sixty-unit* uses the *dylan* module. When we define
 *encode-total-seconds* , we mean the *encode-total-seconds* created by
 the *time* module, because *sixty-unit* uses that module.
@@ -959,9 +959,9 @@ must be supplied by the individual implementation.
 Component library
 -----------------
 
-In previous examples, we have shown how the *<angle>* class can use the
-*<sixty-unit>* class as a base class. We could have simply included the
-*<angle>* class in our time library (presumably calling it a
+In previous examples, we have shown how the ``<angle>`` class can use the
+``<sixty-unit>`` class as a base class. We could have simply included the
+``<angle>`` class in our time library (presumably calling it a
 time-and-angle library), but it seems plausible that clients might not
 want both classes all the time. Another organization would be to make an
 angle library that uses the time library, which would be burdensome only
@@ -974,7 +974,7 @@ and file, we can create this new organization by
 
 -  Moving the *sixty-unit* module to its own library file
 -  Updating the *time* library file
--  Opening the *<sixty-unit>* class
+-  Opening the ``<sixty-unit>`` class
 
 Note that no changes are required to the *time* implementation file, so
 we do not present it again.
@@ -1072,7 +1072,7 @@ names that it has imported — in this case, just *encode-total-seconds* .
 In this way, the *time* interface is acting as a filter and is passing
 on only a subset of the *sixty-unit* interface to its clients.
 
-At this point, we need to *open* the *<sixty-unit>* class. Because it is
+At this point, we need to *open* the ``<sixty-unit>`` class. Because it is
 now in a separate library, it must be defined to be open to allow other
 libraries, such as *time* or *angle,* to subclass it. Opening a class
 simply amounts to changing the *define class* to *define open class* .
@@ -1153,7 +1153,7 @@ Protocol design
 
 We can now define the *angle* library as another client of the
 *sixty-unit* library. The interface of the *angle* library consists of
-the classes *<angle>* and *<directed-angle>* , and the *say* method.
+the classes ``<angle>`` and ``<directed-angle>`` , and the *say* method.
 Uh-oh! We want that *say* method to be another method on the *say*
 generic function defined by the *time* library, so that a client of the
 *time* *and* *angle* libraries sees a single generic function, *say* ,
@@ -1227,7 +1227,7 @@ it makes available: *say* defines the *say* protocol, and
 *say-implementor* provides the substrate for protocol implementors. This
 interface is cleaner than the one that we used for *sixty-unit* , where
 *encode-total-seconds* played more of an interface role, and
-*<sixty-unit>* and *decode-total-seconds* played more of a substrate
+``<sixty-unit>`` and *decode-total-seconds* played more of a substrate
 role. The result is seen in the clients of the *sixty-unit* library, who
 must split out these roles for themselves.
 

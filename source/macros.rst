@@ -458,7 +458,7 @@ We do the work of defining an aircraft by calling the helper functions
  *register-aircraft* and *register-flights* (which are not given here),
 but the macro takes care of getting the arguments in order. The
 substitution "<" *## ?type ## ">"* turns the name *DC10* into the name
-*<DC10>* by using
+``<DC10>`` by using
  *concatenation* , allowing a more concise format for our definer while
 maintaining our convention for naming types. The substitution
 *?#"identifier"* turns the name *UA1306* into the symbol *#"UA1306"* by
@@ -577,7 +577,7 @@ from the main rules, but it is not *in scope* — it is inaccessible to
 the auxiliary rules. We could have
  *register-flights* set the *equipment* slot after the flight is
 created, but we would prefer to initialize the slot at the time we
-create the *<flight>* object. There is a workaround, an *auxiliary
+create the ``<flight>`` object. There is a workaround, an *auxiliary
 macro* :
 
 define macro aircraft-definer

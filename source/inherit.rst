@@ -27,7 +27,7 @@ multiple inheritance.
 Example of multiple inheritance
 -------------------------------
 
-In our airport example, we defined a *<vehicle>* class, and used it as a
+In our airport example, we defined a ``<vehicle>`` class, and used it as a
 superclass for classes of aircraft. `Hierarchy of vehicle
 classes. <inherit.htm#73249>`_ shows the hierarchy of vehicle classes
 that we defined.
@@ -55,7 +55,7 @@ Modeling of ground vehicles
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 An obvious early step in modeling the behavior of fuel trucks would be
-to define a *<fuel-truck>* class. Presumably, we would want that class
+to define a ``<fuel-truck>`` class. Presumably, we would want that class
 to inherit from
 
 Hierarchy of vehicle classes.
@@ -68,8 +68,8 @@ Hierarchy of vehicle classes.
 .. figure:: inherit-3.gif
    :align: center
    :alt: 
-*<vehicle>* . Let’s look at our current definitions of both the
-*<vehicle>* class and its only direct subclass, *<aircraft>* :
+``<vehicle>`` . Let’s look at our current definitions of both the
+``<vehicle>`` class and its only direct subclass, ``<aircraft>`` :
 
 *// The class that represents all self-propelled devices
 * define abstract class <vehicle> (<physical-object>)
@@ -95,8 +95,8 @@ while
  required-init-keyword: transition:, setter: #f;
  end class <aircraft>;
 
-As a start, we can define a *<fuel-truck>* class as a subclass of
-*<vehicle>* . To operate on instances of this class, we will no doubt
+As a start, we can define a ``<fuel-truck>`` class as a subclass of
+``<vehicle>`` . To operate on instances of this class, we will no doubt
 need to know how much aircraft fuel they contain. We define one initial
 slot, *aircraft-fuel-remaining* . We also need to provide initial values
 for the inherited slots *cruising-speed* and *standard-size* .
@@ -114,9 +114,9 @@ This definition serves our immediate purpose, but the class hierarchy is
 not as modular as it might be. Suppose that we want to take account of
 other vehicles on the ground, such as baggage carriers or fire trucks?
 We can anticipate that all ground vehicles might have common features,
-and we do not want each new class to be a direct subclass of *<vehicle>*
+and we do not want each new class to be a direct subclass of ``<vehicle>``
 . As a refinement, we define two intermediary classes,
-*<ground-vehicle>* and *<flying-vehicle>* :
+``<ground-vehicle>`` and ``<flying-vehicle>`` :
 
 define abstract class <ground-vehicle> (<vehicle>)
  end class <ground-vehicle>;
@@ -152,8 +152,8 @@ It is obvious that an aircraft is a flying vehicle. In our airport
 model, however, we have to take account of an aircraft’s behavior on
 taxiways and runways and at gates. In these situations, the aircraft is
 acting as a ground vehicle. Perhaps it makes sense to define our
-aircraft classes as subclasses of both *<flying-vehicle>* and
-*<ground-vehicle>* .
+aircraft classes as subclasses of both ``<flying-vehicle>`` and
+``<ground-vehicle>`` .
 
 What could we gain by doing so? Consider cruising speed. When an
 aircraft is in the air, we need to take into account its flying cruising
@@ -168,16 +168,16 @@ the notion of cruising speed can be useful in estimating how long a fuel
 truck will take to arrive at a given gate.
 
 We now restructure our vehicle classes again, this time to make the
-aircraft classes be subclasses of both *<flying-vehicle>* and
-*<ground-vehicle>* . We need to remove the *cruising-speed* slot from
-the *<vehicle>* class, and to replace it by two slots:
-*ground-cruising-speed* for the *<ground-vehicle>* class and
-*flying-cruising-speed* for the *<flying-vehicle>* class. We can also
-take this opportunity to move the *altitude* slot from the *<aircraft>*
-class to the *<flying-vehicle>* class, because any flying vehicle is
+aircraft classes be subclasses of both ``<flying-vehicle>`` and
+``<ground-vehicle>`` . We need to remove the *cruising-speed* slot from
+the ``<vehicle>`` class, and to replace it by two slots:
+*ground-cruising-speed* for the ``<ground-vehicle>`` class and
+*flying-cruising-speed* for the ``<flying-vehicle>`` class. We can also
+take this opportunity to move the *altitude* slot from the ``<aircraft>``
+class to the ``<flying-vehicle>`` class, because any flying vehicle is
 likely to need to keep track of its altitude. Finally, we introduce
-multiple inheritance by redefining the *<aircraft>* class to be a direct
-subclass of both *<flying-vehicle>* and *<ground-vehicle>* .
+multiple inheritance by redefining the ``<aircraft>`` class to be a direct
+subclass of both ``<flying-vehicle>`` and ``<ground-vehicle>`` .
 
 define abstract class <vehicle> (<physical-object>)
  *// Every vehicle has a unique identification code
@@ -204,9 +204,9 @@ define abstract class <aircraft> (<flying-vehicle>, <ground-vehicle>)
  end class <aircraft>;
 
 Now, all aircraft classes have two slots for cruising speed:
-*ground-cruising-speed* , inherited from the *<ground-vehicle>* class,
-and *flying-cruising-speed* , inherited from the *<flying-vehicle>*
-class. We have to modify our *<B707>* class to provide default initial
+*ground-cruising-speed* , inherited from the ``<ground-vehicle>`` class,
+and *flying-cruising-speed* , inherited from the ``<flying-vehicle>``
+class. We have to modify our ``<B707>`` class to provide default initial
 values for these slots.
 
 define class <B707> (<commercial-aircraft>)
@@ -216,7 +216,7 @@ define class <B707> (<commercial-aircraft>)
  init-value: make(<size>, length: 153, width: 146, height: 42);
  end class <B707>;
 
-Finally, to complete the example, we would change our *<fuel-truck>*
+Finally, to complete the example, we would change our ``<fuel-truck>``
 class definition to provide a default initial value for
 *ground-cruising-speed* , instead of *cruising-speed* .
 
@@ -262,10 +262,10 @@ overrides a default value for a superclass.
 
 But what if a class has more than one direct superclass, and each
 superclass provides a different default value for the same slot?
-Imagine, for example, that our *<vehicle>* class had a slot named
-*fuel-remaining* , and our *<ground-vehicle>* and *<flying-vehicle>*
+Imagine, for example, that our ``<vehicle>`` class had a slot named
+*fuel-remaining* , and our ``<ground-vehicle>`` and ``<flying-vehicle>``
 classes each had a different default value for the *fuel-remaining*
-slot, which they inherit from the common superclass *<vehicle>* :
+slot, which they inherit from the common superclass ``<vehicle>`` :
 
 define abstract class <vehicle> (<physical-object>)
  slot fuel-remaining :: <integer>;
@@ -286,10 +286,10 @@ define abstract class <aircraft> (<flying-vehicle>, <ground-vehicle>)
  ...
  end class <aircraft>;
 
-Now neither the class *<ground-vehicle>* nor the class
-*<flying-vehicle>* is more specific than the other with respect to
-*<aircraft>* . So when we create an instance of *<aircraft>* that has
-both *<ground-vehicle>* and *<flying-vehicle>* as direct superclasses,
+Now neither the class ``<ground-vehicle>`` nor the class
+``<flying-vehicle>`` is more specific than the other with respect to
+``<aircraft>`` . So when we create an instance of ``<aircraft>`` that has
+both ``<ground-vehicle>`` and ``<flying-vehicle>`` as direct superclasses,
 what is the default initial value for the *fuel-remaining* slot: *30* or
 *3000* ?
 
@@ -303,10 +303,10 @@ that appears earlier in the class precedence list.
 We shall see that the class precedence list is also important for method
 dispatch in the presence of multiple inheritance. Suppose, for example,
 that we had defined two getter or two setter methods for the
-*fuel-remaining* slot: one specialized on the *<flying-vehicle>* class,
-and the other specialized on the *<ground-vehicle>* class. Which method
+*fuel-remaining* slot: one specialized on the ``<flying-vehicle>`` class,
+and the other specialized on the ``<ground-vehicle>`` class. Which method
 would be selected to get or set the slot value of an instance of
-*<aircraft>* ? We return to the issue of method dispatch after we see
+``<aircraft>`` ? We return to the issue of method dispatch after we see
 how Dylan constructs the class precedence list.
 
 The class precedence list
@@ -320,8 +320,8 @@ than are any of its superclasses. When each class has only one
 superclass, we can order unambiguously any given class and all its
 superclasses, from *most specific* to *least specific* . `Hierarchy
 of vehicle classes. <inherit.htm#73249>`_ illustrates part of such an
-ordering for our original, single-inheritance definitions of *<vehicle>*
-and *<vehicle>* ’s subclasses.
+ordering for our original, single-inheritance definitions of ``<vehicle>``
+and ``<vehicle>`` ’s subclasses.
 
 With multiple inheritance, the relations among superclasses and
 subclasses can form a *graph* , which may not be a tree. We cannot
@@ -332,7 +332,7 @@ specificity.
 
 `Graph of vehicle classes that use multiple
 inheritance. <inherit.htm#99930>`_ illustrates our current definitions
-of *<vehicle>* and of *<vehicle>* ’s subclasses.
+of ``<vehicle>`` and of ``<vehicle>`` ’s subclasses.
 
 Graph of vehicle classes that use multiple inheritance.
                                                        
@@ -344,11 +344,11 @@ Graph of vehicle classes that use multiple inheritance.
 .. figure:: inherit-4.gif
    :align: center
    :alt: 
-Consider *<B707>* and its superclasses. We can order *<B707>* ,
-*<commercial-aircraft>* , and *<aircraft>* from more specific to less
-specific. But we cannot say that either *<ground-vehicle>* or
-*<flying-vehicle>* is more specific than the other, because neither
-class is a subclass of the other. We could order *<B707>* and its
+Consider ``<B707>`` and its superclasses. We can order ``<B707>`` ,
+``<commercial-aircraft>`` , and ``<aircraft>`` from more specific to less
+specific. But we cannot say that either ``<ground-vehicle>`` or
+``<flying-vehicle>`` is more specific than the other, because neither
+class is a subclass of the other. We could order ``<B707>`` and its
 superclasses in two ways, from more specific to less specific:
 
 <B707>, <commercial-aircraft>, <aircraft>,
@@ -361,21 +361,21 @@ superclasses in two ways, from more specific to less specific:
 
 Dylan needs a way to determine which of these orderings to use. It
 solves the problem by constructing a *class precedence list* for
-*<B707>* and its superclasses.
+``<B707>`` and its superclasses.
 
 Construction of the class precedence list
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To understand how Dylan determines the class precedence list, recall
 that the *define class* form for a class includes a list of
-superclasses. Remember that we defined *<aircraft>* as follows:
+superclasses. Remember that we defined ``<aircraft>`` as follows:
 
 define abstract class <aircraft> (<flying-vehicle>, <ground-vehicle>)
  ...
  end class <aircraft>;
 
-Here, we have listed the superclasses as *<flying-vehicle>* and
-*<ground-vehicle>* , in that order.
+Here, we have listed the superclasses as ``<flying-vehicle>`` and
+``<ground-vehicle>`` , in that order.
 
 In creating the class precedence list for a class, Dylan uses the
 ordering of the list of direct superclasses in the *define class* form
@@ -389,11 +389,11 @@ for that class. Dylan relies on the following rules:
 These rules establish an ordering of a class and its direct
 superclasses, called the *local precedence order* .
 
-We listed *<flying-vehicle>* before *<ground-vehicle>* in the list of
-superclasses of *<aircraft>* , so, when we apply these rules, we see
-that, for the *<aircraft>* class, *<flying-vehicle>* must have
-precedence higher than that of *<ground-vehicle>* . The local precedence
-order for *<aircraft>* is as follows:
+We listed ``<flying-vehicle>`` before ``<ground-vehicle>`` in the list of
+superclasses of ``<aircraft>`` , so, when we apply these rules, we see
+that, for the ``<aircraft>`` class, ``<flying-vehicle>`` must have
+precedence higher than that of ``<ground-vehicle>`` . The local precedence
+order for ``<aircraft>`` is as follows:
 
 <aircraft>, <flying-vehicle>, <ground-vehicle>
 
@@ -415,8 +415,8 @@ terminate, because no class can be its own superclass.
 
 The resulting class precedence list must be consistent with the local
 precedence order of the class, and with the class precedence list of
-each direct superclass. If class *<a>* precedes class *<b>* in the class
-precedence list, then *<b>* cannot precede *<a>* in either the local
+each direct superclass. If class ``<a>`` precedes class ``<b>`` in the class
+precedence list, then ``<b>`` cannot precede ``<a>`` in either the local
 precedence order or the class precedence list for any direct superclass.
 Because of the recursive procedure for constructing it, the class
 precedence list must be consistent with the local precedence orders and
@@ -424,30 +424,30 @@ class precedence lists of *all* the class’s superclasses, rather than
 just with those of the direct superclasses.
 
 We can now see how Dylan computes the class precedence list for the
-*<B707>* class:
+``<B707>`` class:
 
-#. Construct the local precedence order for *<B707>* and its only direct
-   superclass, *<commercial-aircraft>* . The result is as follows:
-   *<B707>* , *<commercial-aircraft>* .
+#. Construct the local precedence order for ``<B707>`` and its only direct
+   superclass, ``<commercial-aircraft>`` . The result is as follows:
+   ``<B707>`` , ``<commercial-aircraft>`` .
 #. Merge the local precedence order with the class precedence list of
-   the only direct superclass, *<commercial-aircraft>* .
+   the only direct superclass, ``<commercial-aircraft>`` .
 
 Dylan must now use these rules, recursively, to compute the class
-precedence list of *<commercial-aircraft>* . In doing so, Dylan must
+precedence list of ``<commercial-aircraft>`` . In doing so, Dylan must
 compute recursively the class precedence list of the only direct
-superclass of *<commercial-aircraft>* : *<aircraft>* . This process
+superclass of ``<commercial-aircraft>`` : ``<aircraft>`` . This process
 continues until Dylan has recursively computed the class precedence
-lists for all superclasses of *<B707>* . Finally, Dylan finishes
-constructing the class precedence list for *<B707>* itself. `Class
+lists for all superclasses of ``<B707>`` . Finally, Dylan finishes
+constructing the class precedence list for ``<B707>`` itself. `Class
 precedence lists for <B707> and its superclasses. <inherit.htm#87328>`_
 shows the results.
 
 One implication of this procedure is that, if a class inherits a
 superclass via two different paths, the superclass in common must have
 precedence lower than that of any of its subclasses. For example, the
-*<object>* class is a superclass of
+``<object>`` class is a superclass of
 
-Class precedence lists for *<B707>* and its superclasses.
+Class precedence lists for ``<B707>`` and its superclasses.
                                                          
 
 .. figure:: inherit-2.gif
@@ -520,8 +520,8 @@ More complicated class precedence lists
 
 Sometimes, more than one class precedence list is consistent with the
 procedure that we have outlined so far. Suppose, for example, that we
-had defined two additional classes, *<wheeled-vehicle>* and
-*<winged-vehicle>* , with the class relations illustrated in
+had defined two additional classes, ``<wheeled-vehicle>`` and
+``<winged-vehicle>`` , with the class relations illustrated in
 `Expanded graph of vehicle classes that use multiple
 inheritance. <inherit.htm#17457>`_.
 
@@ -536,9 +536,9 @@ Expanded graph of vehicle classes that use multiple inheritance.
    :align: center
    :alt: 
 
-Let’s assume that the *define class* form for *<aircraft>* lists
-*<winged-vehicle>* before *<wheeled-vehicle>* in its list of direct
-superclasses. Now, three class precedence lists for *<B707>* are
+Let’s assume that the *define class* form for ``<aircraft>`` lists
+``<winged-vehicle>`` before ``<wheeled-vehicle>`` in its list of direct
+superclasses. Now, three class precedence lists for ``<B707>`` are
 consistent with the procedures that we have discussed so far:
 
 <B707>, <commercial-aircraft>, <aircraft>, <winged-vehicle>,
@@ -559,15 +559,15 @@ the class precedence list, nonoverlapping superclass-to-subclass chains.
 Look at this situation another way: The algorithm Dylan uses to
 construct the class precedence list in effect builds the list one class
 at a time, from highest to lowest precedence. The class precedence list
-under construction for *<B707>* is unambiguous from *<B707>* through
-*<winged-vehicle>* . At that point, Dylan could insert either
-*<flying-vehicle>* or *<wheeled-vehicle>* into the list. It chooses the
+under construction for ``<B707>`` is unambiguous from ``<B707>`` through
+``<winged-vehicle>`` . At that point, Dylan could insert either
+``<flying-vehicle>`` or ``<wheeled-vehicle>`` into the list. It chooses the
 class that has a *direct subclass rightmost* in the partial class
 precedence list that it has already constructed. In this case,
-*<flying-vehicle>* has a direct subclass *<winged-vehicle>* , and
-*<wheeled-vehicle>* has a direct subclass *<aircraft>* . Because
-*<winged-vehicle>* is rightmost in the partial list already constructed,
-Dylan chooses *<flying-vehicle>* as the next entry in the list. Once
+``<flying-vehicle>`` has a direct subclass ``<winged-vehicle>`` , and
+``<wheeled-vehicle>`` has a direct subclass ``<aircraft>`` . Because
+``<winged-vehicle>`` is rightmost in the partial list already constructed,
+Dylan chooses ``<flying-vehicle>`` as the next entry in the list. Once
 that decision has been made, the resulting class precedence list must be
 the first of the three possible orderings that we listed:
 
@@ -590,9 +590,9 @@ define class <c> (<a>, <b>)
  ...
  end class <c>;
 
-No class precedence list is possible for class *<c>* in this example,
-because the ordering of classes *<a>* and *<b>* conflicts in the local
-precedence lists for classes *<b>* and *<c>* . Dylan signals an error
+No class precedence list is possible for class ``<c>`` in this example,
+because the ordering of classes ``<a>`` and ``<b>`` conflicts in the local
+precedence lists for classes ``<b>`` and ``<c>`` . Dylan signals an error
 when it tries to compute a class precedence list and finds that it
 cannot do so.
 
@@ -650,8 +650,8 @@ Class precedence and method dispatch
 
 To see how this problem for method dispatch can arise, we return to our
 airport example. Recall that we now have two slots representing vehicle
-cruising speed: *ground-cruising-speed* for *<ground-vehicle>* and
-*flying-cruising-speed* for *<flying-vehicle>* . Let’s define a generic
+cruising speed: *ground-cruising-speed* for ``<ground-vehicle>`` and
+*flying-cruising-speed* for ``<flying-vehicle>`` . Let’s define a generic
 function, *say-cruising-speed* , to report the applicable cruising speed
 for each class:
 
@@ -675,39 +675,39 @@ vehicle.ground-cruising-speed);
  end method say-cruising-speed;
 
 Now, suppose that we call *say-cruising-speed* on an instance of
-*<B707>* . Which method does Dylan call? All three methods are
+``<B707>`` . Which method does Dylan call? All three methods are
 applicable. Both method 1 and method 2 are more specific than is method
 3. But Dylan cannot order methods 1 and 2 by specificity.
 
 In this case, Dylan consults the class precedence list for the class of
-the argument. In our example, the class of the argument is *<B707>* .
-The *<flying-vehicle>* class takes precedence over the
-*<ground-vehicle>* class, because *<flying-vehicle>* precedes
-*<ground-vehicle>* in the list of direct superclasses for *<aircraft>* .
+the argument. In our example, the class of the argument is ``<B707>`` .
+The ``<flying-vehicle>`` class takes precedence over the
+``<ground-vehicle>`` class, because ``<flying-vehicle>`` precedes
+``<ground-vehicle>`` in the list of direct superclasses for ``<aircraft>`` .
 Dylan calls method 1, which produces the following output:
 
 *Flying cruising speed: 368*
 
-Note that, if we had happened to list *<ground-vehicle>* before
-*<flying-vehicle>* in the list of direct superclasses for *<aircraft>* ,
+Note that, if we had happened to list ``<ground-vehicle>`` before
+``<flying-vehicle>`` in the list of direct superclasses for ``<aircraft>`` ,
 Dylan would have called method 2, and we would have seen the following
 output:
 
 *Ground cruising speed: 45*
 
 In defining classes of aircraft, we did not intend for
-*<flying-vehicle>* characteristics to override *<ground-vehicle>*
+``<flying-vehicle>`` characteristics to override ``<ground-vehicle>``
 characteristics. But for method dispatch to work in the presence of
 multiple inheritance, Dylan must order subclasses and superclasses
 whenever it can.
 
-How can we change our example to make *<flying-vehicle>* behavior add
-to, rather than override, *<ground-vehicle>* behavior? By using
-*next-method* in our *say-cruising-speed* methods for *<flying-vehicle>*
-and *<ground-vehicle>* , we can report all applicable kinds of cruising
+How can we change our example to make ``<flying-vehicle>`` behavior add
+to, rather than override, ``<ground-vehicle>`` behavior? By using
+*next-method* in our *say-cruising-speed* methods for ``<flying-vehicle>``
+and ``<ground-vehicle>`` , we can report all applicable kinds of cruising
 speed for any combination of either or both of those classes*.* To make
 this behavior work, we also change the *say-cruising-speed* method for
-*<vehicle>* , which will always be called last, to have no effect:
+``<vehicle>`` , which will always be called last, to have no effect:
 
 *// Method 1
 * define method say-cruising-speed (vehicle :: <flying-vehicle>)
@@ -729,7 +729,7 @@ vehicle.ground-cruising-speed);
 
 Recall that, when Dylan decides which method to call, the result is a
 list of methods, sorted by specificity. When *say-cruising-speed* is
-called on an instance of *<B707>* , the list of methods is sorted in the
+called on an instance of ``<B707>`` , the list of methods is sorted in the
 following order: method 1, method 2, method 3. Dylan calls method 1.
 Then, as a result of the call to *next-method* in method 1, Dylan calls
 method 2. Finally, as a result of the call to *next-method* in method 1,
@@ -739,7 +739,7 @@ Dylan calls method 3. The output we see is as follows:
  Ground cruising speed: 45*
 
 Note that, if we called *say-cruising-speed* on an instance of
-*<fuel-truck>* , we would see the following output:
+``<fuel-truck>`` , we would see the following output:
 
 *Ground cruising speed: 25*
 
@@ -866,29 +866,29 @@ representation for these identifiers.
 There are several ways that we could improve the example using single
 inheritance. One way to do that in principle would be to define a *name*
 slot in a common superclass. In this case, we cannot use this solution,
-because the only common superclass is the built-in class *<object>* .
+because the only common superclass is the built-in class ``<object>`` .
 This approach would work if all named classes inherited from
-*<physical-object>* — we could add a *name* slot to *<physical-object>*
-. But then all subclasses of *<physical-object>* would inherit the
+``<physical-object>`` — we could add a *name* slot to ``<physical-object>``
+. But then all subclasses of ``<physical-object>`` would inherit the
 *name* slot, whether or not those subclasses need names. Some objects
 might be inappropriately named, and those instances would be larger than
 they need to be.
 
 Another approach would be to define two new subclasses to contain the
-*name* slot: a *<named-object>* subclass of *<object>* , and a
-*<named-physical-object>* subclass of *<physical-object>* . We would
-then use *<named-physical-object>* as the superclass for
-*<vehicle-storage>* , *<vehicle>* , and *<airport>* , and we would use
-*<named-object>* as the superclass for *<airline>* . That would work,
+*name* slot: a ``<named-object>`` subclass of ``<object>`` , and a
+``<named-physical-object>`` subclass of ``<physical-object>`` . We would
+then use ``<named-physical-object>`` as the superclass for
+``<vehicle-storage>`` , ``<vehicle>`` , and ``<airport>`` , and we would use
+``<named-object>`` as the superclass for ``<airline>`` . That would work,
 too, although the *name* slot would be defined in two classes, rather
 than in one.
 
 Suppose, however, that we later find that some, but not all, subclasses
 need another attribute, such as a unique identifier. Perhaps
-*<airport>,* *<vehicle>* , and *<airline>* need unique identifiers, but
-*<vehicle-storage>* does not. Extending this model, we might have to
-define new classes *<unique-object>* , *<unique-named-object>* ,
-*<unique-physical-object>* , and *<unique-named-physical-object>* . We
+*<airport>,* ``<vehicle>`` , and ``<airline>`` need unique identifiers, but
+``<vehicle-storage>`` does not. Extending this model, we might have to
+define new classes ``<unique-object>`` , ``<unique-named-object>`` ,
+``<unique-physical-object>`` , and ``<unique-named-physical-object>`` . We
 now have eight base classes to represent the possible combinations of
 name and unique identifier. If we add a third attribute, we end up with
 many more classes. We soon have an unmanageable proliferation of base
@@ -902,9 +902,9 @@ define abstract class <name-mix-in> (<object>)
  slot name :: <string>, init-keyword: name:;
  end class <name-mix-in>;
 
-Now, we redefine our *<vehicle-storage>* , *<vehicle>* , *<airport>* ,
-and *<airline>* classes to have two direct superclasses: *<name-mix-in>*
-, and either *<object>* or *<physical-object>* :
+Now, we redefine our ``<vehicle-storage>`` , ``<vehicle>`` , ``<airport>`` ,
+and ``<airline>`` classes to have two direct superclasses: ``<name-mix-in>``
+, and either ``<object>`` or ``<physical-object>`` :
 
 define abstract class <vehicle-storage> (<name-mix-in>,
 <physical-object>)
@@ -932,15 +932,15 @@ define class <airline> (<name-mix-in>, <object>)
  end class <airline>;
 
 We use the *required keyword* option to make the *name:* keyword
-required when we create an instance of *<vehicle-storage>* , *<vehicle>*
-, or *<airline>* . If we provided an *init-value:* or *init-function:*
-for the *name* slot in the definition of *<name-mix-in>* , Dylan would
+required when we create an instance of ``<vehicle-storage>`` , ``<vehicle>``
+, or ``<airline>`` . If we provided an *init-value:* or *init-function:*
+for the *name* slot in the definition of ``<name-mix-in>`` , Dylan would
 ignore that option when we created an instance of any of these
 subclasses.
 
 We also use the *keyword* option with an *init-value:* to provide a
 default initial value for the *name:* initialization argument and for
-the *name* slot for instances of *<airport>* .
+the *name* slot for instances of ``<airport>`` .
 
 Of course, we also have to change other code in our example to use the
 name *name* and the init keyword *name:* when referring to the slot.

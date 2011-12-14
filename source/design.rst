@@ -94,23 +94,23 @@ In our design, containers are connected to other containers. In the
 airport diagram in `Objects in a simple
 airport. <design.htm#83800>`_, gate A1 is connected to taxiway Echo,
 which is connected to runway 11R-29L. We can use a slot in the
-*<vehicle-storage>* class to model these connections.
+``<vehicle-storage>`` class to model these connections.
 
 Since some containers can hold only one aircraft, whereas other
 containers have more complex behavior, our design includes two
-subclasses of *<vehicle-storage>* :
+subclasses of ``<vehicle-storage>`` :
 
 <single-storage>*,* <multiple-storage>
 
-Instances of *<single-storage>* may hold a single aircraft regardless of
-the direction of travel. Instances of *<multiple-storage>* may hold more
+Instances of ``<single-storage>`` may hold a single aircraft regardless of
+the direction of travel. Instances of ``<multiple-storage>`` may hold more
 than one aircraft, and each direction is treated separately. For
-example, *<gate>* is a subclass of *<single-storage>* , and *<sky>* is a
-subclass of *<multiple-storage>* .
+example, ``<gate>`` is a subclass of ``<single-storage>`` , and ``<sky>`` is a
+subclass of ``<multiple-storage>`` .
 
-All subclasses of *<vehicle-storage>* must comply with the
+All subclasses of ``<vehicle-storage>`` must comply with the
 vehicle-storage protocol. In particular, designers of
-*<vehicle-storage>* subclasses must ensure that the subclasses either
+``<vehicle-storage>`` subclasses must ensure that the subclasses either
 inherit or define methods for all the key vehicle-storage generic
 functions.
 
@@ -174,8 +174,8 @@ process-aircraft *airport time*
  12:43: Aircraft Cardinal at Taxiway Echo
  12:47: Aircraft Cardinal at Gate A2*
 
-#. The *airport* is an instance of *<airport>* . The *time* is an
-   instance of *<time-of-day>* .
+#. The *airport* is an instance of ``<airport>`` . The *time* is an
+   instance of ``<time-of-day>`` .
 
 distance-3d *aircraft airport*
 ''''''''''''''''''''''''''''''
@@ -184,8 +184,8 @@ distance-3d *aircraft airport*
 ~~~~~~~~~~~~~~~~~~
 
 #. This generic function returns the distance between its two arguments.
-   The *aircraft* is an instance of *<aircraft>* , and the *airport* is
-   an instance of *<airport>* .
+   The *aircraft* is an instance of ``<aircraft>`` , and the *airport* is
+   an instance of ``<airport>`` .
 
 flying-time *aircraft airport*
 ''''''''''''''''''''''''''''''
@@ -205,9 +205,9 @@ eventually turns around and heads outbound toward the sky. The
 vehicle-container protocol manages the transition of aircraft from one
 container to another. The generic functions that make up this protocol
 are summarized next. For all the generic functions that follow, the
-value of the *vehicle* parameter must be an instance of *<vehicle>* ,
+value of the *vehicle* parameter must be an instance of ``<vehicle>`` ,
 the value of the *container* parameter must be an instance of
-*<vehicle-storage>* , and the value of the *direction* parameter must be
+``<vehicle-storage>`` , and the value of the *direction* parameter must be
 either the symbol *#"inbound"* or *#"outbound"* .
 
 available? *vehicle container direction*

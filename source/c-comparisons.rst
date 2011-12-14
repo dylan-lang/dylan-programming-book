@@ -120,8 +120,8 @@ color.blue := 0;
 The preceding call makes *white* yellow! In the C-style example, without
 pointers, you would make only *color* yellow. You can prevent people
 from changing defined colors to other colors in Dylan by not allowing
-the slots of *<color>* objects to be modified once they are initialized
-— in other words, by making *<color>* objects *immutable* :
+the slots of ``<color>`` objects to be modified once they are initialized
+— in other words, by making ``<color>`` objects *immutable* :
 
 Dylan object example, with immutable objects.
                                              
@@ -300,19 +300,19 @@ compute the available display area of a window from that window’s
 overall size and from the sizes of the window’s
  components.
 
-Note that calling *height* on an instance of *<border-label-window>*
+Note that calling *height* on an instance of ``<border-label-window>``
 will automatically perform the actions appropriate for a window with a
-border and a label. First, the method for *<border-window>* will be
+border and a label. First, the method for ``<border-window>`` will be
 called, subtracting out the border width; when it calls *next-method* ,
-to get the underlying window width, the method for *<label-window>* will
+to get the underlying window width, the method for ``<label-window>`` will
 be called, subtracting out the label height; finally, when it calls
 *next-method* , the method for getting the value of the *height* slot in
 the underlying window will be called.
 
 This example is a classic one of the mix-in style — the full
-functionality of the *<border-label-window>* class is the result of the
-combination of the individual pieces of *<border-window>* and
-*<label-window>* functionality.
+functionality of the ``<border-label-window>`` class is the result of the
+combination of the individual pieces of ``<border-window>`` and
+``<label-window>`` functionality.
 
 C++ equivalent of the mix-in example.**
                                        

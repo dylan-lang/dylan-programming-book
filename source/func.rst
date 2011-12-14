@@ -420,7 +420,7 @@ A call to *calling-function* now produces the following output:
 
 In this case, *x* in the calling function and *x* in the called function
 are different variables. But the *values* of both variables are the same
-object: the instance of *<test>* that we make in the calling function.
+object: the instance of ``<test>`` that we make in the calling function.
 The change to the slot value
  of this object that we make in the called function is visible to the
 calling function.
@@ -464,7 +464,7 @@ to the caller. In some ways Dylan’s argument-passing protocol is similar
 to C++ references.
 
 In both C and C++, array arguments are always passed as pointers. In
-Dylan, arrays are instances of the *<array>* class, and array arguments
+Dylan, arrays are instances of the ``<array>`` class, and array arguments
 are treated like all other arguments.
 
 For more comparisons between Dylan and C objects, see
@@ -547,7 +547,7 @@ argument of a given type. The type specializer follows the parameter
 name and is identified by *::* followed by a type. When the function is
 called, the argument that corresponds to the parameter must be of the
 specified type, or Dylan signals an error. The default argument type is
-*<object>* .
+``<object>`` .
 
 The specification for a keyword parameter can have two additional pieces
 of information:
@@ -641,7 +641,7 @@ commas. Each of these individual declarations consists of a name and,
 optionally, *::* followed by a type. The name does not specify a
 variable and has no use other than documentation. But the returned value
 that corresponds to the declaration must be of the declared type, or
-Dylan signals an error. The default return value type is *<object>* .
+Dylan signals an error. The default return value type is ``<object>`` .
 
 A value declaration can also end with *#rest* followed by a name and,
 optionally, *::* and a type. This declaration indicates that the
@@ -808,14 +808,14 @@ define generic g (arg1 :: <real>, #key);
  ...
  end method g;
 
-Now, if we call the generic function *g* with an instance of *<float>* ,
+Now, if we call the generic function *g* with an instance of ``<float>`` ,
 we can supply the keyword arguments *real-key:* and *float-key:* ,
 because the methods that have those keyword parameters are both
-applicable. If we call *g* with an instance of *<integer>* , we can
+applicable. If we call *g* with an instance of ``<integer>`` , we can
 supply the keyword arguments *real-key:* and *integer-key:* .
 
 Suppose that, in this same example, we call the generic function *g*
-with an instance of *<float>* , and supply the keyword arguments
+with an instance of ``<float>`` , and supply the keyword arguments
 *real-key:* and *float-key:* . Method 2 is most specific, and is called
 as a result of Dylan’s method dispatch. But method 2 does not have a
 *real-key:* parameter. If we were calling this method directly, Dylan
@@ -858,9 +858,9 @@ including operations to compose new functions from existing functions.
 Types of functions
 ~~~~~~~~~~~~~~~~~~
 
-All functions are instances of the class *<function>* . Dylan has two
-built-in instantiable subclasses of *<function>* : *<generic-function>*
-and *<method>* . Both methods and generic functions can be called in the
+All functions are instances of the class ``<function>`` . Dylan has two
+built-in instantiable subclasses of ``<function>`` : ``<generic-function>``
+and ``<method>`` . Both methods and generic functions can be called in the
 same way. As we have seen, a generic function can contain zero or more
 methods. If a generic function is called, it must have at least one
 applicable method or Dylan signals an error.
@@ -872,7 +872,7 @@ You can create a generic function in the following ways:
 
 -  You can create one explicitly by *define generic* .
 -  You can create one explicitly by calling *make* on the
-   *<generic-function>* class. You rarely need to create a generic
+   ``<generic-function>`` class. You rarely need to create a generic
    function this way.
 -  You can create one implicitly by *define method* . If the generic
    function named by this definition does not yet exist, Dylan creates
@@ -891,7 +891,7 @@ When Dylan creates a generic function implicitly, it creates a parameter
 list and a value declaration for the generic function that are designed
 to restrict the addition of subsequent methods to the generic function
 as little as possible. All required arguments to the generic function
-have type specializers of *<object>* , and the generic function can
+have type specializers of ``<object>`` , and the generic function can
 return any number of values of any type. The generic function’s
 parameter list is congruent with that of the method being defined. If
 the generic function accepts keyword arguments, the parameter list ends
