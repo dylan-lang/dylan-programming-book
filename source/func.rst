@@ -210,7 +210,7 @@ Binary-operator calls
 Dylan has 16 built-in binary operators, of the following kinds:
 
 -  Arithmetic operations: *+* , *-* , *\** , */* , and *^*
--  Comparisons: *=* , *==* , *<* , *>* , *<=* , *>=* , *~=* , and *~==*
+-  Comparisons: ``=`` , ``==`` , *<* , *>* , *<=* , *>=* , *~=* , and *~==*
 -  Logical operations: *&* and *\|*
 -  Assignment: *:=*
 
@@ -498,8 +498,8 @@ sequence contains all the remaining values returned by the
 initialization expression. If there is no *#rest* , any excess values
 are discarded. If the number of variables in the *let* declaration is
 greater than the number of values returned, the remaining variables are
-initialized to *#f* . (But if the *let* declaration specifies a type for
-any of these variables, and if *#f* is not an instance of that type,
+initialized to ``#f`` . (But if the *let* declaration specifies a type for
+any of these variables, and if ``#f`` is not an instance of that type,
 then Dylan signals an error.)
 
 Module variables and constants can also be initialized to multiple
@@ -558,10 +558,10 @@ of information:
 #. It may include a default value for the keyword argument, which is
    used if the caller does not supply that argument. The default
    expression appears
-    at the end of the parameter specification, followed by *=* . If no
+    at the end of the parameter specification, followed by ``=`` . If no
    default
     expression is supplied and the caller does not supply the keyword
-   argument, the argument’s value is *#f* .
+   argument, the argument’s value is ``#f`` .
 
 The following example shows how we could use a rest parameter to
 implement a function to sum an arbitrary number of values:
@@ -656,9 +656,9 @@ The value declaration determines the number and types of values that the
 function returns, even if the last expression in the function’s body
 returns a
  different number of values. If the function’s body returns fewer values
-than are declared, the function defaults the remaining values to *#f*
+than are declared, the function defaults the remaining values to ``#f``
 and returns them. (But if the value declaration specifies a type for any
-of these values, and if *#f* is not an instance of that type, Dylan
+of these values, and if ``#f`` is not an instance of that type, Dylan
 signals an error.) If the function’s body returns more values than are
 declared, the function returns the additional values if the declaration
 contains *#rest* ; otherwise, the function discards the additional
@@ -984,7 +984,7 @@ Three of these functions take predicates as arguments, and return the
 complement, disjunction, or conjunction of the predicates. For example,
 *complement* takes a predicate and returns the latter’s complement — a
 function that returns *#t* when the original predicate would have
-returned *#f* , and otherwise returns *#f* .
+returned ``#f`` , and otherwise returns ``#f`` .
 
 The *curry* function takes a function and any number of additional
 arguments. It returns a new function that applies the original function,

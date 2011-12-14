@@ -276,7 +276,7 @@ obvious is in the ``<collection>`` types, where the elements of a
 collection are essentially like multiple slots, all with the same type
 constraint. For the built-in collections, elements typically have a
 general default type (often simply ``<object>`` ), and there can be an
-arbitrary number of them. The *limited* mechanism is a way to specify
+arbitrary number of them. The ``limited`` mechanism is a way to specify
 that you expect to store objects of a particular type in the collection,
 and to specify how many elements will be in the collection.
 
@@ -343,7 +343,7 @@ were open, the optimization could not be made.
    using a limited type, the compiler can generate more efficient code.
 
 Another use of limited types is to allow compact representations. We can
-use *limited* with the built-in type ``<integer>`` to specify numbers with
+use ``limited`` with the built-in type ``<integer>`` to specify numbers with
 a limited range that can be stored more compactly than integers. It is
 especially useful to use a limited range in combination with a limited
 collection; for example,
@@ -389,8 +389,8 @@ Enumerations
 Many languages provide enumeration types both to enforce program
 correctness and to provide more compact representation of
 multiple-choice values. Dylan does not have a built-in enumeration type,
-but you can easily construct enumerations using the *type-union* and
-*singleton* type constructors.
+but you can easily construct enumerations using the ``type-union`` and
+``singleton`` type constructors.
 
 For example, consider the ``<latitude>`` and ``<longitude>`` classes, where
 there are only two valid values for the *direction* slot in each class.
@@ -419,12 +419,12 @@ Here, the abstract superclass specifies that the read-only slot
 *direction* must be a ``<symbol>`` , and that it must be initialized when
 an instance is created with the keyword *direction:* . The constant
 ``<latitude-direction>`` is a type specification that permits only the
-symbol *#"north"* or the symbol *#"south"* . The class ``<latitude>``
+symbol ``#"north"`` or the symbol ``#"south"`` . The class ``<latitude>``
 specifies that, when an instance of ``<latitude>`` is made, the initial
 value must be of the ``<latitude-direction>`` type. We handled the
 longitude case similarly.
 
-The use of *type-union* and *singleton* to create enumeration types in
+The use of ``type-union`` and ``singleton`` to create enumeration types in
 this fashion is common enough that the function *one-of* is usually
 available in a utility library as a shorthand:
 
@@ -440,9 +440,9 @@ define constant <latitude-direction> = one-of(#"north", #"south");
 
 define constant <longitude-direction> = one-of(#"east", #"west");
 
-Some Dylan compilers will recognize the idiomatic use of *type-union*
+Some Dylan compilers will recognize the idiomatic use of ``type-union``
 and
- *singleton* to represent such enumerations more compactly. For
+ ``singleton`` to represent such enumerations more compactly. For
 instance, a compiler could represent the direction slot of a latitude or
 longitude as a single bit, using the getter and setter functions to
 translate back and forth to the appropriate symbol.

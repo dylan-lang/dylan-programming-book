@@ -78,19 +78,19 @@ We can compare the magnitude of two numbers:
  *#t*
 
 *?* 15 > 16;
- *#f*
+ ``#f``
 
-The functions *=* , *<,* and *>* are *predicates* . A predicate returns
+The functions ``=`` , *<,* and *>* are *predicates* . A predicate returns
 true if the condition it is testing is true; otherwise, it returns
-false. As you might guess, *#t* means true and *#f* means false. False
-is represented by the unique value *#f* only, but any object that is not
-*#f* is true (thus, 0 is a true value).
+false. As you might guess, *#t* means true and ``#f`` means false. False
+is represented by the unique value ``#f`` only, but any object that is not
+``#f`` is true (thus, 0 is a true value).
 
 #. *Comparison with C and C++: Caution!* C and C++ use integers to
    represent Boolean values — 0 represents false, and any nonzero value
    is considered true. Dylan has an explicit ``<boolean>`` type with two
-   instances: *#f* represents false, and *#t* represents the *canonical*
-   true value. However, any value other than *#f* is also considered
+   instances: ``#f`` represents false, and *#t* represents the *canonical*
+   true value. However, any value other than ``#f`` is also considered
    true in a Boolean test. Thus, in Dylan, 0 is considered true.
 
 #. *Comparison with Java* : Java has a separate type for Boolean values.
@@ -103,7 +103,7 @@ is represented by the unique value *#f* only, but any object that is not
 Infix syntax and function-call syntax
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The functions *+* , *-* , *\** , *<* , *>* , and *=* use *infix syntax*
+The functions *+* , *-* , *\** , *<* , *>* , and ``=`` use *infix syntax*
 ; that is, the function name appears between the arguments to the
 function. Most other Dylan functions use the function-call syntax shown
 in the following call to the *min* function, which returns the smallest
@@ -117,7 +117,7 @@ surrounded by parentheses and separated by commas. Other examples of the
 function-call syntax follow:
 
 *?* even?(3);
- *#f*
+ ``#f``
 
 *?* zero?(0);
  *#t*
@@ -126,7 +126,7 @@ function-call syntax follow:
    for example, *even?* , *odd?* , *zero?* , *positive?* and *negative?*
    . The question mark is part of the name, and does not have any
    special behavior. There are exceptions to this convention, such as
-   the predicates named *=* , *<* , and *>* .
+   the predicates named ``=`` , *<* , and *>* .
 
 Case insensitivity
 ~~~~~~~~~~~~~~~~~~
@@ -189,22 +189,22 @@ stored in a variable:
 Assignment, initialization, and equality
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-People new to Dylan may find *=* and *:=* confusing, because the names
+People new to Dylan may find ``=`` and *:=* confusing, because the names
 are similar, and the meanings are related but distinct.
 
-The meaning of *=* depends on whether it appears an expression, or in a
-definition of a variable or constant. In an expression, *=* is a
+The meaning of ``=`` depends on whether it appears an expression, or in a
+definition of a variable or constant. In an expression, ``=`` is a
 function that tests for equality; for example,
 
 *?* 3 = 3;
  *#t*
 
-In a definition of a variable or constant, *=* precedes the initial
+In a definition of a variable or constant, ``=`` precedes the initial
 value of the variable or constant; for example,
 
 *?* define variable \*her-number\* = 3;
 
-After you initialize a variable with *=* , the *=* function returns
+After you initialize a variable with ``=`` , the ``=`` function returns
 true:
 
 *?* \*her-number\* = 3;
@@ -594,7 +594,7 @@ In this chapter, we covered the following:
 -  We entered Dylan expressions to a listener and saw their values or
    output.
 -  We used simple arithmetic functions: *+* , *\** , *-* . We used
-   predicates: *=* , *<* , *>* , *even?* , and *zero?* .
+   predicates: ``=`` , *<* , *>* , *even?* , and *zero?* .
 -  We described certain naming conventions in Dylan; see `Dylan
    naming conventions shown in this chapter. <start.htm#44550>`_.
 
@@ -640,7 +640,7 @@ Syntax example
 
 #. true
 
-any value that is not *#f*
+any value that is not ``#f``
 
 #. canonical true value
 

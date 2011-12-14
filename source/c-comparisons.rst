@@ -22,7 +22,7 @@ pointed to (objects with an unmodifiable value slot), making the object
 model uniform. But compilers optimize away the indirection for these
 built-in classes.
 
-Note that *=* comparison defaults to pointer comparison, but can be
+Note that ``=`` comparison defaults to pointer comparison, but can be
 customized by class. There are sensible customizations built-in for
 characters, numbers, collections, sequences, and lists. You can add your
 own customizations for classes that you create.
@@ -165,7 +165,7 @@ color := make(<color>, red: 2 ^ 24 - 1, green: 2 ^ 24 - 1, blue: 2 ^ 24
 
 The preceding expression might not say “It’s white!”, because *make*
 might return a new object with white RGB values, and that object would
-not be *=* to the object named *white* . The equivalent C code would be:
+not be ``=`` to the object named *white* . The equivalent C code would be:
 
 Color\* make\_color(int r, int g, int b) {
  Color\* c = (Color\*)malloc(sizeof(Color));
@@ -181,26 +181,26 @@ Color\* color = make\_color(16777215, 16777215, 16777215);
 
 Because the preceding code is comparing the pointer stored in *white* to
 the pointer stored in *color* , it will clearly not say “It’s white!”.
-The default implementation of *=* in Dylan is to compare pointers.
+The default implementation of ``=`` in Dylan is to compare pointers.
 
 There are several solutions to this difficulty in Dylan. One is to
-customize the *=* comparison operator for our class to do a comparison
+customize the ``=`` comparison operator for our class to do a comparison
 more thorough than the default comparison:
 
 define met*h* od \\= (o1 :: <color>, o2 :: <color>)
  o1.red = o2.red & o1.green = o2.green & o1.blue = o2.blue;
  end met*h* od \\=;
 
-Now, using *=* will compare colors by checking their individual RGB
+Now, using ``=`` will compare colors by checking their individual RGB
 components, and our whiteness test will work.
 
-Note that Dylan also provides the *==* comparison operator, which always
+Note that Dylan also provides the ``==`` comparison operator, which always
 compares pointers. This comparison is useful when you want to check
 object identity. But, as we have seen, it is not always the appropriate
 default for comparison of equality of objects. The compiler can avoid
 calling our *\\=* method altogether if the same object is compared to
 itself. It can do so because, with the exception of IEEE NaNs
-(nonnumbers), values that are *==* must also be *=* .
+(nonnumbers), values that are ``==`` must also be ``=`` .
 
 Another approach that you can use if your objects are immutable is to
 make sure that they are unique. The *make* function is not required to
@@ -210,7 +210,7 @@ with unique, immutable objects.
 This advanced use of *make* and tables ensures that there is always only
 one instance of each color. Thus, when we make another white, it will
 always be *the* white, and our whiteness test will work with the default
-*=* comparison. The choice of solution depends on whether you will be
+``=`` comparison. The choice of solution depends on whether you will be
 doing more making or more
  comparing.
 

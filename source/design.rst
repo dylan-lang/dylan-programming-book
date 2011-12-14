@@ -208,7 +208,7 @@ are summarized next. For all the generic functions that follow, the
 value of the *vehicle* parameter must be an instance of ``<vehicle>`` ,
 the value of the *container* parameter must be an instance of
 ``<vehicle-storage>`` , and the value of the *direction* parameter must be
-either the symbol *#"inbound"* or *#"outbound"* .
+either the symbol ``#"inbound"`` or ``#"outbound"`` .
 
 available? *vehicle container direction*
 ''''''''''''''''''''''''''''''''''''''''

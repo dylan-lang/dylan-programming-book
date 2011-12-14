@@ -143,7 +143,7 @@ Glossary
         references to variables or constants, function calls, and statements
         (such as *if* , *while* , and *case* ).
 
-    *#f*
+    ``#f``
         The canonical false value. This object is the only object that
         represents false in Dylan.
 
@@ -278,7 +278,7 @@ Glossary
         or maximum value. Another example of a limited type is a
         limited-collection type, which is a collection type that specifies the
         type of elements, and/or the size of the collection. Limited types are
-        created via *limited* .
+        created via ``limited`` .
 
     listener
         A tool that enables you to enter Dylan expressions, executes the
@@ -354,8 +354,8 @@ Glossary
 
     *predicate*
         A function that returns true or false. False is always represented as
-        *#f* . True is represented by the canonical true value, *#t* , and by
-        any value other than *#f* .
+        ``#f`` . True is represented by the canonical true value, *#t* , and by
+        any value other than ``#f`` .
 
     protocol
         The interface definition of a software component. The purpose of
@@ -399,7 +399,7 @@ Glossary
 
     *singleton type*
         A type whose only member is one particular instance. Singleton types are
-        created via *singleton* .
+        created via ``singleton`` .
 
     single inheritance
         Inheritance in a class that has only one direct superclass.
@@ -453,16 +453,16 @@ Glossary
         strings, because symbols are compared by identity, and strings are
         usually compared element by element., There are two equivalent syntaxes
         for referring to symbols: *north:* is an example of the keyword syntax,
-        whereas *#"north"* is an example of the hash syntax.
+        whereas ``#"north"`` is an example of the hash syntax.
 
     *#t*
-        The canonical value of true. Note that any value other than *#f* is
+        The canonical value of true. Note that any value other than ``#f`` is
         considered a value of true.
 
     type
         An object that describes the structure and behavior of its members. All
         classes are types, but not all types are classes. You can define new
-        nonclass types with *limited* , *singleton* , and *type-union* .
+        nonclass types with ``limited`` , ``singleton`` , and ``type-union`` .
 
     type constraint
         A type associated with a binding or slot that ensures that the value of
@@ -470,7 +470,7 @@ Glossary
 
     *union type*
         A type whose members include all the members of one or more base types.
-        Union types are created via *type-union* .
+        Union types are created via ``type-union`` .
 
     user-defined class
         A class defined by a Dylan user, and not provided by Dylan itself.

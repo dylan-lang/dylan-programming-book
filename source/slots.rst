@@ -596,7 +596,7 @@ Symbols
 Symbols are much like strings. A *symbol* is an instance of the built-in
 class
  ``<symbol>`` . The key difference between strings and symbols lies in the
-way similarity (as tested by *=* ) and identity (as tested by *==* ) are
+way similarity (as tested by ``=`` ) and identity (as tested by ``==`` ) are
 defined for each of them. Two string operands can be similar but not
 identical. However, two symbol operands that are similar are always
 identical — that is, they always refer to the same object.
@@ -619,7 +619,7 @@ the ``<symbol>`` type instead of ``<string>`` .
 There are two equivalent syntaxes for specifying symbols:
 
 -  Examples of use of the keyword syntax are: *north:* and *south:* .
--  Examples of use of the hash syntax are:*#"north"* and *#"south"* .
+-  Examples of use of the hash syntax are:``#"north"`` and ``#"south"`` .
 
 Here, we show that symbol comparison is not case sensitive:
 

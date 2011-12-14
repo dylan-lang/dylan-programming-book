@@ -4,7 +4,7 @@ A Simple Library
 In this chapter, we create a complete library that represents time and
 position. The *timespace* library provides the *say* generic function
 for all concrete classes, the mathematical function *+* on certain kinds
-of time, and the comparison functions *<* and *=* , which enable users
+of time, and the comparison functions *<* and ``=`` , which enable users
 to call all other numerical comparisons, *>* , *>=* , *<=* , and *~=* .
 Our library consists of four files:
 

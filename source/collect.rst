@@ -147,9 +147,9 @@ We can change the first and second elements:
 
 If you want to create a sequence of a certain size, with every element
 having the same value, you can specify a *fill* keyword argument to
-*make* . The default value for the *fill* keyword parameter is *#f* .
+*make* . The default value for the *fill* keyword parameter is ``#f`` .
 Thus, if you had read an element of *\*my-vector\** before you wrote
-numbers into it, you would have received *#f* .
+numbers into it, you would have received ``#f`` .
 
 We can create and initialize a vector to different values all at once by
 using a built-in constructor. A *constructor* is a function that creates
@@ -752,7 +752,7 @@ We examine the two sequences:
 vectors,
  // they share elements
 * *?* \*switch-states\* == \*rev-switch-states\*;
- *#f*
+ ``#f``
 
 State before the element is changed.
                                     
@@ -807,7 +807,7 @@ reclaimed by a garbage collector.
 
 Changing an element of one collection can affect another collection if
 the two collections share elements. Two collections share an element if
-there is a value in one collection that is *==* (that is, identical) to
+there is a value in one collection that is ``==`` (that is, identical) to
 a value in the other collection. Functions such as *copy-sequence* and
 *reverse* do only a *shallow copy* of their arguments: only the top
 level of the copy is new. Every other part is shared with the old
@@ -865,7 +865,7 @@ define method interpret-votes
  end method interpret-votes;
 
 We defined the ``<nonnegative-integer>`` type in ` <classes.htm#50813>`_,
-using *limited* . Only positive integers and the integer 0 are instances
+using ``limited`` . Only positive integers and the integer 0 are instances
 of ``<nonnegative-integer>`` . We use this type in the *interpret-votes*
 method parameter list to ensure that no negative vote counts are
 accepted.
@@ -929,7 +929,7 @@ Branching with *select*
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 In certain situations, you are working with a particular two-argument
-predicate (such as *==* or *<* ). The value of the first argument to the
+predicate (such as ``==`` or *<* ). The value of the first argument to the
 predicate will always be the same, and you would like to perform
 different actions based on the second value. You can use both *if* and
 *case* to handle this situation, but the *select* control structure is
@@ -944,8 +944,8 @@ define method color-action
  end select;
  end method color-action;
 
-The *select* control structure uses *==* for the default predicate. For
-example, in the preceding *select* statement, the symbol *#"stop"* will
+The *select* control structure uses ``==`` for the default predicate. For
+example, in the preceding *select* statement, the symbol ``#"stop"`` will
 be returned if *color == #"red"* . If you require a different predicate,
 use the *by* clause, as shown in the following example, which interprets
 age from a number representing years:
@@ -988,7 +988,7 @@ define method color-action (color :: <symbol>) => (action :: <symbol>)
  \*color-action-table\*[color];
  end method color-action;
 
-The tables provided by Dylan use *==* to compare keys.
+The tables provided by Dylan use ``==`` to compare keys.
 
 During the execution of the program, we could add new associations to
 *\*color-action-table\** , or could change or remove existing
@@ -1030,7 +1030,7 @@ referencing elements of an array, see ` <func.htm#54425>`_.) If the
 entire array is searched, and no element is found that is greater than
 *value* , then the *for* loops exit normally and the *block* statement
 returns the last value in the *block* body, which in this case is false.
-We use the *type-union* type-generating function to create a type that
+We use the ``type-union`` type-generating function to create a type that
 permits either false or an integer to be returned from this method.
 
 Search of arrays with *find-key*

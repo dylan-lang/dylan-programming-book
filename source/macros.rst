@@ -354,7 +354,7 @@ begins with a parenthesized list of
 
 -  Three *variable* expressions (that is, *name :: <type>* , where the
    type is optional)
--  The literal token *=*
+-  The literal token ``=``
 -  An *expression* (any Dylan expression yielding a value)
 
 After the parenthesized list comes a *body* (any sequence of expressions
@@ -461,8 +461,8 @@ substitution "<" *## ?type ## ">"* turns the name *DC10* into the name
 ``<DC10>`` by using
  *concatenation* , allowing a more concise format for our definer while
 maintaining our convention for naming types. The substitution
-*?#"identifier"* turns the name *UA1306* into the symbol *#"UA1306"* by
-using *coercion* ; the program can use the symbol *#"UA1306"* to look up
+*?#"identifier"* turns the name *UA1306* into the symbol ``#"UA1306"`` by
+using *coercion* ; the program can use the symbol ``#"UA1306"`` to look up
 an aircraft in the registry by name. The template for *flights* collects
 all the individual flights into a comma-separated list that is passed to
 *register-flights* as a *#rest* argument.

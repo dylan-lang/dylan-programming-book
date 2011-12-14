@@ -81,11 +81,11 @@ define method past? (time :: <time-offset>) => (past? :: <boolean>)
  end method past?;
 
 The *past?* method returns an instance of ``<boolean>`` , which is *#t* if
-the time offset is in the past, and otherwise is *#f* . Here is an
+the time offset is in the past, and otherwise is ``#f`` . Here is an
 example:
 
 *?* past?(\*my-time-offset\*)
- *#f*
+ ``#f``
 
 *?* past?(\*your-time-offset\*)
  *#t*

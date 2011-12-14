@@ -8,24 +8,24 @@ Functions that create nonclass types
 ------------------------------------
 
 There are three functions that create types that are not classes:
-*singleton* , *type-union* , and *limited* .
+``singleton`` , ``type-union`` , and ``limited`` .
 
-*singleton* Takes any instance, and creates a type whose only member is
+``singleton`` Takes any instance, and creates a type whose only member is
 that instance. You can define a singleton type to be used as the
 parameter specializer of a method that should be chosen for a particular
 instance.
 
-*type-union* Takes one or more classes or types, and creates a new type
+``type-union`` Takes one or more classes or types, and creates a new type
 whose members include all the members of the types that are its
 arguments.
 
-*limited* Takes a type and creates a new type, which is a more
+``limited`` Takes a type and creates a new type, which is a more
 restricted version of the type that is its argument (the *base type* ).
 For example, you can define a new type that is based on ``<integer>`` ,
 but has a given minimum or maximum value. Another example is to define a
 new collection type that specifies the type of elements, such as a type
 that is a vector of integers. The main reasons for defining types with
-*limited* are to perform type checking and to increase efficiency. For
+``limited`` are to perform type checking and to increase efficiency. For
 information about the performance of limited types, see
 ` <perform.htm#95673>`_.
 
@@ -55,7 +55,7 @@ define method encode-total-seconds
 To see how we use ``<nonnegative-integer>`` in the time library, see
 ` <slots.htm#88213>`_.
 
-We can define a type whose only member is the false value, *#f* :
+We can define a type whose only member is the false value, ``#f`` :
 
 singleton(#f);
 
@@ -79,20 +79,20 @@ have a value: There is no way to return a slot to the uninitialized
 state. Sometimes it is useful to store in a slot a value that means
 none. Later on in our development of the airport example, we use a
 false-or type as the type of a slot that stores “the next vehicle, if
-there is one.” If there is no next vehicle, the slot contains *#f* . We
+there is one.” If there is no next vehicle, the slot contains ``#f`` . We
 create the type by calling *false-or(<vehicle>)* , and use the result as
 the type of the slot. Note that, if the type of the slot were just
-``<vehicle>`` , we could not store *#f* in the slot, and there would be no
+``<vehicle>`` , we could not store ``#f`` in the slot, and there would be no
 way to represent none.
 
-You can use *type-union* and *singleton* together to define a type that
+You can use ``type-union`` and ``singleton`` together to define a type that
 is an enumeration of multiple-choice objects. For example,
 
 define constant <latitude-direction>
  = type-union(singleton(#"north"), singleton(#"south"));
 
 The ``<latitude-direction>`` type has two valid values: the keywords
-*#"north"* and *#"south"* . For an explanation of how we could use that
+``#"north"`` and ``#"south"`` . For an explanation of how we could use that
 type to enforce the correct values of a latitude slot, and for
 information about the performance of enumerations, see
 ` <perform.htm#95189>`_.
@@ -171,7 +171,7 @@ When a type is a singleton, Dylan uses the following rules:
 
 #. An object is an instance of a singleton only if the object is
    identical to the object used as the argument in the call to
-   *singleton* that created the
+   ``singleton`` that created the
     singleton.
 #. A singleton is a proper subtype of any other type that the object
    belongs to. Thus, a singleton is more specific than any other type of
@@ -187,7 +187,7 @@ For example, suppose that we have these definitions:
 * define method say (x == 0) ... end method say;
 
 Note that method 2 illustrates a convenient syntax for defining a method
-on a singleton without calling *singleton* explicitly.
+on a singleton without calling ``singleton`` explicitly.
 
 Now, if *say* is called with an argument of *0* , both methods are
 applicable, and method 2 is more specific than method 1. If *say* is
@@ -226,7 +226,7 @@ singleton(#f));
 
 Now, if *say* is called with an argument that is an integer, both
 methods are applicable, and method 2 is more specific than method 1. If
-*say* is called with an argument of *#f* , only method 1 is applicable.
+*say* is called with an argument of ``#f`` , only method 1 is applicable.
 
 Method dispatch and limited integers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -4,7 +4,7 @@ Multimethods
 In this chapter, we show two important techniques. First, we define
 methods
  for built-in generic functions — in this case, for the functions *+* ,
-*<* , and *=* . Second, we define multimethods. We describe how method
+*<* , and ``=`` . Second, we define multimethods. We describe how method
 dispatch works for
  multimethods.
 
@@ -300,7 +300,7 @@ define method \\= (time1 :: <time-offset>, time2 :: <time-offset>)
 We can call these methods:
 
 *?* \*plus-15-20-45\* = \*minus-2-hours\*;
- *#f*
+ ``#f``
 
 To compare times, we need only to define methods for < and =. All other
 numerical comparisons in Dylan are based on these two methods. So, we
@@ -319,6 +319,6 @@ Summary
 In this chapter, we covered the following:
 
 -  We defined new methods on the built-in generic functions +, *<* , and
-   *=* .
+   ``=`` .
 -  We discussed how method dispatch works for multimethods.
 

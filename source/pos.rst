@@ -519,7 +519,7 @@ argument to *make* , you define the abstract class, and define one or
 more concrete subclasses of it. You then define a method for *make* that
 specializes its first parameter on the abstract class, and that returns
 an instance of one of its concrete subclasses. To define *make* methods,
-you need to use the *singleton* function to create a type whose only
+you need to use the ``singleton`` function to create a type whose only
 instance is the class itself; see ` <classes.htm#19881>`_. Definition of
 *make* methods is an advanced topic that we do not cover in this book.
 

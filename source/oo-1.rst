@@ -196,7 +196,7 @@ whether an object is an instance of a given class:
  *#t*
 
 *?* instance?("hello, world", <integer>);
- *#f*
+ ``#f``
 
 All objects are instances of the class ``<object>`` :
 
@@ -244,7 +244,7 @@ whether one class inherits from another class:
  *#t*
 
 *?* subtype?(<string>, <integer>);
- *#f*
+ ``#f``
 
 It may be confusing that we use a function called *subtype?* here, but
 Dylan does not provide a function called *subclass?* . Every class is a
@@ -316,10 +316,10 @@ Objects
 
 In Dylan, everything is an *object* . Characters, strings, numbers,
 arrays, and vectors are all objects. The canonical true and false
-values, *#t* , and *#f* , are objects. Methods, generic functions, and
+values, *#t* , and ``#f`` , are objects. Methods, generic functions, and
 classes are objects. What does it mean to be an object?
 
--  Most important, an object has a unique identity. You can use the *==*
+-  Most important, an object has a unique identity. You can use the ``==``
    predicate to test whether two operands are the same object. See
    `Predicates for testing equality <oo-1.htm#31376>`_.
 -  An object is a direct instance of a particular class. You can use the
@@ -358,14 +358,14 @@ convert back and forth, depending on the context.
 Predicates for testing equality
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Dylan provides two predicates for testing equality: *=* and *==* . The
-*=* predicate determines whether two objects are *similar* . Similarity
+Dylan provides two predicates for testing equality: ``=`` and ``==`` . The
+``=`` predicate determines whether two objects are *similar* . Similarity
 is defined differently for different kinds of objects. When you define
 new classes, you can define how similarity is tested for those classes
-by defining a method for *=* .
+by defining a method for ``=`` .
 
-The *==* predicate determines whether the operands are *identical* —
-that is, whether the operands are the same object. The *==* predicate
+The ``==`` predicate determines whether the operands are *identical* —
+that is, whether the operands are the same object. The ``==`` predicate
 (identity) is a stronger test: two values may be similar but not
 identical, and two identical values are always similar.
 
@@ -387,7 +387,7 @@ Two numbers that are similar, but have different types, are not the same
 object:
 
 *?* 100 == 100.0;
- *#f*
+ ``#f``
 
 Characters are enclosed in single quotation marks. If two characters
 look the same, they are similar and identical:
@@ -408,7 +408,7 @@ example, these strings are similar:
 
 Just by looking at two strings, you cannot know whether or not they are
 the identical string. The only way to determine identity is to use the
-*==* predicate. The following expression could return *#t* or *#f* :
+``==`` predicate. The following expression could return *#t* or ``#f`` :
 
 *?* "apple" == "apple";
 
@@ -500,7 +500,7 @@ In this chapter, we covered the following:
    related by inheritance.
 -  In Dylan, almost everything is an object. Each object has a unique
    identity.
--  The *=* predicate tests for similarity; the *==* predicate tests for
+-  The ``=`` predicate tests for similarity; the ``==`` predicate tests for
    identity.
 -  A binding is an association between an object and a name.
 
