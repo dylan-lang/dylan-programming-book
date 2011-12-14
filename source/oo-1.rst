@@ -15,119 +15,129 @@ Method definitions
 ------------------
 
 In Dylan, we define methods — a *method* is a kind of function. We
-define a
- simple method, *say-hello* , as follows:
+define a simple method, ``say-hello`` , as follows:
 
-define method say-hello ()
- format-out("hello, world\\n");
- end;
+.. code-block:: dylan
 
-We call *say-hello* as follows:
+    define method say-hello ()
+      format-out("hello, world\\n");
+    end;
 
-*?* say-hello();
- *hello, world*
+We call ``say-hello`` as follows:
 
-We use *define method* to define a method named *say-hello* . Just after
-the
- name *say-hello* , we specify the method’s *parameter list* , *()* .
+::
+
+    ? say-hello();
+    hello, world
+
+We use ``define method`` to define a method named ``say-hello``. Just after
+the name ``say-hello``, we specify the method’s *parameter list*, ``()``.
 The parameter list of this method is empty, meaning that this method
-takes no arguments. The call
- to *say-hello* provides an empty argument list, meaning that there are
-no arguments in the call.
+takes no arguments. The call to ``say-hello`` provides an empty argument
+list, meaning that there are no arguments in the call.
 
-The body of the *say-hello* method has one expression — a call to
- *format-out* . A method returns whatever is returned by the expression
+The body of the ``say-hello`` method has one expression — a call to
+``format-out``. A method returns whatever is returned by the expression
 executed last in its body. In general, a method can return a single
-value, multiple values,
- or no value at all. The *say-hello* method returns what *format-out*
-returns — no value at all. In the call to *say-hello* , we see the
-output of *format-out* in the
- listener; we see output and not a returned value (because no value is
-returned).
+value, multiple values, or no value at all. The ``say-hello`` method
+returns what ``format-out`` returns — no value at all. In the call to
+``say-hello`` , we see the output of ``format-out`` in the listener;
+we see output and not a returned value (because no value is returned).
 
 *Usage note:* In this chapter, we define methods that call the
-*format-out* function. Because *format-out* is in the *format-out*
+``format-out`` function. Because ``format-out`` is in the ``format-out``
 module, we need to make that module available. There are two ways to do
-so. The first way is to work in files, as described in
-` <start.htm#46770>`_. The second way is to use a gesture or command in
-your Dylan environment to make the *format-out* module accessible. Then,
-you can simply enter the method definitions into the
- listener.
+so. The first way is to work in files, as described in` <start.htm#46770>`_.
+The second way is to use a gesture or command in your Dylan environment to
+make the ``format-out`` module accessible. Then, you can simply enter the
+method definitions into the listener.
 
 A method that takes an argument
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We can define a method similar to *say-hello* , called *say-greeting* ,
+We can define a method similar to ``say-hello`` , called ``say-greeting`` ,
 that takes an argument:
 
-define method say-greeting (greeting :: <object>);
- format-out("%s\\n", greeting);
- end;
+.. code-block:: dylan
 
-The *say-greeting* method has one required parameter, named *greeting* .
+    define method say-greeting (greeting :: <object>);
+      format-out("%s\\n", greeting);
+    end;
+
+The ``say-greeting`` method has one required parameter, named ``greeting``.
 The type constraint of the required parameter indicates the type that
-the argument must be. The *greeting* parameter has the type constraint
+the argument must be. The ``greeting`` parameter has the type constraint
 ``<object>`` , which is the most general class. All objects are of the
 type ``<object>`` , so using this class as the type constraint allows the
 argument to be any object. You can omit the type constraint of a
 required parameter; that omission has the same effect as specifying
 ``<object>`` as the type constraint.
 
-We can call *say-greeting* on a string:
+We can call ``say-greeting`` on a string:
 
-*?* say-greeting("hi, there");
- *hi, there*
+::
 
-We can call *say-greeting* on an integer, although the integer does not
+     ? say-greeting("hi, there");
+     hi, there
+
+We can call ``say-greeting`` on an integer, although the integer does not
 give a particularly friendly greeting:
 
-*?* define variable \*my-number\* :: <integer> = 7;
+::
 
-*?* say-greeting(\*my-number\*);
- *7*
+    ? define variable *my-number* :: <integer> = 7;
+
+    ? say-greeting(*my-number*);
+    *7*
 
 Two methods with the same name
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-For fun, we can change *say-greeting* to take a different action for
+For fun, we can change ``say-greeting`` to take a different action for
 integers, such as to print a message:
 
-*Your lucky number is 7.*
+::
 
-To make this change, we define another method, also called
-*say-greeting* . This method has one required parameter named *greeting*
-, which has the type constraint ``<integer>`` .
+    Your lucky number is 7.
 
-define method say-greeting (greeting :: <integer>)
- format-out("Your lucky number is %s.\\n", greeting);
- end;
+To make this change, we define another method, also called ``say-greeting``.
+This method has one required parameter named ``greeting``, which has the type
+constraint ``<integer>``.
 
-*?* say-greeting(\*my-number\*);
- *Your lucky number is 7.*
+.. code-block:: dylan
+
+    define method say-greeting (greeting :: <integer>)
+      format-out("Your lucky number is %s.\n", greeting);
+    end;
+
+::
+
+    ? say-greeting(*my-number*);
+    Your lucky number is 7.
 
 A Dylan method is similar to a procedure or subroutine in other
 languages, but there is an important difference. You can define more
 than one method with the same name. Each one is a method for the same
-*generic function* . `The say-greeting generic function and its
+:term:`generic function`. `The say-greeting generic function and its
 methods. <oo-1.htm#16310>`_ shows how you can picture a generic
 function.
 
 When a generic function is called, it chooses the most appropriate
 method to call for the arguments. For example, when we call the
-*say-greeting* generic function with an integer, the method whose
-parameter is of the type ``<integer>`` is called:
+``say-greeting`` generic function with an integer, the method whose
+parameter is of the type ``<integer>`` is called::
 
-*?* say-greeting(1000);
- *Your lucky number is 1000.*
+    ? say-greeting(1000);
+    Your lucky number is 1000.
 
-When we call the *say-greeting* generic function with an argument that
+When we call the ``say-greeting`` generic function with an argument that
 is not an integer, the method whose parameter is of the type ``<object>``
-is called:
+is called::
 
-*?* say-greeting("Buenos Dias");
- *Buenos Dias*
+    ? say-greeting("Buenos Dias");
+    Buenos Dias
 
-The *say-greeting* generic function and its methods.
+The ``say-greeting`` generic function and its methods.
                                                     
 
 .. figure:: oo-1-2.gif
@@ -140,10 +150,10 @@ The *say-greeting* generic function and its methods.
 Classes
 -------
 
-We have already seen examples of classes in Dylan: ``<integer>`` ,
-``<single-float>`` , ``<string>`` , and ``<object>`` .
+We have already seen examples of classes in Dylan: ``<integer>``,
+``<single-float>``, ``<string>``, and ``<object>``.
 
-Individual values are called *objects* . Each object is a *direct
+Individual values are called *objects*. Each object is a *direct
 instance* of one particular class. You can use the *object-class*
 function to determine the direct class of an object. For example, in
 certain implementations, *7* , *12* , and *1000* are direct instances of
@@ -300,7 +310,7 @@ say-greeting generic function and its methods. <oo-1.htm#16310>`_.
 Although methods are independent of classes, methods operate on
 instances of classes. A method states the types of objects for which it
 is applicable by the type constraint of each of its required parameters.
-Consider the *say-greeting* method defined earlier:
+Consider the ``say-greeting`` method defined earlier:
 
 define method say-greeting (greeting :: <integer>);
  format-out("Your lucky number is %s.\\n", greeting);
@@ -493,7 +503,7 @@ In this chapter, we covered the following:
 
 -  A generic function can contain more than one method, where each
    method has parameters of different types, and thus is intended for
-   different arguments. The *say-greeting* generic function has two
+   different arguments. The ``say-greeting`` generic function has two
    methods.
 -  Dylan provides built-in classes, including ``<integer>`` ,
    ``<single-float>`` , ``<string>`` , and ``<object>`` . These classes are
