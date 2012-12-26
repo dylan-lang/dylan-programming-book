@@ -9,7 +9,7 @@ to skim the chapter, so that you have an idea of what options are
 available to you in the future for larger or more complex projects.
 
 We start out by describing what Dylan’s execution model is, and what we
-mean by an *efficiency model* . The efficiency model can help a
+mean by an *efficiency model*. The efficiency model can help a
 programmer to choose the appropriate language features for a particular
 problem. We also explore advanced features of Dylan that will let the
 programmer negotiate with the compiler to trade away part of the
@@ -19,7 +19,7 @@ Execution model
 ---------------
 
 Dylan is a dynamic language — everything in Dylan is defined in terms of
-a dynamic *execution model* . As we saw in ` <offset.htm#10035>`_, the
+a dynamic *execution model*. As we saw in ` <offset.htm#10035>`_, the
 execution model of how a method is chosen when a generic function is
 called with a particular set of arguments is highly dynamic: the
 arguments are evaluated; the types of the arguments are determined; the
@@ -153,27 +153,29 @@ to minimize the associated overhead. At the same time, when the type of
 a variable can change at run time, Dylan also automatically tracks the
 changing type.
 
-Some compilers have a facility for generating *performance warnings* ,
+Some compilers have a facility for generating *performance warnings*,
 which inform you when type inferencing is not able to determine types
 sufficiently to generate optimal code. Some compilers have a facility
-for generating *safety warnings* , informing you when type inferencing
+for generating *safety warnings*, informing you when type inferencing
 is not able to determine types sufficiently to omit run-time type
 checking. As an example, consider these definitions (which are similar
 to, but not exactly the same as, the definitions on which we settled in
 ` <time-mod.htm#11385>`_):
 
-define abstract open class <sixty-unit> (<object>)
- slot total-seconds :: <integer> = 0, init-keyword: total-seconds:;
- end class <sixty-unit>;
+.. code-block:: dylan
 
-define method decode-total-seconds
- (sixty-unit :: <sixty-unit>)
- => (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)
- let total-seconds = abs(sixty-unit.total-seconds);
- let (total-minutes, seconds) = truncate/(total-seconds, 60);
- let (max-unit, minutes) = truncate/(total-minutes, 60);
- values (max-unit, minutes, seconds);
- end method decode-total-seconds;
+    define abstract open class <sixty-unit> (<object>)
+      slot total-seconds :: <integer> = 0, init-keyword: total-seconds:;
+    end class <sixty-unit>;
+
+    define method decode-total-seconds
+      (sixty-unit :: <sixty-unit>)
+     => (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)
+      let total-seconds = abs(sixty-unit.total-seconds);
+      let (total-minutes, seconds) = truncate/(total-seconds, 60);
+      let (max-unit, minutes) = truncate/(total-minutes, 60);
+      values (max-unit, minutes, seconds);
+    end method decode-total-seconds;
 
 Because we made the choice to store *total-seconds* as an integer, and
 because *60* is an integer constant, the compiler can infer that the
@@ -182,21 +184,19 @@ need to consider whether to use floating-point or integer division.
 
 If we were more concerned with testing out ideas, we might have left
 unspecified the type of the *total-seconds* slot (implicitly, its type
-would then be ``<object>`` ), or, if we wanted to keep the option of
+would then be ``<object>``), or, if we wanted to keep the option of
 having times more accurate than just seconds, we might have specified
-that its type was ``<real>`` , allowing for the possibility of using
-floating-point numbers, which can express fractional
- seconds.
+that its type was ``<real>``, allowing for the possibility of using
+floating-point numbers, which can express fractional seconds.
 
 If we left the type of the *total-seconds* slot unspecified, the
-compiler would need to check the arguments to *truncate/* , on the off
+compiler would need to check the arguments to ``truncate/``, on the off
 chance that an argument was not numeric at all. In some compilers, you
-would be able to get a
- compile-time safety warning stating that a run-time type error is
-possible (which, if unhandled, will result in program failure), and that
-the check, and the possibility of a run-time error, could be avoided if
-the compiler knew that *total-
- seconds* was a ``<real>`` .
+would be able to get a compile-time safety warning stating that a
+run-time type error is possible (which, if unhandled, will result
+in program failure), and that the check, and the possibility of a
+run-time error, could be avoided if the compiler knew that
+``total-seconds`` was a ``<real>``.
 
 #. *What is a safe program?* Dylan is always safe in that a programming
    error cannot cause a corruption of the program (or of other
@@ -223,20 +223,18 @@ handled by the program.
    also expected to provide libraries for infinite-precision numerical
    operations.
 
-If we specified the type of the *total-seconds* slot as ``<real>`` , the
-compiler would have to dispatch on the type of *total-seconds* , using
-either floating-point or integer division as necessary. In some
-compilers, we would be able to get a
- compile-time performance warning stating that this dispatch could be
-omitted if the compiler knew that *total-seconds* was of a more
-restricted type.
+If we specified the type of the ``total-seconds`` slot as ``<real>``,
+the compiler would have to dispatch on the type of ``total-seconds``,
+using either floating-point or integer division as necessary. In some
+compilers, we would be able to get a compile-time performance warning
+stating that this dispatch could be omitted if the compiler knew that
+``total-seconds`` was of a more restricted type.
 
 Note that the type of the return value of *decode-total-seconds* can be
 inferred: *max-unit* and *minutes* must be ``<integer>`` (inferred from
-the definition of *truncate/* ), and *seconds* must have the same type
-as *total-seconds*
- (``<integer>`` , in our example); thus, the compiler does not have to
-insert any type checks on the return values of *decode-total-seconds* .
+the definition of *truncate/*), and *seconds* must have the same type
+as *total-seconds* (``<integer>``, in our example); thus, the compiler does not have to
+insert any type checks on the return values of *decode-total-seconds*.
 Dylan enforces declared return types in the same way as it enforces
 parameter types, by eliminating the check where type inferencing can
 show it is not needed, and using the enforced types to make further
@@ -275,59 +273,62 @@ efficient code will be generated. The place where this situation is most
 obvious is in the ``<collection>`` types, where the elements of a
 collection are essentially like multiple slots, all with the same type
 constraint. For the built-in collections, elements typically have a
-general default type (often simply ``<object>`` ), and there can be an
+general default type (often simply ``<object>``), and there can be an
 arbitrary number of them. The ``limited`` mechanism is a way to specify
 that you expect to store objects of a particular type in the collection,
 and to specify how many elements will be in the collection.
 
 As an example, in ` <nlanding.htm#77416>`_, page
 ` <nlanding.htm#86919>`_, the *generate-gates* method returns a
-``<vector>`` . Without further information, the compiler must assume that
+``<vector>``. Without further information, the compiler must assume that
 that vector might contain objects of any types. As a result, the
 following code in the *build-simple-airport* method from
 ` <nlanding.htm#48299>`_, page ` <nlanding.htm#32804>`_, will be
- inefficient:
+inefficient:
 
-let gates = generate-gates(gates-per-terminal, capacity);
- ...
- for (gate in gates)
- gate.connected-to := taxiway-vector;
- end for;
+.. code-block:: dylan
 
-Because the compiler can infer only that *gates* is a ``<vector>`` , it
-must generate extra code to determine whether each *gate* has a
-*connected-to* method on it. We can use limited types to constrain
-*gate-instances* as follows:
+    let gates = generate-gates(gates-per-terminal, capacity);
+    ...
+    for (gate in gates)
+      gate.connected-to := taxiway-vector;
+    end for;
 
-define constant <gate-vector> = limited(<vector>, of: <gate>);
+Because the compiler can infer only that ``gates`` is a ``<vector>``, it
+must generate extra code to determine whether each ``gate`` has a
+``connected-to`` method on it. We can use limited types to constrain
+``gate-instances`` as follows:
 
-define method generate-gates
- (gates-per-terminal :: <vector>, default-gate-capacity :: <size>)
- => (gates :: <gate-vector>)
- let result = make(<gate-vector>, size: reduce1(\\+,
-gates-per-terminal));
- ...
- values(result);
- end method generate-gates;
+.. code-block:: dylan
 
-With the limited constraint of the return value of *generate-gates* ,
+    define constant <gate-vector> = limited(<vector>, of: <gate>);
+
+    define method generate-gates
+      (gates-per-terminal :: <vector>, default-gate-capacity :: <size>)
+     => (gates :: <gate-vector>)
+      let result = make(<gate-vector>, size: reduce1(\+,
+                                                     gates-per-terminal));
+      ...
+      values(result);
+    end method generate-gates;
+
+With the limited constraint of the return value of ``generate-gates``,
 the compiler can ensure that only gate objects will ever be stored in
-the vector; hence, it can be sure that each *gate* will be a ``<gate>``
-and will have a *connected-to* method.
+the vector; hence, it can be sure that each ``gate`` will be a ``<gate>``
+and will have a ``connected-to`` method.
 
 Note that limited-collection types are instantiable types; that is, you
 can make an object of a limited type. This capability is different from
 similar constructs in certain other languages, in which those constructs
 are only an assertion about the range or type of values to be stored in
-the collection. Having declared the return value of *generate-gates* to
-be a ``<gate-vector>`` , it would be an error to return a ``<vector>``
-instead; hence, we changed the argument to *make* when constructing
-*result* to be ``<gate-vector>`` instead of the original ``<vector>`` .
+the collection. Having declared the return value of ``generate-gates`` to
+be a ``<gate-vector>``, it would be an error to return a ``<vector>``
+instead; hence, we changed the argument to ``make`` when constructing
+``result`` to be ``<gate-vector>`` instead of the original ``<vector>``.
 
-If ``<gate>`` and *connected-to* are not *open* (as described in `Open
-generic functions <perform.htm#92395>`_ and `Open
-classes <perform.htm#82381>`_), the compiler can infer that
-*connected-to* is used here to set a slot in the gate instance and to
+If ``<gate>`` and ``connected-to`` are not *open* (as described in
+`Open generic functions`_ and `Open classes`_), the compiler can infer that
+``connected-to`` is used here to set a slot in the gate instance and to
 further optimize the code generated. We do not delve into the exact
 details of what the compiler has to know to make this optimization, but
 it is worth noting that, if either the class or the generic function
@@ -336,8 +337,8 @@ were open, the optimization could not be made.
 #. *Comparison with C++:* The Dylan limited-collection types provide a
    capability similar to that offered by the C++ template classes.
    Unlike in C++, the base type of a limited-collection type (the
-   equivalent of a C++ class template — in the example above, ``<vector>``
-   ) is also a valid type. Dylan’s dynamic capabilities mean that Dylan
+   equivalent of a C++ class template — in the example above, ``<vector>``)
+   is also a valid type. Dylan’s dynamic capabilities mean that Dylan
    can defer determining the element type of a collection until run
    time, in effect adapting the class template as it goes along. By
    using a limited type, the compiler can generate more efficient code.
@@ -348,9 +349,11 @@ a limited range that can be stored more compactly than integers. It is
 especially useful to use a limited range in combination with a limited
 collection; for example,
 
-define constant <signed-byte-vector>
- = limited(<simple-vector>,
- of: limited(<integer>, min: -128, max 127));
+.. code-block:: dylan
+
+    define constant <signed-byte-vector>
+      = limited(<simple-vector>,
+                of: limited(<integer>, min: -128, max 127));
 
 In the preceding example, we define a type that can be represented as a
 one-dimensional array of 8-bit bytes.
@@ -358,7 +361,7 @@ one-dimensional array of 8-bit bytes.
 #. *Comparison with C:* C provides efficient data representations,
    because its data types typically map directly to underlying hardware
    representations. A drawback of C is that its efficient data
-   representations are often not portable: The size of a *short int* may
+   representations are often not portable: The size of a ``short int`` may
    vary across platforms, for instance. Dylan takes the more abstract
    approach of describing the requirements of a data type, and letting
    the compiler choose the most efficient underlying representation. A
@@ -393,56 +396,61 @@ but you can easily construct enumerations using the ``type-union`` and
 ``singleton`` type constructors.
 
 For example, consider the ``<latitude>`` and ``<longitude>`` classes, where
-there are only two valid values for the *direction* slot in each class.
+there are only two valid values for the ``direction`` slot in each class.
 Rather than enforcing the restrictions programmatically, as we did in
 ` <slots.htm#97360>`_, we can create types that do the job for us:
 
-define abstract class <directed-angle> (<sixty-unit>)
- slot direction :: <symbol>, required-init-keyword: direction:;
- end class <directed-angle>;
+.. code-block:: dylan
 
-define constant <latitude-direction>
- = type-union(singleton(#"north"), singleton(#"south"));
+    define abstract class <directed-angle> (<sixty-unit>)
+      slot direction :: <symbol>, required-init-keyword: direction:;
+    end class <directed-angle>;
 
-define class <latitude> (<directed-angle>)
- keyword direction:, type: <latitude-direction>;
- end class <latitude>;
+    define constant <latitude-direction>
+      = type-union(singleton(#"north"), singleton(#"south"));
 
-define constant <longitude-direction>
- = type-union(singleton(#"east"), singleton(#"west"));
+    define class <latitude> (<directed-angle>)
+      keyword direction:, type: <latitude-direction>;
+    end class <latitude>;
 
-define class <longitude> (<directed-angle>)
- keyword direction:, type: <longitude-direction>;
- end class <longitude>;
+    define constant <longitude-direction>
+      = type-union(singleton(#"east"), singleton(#"west"));
+
+    define class <longitude> (<directed-angle>)
+      keyword direction:, type: <longitude-direction>;
+    end class <longitude>;
 
 Here, the abstract superclass specifies that the read-only slot
-*direction* must be a ``<symbol>`` , and that it must be initialized when
-an instance is created with the keyword *direction:* . The constant
+``direction`` must be a ``<symbol>``, and that it must be initialized when
+an instance is created with the keyword ``direction:``. The constant
 ``<latitude-direction>`` is a type specification that permits only the
-symbol ``#"north"`` or the symbol ``#"south"`` . The class ``<latitude>``
+symbol ``#"north"`` or the symbol ``#"south"``. The class ``<latitude>``
 specifies that, when an instance of ``<latitude>`` is made, the initial
 value must be of the ``<latitude-direction>`` type. We handled the
 longitude case similarly.
 
 The use of ``type-union`` and ``singleton`` to create enumeration types in
-this fashion is common enough that the function *one-of* is usually
+this fashion is common enough that the function ``one-of`` is usually
 available in a utility library as a shorthand:
 
-define constant one-of
- = method (#rest objects)
- apply(type-union, map(singleton, objects))
- end method;
+.. code-block:: dylan
+
+    define constant one-of
+      = method (#rest objects)
+          apply(type-union, map(singleton, objects))
+        end method;
 
 With this abbreviation, the direction types can be written more
 compactly:
 
-define constant <latitude-direction> = one-of(#"north", #"south");
+.. code-block:: dylan
 
-define constant <longitude-direction> = one-of(#"east", #"west");
+    define constant <latitude-direction> = one-of(#"north", #"south");
+
+    define constant <longitude-direction> = one-of(#"east", #"west");
 
 Some Dylan compilers will recognize the idiomatic use of ``type-union``
-and
- ``singleton`` to represent such enumerations more compactly. For
+and ``singleton`` to represent such enumerations more compactly. For
 instance, a compiler could represent the direction slot of a latitude or
 longitude as a single bit, using the getter and setter functions to
 translate back and forth to the appropriate symbol.
@@ -450,12 +458,12 @@ translate back and forth to the appropriate symbol.
 Direct methods
 --------------
 
-The definition of the *one-of* constant is a method called a *direct
-method* or *bare* *method* . It is the equivalent of a function in other
+The definition of the ``one-of`` constant is a method called a *direct
+method* or *bare* *method*. It is the equivalent of a function in other
 languages. A bare method does not create an implicit generic function,
 and invoking a bare method does not use method-dispatch procedure, but
 rather calls the method directly. We choose to use a bare method here
-because we are sure that *one-of* will never need method dispatch: it
+because we are sure that ``one-of`` will never need method dispatch: it
 performs the same operation independent of the types of its arguments.
 The bare method serves to document this intent. If there were some
 possibility of additional methods, it would be more perspicuous to use a
@@ -483,19 +491,21 @@ single-method generic functions or direct methods.
 There is one additional optimization that good Dylan compilers will
 make, which is enabled by a particular style of programming. If the
 final operation in a method is a call to another function (called a
-*tail call* ) then the calling function can jump directly to the called
+*tail call*) then the calling function can jump directly to the called
 function, rather than using a call-and-return sequence. Thus, the return
 from the called function returns to its caller’s caller.
 
 As an example, consider this *decode-total-seconds* method:
 
-define method decode-total-seconds
- (sixty-unit :: <sixty-unit>)
- => (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)
- decode-total-seconds(sixty-unit.total-seconds);
- end method decode-total-seconds;
+.. code-block:: dylan
 
-The inner call to *decode-total-seconds* can be a direct jump rather
+    define method decode-total-seconds
+      (sixty-unit :: <sixty-unit>)
+     => (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)
+      decode-total-seconds(sixty-unit.total-seconds);
+    end method decode-total-seconds;
+
+The inner call to ``decode-total-seconds`` can be a direct jump rather
 than a function call, because the compiler can infer which method should
 be called and that the return values already have the correct
 constraints.
@@ -514,34 +524,40 @@ will return.
 If we define a method without also defining a generic function, Dylan
 creates an implicit generic function with the most general types for
 each parameter and return value that are compatible with the method. For
-example, assume that we defined a method for *next-landing-step* , and
+example, assume that we defined a method for ``next-landing-step``, and
 did not explicitly create a generic function for it. The method is as
 follows:
 
-define method next-landing-step
- (storage :: <sky>, aircraft :: <aircraft>)
- => (next-class :: false-or(<class>), duration ::
-false-or(<time-offset>))
- ...
- end if;
- end method next-landing-step;
+.. code-block:: dylan
+
+    define method next-landing-step
+      (storage :: <sky>, aircraft :: <aircraft>)
+     => (next-class :: false-or(<class>), duration ::
+         false-or(<time-offset>))
+      ...
+      end if;
+    end method next-landing-step;
 
 When we define a method without also defining a generic function, the
 compiler will generate an implicit generic function for us, which, in
 this case, will be as though we had defined the generic function like
 this:
 
-*define generic next-landing-step (o1 :: <object>, o2 :: <object>)
- => (#rest r :: <object>);*
+.. code-block:: dylan
+
+    define generic next-landing-step (o1 :: <object>, o2 :: <object>)
+      => (#rest r :: <object>);
 
 In ` <nlanding.htm#89754>`_, where we did define a generic function, we
 used a simple definition, just documenting the number of arguments, and
 giving them mnemonic names:
 
-define generic next-landing-step (container, vehicle);
+.. code-block:: dylan
+
+    define generic next-landing-step (container, vehicle);
 
 Because we did not specify types of the arguments or return values, they
-default to ``<object>`` , just as they did in the preceding implicit
+default to ``<object>``, just as they did in the preceding implicit
 generic function.
 
 Although the generic function that we wrote does prevent us from
@@ -550,12 +566,14 @@ constrain the types of those arguments or the format or type of return
 values in any way. A sophisticated compiler may be able to make
 inferences based on the methods that we define, but we could both aid
 the compiler and more clearly document the protocol of
-*next-landing-step* by specifying the types of the parameters and return
+``next-landing-step`` by specifying the types of the parameters and return
 values in the definition of the generic function:
 
-define generic next-landing-step
- (storage :: <vehicle-storage>, aircraft :: <aircraft>)
- => (next-storage :: <vehicle-storage>, elapsed-time :: <time-offset>);
+.. code-block:: dylan
+
+    define generic next-landing-step
+      (storage :: <vehicle-storage>, aircraft :: <aircraft>)
+     => (next-storage :: <vehicle-storage>, elapsed-time :: <time-offset>);
 
 Now, the compiler can help us. If we define a method whose arguments are
 not a subclass of ``<vehicle-storage>`` and a subclass of ``<aircraft>``
@@ -568,19 +586,19 @@ subclass of the argument types for which no method is applicable.
 
 In addition to establishing a contract, specifying the types of the
 parameters and return values of generic functions can allow the compiler
-to make additional inferences, as described in `Type
-constraints <perform.htm#19965>`_ with regard to *truncate/* . In the
-absence of other information, the compiler is limited in the
-optimizations that it can make based solely on the parameter types in
-the generic function, so it is generally best not to restrict
-artificially the types of a generic function, but rather to use the
-restricted types to document the generic function’s protocol.
+to make additional inferences, as described in `Type constraints`_
+with regard to ``truncate/``. In the absence of other information,
+the compiler is limited in the optimizations that it can make based
+solely on the parameter types in the generic function, so it is
+generally best not to restrict artificially the types of a generic
+function, but rather to use the restricted types to document the
+generic function’s protocol.
 
 Open generic functions
 ----------------------
 
-By default, generic functions are *sealed* . When you use *define
-generic* , that is the same as using *define sealed generic* . No other
+By default, generic functions are *sealed*. When you use ``define
+generic``, that is the same as using ``define sealed generic``. No other
 library can add methods to a sealed generic function — not even on new
 classes that they may introduce. Methods cannot be added to, or removed
 from, the generic function at run time. The only methods on a sealed
@@ -593,7 +611,7 @@ run-time dispatching that would normally be expected of a dynamic
 language.
 
 We saw in ` <reuse.htm#84851>`_, that we must define a generic function
-that is part of a shared protocol using *define open generic* , so that
+that is part of a shared protocol using ``define open generic``, so that
 libraries sharing the protocol can implement the protocol for the
 classes that they define, by adding methods. If we do not define the
 generic function to be open, other libraries are prohibited from adding
@@ -609,25 +627,23 @@ only when necessary. You need to balance the division of your program
 into libraries against the need to export and open more generic
 functions if the program is too finely divided. This balance is
 illustrated by the considerations we made in designing a protocol in
-` <reuse.htm#26511>`_. When we chose to split the *time* and *angle*
-libraries, we were forced to create the *say* protocol library and open
-the generic function *say* . In `Sealed
-domains <perform.htm#50373>`_, we show how to regain certain
-optimizations when you decide that opening a generic function is
-required.
+` <reuse.htm#26511>`_. When we chose to split the ``time`` and ``angle``
+libraries, we were forced to create the ``say`` protocol library and open
+the generic function ``say``. In `Sealed domains`_, we show how to regain
+certain optimizations when you decide that opening a generic function is required.
 
 Note that generic functions that are defined implicitly in a library —
 such as those that are defined when you define only a single method, or
 those that are defined for slot accessors — are sealed by default. If
 you expect other libraries to add methods to one of these implicit
 generic functions, you must define the generic function explicitly to be
-open using *define open generic* .
+open using ``define open generic``.
 
 Open classes
 ------------
 
-By default, classes are *sealed* . When you use *define class* , that is
-the same as using *define sealed class* . Other libraries cannot
+By default, classes are ``sealed``. When you use ``define class``, that is
+the same as using ``define sealed class``. Other libraries cannot
 directly subclass a sealed class — they cannot define new classes that
 have your sealed class as a direct superclass. The only direct
 subclasses of the class are those subclasses that are defined in the
@@ -638,7 +654,7 @@ choose the correct method of the generic function to call at compile
 time, eliminating any run-time overhead for using a generic function.
 
 We saw in ` <reuse.htm#84851>`_, that we must define a class that is a
-shared substrate, such as ``<sixty-unit>`` , using *define open class* ,
+shared substrate, such as ``<sixty-unit>``, using ``define open class``,
 if the libraries sharing the substrate are expected to subclass the
 class. If we did not define the class to be open, other libraries would
 be prevented from subclassing it — which might be reasonable if the
@@ -671,7 +687,7 @@ When you define a protocol that is meant to be extended by many
 libraries, both the base classes and the generic functions that make up
 the protocol must be open. This simple exigency might make it seem that
 there is no hope of optimizing such a protocol — however, there is hope.
-You use the *define sealed domain* form to seal selectively subsets or
+You use the ``define sealed domain`` form to seal selectively subsets or
 *branches* of the protocol, permitting the compiler to make all the
 optimizations that would be possible if the classes and generic
 functions were sealed, but only for the particular subset or branch in
@@ -683,42 +699,46 @@ question.
    situation similar to the example — an imported open class and generic
    function that will be specialized by your library.
 
-As an example, consider the *say* protocol as used in the *time*
-library. Because the *say* generic function is defined to be open, even
-if the compiler can infer that the argument to *say* is a ``<time>`` or
-``<time-offset>`` , it must insert code to choose the appropriate method
+As an example, consider the ``say`` protocol as used in the ``time``
+library. Because the ``say`` generic function is defined to be open, even
+if the compiler can infer that the argument to ``say`` is a ``<time>`` or
+``<time-offset>``, it must insert code to choose the appropriate method
 to call at run time on the off chance that some other library has added
-or removed methods for *say* . The solution is to add the following
-definition to the *time* library:
+or removed methods for ``say``. The solution is to add the following
+definition to the ``time`` library:
 
-*// Declare the say generic function sealed, for all time classes
-* define sealed domain say (<time>);
+.. code-block:: dylan
+
+    // Declare the say generic function sealed, for all time classes
+    define sealed domain say (<time>);
 
 This statement is essentially a guarantee to the compiler that the only
-methods on *say* that are applicable to ``<time>`` objects (and also to
+methods on ``say`` that are applicable to ``<time>`` objects (and also to
 ``<time-of-day>`` and ``<time-offset>`` objects, because ``<time-of-day>`` and
-``<time-offset>`` are subclasses of ``<time>`` ) are those that are defined
-explicitly in the *time* library (and in any libraries from which that
+``<time-offset>`` are subclasses of ``<time>``) are those that are defined
+explicitly in the ``time`` library (and in any libraries from which that
 one imports). Thus, when the compiler can prove that the argument to
-*say* is a ``<time-offset>`` , it can call the correct method directly,
+``say`` is a ``<time-offset>``, it can call the correct method directly,
 without any run-time dispatch overhead.
 
 Another way to get the same effect as a sealed domain, which is also
-self-documenting, is to use *define sealed method* when defining
+self-documenting, is to use ``define sealed method`` when defining
 individual methods on the protocol. So, for instance, in the case of the
-*time* library, we might have defined the two methods on *say* as
+``time`` library, we might have defined the two methods on ``say`` as
 follows:
 
-define sealed method say (time :: <time>)
- let (hours, minutes) = decode-total-seconds (time);
- format-out("%d:%s%d", hours, if (minutes < 10) "0" else " " end,
-minutes);
- end method say;
+.. code-block:: dylan
 
-define sealed method say (time :: <time-offset>) => ()
- format-out("%s ", if (time.past?) "minus" else "plus" end);
- next-method();
- end method say;
+    define sealed method say (time :: <time>)
+      let (hours, minutes) = decode-total-seconds (time);
+      format-out("%d:%s%d", hours, if (minutes < 10) "0" else " " end,
+                 minutes);
+    end method say;
+
+    define sealed method say (time :: <time-offset>) => ()
+      format-out("%s ", if (time.past?) "minus" else "plus" end);
+      next-method();
+    end method say;
 
 Defining a sealed method is the same as defining the generic function to
 be sealed over the domain of the method’s specializers. In effect, this
@@ -726,10 +746,10 @@ technique says that you do not intend anyone to add more specific
 methods in that domain, or to create classes that would change the
 applicability of the sealed methods.
 
-With either the *define sealed domain* form or the sealed methods, the
-use of *say* on ``<time>`` objects will be as efficient as it would be
-were *say* not an open generic function after all. At the same time,
-other libraries that create new classes can still extend the *say*
+With either the ``define sealed domain`` form or the sealed methods, the
+use of ``say`` on ``<time>`` objects will be as efficient as it would be
+were ``say`` not an open generic function after all. At the same time,
+other libraries that create new classes can still extend the ``say``
 protocol to cover those classes.
 
 Sealed domains impose restrictions on the ability of other libraries to
@@ -779,10 +799,10 @@ class — a class with no subclasses at all).
 
 If you need to seal a domain over a class that has open subclasses, you
 will need a thorough understanding of the sealing constraints detailed
-in *The Dylan Reference Manual* , but these two simple rules should
+in *The Dylan Reference Manual*, but these two simple rules should
 handle many common cases.
 
-In our example, we obeyed both rules of thumb: our methods for *say* are
+In our example, we obeyed both rules of thumb: our methods for ``say`` are
 on classes we defined, and our sealing was over classes that will not be
 further subclassed. The rules of thumb not only keep you from violating
 sealing constraints, they make for good protocol design: a library that
@@ -791,31 +811,33 @@ understands, which usually means classes it creates.
 
 As an example of the restriction on subclassing open classes involved in
 a sealed domain, if the ``<time>`` class were an open class, we still
-could not add the following class in a library that used the *time*
+could not add the following class in a library that used the ``time``
 library:
 
-define class <place-and-time> (<position>, <time>)
- end class <place-and-time>;
+.. code-block:: dylan
 
-As far as the compiler is concerned, it “knows” that the only *say*
-method applicable to a ``<time>`` is the one in the *time* library. (That
-is what we have told it with our *sealed domain* definition.) It would
+    define class <place-and-time> (<position>, <time>)
+    end class <place-and-time>;
+
+As far as the compiler is concerned, it “knows” that the only ``say``
+method applicable to a ``<time>`` is the one in the ``time`` library. (That
+is what we have told it with our ``sealed domain`` definition.) It would
 be valid to pass a ``<place-and-time>`` object as an argument to a
 function that accepted ``<time>`` objects, but within that function the
-compiler might have already optimized a call to *say* to the method for
-``<time>`` objects (based on ``<time>`` being in the sealed domain of *say*
-). But there is also a method for *say* on ``<position>`` , and, more
-important, we probably will want to define a method specifically for
-``<place-and-time>`` . Because of this ambiguity, the class
+compiler might have already optimized a call to ``say`` to the method for
+``<time>`` objects (based on ``<time>`` being in the sealed domain of
+``say``). But there is also a method for ``say`` on ``<position>``, and,
+more important, we probably will want to define a method specifically for
+``<place-and-time>``. Because of this ambiguity, the class
 ``<place-and-time>`` cannot be defined in a separate library, and the
 compiler will signal an error.
 
-Note that the class ``<place-and-time>`` could be defined in the *time*
+Note that the class ``<place-and-time>`` could be defined in the ``time``
 library. The compiler can deal correctly with classes that may straddle
 a sealed domain, if they are known in the library where the sealed
 domain is defined. It would also be valid to subclass ``<time>`` in any
 way that did not change the applicability of methods in any sealed
-generic-function domains that include ``<time>`` . The actual rule
+generic-function domains that include ``<time>``. The actual rule
 involved depends on an analysis of the exact methods of the generic
 function, and the rule is complicated enough that you should just rely
 on your compiler to detect illegal situations.
@@ -830,19 +852,17 @@ most general types for the parameters and return values that are
 compatible with the method. The most common case of implicit generic
 functions is for the slot-accessor methods that are created when a new
 class is defined. Because these generic functions typically have only a
-single method and are *sealed* by default (see `Open generic
-functions <perform.htm#92395>`_), the compiler can make extensive
-optimizations for slot accessors, ideally making slot access no more
-expensive than an array reference or structure-member access in other
-languages.
+single method and are *sealed* by default (see `Open generic functions`_),
+the compiler can make extensive optimizations for slot accessors, ideally
+making slot access no more expensive than an array reference or
+structure-member access in other languages.
 
 Even when a slot is inherited by subclassing, a good Dylan compiler will
 use a *coloring algorithm* to assign slots to the same offset in each
 subclass, keeping the cost of slot access to a minimum. You can use
-primary classes (see `Primary classes <perform.htm#14126>`_) to
-guarantee efficient slot access.When a program defines explicit methods
-for a slot getter or setter generic function, of course, the overhead is
-greater.
+primary classes (see `Primary classes`_) to guarantee efficient slot
+access. When a program defines explicit methods for a slot getter or
+setter generic function, of course, the overhead is greater.
 
 #. *Comparison with C++:* Dylan classes are similar to virtual base
    classes with virtual data members in that the offsets of their data
@@ -851,26 +871,27 @@ greater.
    ` <c-comparisons.htm#89585>`_, for a more detailed analogy.
 
 In the ``<sixty-unit>`` class, we specified an initial value for
-*total-seconds* ; hence, there is no need to check that the slot has
+``total-seconds``; hence, there is no need to check that the slot has
 been initialized before it is accessed. In some situations, it may not
 be feasible to give a default or initial value for a slot. Dylan permits
 this omission and will ensure that the slot is initialized before that
 slot is used; of course, this check does not come for free, so it is
 preferable to provide initial values where possible. In fact, because we
-always expect to initialize the *total-seconds* slot when we make a new
-``<sixty-unit>`` , it would be more accurate to specify ``<sixty-unit>`` as
+always expect to initialize the ``total-seconds`` slot when we make a new
+``<sixty-unit>``, it would be more accurate to specify ``<sixty-unit>`` as
 follows:
 
-define open abstract class <sixty-unit> (<object>)
- slot total-seconds :: <integer>,
- required-init-keyword: total-seconds:,
- end class <sixty-unit>;
+.. code-block:: dylan
 
-That is, rather than giving the slot an initial value of *0* and an
-optional
- *init-keyword:* , we simply require that the slot be initialized when
-we make a ``<sixty-unit>`` object. Of course, the initial value must obey
-the type constraint of ``<integer>`` . The compiler can still make the
+    define open abstract class <sixty-unit> (<object>)
+      slot total-seconds :: <integer>,
+        required-init-keyword: total-seconds:,
+    end class <sixty-unit>;
+
+That is, rather than giving the slot an initial value of ``0`` and an
+optional ``init-keyword:``, we simply require that the slot be initialized
+when we make a ``<sixty-unit>`` object. Of course, the initial value must
+obey the type constraint of ``<integer>``. The compiler can still make the
 inference that the slot will always be initialized and will always have
 an integer value.
 
@@ -888,72 +909,76 @@ init-keyword, will make slot access efficient.
 Finally, in many cases, slots hold values that will not change over the
 lifetime of each instance (although they may be different values for
 each instance). In the case of the ``<sixty-unit>`` class, we never change
-the value of *total-
- seconds* . When adding two instances, we create a new one to hold the
-new value, rather than changing one of the argument instances (that way,
-we do not have to worry about changing an instance that may still be in
-use by some other part of the program). In such cases, declaring the
-slot to be *constant* both documents and enforces this intent.
-Furthermore, the compiler can often make additional optimizations for
-slots that are known never to be modified. The final definition of
-``<sixty-unit>`` is as follows:
+the value of ``total-seconds``. When adding two instances, we create a
+new one to hold the new value, rather than changing one of the argument
+instances (that way, we do not have to worry about changing an instance
+that may still be in use by some other part of the program). In such
+cases, declaring the slot to be ``constant`` both documents and enforces
+this intent.  Furthermore, the compiler can often make additional
+optimizations for slots that are known never to be modified. The final
+definition of ``<sixty-unit>`` is as follows:
 
-define open abstract class <sixty-unit> (<object>)
- constant slot total-seconds :: <integer>,
- required-init-keyword: total-seconds:,
- end class <sixty-unit>;
+.. code-block:: dylan
 
-(The *constant* declaration is simply shorthand for the slot option
-*setter: #f* , meaning that there is no way to set the slot.)
+    define open abstract class <sixty-unit> (<object>)
+      constant slot total-seconds :: <integer>,
+        required-init-keyword: total-seconds:,
+    end class <sixty-unit>;
+
+(The ``constant`` declaration is simply shorthand for the slot option
+``setter: #f``, meaning that there is no way to set the slot.)
 
 Primary classes
 ---------------
 
 Classes have one additional variation that you can use to optimize
-performance. A class that is defined as *primary* allows the compiler to
+performance. A class that is defined as ``primary`` allows the compiler to
 generate the most efficient code for accessing the slots defined in the
 primary class (whether the accessor is applied to the primary class or
 to one of that class’s subclasses). However, a primary class cannot be
 combined with any other primary class (unless one is a subclass of the
 other). This restriction implies that you should delay declaring a class
 to be primary until you are sure of your inheritance design. Also,
-because sealed classes are already highly optimized, the *primary*
+because sealed classes are already highly optimized, the ``primary``
 declaration is of most use for open classes.
 
-As an example, consider the class ``<sixty-unit>`` , and its slot *total-
- seconds* , as used in this method for *decode-total-seconds* :
+As an example, consider the class ``<sixty-unit>``, and its slot
+``total-seconds``, as used in this method for ``decode-total-seconds``:
 
-define method decode-total-seconds
- (sixty-unit :: <sixty-unit>)
- => (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)
- decode-total-seconds(sixty-unit.total-seconds);
- end method decode-total-seconds;
+.. code-block:: dylan
 
-Although the generic function for the slot accessor *total-seconds* is
+    define method decode-total-seconds
+      (sixty-unit :: <sixty-unit>)
+     => (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)
+      decode-total-seconds(sixty-unit.total-seconds);
+    end method decode-total-seconds;
+
+Although the generic function for the slot accessor ``total-seconds`` is
 sealed, and it is trivial for the compiler to infer that its argument is
-a ``<sixty-unit>`` in the call *sixty-unit.total-seconds* , because
-``<sixty-unit>`` is declared open, the
- compiler cannot emit the most efficient code for that call. Because an
-open class could be mixed with any number of other classes, there is no
-guarantee that the slots of every object that is a ``<sixty-unit>`` will
-always be stored in the same order —there is no guarantee that
-*total-seconds* will always be the first slot in an object that is an
-indirect instance of ``<sixty-unit>`` , for instance.
+a ``<sixty-unit>`` in the call ``sixty-unit.total-seconds``, because
+``<sixty-unit>`` is declared open, the compiler cannot emit the most
+efficient code for that call. Because an open class could be mixed
+with any number of other classes, there is no guarantee that the slots
+of every object that is a ``<sixty-unit>`` will always be stored in the
+same order — there is no guarantee that ``total-seconds`` will always
+be the first slot in an object that is an indirect instance of
+``<sixty-unit>``, for instance.
 
-Declaring a class *primary* is essentially making a guarantee that the
+Declaring a class ``primary`` is essentially making a guarantee that the
 compiler can always put the primary class’s slots in the same place in
-an instance,
- and that any other superclasses will have to adjust:
+an instance, and that any other superclasses will have to adjust:
 
-define abstract open primary class <sixty-unit> (<object>)
- constant slot total-seconds :: <integer>,
- required-init-keyword: total-seconds:;
- end class <sixty-unit>;
+.. code-block:: dylan
 
-By adding the *primary* declaration to the definition, any library that
-subclasses ``<sixty-unit>`` is guaranteed to put *total-seconds* at the
+    define abstract open primary class <sixty-unit> (<object>)
+     constant slot total-seconds :: <integer>,
+       required-init-keyword: total-seconds:;
+    end class <sixty-unit>;
+
+By adding the ``primary`` declaration to the definition, any library that
+subclasses ``<sixty-unit>`` is guaranteed to put ``total-seconds`` at the
 same offset. Hence, the compiler can turn the call
-*sixty-unit.total-seconds* into a single machine instruction (load with
+``sixty-unit.total-seconds`` into a single machine instruction (load with
 constant offset), without concern over which subclass of ``<sixty-unit>``
 was passed as an argument.
 
@@ -997,13 +1022,12 @@ time that a given generic function is called with certain classes of
 arguments, the full sorted sequence of applicable methods is computed;
 after that, however, it only to be only looked up in a table. Thus, if
 the generic function is called often with the same type of
- arguments, most calls will be fast. This technique is used in other
+arguments, most calls will be fast. This technique is used in other
 object-oriented languages, such as Smalltalk and CLOS, and is useful for
 speeding up completely dynamic situations. Most good Dylan compilers
-will use some form of cached
- dispatching.
+will use some form of cached dispatching.
 
-A second form of cached dispatching is called *call-site caching* .
+A second form of cached dispatching is called *call-site caching*.
 Although a generic function may have many calls throughout a program,
 often the types of arguments passed are directly related to where (that
 is, in what other method) the call is made. Some Dylan compilers will
@@ -1037,7 +1061,7 @@ Dylan uses automatic storage-management; thus, programmers explicitly
 allocate objects, and hence memory, but deallocation is automatic and
 occurs after all references to an object are gone. The process of
 reclaiming memory when objects are no longer in use is known as *garbage
-collection* .
+collection*.
 
 There are strong advantages to automatic storage-management. With manual
 storage-management, small program bugs, such as freeing of an object
@@ -1058,8 +1082,8 @@ raises performance issues. Every allocation of memory takes time,
 including the time to reclaim unused memory; either the programmer must
 free it explicitly, or the garbage collector has to do more work.
 
-It is obvious that calling a function such as *make* , *vector* , or
-*pair* in Dylan allocates memory, but there are operations that
+It is obvious that calling a function such as ``make``, ``vector``, or
+``pair`` in Dylan allocates memory, but there are operations that
 implicitly use memory. For example, creating a closure (see
 ` <func.htm#60266>`_) will usually cause Dylan to allocate memory for
 the closure.
@@ -1076,8 +1100,8 @@ utilize memory efficiently.
 Inlining, constant folding, and partial evaluation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-One optimization that is common in many computer languages is *inlining*
-. Inlining replaces a call to a known function with the body of the
+One optimization that is common in many computer languages is *inlining*.
+Inlining replaces a call to a known function with the body of the
 function. Inlining is an important optimization in Dylan, because almost
 all Dylan operations — slot access, array indexing, and collection
 iteration — involve function calls.
@@ -1095,7 +1119,7 @@ any good Dylan compiler.
    has an advantage over C for partial evaluation is that it hard for a
    compiler to evaluate expressions that involve dereferencing pointers.
    For example, in C, it is difficult to evaluate partially a call to
-    *malloc* , but Dylan compilers can often evaluate a call to *make*
+   ``malloc``, but Dylan compilers can often evaluate a call to ``make``
    at compile time.
 
 Type inference
@@ -1111,12 +1135,12 @@ One other way in which type constraints can be helpful is that they
 permit the compiler to choose efficient representations for objects.
 Most Dylan objects contain enough information for Dylan to determine
 their class — this one is an important feature for the dynamic aspects
-of the language. But, suppose we have a 1000 x 1000 *limited(<array>,
-of: <single-float>)* . There is no reason that each of the numbers in
+of the language. But, suppose we have a 1000 x 1000 ``limited(<array>,
+of: <single-float>)``. There is no reason that each of the numbers in
 that array should also contain a reference to the ``<single-float>``
 class; the one reference in the limited type is sufficient. (Note that,
-if we had used *of: <real>* or *of: <float>* , we would have needed more
-information, since multiple classes would have been possible.)
+if we had used ``of: <real>`` or ``of: <float>``, we would have needed
+more information, since multiple classes would have been possible.)
 
 When an object is represented in such a way, often many of the
 operations on it can be optimized. For example, the conventional
@@ -1172,90 +1196,58 @@ In this chapter, we covered the following:
    conceptual model of how a program in Dylan runs, and what the
    relative cost of different program elements are.
 -  We examined the method constructs for flexibility and performance
-   available in Dylan; see `Methods: flexibility versus
-   performance. <perform.htm#53100>`_.
+   available in Dylan; see :ref:`methods-flexibility-versus-performance`.
 
-Methods: flexibility versus performance.
-                                        
+   .. _methods-flexibility-versus-performance:
 
-.. figure:: perform-2.gif
-   :align: center
-   :alt: 
-Construct
+   .. table:: Methods: flexibility versus performance
 
-Effects
+      +-------------------------------------------+-----------------------------------------+
+      | Construct                                 | Effects                                 |
+      +===========================================+=========================================+
+      | direct method                             | * highly optimizable                    |
+      |                                           | * no method dispatch                    |
+      +-------------------------------------------+-----------------------------------------+
+      | sealed generic function on a sealed class | * highly optimizable                    |
+      |                                           | * not extensible by other libraries     |
+      +-------------------------------------------+-----------------------------------------+
+      | sealed generic function on an open class  | * optimizable                           |
+      |                                           | * other libraries can subclass          |
+      +-------------------------------------------+-----------------------------------------+
+      | open generic function on an open class    | * highly optimizable                    |
+      | in a sealed domain                        | * other libraries can add methods       |
+      |                                           | * other libraries can subclass          |
+      +-------------------------------------------+-----------------------------------------+
+      | open generic function on an open class    | * not optimizable                       |
+      |                                           | * methods can be added at run time      |
+      |                                           | * subclasses can be created at run time |
+      +-------------------------------------------+-----------------------------------------+
 
-#. direct method
+- We discussed the constructs that can have type constraints, and the
+  influence on performance or flexibility of using such a declaration; see
+  :ref:`type-constraint-flexibility-versus-performance`.
 
-#. highly optimizable
-    no method dispatch
+  .. _type-constraint-flexibility-versus-performance:
 
-#. sealed generic function on a sealed class
+  .. table:: Type constraint: flexibility versus performance.
 
-#. highly optimizable
-    not extensible by other libraries
-
-#. sealed generic function on an open class
-
-#. optimizable
-    other libraries can subclass
-
-#. open generic function on an open class
-    in a sealed domain
-
-#. highly optimizable
-    other libraries can add methods
-    other libraries can subclass
-
-#. open generic function on an open class
-
-#. not optimizable
-    methods can be added at run time
-    subclasses can be created at run time
-
-We discussed the constructs that can have type constraints, and the
-influence on performance or flexibility of using such a declaration; see
-`Type constraint: flexibility versus
-performance. <perform.htm#57334>`_.
-
-Type constraint: flexibility versus performance.
-                                                
-
-.. figure:: perform-2.gif
-   :align: center
-   :alt: 
-Construct
-
-Effects
-
-#. module constants
-
-#. enforce program correctness
-
-#. module variables
-
-#. permit type inferencing
-
-#. required parameters
-
-#. required for method dispatch
-    permit type inferencing
-
-#. optional parameters
-
-#. permit type inferencing
-
-#. return values
-
-#. enforce program correctness
-    permit type inferencing
-
-#. limited types
-
-#. permit type inferencing
-    permit compact data representation
-
-#. slots
-
-#. permit type inferencing
-
+     +---------------------+--------------------------------------+
+     | Construct           | Effects                              |
+     +=====================+======================================+
+     | module constants    | * enforce program correctness        |
+     +---------------------+--------------------------------------+
+     | module variables    | * permit type inferencing            |
+     +---------------------+--------------------------------------+
+     | required parameters | * required for method dispatch       |
+     |                     | * permit type inferencing            |
+     +---------------------+--------------------------------------+
+     | optional parameters | * permit type inferencing            |
+     +---------------------+--------------------------------------+
+     | return values       | * enforce program correctness        |
+     |                     | * permit type inferencing            |
+     +---------------------+--------------------------------------+
+     | limited types       | * permit type inferencing            |
+     |                     | * permit compact data representation |
+     +---------------------+--------------------------------------+
+     | slots               | * permit type inferencing            |
+     +---------------------+--------------------------------------+

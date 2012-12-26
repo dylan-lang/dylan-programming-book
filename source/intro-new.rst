@@ -36,12 +36,12 @@ Each language in wide use for applications has advantages and
 disadvantages. One way to compare languages is to imagine them arrayed
 along two axes. One axis ranges from *procedural* to *object-oriented*
 languages. The other axis ranges from *static* to *dynamic* languages.
-`Object-oriented and dynamic extents of programming
-languages. <intro-new.htm#50597>`_ shows the comparison of several
-popular computer-programming languages on a graph.
+:ref:`Object-oriented and dynamic extents of programming languages.
+<figure-1.1>` shows the comparison of several popular computer-programming
+languages on a graph.
 
 -  A program in a *procedural* language consists of *functions*
-   operating on *data* . The programming task is to choose the best
+   operating on *data*. The programming task is to choose the best
    available representation for data, and the best algorithms for
    manipulating the data. Languages near the procedural end of the axis
    include C, FORTRAN, and COBOL.
@@ -73,32 +73,26 @@ applications smaller and more efficient. This work, however, is hampered
 by the need to maintain compatibility with features of the language that
 were not designed with objects, dynamism, or performance in mind.
 
-Object-oriented and dynamic extents of programming languages.
-                                                             
+.. _figure-1.1:
 
-.. figure:: intro-new-2.gif
+.. figure:: images/figure-1.1.png
    :align: center
-   :alt: 
 
-.. figure:: intro-new-3.gif
-   :align: center
-   :alt: 
+   Object-oriented and dynamic extents of programming languages.
+
 Dylan, in contrast, is a new language that integrates the best ideas
-from object-oriented, procedural, dynamic, and static languages, while
-avoiding many of the drawbacks. `Object-oriented and dynamic extents
-of Dylan and other languages. <intro-new.htm#38770>`_ shows where Dylan
-fits on the graph.
+from object-oriented, procedural, dynamic, and static languages,
+while avoiding many of the drawbacks.  :ref:`Object-oriented and
+dynamic extents of Dylan and other languages. <figure-1.2>` shows
+where Dylan fits on the graph.
 
-Object-oriented and dynamic extents of Dylan and other languages.
-                                                                 
+.. _figure-1.2:
 
-.. figure:: intro-new-2.gif
+.. figure:: images/figure-1.2.png
    :align: center
-   :alt: 
 
-.. figure:: intro-new-4.gif
-   :align: center
-   :alt: 
+   Object-oriented and dynamic extents of Dylan and other languages.
+
 Dylan’s goals are simple:
 
 -  Promote modular, reusable, component-oriented programs.
@@ -146,7 +140,7 @@ In this way, you can change an implementation without changing the
 functions or objects that use the implementation. These functions or
 objects may be defined in another component or library.
 
-Dylan provides large-scale variable namespaces, called *modules* . A
+Dylan provides large-scale variable namespaces, called *modules*. A
 module can include or use other modules, but only the variables
 explicitly exported from those modules are visible to it. Modules
 provide public and private global variables. Because functions and
@@ -179,7 +173,7 @@ accommodate a range of programming styles, from terse to descriptive.
    potentially confusing mechanism, such as output parameters, to obtain
    multiple values.
 -  Dylan has a rich set of variable-sized aggregate data types, called
-    *collections* . Collection classes include strings, arrays, sets,
+   *collections*. Collection classes include strings, arrays, sets,
    queues, lists, stacks, and tables. Dylan has flexible iteration
    constructs and permits applications to extend them so that they
    operate on application-defined collection subclasses. In this way, a
@@ -200,7 +194,7 @@ programs. The language encourages you to spend time early in the
 programming cycle writing and experimenting with substantive, working
 code, and not worrying about distracting issues such as memory
 management and exact type
- specifications.
+specifications.
 
 -  Dylan allows flexible typing of variables, parameters, and return
    values. You can permit variables, parameters, and return values to be
@@ -240,8 +234,8 @@ potentially expensive operations as slot access and method dispatch.
    values, and slots. The more specific your type declarations, the
    better the compiler can detect type mismatches and optimize
    performance.
--  By default, classes and generic functions are closed off, or *sealed*
-   . No other library or application can define subclasses for a sealed
+-  By default, classes and generic functions are closed off, or *sealed*.
+   No other library or application can define subclasses for a sealed
    class or define methods for a sealed generic function. Sealing can
    help a compiler to optimize slot access and method dispatch.
 -  Dylan’s core language is small. Extended components of the language,
@@ -266,7 +260,7 @@ Dylan’s overall aim is to meet two needs that have often been in
 conflict:
 
 #. To give programmers the freedom and power to develop applications
-    rapidly
+   rapidly
 #. To deliver components and applications that can run efficiently on a
    wide range of machines and operating systems
 

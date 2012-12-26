@@ -8,7 +8,7 @@ advantage, so we redefine some classes and a method to take advantage of
 inheritance. We also show how to define a generic function explicitly.
 
 The ``<time-offset>`` class and methods
--------------------------------------
+---------------------------------------
 
 In this section, we define a class to represent time offsets, and a
 method that describes a time offset. We start by defining the
@@ -52,7 +52,7 @@ that are so similar?
    three o’clock to four o’clock.
 
 Creation of instances of ``<time-offset>``
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We can create an instance of ``<time-offset>`` representing 15:20:10 in
 the future:
@@ -62,59 +62,63 @@ the future:
 
 We can create an instance of ``<time-offset>`` representing 6:45:30 in the
 past, by using the unary minus function, *-* , which returns the
-negative of the value that follows it:
+negative of the value that follows it::
 
-*?* define variable \*your-time-offset\* :: <time-offset>
- = make(<time-offset>, total-seconds: - encode-total-seconds(6, 45,
-30));
+    ? define variable *your-time-offset* :: <time-offset>
+       = make(<time-offset>, total-seconds: - encode-total-seconds(6, 45,
+                                                                   30));
 
 Methods on ``<time-offset>``
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Because a ``<time-offset>`` can represent future time or past time, it
 will be useful to provide a convenient way to determine whether a
 ``<time-offset>`` is in the past. We define a new predicate named *past?*
 as follows:
 
-define method past? (time :: <time-offset>) => (past? :: <boolean>)
- time.total-seconds < 0;
- end method past?;
+.. code-block:: dylan
 
-The *past?* method returns an instance of ``<boolean>`` , which is *#t* if
-the time offset is in the past, and otherwise is ``#f`` . Here is an
-example:
+    define method past? (time :: <time-offset>) => (past? :: <boolean>)
+      time.total-seconds < 0;
+    end method past?;
 
-*?* past?(\*my-time-offset\*)
- ``#f``
+The ``past?`` method returns an instance of ``<boolean>``, which is
+``#t`` if the time offset is in the past, and otherwise is ``#f``.
+Here is an example::
 
-*?* past?(\*your-time-offset\*)
- *#t*
+    ? past?(*my-time-offset*)
+     #f
 
-We need a method to describe instances of ``<time-offset>`` . The output
-should look like this:
+    ? past?(*your-time-offset*)
+     #t
 
-*?* say-time-offset(\*my-time-offset\*);
- *plus 15:20*
+We need a method to describe instances of ``<time-offset>``. The output
+should look like this::
 
-*?* say-time-offset(\*your-time-offset\*);
- *minus 6:45*
+    ? say-time-offset(*my-time-offset*);
+     plus 15:20
+
+    ? say-time-offset(*your-time-offset*);
+     minus 6:45
 
 We might define the method in this way:
 
-define method say-time-offset (time :: <time-offset>) => ()
- let(hours, minutes) = decode-total-seconds(time);
- format-out("%s %d:%s%d",
- if (past?(time)) "minus" else "plus" end,
- hours,
- if (minutes < 10) "0" else "" end,
- minutes);
- end method say-time-offset;
+.. code-block:: dylan
 
-If we test this method in a listener, however, the result is different:
+    define method say-time-offset (time :: <time-offset>) => ()
+      let(hours, minutes) = decode-total-seconds(time);
+      format-out("%s %d:%s%d",
+                 if (past?(time)) "minus" else "plus" end,
+                 hours,
+                 if (minutes < 10) "0" else "" end,
+                 minutes);
+    end method say-time-offset;
 
-*?* say-time-offset(\*my-time-offset\*);
- *ERROR: No applicable method for decode-total-seconds with argument
-{instance <time-offset>}*
+If we test this method in a listener, however, the result is different::
+
+    ? say-time-offset(*my-time-offset*);
+     ERROR: No applicable method for decode-total-seconds with argument
+       {instance <time-offset>}
 
 “No applicable method” means that there is no method for this generic
 function that is appropriate for the arguments. To understand this
@@ -306,15 +310,12 @@ classes. <offset.htm#79793>`_, we introduce terminology by example:
    a *direct instance* of that class.
 
 Inheritance relationships of the time classes.
-                                              
 
 .. figure:: offset-2.gif
    :align: center
-   :alt: 
 
 .. figure:: offset-3.gif
    :align: center
-   :alt: 
 
 -  A direct instance of ``<time-of-day>`` is an *indirect instance* of
    ``<time>`` and ``<object>`` .
@@ -340,25 +341,21 @@ decode-total-seconds. <offset.htm#91002>`_ shows the methods that we
 want to have.
 
 Existing methods for *decode-total-seconds* .
-                                             
 
 .. figure:: offset-2.gif
    :align: center
-   :alt: 
 
 .. figure:: offset-4.gif
    :align: center
-   :alt: 
+
 Desired methods for *decode-total-seconds* .
-                                            
 
 .. figure:: offset-2.gif
    :align: center
-   :alt: 
 
 .. figure:: offset-5.gif
    :align: center
-   :alt: 
+
 To take advantage of the redefined classes, we want to remove the method
 on ``<time-of-day>`` , and to add a method on ``<time>`` . The method on
 ``<time>`` is appropriate for instances of both ``<time-of-day>`` and
@@ -468,11 +465,10 @@ decode-total-seconds. <offset.htm#73849>`_ shows which method is
 applicable for certain arguments.
 
 Applicable methods for arguments to *decode-total-seconds* .
-                                                            
 
 .. figure:: offset-2.gif
    :align: center
-   :alt: 
+
 Argument
 
 Argument’s type
@@ -530,22 +526,19 @@ applicable, because *7* is an instance of ``<integer>`` (the method’s
 parameter specializer).
 
 The *say-greeting* generic function and its methods.
-                                                    
 
 .. figure:: offset-2.gif
    :align: center
-   :alt: 
 
 .. figure:: offset-6.gif
    :align: center
-   :alt: 
 
 Applicable methods for different arguments to *say-greeting* .
                                                               
 
 .. figure:: offset-2.gif
    :align: center
-   :alt: 
+
 Argument
 
 Applicable method(s)
@@ -712,42 +705,42 @@ define method say (time :: <time-offset>) => ()
 that the generic function *say* has two methods defined for it.
 
 Methods for the *say* generic function.
-                                       
 
 .. figure:: offset-2.gif
    :align: center
-   :alt: 
 
 .. figure:: offset-7.gif
    :align: center
-   :alt: 
-We can call *say* :
 
-*?* say(\*my-time-of-day\*);
- *0:02*
+We can call ``say``::
 
-In the preceding call, the argument is of the type ``<time-of-day>`` , so
+    ? say(*my-time-of-day*);
+     0:02
+
+In the preceding call, the argument is of the type ``<time-of-day>``, so
 the method on ``<time-of-day>`` is the only applicable method. That method
 is invoked.
 
-*?* say(\*my-time-offset\*);
- *plus 15:20*
+::
 
-In the preceding call, the argument is of the type ``<time-offset>`` , so
+    ? say(*my-time-offset*);
+     plus 15:20
+
+In the preceding call, the argument is of the type ``<time-offset>``, so
 the method on ``<time-offset>`` is the only applicable method. That method
 is invoked.
 
-Use of *next-method* to call another method
--------------------------------------------
+Use of ``next-method`` to call another method
+---------------------------------------------
 
-Notice that there is duplication of code in the two methods for *say* ,
-as shown in `Methods for the say generic
-function. <offset.htm#23128>`_. Both methods call *decode-total-seconds*
-to get the hours and minutes, and call *format-out* to print the hours
-and minutes. Both methods print a leading zero for the minutes, if
-appropriate. These two tasks are all that the method on ``<time-of-day>``
-does. The method on ``<time-offset>`` does a bit more; it prints either
-*minus* or *plus* , depending on the value of the *past?* slot.
+Notice that there is duplication of code in the two methods for ``say``,
+as shown in `Methods for the say generic function. <offset.htm#23128>`_.
+Both methods call *decode-total-seconds* to get the hours and minutes,
+and call *format-out* to print the hours and minutes. Both methods
+print a leading zero for the minutes, if appropriate. These two tasks
+are all that the method on ``<time-of-day>`` does. The method on
+``<time-offset>`` does a bit more; it prints either *minus* or *plus*,
+depending on the value of the *past?* slot.
 
 We can eliminate this duplication by defining another method that does
 the shared work. This method will be on the ``<time>`` class, so it will

@@ -30,81 +30,84 @@ own customizations for classes that you create.
 Consider this Dylan code:
 
 Dylan object example.
-                     
 
-define class <color> (<object>)
- slot red :: <integer> = 0, init-keyword: red:;
- slot green :: <integer> = 0, init-keyword: green:;
- slot blue :: <integer> = 0, init-keyword: blue:;
- end class <color>;
+.. code-block:: dylan
 
-define constant black = make(<color>);
+    define class <color> (<object>)
+      slot red :: <integer> = 0, init-keyword: red:;
+      slot green :: <integer> = 0, init-keyword: green:;
+      slot blue :: <integer> = 0, init-keyword: blue:;
+    end class <color>;
 
-define constant white
- = make(<color>, red: 2 ^ 24 - 1, green: 2 ^ 24 - 1, blue: 2 ^ 24 - 1);
+    define constant black = make(<color>);
 
-define method whiteness-test(color :: <color>)
- if (color = white) format-out("It’s white!\\n") end;
- end method whiteness-test;
+    define constant white
+      = make(<color>, red: 2 ^ 24 - 1, green: 2 ^ 24 - 1, blue: 2 ^ 24 - 1);
 
-define variable color = black;
+    define method whiteness-test(color :: <color>)
+      if (color = white) format-out("It’s white!\n") end;
+    end method whiteness-test;
 
-color := white;
- whiteness-test(color);
+    define variable color = black;
+
+    color := white;
+    whiteness-test(color);
 
 The equivalent C code is as follows:
 
 C equivalent of Dylan object example.
-                                     
 
-typedef struct \_color
- { int red, green, blue; }
- Color;
+.. code-block:: c
 
-static Color \_black = {0, 0, 0};
- Color\* const black = &\_black;
+    typedef struct _color
+      { int red, green, blue; }
+      Color;
 
-static Color \_white = {16777215, 16777215, 16777215};
- Color\* const white = &\_white;
+    static Color _black = {0, 0, 0};
+    Color* const black = &_black;
 
-void whitenessTest(Color\* const color) {
- if (color == white) { printf("It’s white!\\n"); }
- }
+    static Color _white = {16777215, 16777215, 16777215};
+    Color* const white = &_white;
 
-void main () {
- Color\* color = black;
- color = white;
- whitenessTest(color);
- }
+    void whitenessTest(Color* const color) {
+      if (color == white) { printf("It’s white!\n"); }
+    }
+
+    void main () {
+      Color* color = black;
+      color = white;
+      whitenessTest(color);
+    }
 
 The benefit of the Dylan model is that the final two statements are a
 single pointer assignment and a passing of a single pointer as a
-parameter. The comparison in whitenessTest is a single pointer
+parameter. The comparison in ``whitenessTest`` is a single pointer
 comparison. Another possible C implementation — one more typical of C
 style, but *not* equivalent to the Dylan implementation — is as follows:
 
 C-style example, without pointers.
-                                  
 
-typedef struct \_color
- { int red, green, blue; }
- Color;
+.. code-block:: c
 
-Color const black = {0, 0, 0};
- Color const white = {16777215, 16777215, 16777215};
+    typedef struct _color
+      { int red, green, blue; }
+      Color;
 
-void whitenessTest(Color const color) {
- if (color.red == white.red &&
- color.green == white.green &&
- color.blue == white.blue)
- { printf("It’s white!\\n"); }
- }
+    Color const black = {0, 0, 0};
+    Color const white = {16777215, 16777215, 16777215};
 
-void main () {
- Color color = black;
- color = white;
- whitenessTest(color);
- }
+    void whitenessTest(Color const color) {
+      if (color.red == white.red &&
+          color.green == white.green &&
+          color.blue == white.blue)
+        { printf("It’s white!\n"); }
+    }
+
+    void main () {
+      Color color = black;
+      color = white;
+      whitenessTest(color);
+    }
 
 In the C-style example, without pointers, the final two statements
 consist of three integer assignments (as the *Color* structure is
@@ -115,81 +118,89 @@ slot by slot).
 
 The drawback of the Dylan object example is shown here:
 
-color.blue := 0;
+.. code-block:: dylan
+
+   color.blue := 0;
 
 The preceding call makes *white* yellow! In the C-style example, without
 pointers, you would make only *color* yellow. You can prevent people
 from changing defined colors to other colors in Dylan by not allowing
 the slots of ``<color>`` objects to be modified once they are initialized
-— in other words, by making ``<color>`` objects *immutable* :
+— in other words, by making ``<color>`` objects *immutable*:
 
 Dylan object example, with immutable objects.
-                                             
 
-define class <color> (<object>)
- constant slot red :: <integer> = 0, init-keyword: red:;
- constant slot green :: <integer> = 0, init-keyword: green:;
- constant slot blue :: <integer> = 0, init-keyword: blue:;
- end class <color>;
+.. code-block:: dylan
 
-define constant black = make(<color>);
+    define class <color> (<object>)
+      constant slot red :: <integer> = 0, init-keyword: red:;
+      constant slot green :: <integer> = 0, init-keyword: green:;
+      constant slot blue :: <integer> = 0, init-keyword: blue:;
+    end class <color>;
 
-define constant white
- = make(<color>, red: 2 ^ 24 - 1, green: 2 ^ 24 - 1, blue: 2 ^ 24 - 1);
+    define constant black = make(<color>);
 
-define variable color = black;
+    define constant white
+      = make(<color>, red: 2 ^ 24 - 1, green: 2 ^ 24 - 1, blue: 2 ^ 24 - 1);
 
-define method whiteness-test(color :: <color>)
- if (color = white) format-out("It’s white!\\n") end;
- end method whiteness-test;
+    define variable color = black;
 
-color := white;
- whiteness-test(color);
+    define method whiteness-test(color :: <color>)
+      if (color = white) format-out("It’s white!\n") end;
+    end method whiteness-test;
+
+    color := white;
+    whiteness-test(color);
 
 You can consider Dylan as always using pointers, even to objects such as
 integers and characters. Integers and characters are, by definition,
 immutable objects: There are no slots that you can change in an integer
 or character object. Thus, there is no danger of setting 6 to 9.
 Built-in immutable objects can have their pointers optimized away by the
-compiler: The compiler just has to arrange that
- 6 = 6 and 9 = 9, whether there is only one 6 object pointed to by all
-the variables with the value 6, or copies of 6 are stored in each of
-those variables (saving the need for a pointer).
+compiler: The compiler just has to arrange that ``6 = 6`` and ``9 = 9``,
+whether there is only one 6 object pointed to by all the variables with
+the value 6, or copies of 6 are stored in each of those variables (saving
+the need for a pointer).
 
 Another difficulty in the Dylan model is this potentially embarrassing
- situation:
+situation:
 
-color := make(<color>, red: 2 ^ 24 - 1, green: 2 ^ 24 - 1, blue: 2 ^ 24
-- 1);
- if (color = white) format-out("It’s white!\\n") end;
+.. code-block:: dylan
 
-The preceding expression might not say “It’s white!”, because *make*
+    color := make(<color>, red: 2 ^ 24 - 1, green: 2 ^ 24 - 1, blue: 2 ^ 24 - 1);
+    if (color = white) format-out("It’s white!\n") end;
+
+The preceding expression might not say “It’s white!”, because ``make``
 might return a new object with white RGB values, and that object would
-not be ``=`` to the object named *white* . The equivalent C code would be:
+not be ``=`` to the object named ``white``. The equivalent C code would be:
 
-Color\* make\_color(int r, int g, int b) {
- Color\* c = (Color\*)malloc(sizeof(Color));
- c->red = r; c->green = g; c->blue = b;
- return c;
- }
+.. code-block:: c
 
-static Color \_white = {16777215, 16777215, 16777215};
- Color\* const white = &\_white;
+    Color* make_color(int r, int g, int b) {
+      Color* c = (Color*)malloc(sizeof(Color));
+      c->red = r; c->green = g; c->blue = b;
+      return c;
+    }
 
-Color\* color = make\_color(16777215, 16777215, 16777215);
- if (color == white) { printf("It’s white!\\n"); };
+    static Color _white = {16777215, 16777215, 16777215};
+    Color* const white = &_white;
 
-Because the preceding code is comparing the pointer stored in *white* to
-the pointer stored in *color* , it will clearly not say “It’s white!”.
+    Color* color = make_color(16777215, 16777215, 16777215);
+    if (color == white) { printf("It’s white!\n"); };
+
+Because the preceding code is comparing the pointer stored in ``white`` to
+the pointer stored in ``color``, it will clearly not say “It’s white!”.
 The default implementation of ``=`` in Dylan is to compare pointers.
 
 There are several solutions to this difficulty in Dylan. One is to
 customize the ``=`` comparison operator for our class to do a comparison
 more thorough than the default comparison:
 
-define met*h* od \\= (o1 :: <color>, o2 :: <color>)
- o1.red = o2.red & o1.green = o2.green & o1.blue = o2.blue;
- end met*h* od \\=;
+.. code-block:: dylan
+
+    define method \= (o1 :: <color>, o2 :: <color>)
+      o1.red = o2.red & o1.green = o2.green & o1.blue = o2.blue;
+    end method \=;
 
 Now, using ``=`` will compare colors by checking their individual RGB
 components, and our whiteness test will work.
@@ -198,52 +209,52 @@ Note that Dylan also provides the ``==`` comparison operator, which always
 compares pointers. This comparison is useful when you want to check
 object identity. But, as we have seen, it is not always the appropriate
 default for comparison of equality of objects. The compiler can avoid
-calling our *\\=* method altogether if the same object is compared to
+calling our ``=`` method altogether if the same object is compared to
 itself. It can do so because, with the exception of IEEE NaNs
-(nonnumbers), values that are ``==`` must also be ``=`` .
+(nonnumbers), values that are ``==`` must also be ``=``.
 
 Another approach that you can use if your objects are immutable is to
-make sure that they are unique. The *make* function is not required to
+make sure that they are unique. The ``make`` function is not required to
 return a new object each time, as shown in the Dylan object example,
 with unique, immutable objects.
 
-This advanced use of *make* and tables ensures that there is always only
+This advanced use of ``make`` and tables ensures that there is always only
 one instance of each color. Thus, when we make another white, it will
 always be *the* white, and our whiteness test will work with the default
 ``=`` comparison. The choice of solution depends on whether you will be
-doing more making or more
- comparing.
+doing more making or more comparing.
 
 Dylan object example, with unique, immutable objects.
-                                                     
 
-define class <color-table> (<table>)
- end class <color-table>;
+.. code-block:: dylan
 
-define method table-protocol(<color-table>)
- local method color-hash(color :: <color>)
- let (red-id, red-state) = object-hash(color.red);
- let (grn-id, grn-state) = object-hash(color.green);
- let (blu-id, blu-state) = object-hash(color.blue);
- let (merge-id, merge-state) =
- merge-hash-codes(red-id, red-state,
- grn-id, grn-state, ordered: #t);
- merge-hash-codes(merge-id, merge-state,
- blu-id, blu-state, ordered: #t);
- end;
- local method color-test(o1 :: <color>, o2 :: <color>)
- o1.red = o2.red & o1.green = o2.green & o1.blue = o2.blue;
- end;
- values(color-test, color-hash)
- end method table-protocol;
+    define class <color-table> (<table>)
+    end class <color-table>;
 
-define variable color-table = make(<color-table>);
+    define method table-protocol(<color-table>)
+      local method color-hash(color :: <color>)
+        let (red-id, red-state) = object-hash(color.red);
+        let (grn-id, grn-state) = object-hash(color.green);
+        let (blu-id, blu-state) = object-hash(color.blue);
+        let (merge-id, merge-state) =
+          merge-hash-codes(red-id, red-state,
+                           grn-id, grn-state, ordered: #t);
+          merge-hash-codes(merge-id, merge-state,
+                           blu-id, blu-state, ordered: #t);
+      end;
+      local method color-test(o1 :: <color>, o2 :: <color>)
+        o1.red = o2.red & o1.green = o2.green & o1.blue = o2.blue;
+      end;
+      values(color-test, color-hash)
+    end method table-protocol;
 
-define method make(class == <color>, #key red, green, blue)
- let prototype = next-method();
- element(color-table, prototype, default: #f) \|
- (color-table[prototype] := prototype);
- end method make;
+    define variable color-table = make(<color-table>);
+
+    define method make(class == <color>, #key red, green, blue)
+      let prototype = next-method();
+      element(color-table, prototype, default: #f) |
+        (color-table[prototype] := prototype);
+    end method make;
 
 The concept of classes
 ----------------------
@@ -260,125 +271,126 @@ programming.
 Here is an example of such a program, followed by the equivalent C++:
 
 Mix-in example in Dylan.
-                        
 
-define class <window> (<object>)
- slot width :: <integer>;
- slot height :: <integer>;
- end class <window>;
+.. code-block:: dylan
 
-define class <border-window> (<window>)
- slot border-width :: <integer>;
- end class <border-window>;
+    define class <window> (<object>)
+      slot width :: <integer>;
+      slot height :: <integer>;
+    end class <window>;
 
-define method width(window :: <border-window>)
- next-method() - 2 \* window.border-width;
- end method width;
+    define class <border-window> (<window>)
+      slot border-width :: <integer>;
+    end class <border-window>;
 
-define method height(window :: <border-window>)
- next-method() - 2 \* window.border-width;
- end method height;
+    define method width(window :: <border-window>)
+      next-method() - 2 * window.border-width;
+    end method width;
 
-define class <label-window> (<window>)
- slot label-height :: <integer>;
- slot label-text :: <string>;
- end class <label-window>;
+    define method height(window :: <border-window>)
+      next-method() - 2 * window.border-width;
+    end method height;
 
-define method height(window :: <label-window>)
- next-method() - window.label-height;
- end method height;
+    define class <label-window> (<window>)
+      slot label-height :: <integer>;
+      slot label-text :: <string>;
+    end class <label-window>;
 
-define class <border-label-window>
- (<border-window>, <label-window>, <window>)
- end class <border-label-window>;
+    define method height(window :: <label-window>)
+      next-method() - window.label-height;
+    end method height;
+
+    define class <border-label-window>
+      (<border-window>, <label-window>, <window>)
+    end class <border-label-window>;
 
 The example is a greatly simplified sketch of a computer-display
 windowing system, where a window may have a border (outline decoration),
 or a title (such as the title bar of a window), or both. (We omit any
 further detail, such as scroll bars.) One chore in such a system is to
 compute the available display area of a window from that window’s
-overall size and from the sizes of the window’s
- components.
+overall size and from the sizes of the window’s components.
 
-Note that calling *height* on an instance of ``<border-label-window>``
+Note that calling ``height`` on an instance of ``<border-label-window>``
 will automatically perform the actions appropriate for a window with a
 border and a label. First, the method for ``<border-window>`` will be
-called, subtracting out the border width; when it calls *next-method* ,
+called, subtracting out the border width; when it calls ``next-method``,
 to get the underlying window width, the method for ``<label-window>`` will
 be called, subtracting out the label height; finally, when it calls
-*next-method* , the method for getting the value of the *height* slot in
-the underlying window will be called.
+``next-method``, the method for getting the value of the ``height``
+slot in the underlying window will be called.
 
 This example is a classic one of the mix-in style — the full
 functionality of the ``<border-label-window>`` class is the result of the
 combination of the individual pieces of ``<border-window>`` and
 ``<label-window>`` functionality.
 
-C++ equivalent of the mix-in example.**
-                                       
+C++ equivalent of the mix-in example.
 
-class Window {
- private:
- int \_width;
- int \_height;
- public:
- virtual int width() { return \_width; }
- virtual int height() { return \_height; }
- };
+.. code-block:: c++
 
-class BorderWindow : public virtual Window {
- private:
- int \_border\_width;
- public:
- virtual int border\_width() { return \_border\_width; }
- virtual int width();
- virtual int height();
- };
+    class Window {
+      private:
+      int _width;
+      int _height;
+      public:
+      virtual int width() { return _width; }
+      virtual int height() { return _height; }
+    };
 
-int BorderWindow::width() {
- return Window::width() - 2 \* border\_width();
- }
+    class BorderWindow : public virtual Window {
+      private:
+      int _border_width;
+      public:
+      virtual int border_width() { return _border_width; }
+      virtual int width();
+      virtual int height();
+    };
 
-int BorderWindow::height() {
- return Window::height() - 2 \* border\_width();
- }
+    int BorderWindow::width() {
+      return Window::width() - 2 * border_width();
+    }
 
-class LabelWindow : public virtual Window {
- private:
- int \_label\_height;
- char \*\_label\_text;
- public:
- virtual int label\_height() { return \_label\_height; }
- virtual char\* label\_text() { return \_label\_text; }
- virtual int height();
- };
+    int BorderWindow::height() {
+      return Window::height() - 2 * border_width();
+    }
 
-int LabelWindow::height() {
- return Window::height() - label\_height();
- }
+    class LabelWindow : public virtual Window {
+      private:
+      int _label_height;
+      char *_label_text;
+      public:
+      virtual int label_height() { return _label_height; }
+      virtual char* label_text() { return _label_text; }
+      virtual int height();
+    };
 
-class BorderLabelWindow :
- public virtual BorderWindow,
- public virtual LabelWindow,
- public virtual Window {
- public:
- virtual int height();
- };
+    int LabelWindow::height() {
+      return Window::height() - label_height();
+    }
 
-*// Have to generate "combined" method by hand in C++
-* int BorderLabelWindow::height() {
- return Window::height() - 2 \* border\_width() - label\_height();
- }
+    class BorderLabelWindow :
+      public virtual BorderWindow,
+      public virtual LabelWindow,
+      public virtual Window {
+      public:
+      virtual int height();
+    };
+
+    // Have to generate "combined" method by hand in C++
+    int BorderLabelWindow::height() {
+      return Window::height() - 2 * border_width() - label_height();
+    }
 
 It may be helpful for C++ programmers to consider that:
 
--  Dylan base classes are always virtual.
--  In Dylan, data members are accessed through virtual functions, so it
-   is always possible to override access to a data member in a derived
-   class, and to modify the returned value (or, by overriding the
-   setter, to modify the value to be stored).
--  Dylan’s *next-method* allows you to use automatic method combination
-   when you are programming in a mix-in style.
+- Dylan base classes are always virtual.
+- In Dylan, data members are accessed through virtual functions, so it
+  is always possible to override access to a data member in a derived
+  class, and to modify the returned value (or, by overriding the
+  setter, to modify the value to be stored).
+- Dylan’s *next-method* allows you to use automatic method combination
+  when you are programming in a mix-in style.
 
 Note that the C++ equivalent of the mix-in example is incomplete. It is
 intended only as a guide to how you can think of Dylan classes. In
