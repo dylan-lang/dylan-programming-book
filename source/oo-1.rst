@@ -9,18 +9,18 @@ discuss what it means to be an object.
 
 Dylan’s model of objects and classes differs significantly from the C++
 model. If you are familiar with C++, we recommend that you read
-` <c-comparisons.htm#89585>`_.
+:doc:`c-comparisons`.
 
 Method definitions
 ------------------
 
 In Dylan, we define methods — a *method* is a kind of function. We
-define a simple method, ``say-hello`` , as follows:
+define a simple method, ``say-hello``, as follows:
 
 .. code-block:: dylan
 
     define method say-hello ()
-      format-out("hello, world\\n");
+      format-out("hello, world\n");
     end;
 
 We call ``say-hello`` as follows:
@@ -41,7 +41,7 @@ The body of the ``say-hello`` method has one expression — a call to
 executed last in its body. In general, a method can return a single
 value, multiple values, or no value at all. The ``say-hello`` method
 returns what ``format-out`` returns — no value at all. In the call to
-``say-hello`` , we see the output of ``format-out`` in the listener;
+``say-hello``, we see the output of ``format-out`` in the listener;
 we see output and not a returned value (because no value is returned).
 
 *Usage note:* In this chapter, we define methods that call the
@@ -55,20 +55,20 @@ method definitions into the listener.
 A method that takes an argument
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We can define a method similar to ``say-hello`` , called ``say-greeting`` ,
+We can define a method similar to ``say-hello``, called ``say-greeting``,
 that takes an argument:
 
 .. code-block:: dylan
 
     define method say-greeting (greeting :: <object>);
-      format-out("%s\\n", greeting);
+      format-out("%s\n", greeting);
     end;
 
 The ``say-greeting`` method has one required parameter, named ``greeting``.
 The type constraint of the required parameter indicates the type that
 the argument must be. The ``greeting`` parameter has the type constraint
-``<object>`` , which is the most general class. All objects are of the
-type ``<object>`` , so using this class as the type constraint allows the
+``<object>``, which is the most general class. All objects are of the
+type ``<object>``, so using this class as the type constraint allows the
 argument to be any object. You can omit the type constraint of a
 required parameter; that omission has the same effect as specifying
 ``<object>`` as the type constraint.
@@ -138,15 +138,10 @@ is called::
     Buenos Dias
 
 The ``say-greeting`` generic function and its methods.
-                                                    
-
-.. figure:: oo-1-2.gif
-   :align: center
-   :alt: 
 
 .. figure:: oo-1-3.gif
    :align: center
-   :alt: 
+
 Classes
 -------
 
@@ -154,15 +149,15 @@ We have already seen examples of classes in Dylan: ``<integer>``,
 ``<single-float>``, ``<string>``, and ``<object>``.
 
 Individual values are called *objects*. Each object is a *direct
-instance* of one particular class. You can use the *object-class*
+instance* of one particular class. You can use the ``object-class``
 function to determine the direct class of an object. For example, in
-certain implementations, *7* , *12* , and *1000* are direct instances of
-the class ``<integer>`` :
+certain implementations, *7*, *12*, and *1000* are direct instances of
+the class ``<integer>``::
 
-*?* object-class(1000);
- *{class <integer>}*
+    ? object-class(1000);
+     {class <integer>}
 
-The value returned by *object-class* is the ``<integer>`` class itself.
+The value returned by ``object-class`` is the ``<integer>`` class itself.
 The appearance of a class, method, or generic function in a listener
 depends on the Dylan environment. We have chosen a simple appearance of
 classes for this book.
@@ -175,12 +170,11 @@ Class inheritance
 ~~~~~~~~~~~~~~~~~
 
 One important aspect of classes is that they are related to one another
-by
- *inheritance* . Inheritance enables classes that are logically related
+by *inheritance*. Inheritance enables classes that are logically related
 to one another to share the behaviors and attributes that they have in
 common. Each class inherits from one or more classes, called its
-*superclasses* . If no other class is appropriate, then the class
-inherits from the class ``<object>`` . This class is the *root* of all
+*superclasses*. If no other class is appropriate, then the class
+inherits from the class ``<object>``. This class is the *root* of all
 classes: All classes inherit from it, either directly or indirectly, and
 it does not have any direct superclasses.
 
@@ -195,91 +189,84 @@ this mix-in style of programming. For more information, see
 ` <c-comparisons.htm#12288>`_ in ` <c-comparisons.htm#89585>`_.
 
 In Dylan, we distinguish between two terms: *direct instance* and
-*general instance* . An object is a *direct instance* of exactly one
-class: the class that *object-class* returns for that object. An object
+*general instance*. An object is a *direct instance* of exactly one
+class: the class that ``object-class`` returns for that object. An object
 is a *general instance* of its direct class, and of all classes from
 which its direct class inherits. The term *instance* is equivalent to
- *general instance* . You can use the *instance?* predicate to ask
-whether an object is an instance of a given class:
+*general instance*. You can use the ``instance?`` predicate to ask
+whether an object is an instance of a given class::
 
-*?* instance?(1000, <integer>);
- *#t*
+    ? instance?(1000, <integer>);
+     #t
 
-*?* instance?("hello, world", <integer>);
- ``#f``
+    ? instance?("hello, world", <integer>);
+     #f
 
-All objects are instances of the class ``<object>`` :
+All objects are instances of the class ``<object>``::
 
-*?* instance?(1000, <object>);
- *#t*
+    ? instance?(1000, <object>);
+     #t
 
-*?* instance?("hello, world", <object>);
- *#t*
+    ? instance?("hello, world", <object>);
+     #t
 
 `Classes and subclasses. Each arrow points from a class to a
 subclass. <oo-1.htm#37637>`_ shows the inheritance relationships among
 several of the built-in classes. If class A is a superclass of class B,
 then class B is a *subclass* of class A. For example, ``<object>`` is a
-superclass of ``<string>`` , and ``<string>`` is a subclass of ``<object>`` .
+superclass of ``<string>``, and ``<string>`` is a subclass of ``<object>``.
 For simplicity, `Classes and subclasses. Each arrow points from a
 class to a subclass. <oo-1.htm#37637>`_ omits certain classes that
 intervene between the classes shown.
 
 Classes and subclasses. Each arrow points from a class to a subclass.
-                                                                     
-
-.. figure:: oo-1-2.gif
-   :align: center
-   :alt: 
 
 .. figure:: oo-1-4.gif
    :align: center
-   :alt: 
 
 A typical Dylan environment provides a browser to explore inheritance
 relationships among classes; certain environments show the relationships
 graphically.
 
 The Dylan language includes functions that provide information about the
-inheritance relationships among classes. We can use *subtype?* to ask
-whether one class inherits from another class:
+inheritance relationships among classes. We can use ``subtype?`` to ask
+whether one class inherits from another class::
 
-*?* subtype?(<integer>, <number>);
- *#t*
+    ? subtype?(<integer>, <number>);
+     #t
 
-*?* subtype?(<integer>, <object>);
- *#t*
+    ? subtype?(<integer>, <object>);
+     #t
 
-*?* subtype?(<single-float>, <object>);
- *#t*
+    ? subtype?(<single-float>, <object>);
+     #t
 
-*?* subtype?(<string>, <integer>);
- ``#f``
+    ? subtype?(<string>, <integer>);
+     #f
 
-It may be confusing that we use a function called *subtype?* here, but
-Dylan does not provide a function called *subclass?* . Every class is a
-*type* , but certain types are not classes (see
-` <classes.htm#56793>`_). The *subtype?* function works for both classes
-and other types.
+It may be confusing that we use a function called ``subtype?`` here, but
+Dylan does not provide a function called ``subclass?``. Every class is a
+*type*, but certain types are not classes (see ` <classes.htm#56793>`_).
+The ``subtype?`` function works for both classes and other types.
 
-We can ask for all the superclasses of a given class:
+We can ask for all the superclasses of a given class::
 
-*?* all-superclasses(<string>);
- *#[{class <string>}, {class <mutable-sequence>}, {class <sequence>},
- {class <mutable-collection>}, {class <collection>}, {class <object>}]*
+    ? all-superclasses(<string>);
+     #[{class <string>}, {class <mutable-sequence>}, {class <sequence>},
+       {class <mutable-collection>}, {class <collection>}, {class <object>}]
 
-*?* all-superclasses(<integer>);
- *#[{class <integer>}, {class <rational>}, {class <real>}, {class
-<number>}, {class <object>}]*
+    ? all-superclasses(<integer>);
+     #[{class <integer>}, {class <rational>}, {class <real>},
+       {class <number>}, {class <object>}]
 
-*?* all-superclasses(<single-float>);
- *#[{class <single-float>}, {class <float>}, {class <real>}, {class
-<number>}, {class <object>}]*
+    ? all-superclasses(<single-float>);
+     #[{class <single-float>}, {class <float>}, {class <real>},
+       {class <number>}, {class <object>}]
 
-The *all-superclasses* function returns a vector containing the class
-itself and all that class’s superclasses. The *#[* *...* *]* syntax
-represents a *vector* , which is a one-dimensional array. (For
-information about vectors, see ` <collect.htm#15470>`_.)
+The ``all-superclasses`` function returns a vector containing the class
+itself and all that class’s superclasses. The ``#[...]`` syntax
+represents a *vector*, which is a one-dimensional array. (For
+information about vectors, see :doc:`collect`.)
 
 Relationship between classes and methods
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -292,18 +279,18 @@ contains the equivalent of methods. In Dylan, a class does not contain
 methods; instead, a method belongs to a generic function. This design
 decision enables these powerful features of Dylan:
 
--  Yo** u can define methods on built-in classes (because you do not
-   have to modify the class definition to define a method intended for
-   use on the class). For an example, see ` <multi.htm#89993>`_. More
-   generally, you can define a method for a class that you did not
-   define.
--  You can write multimethods. In a *multimethod* , the method dispatch
-   is based on the classes of more than one argument to a generic
-   function. For an introduction to method dispatch, see
-   ` <offset.htm#10035>`_. For information about multimethods, see
-   ` <multi.htm#30483>`_.
--  You can restrict generic functions to operate on specific classes of
-   objects.
+- You can define methods on built-in classes (because you do not
+  have to modify the class definition to define a method intended for
+  use on the class). For an example, see ` <multi.htm#89993>`_. More
+  generally, you can define a method for a class that you did not
+  define.
+- You can write multimethods. In a *multimethod*, the method dispatch
+  is based on the classes of more than one argument to a generic
+  function. For an introduction to method dispatch, see
+  ` <offset.htm#10035>`_. For information about multimethods, see
+  ` <multi.htm#30483>`_.
+- You can restrict generic functions to operate on specific classes of
+  objects.
 
 In Dylan, a method belongs to a generic function, as shown in `The
 say-greeting generic function and its methods. <oo-1.htm#16310>`_.
@@ -312,124 +299,123 @@ instances of classes. A method states the types of objects for which it
 is applicable by the type constraint of each of its required parameters.
 Consider the ``say-greeting`` method defined earlier:
 
-define method say-greeting (greeting :: <integer>);
- format-out("Your lucky number is %s.\\n", greeting);
- end;
+.. code-block:: dylan
+
+    define method say-greeting (greeting :: <integer>);
+      format-out("Your lucky number is %s.\n", greeting);
+    end;
 
 This method operates on instances of the ``<integer>`` class. Notice how
-easy
- and convenient it is to define a method intended for use on the
-built-in class ``<integer>`` .
+easy and convenient it is to define a method intended for use on the
+built-in class ``<integer>``.
 
 Objects
 -------
 
-In Dylan, everything is an *object* . Characters, strings, numbers,
+In Dylan, everything is an *object*. Characters, strings, numbers,
 arrays, and vectors are all objects. The canonical true and false
-values, *#t* , and ``#f`` , are objects. Methods, generic functions, and
+values, ``#t``, and ``#f``, are objects. Methods, generic functions, and
 classes are objects. What does it mean to be an object?
 
--  Most important, an object has a unique identity. You can use the ``==``
-   predicate to test whether two operands are the same object. See
-   `Predicates for testing equality <oo-1.htm#31376>`_.
--  An object is a direct instance of a particular class. You can use the
-   *object-class* predicate to determine the direct class of an object.
--  You can give an object a name. For example, if you define a variable
-   or constant to contain an object, you have given that object a name.
-   See `Bindings: Mappings between objects and
-   names <oo-1.htm#73751>`_.
--  You can pass an object as an argument or return value — because
-   generic functions and methods are objects, you can manipulate them
-   just as you can any other object. See ` <func.htm#96435>`_.
+- Most important, an object has a unique identity. You can use the ``==``
+  predicate to test whether two operands are the same object. See
+  `Predicates for testing equality`_.
+- An object is a direct instance of a particular class. You can use the
+  ``object-class`` predicate to determine the direct class of an object.
+- You can give an object a name. For example, if you define a variable
+  or constant to contain an object, you have given that object a name.
+  See `Bindings: Mappings between objects and names`_.
+- You can pass an object as an argument or return value — because
+  generic functions and methods are objects, you can manipulate them
+  just as you can any other object. See ` <func.htm#96435>`_.
 
 *Comparison to C++ and Smalltalk:* In Dylan and Smalltalk, everything is
 an object (an instance of a class); we say that Dylan and Smalltalk have
 “objects all the way down.” In contrast, in C++, some values are not
 objects; they have primitive types that are not classes. For example, in
-Dylan, 7 is an instance of
- ``<integer>`` . In C++, 7 is not an instance; it has the type *int* .
-This design decision enables Dylan users to define methods on built-in
-classes in the same way that they define methods on user-defined classes
-— a technique that cannot be done in C++.
+Dylan, 7 is an instance of ``<integer>``. In C++, 7 is not an instance;
+it has the type ``int``.  This design decision enables Dylan users to
+define methods on built-in classes in the same way that they define
+methods on user-defined classes — a technique that cannot be done in C++.
 
 *Comparison to Java:* Java recognizes the need for object representation
-of all classes with the *Number* class and its subclasses. However, Java
+of all classes with the ``Number`` class and its subclasses. However, Java
 still requires the programmer to work with nonobjects when writing
-mathematical statements. The *Number* classes can be used to “wrap” an
-object cloak around the primitive *integer* , *float* , and other
+mathematical statements. The ``Number`` classes can be used to “wrap” an
+object cloak around the primitive ``integer``, ``float``, and other
 numeric types, to allow object-based programming. Dylan does not
 separate the mathematical manipulation of numbers from their other
 object properties. Programmers need only to think in terms of numerical
 objects, and can rely on the compiler to implement mathematical
-operations efficiently. Similarly, the *Boolean* class is used to
-encapsulate primitive *boolean* values as objects, and programmers must
+operations efficiently. Similarly, the ``Boolean`` class is used to
+encapsulate primitive ``boolean`` values as objects, and programmers must
 convert back and forth, depending on the context.
 
 Predicates for testing equality
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Dylan provides two predicates for testing equality: ``=`` and ``==`` . The
-``=`` predicate determines whether two objects are *similar* . Similarity
+Dylan provides two predicates for testing equality: ``=`` and ``==``. The
+``=`` predicate determines whether two objects are *similar*. Similarity
 is defined differently for different kinds of objects. When you define
 new classes, you can define how similarity is tested for those classes
-by defining a method for ``=`` .
+by defining a method for ``=``.
 
 The ``==`` predicate determines whether the operands are *identical* —
 that is, whether the operands are the same object. The ``==`` predicate
 (identity) is a stronger test: two values may be similar but not
 identical, and two identical values are always similar.
 
-If two numbers are mathematically equal, then they are similar:
+If two numbers are mathematically equal, then they are similar::
 
-*?* 100 = 100;
- *#t*
+    ? 100 = 100;
+     #t
 
-*?* 100 = 100.0;
- *#t*
+    ? 100 = 100.0;
+     #t
 
 Two numbers that are similar, and have the same type, are the same
-object:
+object::
 
-*?* 100 == 100;
- *#t*
+     ? 100 == 100;
+      #t
 
 Two numbers that are similar, but have different types, are not the same
-object:
+object::
 
-*?* 100 == 100.0;
- ``#f``
+    ? 100 == 100.0;
+     #f
 
 Characters are enclosed in single quotation marks. If two characters
-look the same, they are similar and identical:
+look the same, they are similar and identical::
 
-*?* ’z’ = ’z’;
- *#t*
+    ? ’z’ = ’z’;
+     #t
 
-*?* ’z’ == ’z’;
- *#t*
+    ? ’z’ == ’z’;
+     #t
 
 Strings are enclosed in double quotation marks. Strings that have
 identical elements are similar, but may or may not be identical. That
 is, strings can have identical elements, but not be the same string. For
-example, these strings are similar:
+example, these strings are similar::
 
-*?* "apple" = "apple";
- *#t*
+    ? "apple" = "apple";
+     #t
 
 Just by looking at two strings, you cannot know whether or not they are
 the identical string. The only way to determine identity is to use the
-``==`` predicate. The following expression could return *#t* or ``#f`` :
+``==`` predicate. The following expression could return ``#t`` or ``#f``::
 
-*?* "apple" == "apple";
+    ? "apple" == "apple";
 
-A string is always identical to itself:
+A string is always identical to itself::
 
-*?* begin
- let yours = "apple";
- let mine = yours;
- mine == yours;
- end;
- *#t*
+    ? begin
+       let yours = "apple";
+       let mine = yours;
+       mine == yours;
+     end;
+    #t
 
 Bindings: Mappings between objects and names
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -437,36 +423,35 @@ Bindings: Mappings between objects and names
 A *binding* is a mapping between an object and a name. The name can be a
 module variable, module constant, or local variable.
 
-Here, we give the object *3.14159* the name *$pi* , where *$pi* is a
-module
- constant:
+Here, we give the object ``3.14159`` the name ``$pi``, where ``$pi`` is a
+module constant::
 
-*?* define constant $pi = 3.14159;
+    ? define constant $pi = 3.14159;
 
-Here, we give the object *"apple"* the name *\*my-favorite-pie\** ,
-where *\*my-favorite-pie\** is a module variable:
+Here, we give the object ``"apple"`` the name ``*my-favorite-pie*``,
+where ``*my-favorite-pie*`` is a module variable::
 
-*?* define variable \*my-favorite-pie\* = "apple";
+    ? define variable *my-favorite-pie* = "apple";
 
 More than one variable can contain a particular object, so, in effect,
 an object can have many names. Here, we define a new variable that
-contains the very same pie:
+contains the very same pie::
 
-*?* define variable \*your-favorite-pie\* = \*my-favorite-pie\*;
+    ? define variable *your-favorite-pie* = *my-favorite-pie*;
 
-*?* \*your-favorite-pie\* == \*my-favorite-pie\*;
- *#t*
+    ? *your-favorite-pie* == *my-favorite-pie*;
+     #t
 
-When you define a method, *define method* creates a binding between a
-name and a method object:
+When you define a method, ``define method`` creates a binding between a
+name and a method object::
 
-*?* define method say-greeting (greeting :: <object>);
- format-out("%s\\n", greeting);
- end;
+    ? define method say-greeting (greeting :: <object>);
+        format-out("%s\n", greeting);
+      end;
 
 All the bindings that we have created in this section so far are
 accessible within a module. (For information about modules, see
-` <reuse.htm#84851>`_.) `Bindings as links (shown as arrows) between
+:doc:`reuse`.) `Bindings as links (shown as arrows) between
 names (enclosed in ovals) and objects (enclosed in rectangles) within a
 module. <oo-1.htm#20525>`_ shows how you can picture each binding as a
 link between a name and another object.
@@ -474,11 +459,13 @@ link between a name and another object.
 Local variables are also bindings, but they are accessible only within a
 certain body of code; for example,
 
-*?* begin
- let radius = 5.0;
- let circumference = 2.0 \* $pi \* radius;
- circumference;
- end;
+::
+
+    ? begin
+     let radius = 5.0;
+     let circumference = 2.0 * $pi * radius;
+     circumference;
+     end;
 
 Bindings can be constant or variable. You can use the assignment
 operator to change a variable binding, but you cannot change a constant
@@ -487,31 +474,25 @@ local variables are variable bindings.
 
 Bindings as links (shown as arrows) between names (enclosed in ovals)
 and objects (enclosed in rectangles) within a module.
-                                                                                                                           
-
-.. figure:: oo-1-2.gif
-   :align: center
-   :alt: 
 
 .. figure:: oo-1-5.gif
    :align: center
-   :alt: 
+
 Summary
 -------
 
 In this chapter, we covered the following:
 
--  A generic function can contain more than one method, where each
-   method has parameters of different types, and thus is intended for
-   different arguments. The ``say-greeting`` generic function has two
-   methods.
--  Dylan provides built-in classes, including ``<integer>`` ,
-   ``<single-float>`` , ``<string>`` , and ``<object>`` . These classes are
-   related by inheritance.
--  In Dylan, almost everything is an object. Each object has a unique
-   identity.
--  The ``=`` predicate tests for similarity; the ``==`` predicate tests for
-   identity.
--  A binding is an association between an object and a name.
-
+- A generic function can contain more than one method, where each
+  method has parameters of different types, and thus is intended for
+  different arguments. The ``say-greeting`` generic function has two
+  methods.
+- Dylan provides built-in classes, including ``<integer>``,
+  ``<single-float>``, ``<string>``, and ``<object>``. These classes are
+  related by inheritance.
+- In Dylan, almost everything is an object. Each object has a unique
+  identity.
+- The ``=`` predicate tests for similarity; the ``==`` predicate tests for
+  identity.
+- A binding is an association between an object and a name.
 

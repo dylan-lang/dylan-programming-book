@@ -458,7 +458,7 @@ you choose to export that module variable, you can make it accessible to
 other modules that import it. In this chapter, we give the bare minimum
 of information about libraries and modules — just enough for you to get
 started quickly. For a complete description of libraries and modules,
-see ` <reuse.htm#84851>`_.
+see :doc:`reuse`.
 
 To create a complete Dylan program, we need
 
@@ -486,15 +486,15 @@ definition (LID)* file.
 
 The details of how the files are named and stored depends on your Dylan
 implementation. Typically, however, you have a directory containing all
-the files of the program. As shown in `The hello directory and the
-three files that it contains. <start.htm#11859>`_, we name our program
-directory *hello*, and name the files *hello.lid*, *library.dylan*,
-and *hello.dylan* (the latter is the program file).
+the files of the program. As shown below, we name our program directory
+``hello``, and name the files ``hello.lid``, ``library.dylan``, and
+``hello.dylan`` (the latter is the program file).
 
-The *hello* directory and the three files that it contains.
+    hello
 
-.. figure:: start-3.gif
-   :align: center
+    - hello.lid
+    - library.dylan
+    - hello.dylan
 
 *Comparison with C:* The following analogies may help you to understand
 how the elements of Dylan programs correspond to elements of C programs:
@@ -603,7 +603,7 @@ We incur a fair amount of overhead in setting up the files that make up
 a simple program. Most environments automate this process — some of the
 complexity shown here occurs because we are working with the lowest
 common denominator: interchange files. The advantages of libraries and
-modules are significant for larger programs. See ` <reuse.htm#84851>`_.
+modules are significant for larger programs. See :doc:`reuse`.
 
 Summary
 -------

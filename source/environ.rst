@@ -27,11 +27,11 @@ comp.lang.dylan
 
 The newsgroup is also available as an Internet mailing list. To
 subscribe to the *info-dylan* mailing list, send a message to
-*majordomo@harlequin.co.uk* . In
- the body of the message, include the words *subscribe info-dylan* .You
-may subscribe to the Dylan announements mailing list by including the
-words
- *subscribe announce-dylan* .
+``majordomo@harlequin.co.uk``. In the body of the message, include
+the words ``subscribe info-dylan``.
+
+You may subscribe to the Dylan announcements mailing list by
+including the words ``subscribe announce-dylan``.
 
 Harlequin
 ---------
@@ -43,8 +43,7 @@ provide a native Dylan development environment and technical support.
 
 Harlequin’s Dylan Web site contains a great deal of useful information
 about Dylan, including the FAQ, *The Dylan Reference Manual* , and
-pointers to
- public-domain implementations of Dylan and to the *comp.lang.dylan*
+pointers to public-domain implementations of Dylan and to the *comp.lang.dylan*
 newsgroup. The address of Harlequin’s Dylan Web page is
 
 http://www.harlequin.com/full/dylan.html

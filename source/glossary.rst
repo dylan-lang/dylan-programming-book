@@ -309,8 +309,7 @@ Glossary
         A kind of function that can belong to a generic function. Although
         methods are independent of classes, they operate on instances of
         classes. A method states the kinds of objects that it handles by the
-        types of its required
-         arguments.
+        types of its required arguments.
 
     *module*
         A unit that contains a portion of the definitions of a library. Each
