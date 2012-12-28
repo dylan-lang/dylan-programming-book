@@ -25,13 +25,15 @@ collections.
 Built-in collection classes
 ---------------------------
 
-`Built-in collection classes. <collect.htm#96187>`_ shows the most
-common Dylan collection classes.
+:ref:`built-in-collection-classes` shows the most common Dylan collection
+classes.
 
-Built-in collection classes.
+.. _built-in-collection-classes:
 
-.. figure:: collect-3.gif
+.. figure:: images/figure-11-1.png
    :align: center
+
+   Built-in collection classes.
 
 A collection holds a group of objects, called *elements*. Each element
 is associated with a key. Each class of collection can have different
@@ -166,13 +168,16 @@ particular data structure as part of the program::
     ? *my-vector*;
      #[5, 3]
 
-`Diagram of the vector #[5, 3]. <collect.htm#15842>`_ shows how you
-can picture the vector that we just created.
+:ref:`diagram-of-vector` shows how you can picture the vector that
+we just created.
 
-Diagram of the vector *#[5, 3]*.
 
-.. figure:: collect-4.gif
+.. _diagram-of-vector:
+
+.. figure:: images/figure-11-2.png
    :align: center
+
+   Diagram of the vector ``#[5, 3]``.
 
 You might think that ``*my-vector*`` is a direct instance of ``<vector>``,
 but it is not: The ``<vector>`` class is abstract, but instantiable.
@@ -180,8 +185,8 @@ When you use the ``vector`` function, or use ``make`` with ``<vector>``, the
 result is a general instance of ``<simple-object-vector>``. You specify
 the size of a ``<simple-object-vector>`` when you create one, and you
 cannot change that size later. If you need a vector that can change
-size, use the ``<stretchy-vector>`` class. See ` <heap.htm#26097>`_, for
-an example that uses stretchy vectors.
+size, use the ``<stretchy-vector>`` class. See :ref:`heap-new-collection-class`,
+for an example that uses stretchy vectors.
 
 Creation of lists and access to elements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -205,13 +210,14 @@ arguments provided::
     ? list(4, 5, 6);
      #(4, 5, 6)
 
-`Diagram of the list #(4, 5, 6). <collect.htm#39346>`_ is a diagram
-of the list that we just created.
+:ref:`diagram-of-list` is a diagram of the list that we just created.
 
-Diagram of the list *#(4, 5, 6)*.
+.. _diagram-of-list:
 
-.. figure:: collect-5.gif
+.. figure:: images/figure-11-3.png
    :align: center
+
+   Diagram of the list ``#(4, 5, 6)``.
 
 We can create a similar list by using the ``pair`` function, which creates
 one pair of the list at a time::
@@ -243,7 +249,7 @@ Iteration over a sequence
 -------------------------
 
 In the examples in Sections `Building our own copy-sequence`_ through
-`Changes to a generic function’s signature <collect.htm#70023>`_, we
+`Changes to a generic function’s signature`_, we
 show how to process each element of a sequence using different techniques.
 
 Building our own ``copy-sequence``
@@ -313,12 +319,13 @@ In `Lists and efficiency`_, we use clauses that bind variables to initial
 values for the first time through a loop, and use expressions to rebind
 the variables for the second and subsequent times through the loop. We
 also demonstrate a clause that permits iteration to continue until an
-expression is true, both in `Lists and efficiency`_ and ` <heap.htm#18322>`_.
+expression is true, both in `Lists and efficiency`_ and
+:ref:`heap-adding-and-removing-elements`.
 
 The ``for`` loop has a simple type of iteration clause that we can use to
 iterate over any Dylan collection. The airport example in
-` <nlanding.htm#11965>`_, demonstrates iteration over vectors using this
-kind of iteration clause.
+:ref:`nlanding-vehicle-containers`, demonstrates iteration over vectors
+using this kind of iteration clause.
 
 .. _collect-lists-and-efficiency:
 
@@ -440,7 +447,7 @@ accomplishes a valuable side effect. In the preceding example, the
 supplied method stores an element of the old list into the head of the
 current pair of the new list, and moves to the next pair of the new
 list. Note that this method is actually a closure, which closes over the
-``current-pair`` local variable. See ` <func.htm#60266>`_, for more
+``current-pair`` local variable. See :ref:`func-closures`, for more
 information about closures.
 
 A recursive list copier
@@ -530,7 +537,8 @@ The ``map`` iterator then calls that function on each element of
 ``old-vector``, collecting the results in a new sequence. A variant of
 ``map``, called ``map-into``, replaces elements in an existing collection,
 rather than creating a new collection for the results. See
-` <heap.htm#66376>`_, for an example of the use of ``map-into``.
+:ref:`heap-basic-collection-methods`, for an example of the use of
+``map-into``.
 
 We can define this method more succinctly using ``curry``, which is a
 function that generates a function:
@@ -722,9 +730,8 @@ this behavior in `Destructive operations and shared structure`_.
 Destructive operations and shared structure
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Consider the following example, and Figures
-`State before the element is changed.`_ and
-`State after the element is changed.`_.
+Consider the following example, and Figures :ref:`state-before-element-changed`
+and :ref:`state-after-element-changed`.
 
 ::
 
@@ -740,7 +747,7 @@ Consider the following example, and Figures
         my-reverse(*switch-states*);
 
 At this point, the states of the variables and vectors correspond to
-`State before the element is changed.`_.
+:ref:`state-before-element-changed`.
 
 We examine the two sequences::
 
@@ -752,10 +759,12 @@ We examine the two sequences::
     ? *switch-states* == *rev-switch-states*;
      #f
 
-State before the element is changed.
+.. _state-before-element-changed:
 
-.. figure:: collect-6.gif
+.. figure:: images/figure-11-4.png
    :align: center
+
+   State before the element is changed.
 
 Now, we change an element::
 
@@ -767,12 +776,14 @@ Now, we change an element::
      "master switch"
 
 At this point, the states of the variables and vectors correspond to
-`State after the element is changed.`_.
+:ref:`state-after-element-changed`.
 
-State after the element is changed.
+.. _state-after-element-changed:
 
-.. figure:: collect-7.gif
+.. figure:: images/figure-11-5.png
    :align: center
+
+   State after the element is changed.
 
 We can look at the values of the variables::
 
@@ -782,11 +793,11 @@ We can look at the values of the variables::
     ? *rev-switch-states*;
      #[#["switch", "off"], #["master switch", "on"]]
 
-Each object pictured in Figures `State before the element is changed.`_ and
-`State after the element is changed.`_ is a vector. The strings in the figures
+Each object pictured in Figures :ref:`state-before-element-changed` and
+:ref:`state-after-element-changed` is a vector. The strings in the figures
 are vectors, although we did not draw them as such, to keep the diagrams
 relatively simple. Variables are not objects in Dylan, but they are
-shown referring to objects. In `State after the element is changed.`_,
+shown referring to objects. In :ref:`state-after-element-changed`,
 the string ``"switch"`` is not referenced by any other object and is
 therefore garbage; eventually, it will be reclaimed by a garbage collector.
 

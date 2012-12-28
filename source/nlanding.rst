@@ -93,6 +93,8 @@ aircraft. We also define the base class for all tangible objects,
 
 Next, we define the classes where aircraft are normally located.
 
+.. _nlanding-vehicle-containers:
+
 Vehicle containers
 ~~~~~~~~~~~~~~~~~~
 

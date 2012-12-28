@@ -227,7 +227,7 @@ intervene between the classes shown.
 
 .. _classes-and-subclasses:
 
-.. figure:: images/figure-3.2.png
+.. figure:: images/figure-3-2.png
    :align: center
 
    Classes and subclasses.
@@ -485,7 +485,7 @@ local variables are variable bindings.
 
 .. _bindings-as-links:
 
-.. figure:: images/figure-3.3.gif
+.. figure:: images/figure-3-3.png
    :align: center
 
    Bindings as links (shown as arrows) between names (enclosed in ovals)

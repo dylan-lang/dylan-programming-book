@@ -75,7 +75,7 @@ were not designed with objects, dynamism, or performance in mind.
 
 .. _figure-1.1:
 
-.. figure:: images/figure-1.1.png
+.. figure:: images/figure-1-1.png
    :align: center
 
    Object-oriented and dynamic extents of programming languages.
@@ -88,7 +88,7 @@ where Dylan fits on the graph.
 
 .. _figure-1.2:
 
-.. figure:: images/figure-1.2.png
+.. figure:: images/figure-1-2.png
    :align: center
 
    Object-oriented and dynamic extents of Dylan and other languages.

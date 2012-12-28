@@ -28,9 +28,8 @@ Example of multiple inheritance
 -------------------------------
 
 In our airport example, we defined a ``<vehicle>`` class, and used it as a
-superclass for classes of aircraft. `Hierarchy of vehicle
-classes. <inherit.htm#73249>`_ shows the hierarchy of vehicle classes
-that we defined.
+superclass for classes of aircraft. :ref:`hierarchy-of-vehicle-classes`
+shows the hierarchy of vehicle classes that we defined.
 
 So far, the only type of vehicle that we have defined is aircraft. Of
 course, there are many other kinds of vehicle: automobiles, ships, and
@@ -58,10 +57,12 @@ An obvious early step in modeling the behavior of fuel trucks would be
 to define a ``<fuel-truck>`` class. Presumably, we would want that class
 to inherit from
 
-Hierarchy of vehicle classes.
+.. _hierarchy-of-vehicle-classes:
 
-.. figure:: inherit-3.gif
+.. figure:: images/figure-18-1.png
    :align: center
+
+   Hierarchy of vehicle classes.
 
 ``<vehicle>``. Let’s look at our current definitions of both the
 ``<vehicle>`` class and its only direct subclass, ``<aircraft>``:
@@ -247,7 +248,7 @@ access to an inherited slot by defining a getter or setter method
 specialized on the subclass (derived class).
 
 For more information on inheritance in C++, see
-` <c-comparisons.htm#12288>`_.
+:ref:`c-comparisons-concept-of-classes`.
 
 There are ways, however, in which subclasses and superclasses can have
 distinct effects on the same slot. One way is by providing default
@@ -323,8 +324,8 @@ tree, there is a well-defined ordering in terms of *specificity* for
 that class and all its superclasses. A subclass is always more specific
 than are any of its superclasses. When each class has only one
 superclass, we can order unambiguously any given class and all its
-superclasses, from *most specific* to *least specific*. `Hierarchy
-of vehicle classes. <inherit.htm#73249>`_ illustrates part of such an
+superclasses, from *most specific* to *least specific*. 
+:ref:`hierarchy-of-vehicle-classes` illustrates part of such an
 ordering for our original, single-inheritance definitions of ``<vehicle>``
 and ``<vehicle>`` ’s subclasses.
 
@@ -335,14 +336,15 @@ It is still true that a subclass is more specific than are any of its
 superclasses. But we cannot always order its superclasses in terms of
 specificity.
 
-`Graph of vehicle classes that use multiple
-inheritance. <inherit.htm#99930>`_ illustrates our current definitions
+:ref:`graph-of-vehicle-classes` illustrates our current definitions
 of ``<vehicle>`` and of ``<vehicle>`` ’s subclasses.
 
-Graph of vehicle classes that use multiple inheritance.
+.. _graph-of-vehicle-classes:
 
-.. figure:: inherit-4.gif
+.. figure:: images/figure-18-2.png
    :align: center
+
+   Graph of vehicle classes that use multiple inheritance.
 
 Consider ``<B707>`` and its superclasses. We can order ``<B707>``,
 ``<commercial-aircraft>``, and ``<aircraft>`` from more specific to less
@@ -487,13 +489,14 @@ Sometimes, more than one class precedence list is consistent with the
 procedure that we have outlined so far. Suppose, for example, that we
 had defined two additional classes, ``<wheeled-vehicle>`` and
 ``<winged-vehicle>``, with the class relations illustrated in
-`Expanded graph of vehicle classes that use multiple
-inheritance. <inherit.htm#17457>`_.
+:ref:`expanded-graph-of-vehicle-classes`.
 
-Expanded graph of vehicle classes that use multiple inheritance.
+.. _expanded-graph-of-vehicle-classes:
 
-.. figure:: inherit-5.gif
+.. figure:: images/figure-18-3.png
    :align: center
+
+   Expanded graph of vehicle classes that use multiple inheritance.
 
 Let’s assume that the ``define class`` form for ``<aircraft>`` lists
 ``<winged-vehicle>`` before ``<wheeled-vehicle>`` in its list of direct
@@ -717,11 +720,11 @@ refine the rule for sorting methods according to specificity:
 A method is *more specific* than another if the type of its specialized
 parameter is a proper subtype of the type of the other method’s
 specialized parameter. (For definitions of proper subtype, see
-` <classes.htm#60106>`_.) If one type is not a proper subtype of the
-other, a method is more specific if the class of its specialized
-parameter precedes the class of the other method’s specialized parameter
-in the class precedence list of the argument to the generic function.
-Otherwise, the methods are *unordered* for that parameter.
+:ref:`classes-method-dispatch-nonclass-types`.) If one type is not a
+proper subtype of the other, a method is more specific if the class of its
+specialized parameter precedes the class of the other method’s specialized
+parameter in the class precedence list of the argument to the generic
+function.  Otherwise, the methods are *unordered* for that parameter.
 
 If the generic function has more than one required argument, Dylan uses
 this augmented rule for determining specificity in the usual way for
@@ -758,7 +761,7 @@ explicitly provide the sort of method dispatch and combination that
 Dylan implements automatically.
 
 For examples of similar Dylan and C++ programs that use multiple
-inheritance, see ` <c-comparisons.htm#12288>`_.
+inheritance, see :ref:`c-comparisons-concept-of-classes`.
 
 *Comparison with Java:* Java formalizes the concept of a *protocol* with
 its *interfaces*. An interface is like an abstract class and a set of

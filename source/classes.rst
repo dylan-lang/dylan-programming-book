@@ -113,6 +113,8 @@ type to enforce the correct values of a latitude slot, and for
 information about the performance of enumerations, see
 ` <perform.htm#95189>`_.
 
+.. _classes-method-dispatch-nonclass-types:
+
 Method dispatch and nonclass types
 ----------------------------------
 

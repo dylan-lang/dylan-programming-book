@@ -561,6 +561,8 @@ cruising speed, and all instances of McDonnell Douglas MD-80 aircraft
 share a particular cruising speed, but the cruising speed of 747s does
 not need to be the same as the cruising speeds of MD-80s.
 
+.. _slots-virtual-slots:
+
 Virtual slots
 -------------
 

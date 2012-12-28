@@ -216,6 +216,8 @@ The ``time-library`` file: ``time-library.dylan``.
       use dylan;
     end module time-implementation;
 
+.. _time-mod-time-implementation-file:
+
 The ``time`` implementation file
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

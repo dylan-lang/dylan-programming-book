@@ -9,9 +9,9 @@ is an attempt to access an uninitialized slot, or certain cases of an
 attempt to violate the type constraint on a slot or variable (those that
 cannot be detected at compile time). Dylan detects all these exceptions
 itself. Sometimes, an application detects a violation of a contract that
-it defines. For example, in ` <slots.htm#97360>`_, we defined methods
+it defines. For example, in :ref:`slots-virtual-slots`, we defined methods
 that detected attempts to specify a longitude direction of anything
-other than east or west. (In ` <perform.htm#95189>`_, we changed the
+other than east or west. (In :ref:`perform-enumerations` we changed the
 application such that this particular application-detected exception was
 transformed into one that is detected by Dylan.)
 
@@ -39,7 +39,7 @@ The ``+`` method using informal exceptions
 
 First, we redefine the method for adding ``<time-offset>`` and
 ``<time-of-day>`` (this method was last defined in
-` <time-mod.htm#54143>`_, ` <time-mod.htm#97385>`_). The method now
+:ref:`time-mod-time-implementation-file`). The method now
 returns an error string in the event that the computed sum is beyond the
 permitted 24-hour range:
 
@@ -246,8 +246,8 @@ Now we can specify an exact return value for the ``+`` method, because we
 are no longer returning an error string to indicate a problem with the
 addition.
 
-In previous chapters (for example, in ` <multi.htm#97223>`_), we called
-the ``error`` function with a string. Given a string as its first
+In previous chapters (for example, in :ref:`multi-adding-other-times`), we
+called the ``error`` function with a string. Given a string as its first
 argument, the ``error`` function creates a general-purpose condition named
 ``<simple-error>`` and stores its arguments in the condition instance. In
 the preceding example, however, we created an instance of a condition
@@ -353,25 +353,26 @@ clause. The body calls the ``say`` generic function on the condition
 instance, which causes an appropriate error message (instead of the
 time) to be displayed to the user. Execution then continues normally
 after the end of the block; in this case, that results in the normal
-exit from the ``say-corrected-time`` method. `Context transition from
-signaler to handler. <nexcept.htm#37059>`_ shows the state of execution
-when ``error`` is called, and after the execution of the ``exception``
-clause body for ``<time-error>`` begins. `Context transition from
-signaler to handler. <nexcept.htm#37059>`_ is a simplified diagram of
-the internal calling stack of a hypothetical Dylan implementation. It is
-similar to what a debugger might produce when asked to print a backtrace
-at these two points in the execution of the example. The ``error``
-function called within the ``+`` method signals the
-``<time-boundary-error>`` error, and the ``exception`` clause of ``block`` in
-the ``say-corrected-time`` method establishes the handler for that error.
-Once the handling of the exception is in progress, the handler selected
-is no longer established. If there is relevant local state, it may be
-captured in slots of the condition being signaled.
+exit from the ``say-corrected-time`` method. :ref:`signaler-to-handler`
+shows the state of execution when ``error`` is called, and after the
+execution of the ``exception`` clause body for ``<time-error>`` begins.
+:ref:`signaler-to-handler` is a simplified diagram of the internal calling
+stack of a hypothetical Dylan implementation. It is similar to what a
+debugger might produce when asked to print a backtrace at these two
+points in the execution of the example. The ``error`` function called
+within the ``+`` method signals the ``<time-boundary-error>`` error,
+and the ``exception`` clause of ``block`` in the ``say-corrected-time``
+method establishes the handler for that error.  Once the handling of
+the exception is in progress, the handler selected is no longer
+established. If there is relevant local state, it may be captured in
+slots of the condition being signaled.
 
-Context transition from signaler to handler.
+.. _signaler-to-handler:
 
-.. figure:: nexcept-3.gif
+.. figure:: images/figure-20-1.png
    :align: center
+
+   Context transition from signaler to handler.
 
 The advantages of this structured approach to signaling and handling
 conditions are significant:
@@ -621,18 +622,19 @@ If the restart is signaled, a nonlocal exit to the restart exception
 clause in ``+`` method is initiated, which returns the sum suitably
 wrapped such that it lies within the 24-hour boundary.
 
-`Context transition from handler to restart handler.`_ shows the
-state of execution after the handler function for ``<time-error>``
-is invoked, and the state after the restart handler function for
-``<return-modulus-restart>`` is invoked. As you can see, although
-establishing a handler with ``let handler`` can be far removed from
-the signaler, the handler function itself is executed in the context
-of the signaler.
+:ref:`handler-to-restart` shows the state of execution after the
+handler function for ``<time-error>`` is invoked, and the state
+after the restart handler function for ``<return-modulus-restart>``
+is invoked. As you can see, although establishing a handler with
+``let handler`` can be far removed from the signaler, the handler
+function itself is executed in the context of the signaler.
 
-Context transition from handler to restart handler.
+.. _handler-to-restart:
 
-.. figure:: nexcept-4.gif
+.. figure:: images/figure-20-2.png
    :align: center
+
+   Context transition from handler to restart handler.
 
 Continuation from errors
 ~~~~~~~~~~~~~~~~~~~~~~~~

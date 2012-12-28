@@ -30,6 +30,8 @@ The *sorted-sequence.dylan* file contains the module constants, classes,
 and methods that build on Dylan’s collection framework to define the
 structure and behavior of the new ``<sorted-sequence>`` collection.
 
+.. _heap-new-collection-class:
+
 A new collection class
 ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -66,6 +68,8 @@ could reorder the data vector after either function had changed.
 
 Now that we have covered the structure and initialization of the sorted
 sequence data structure, we can define basic collection methods.
+
+.. _heap-basic-collection-methods:
 
 Basic collection methods
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -128,6 +132,8 @@ added and on the value and comparison functions.
 
 Next, we show methods for adding and removing elements from sorted
 sequences.
+
+.. _heap-adding-and-removing-elements:
 
 Adding and removing elements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~

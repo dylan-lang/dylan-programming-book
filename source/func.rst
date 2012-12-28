@@ -1047,6 +1047,8 @@ elements of collections in different ways. We used one of these,
 new collections; others return single values. For more examples, see
 ` <collect.htm#68154>`_.
 
+.. _func-closures:
+
 Closures
 ~~~~~~~~
 

@@ -267,10 +267,9 @@ definition specifies which modules are exported from the library for use
 by other libraries. In our simple example, the ``hello`` module exports no
 variables or constants, and the ``hello`` library exports no modules.
 
-`Libraries (heavy boxes) and modules (light boxes) in “Hello,
-world”. <reuse.htm#81752>`_ illustrates the relationships between
-libraries and modules in our example program. In `Libraries (heavy
-boxes) and modules (light boxes) in “Hello, world”. <reuse.htm#81752>`_,
+:ref:`Libraries and modules <libraries-and-modules>` illustrates the
+relationships between libraries and modules in our example program. In
+:ref:`Libraries and modules <libraries-and-modules>`,
 and in the other figures in this chapter, we draw libraries as heavy
 bold boxes and modules as light boxes. We have tried to illustrate how
 libraries and modules build on one another through their “use”
@@ -279,10 +278,12 @@ library that it uses, so we show the ``hello`` library above the
 ``format-out`` and ``dylan`` libraries. An exported module is illustrated as
 being on top of (overlapping) the library that
 
-Libraries (heavy boxes) and modules (light boxes) in “Hello, world”.
+.. _libraries-and-modules:
 
-.. figure:: reuse-3.gif
+.. figure:: images/figure-13-1.png
    :align: center
+
+   Libraries (heavy boxes) and modules (light boxes) in “Hello, world”.
 
 exports it (we have also shaded them, to illustrate this overlap). And a
 module that uses another module is illustrated as being on top of
@@ -292,8 +293,8 @@ Thus, the ``hello`` module overlays the ``format-out`` and ``dylan`` modules
 that it uses.
 
 Note that we intentionally do not show all the modules in the
-``format-out`` and ``dylan`` libraries in `Libraries (heavy boxes) and
-modules (light boxes) in “Hello, world”. <reuse.htm#81752>`_. The
+``format-out`` and ``dylan`` libraries in
+:ref:`Libraries and modules <libraries-and-modules>`,. The
 ``format-out`` and ``dylan`` libraries might well have other modules, but
 either those modules are not exported or our program does not use them.
 
@@ -426,9 +427,7 @@ thinking of modules as having these roles, and in this chapter we use
 that design convention.
 
 When illustrating the roles of modules, we use the conventions shown in
-`The roles of modules: interface, implementation, and
-client. <reuse.htm#16310>`_. In `The roles of modules: interface,
-implementation, and client. <reuse.htm#16310>`_, we show a library with
+:ref:`role-of-modules`. In :ref:`role-of-modules`, we show a library with
 three modules: an interface module (with its interface sticking out of
 the top of the library), an implementation module (overlapping the
 interface, because it implements the interface by giving definitions to
@@ -444,10 +443,12 @@ uses. It is difficult simultaneously to illustrate the module “use”
 relationships in only two dimensions — the overlapping of one module by
 another is intended to depict usage.
 
-The roles of modules: interface, implementation, and client.
+.. _role-of-modules:
 
-.. figure:: reuse-4.gif
+.. figure:: images/figure-13-2.png
    :align: center
+
+   The roles of modules: interface, implementation, and client.
 
 The interface module
 ~~~~~~~~~~~~~~~~~~~~
@@ -504,14 +505,13 @@ implemented using the ``format-out`` function (which is defined in the
 ``format-out`` module of the ``format-out`` library).
 
 We can start to envision the ``time`` library as shown in
-`Initial time library.`_. In a library more complicated than
-the time library, we might decompose the construction of the library
-into several implementation modules. For example, we might want to
-assign the implementation of the ``<sixty-unit>`` substrate to another
-programmer, and to create an interface between that substrate and the
-rest of the implementation so that work on either side of the interface
-can proceed in parallel. In that case, we might use the following module
-definitions:
+:ref:`initial-time-library`. In a library more complicated than the time
+library, we might decompose the construction of the library into several
+implementation modules. For example, we might want to assign the
+implementation of the ``<sixty-unit>`` substrate to another programmer,
+and to create an interface between that substrate and the rest of the
+implementation so that work on either side of the interface can proceed
+in parallel. In that case, we might use the following module definitions: 
 
 .. code-block:: dylan
 
@@ -524,10 +524,13 @@ definitions:
       use dylan;
     end module sixty-unit;
 
-Initial ``time`` library.
 
-.. figure:: reuse-5.gif
+.. _initial-time-library:
+
+.. figure:: images/figure-13-3.png
    :align: center
+
+   Initial ``time`` library.
 
 .. code-block:: dylan
 
@@ -582,7 +585,7 @@ spread over several modules, by checking when the library is compiled
 that each created name has a definition.
 
 The ``sixty-unit`` module exports the class ``<sixty-unit>``, because
-*time-implementation* will subclass that class. The ``sixty-unit`` module
+``time-implementation`` will subclass that class. The ``sixty-unit`` module
 also exports the generic functions *total-seconds*, and
 ``decode-total-seconds``. The export of *total-seconds* might seem
 surprising at first, because, in many object-oriented languages, access
@@ -599,9 +602,9 @@ symbols, all exist in a single global namespace that is separate from
 module variables.
 
 #. *Comparison with C++:* Dylan modules provide access control similar
-   to that provided by the *private:* and *public:* keywords in C++
+   to that provided by the ``private:`` and ``public:`` keywords in C++
    classes, but Dylan access control is done at the module, rather than
-   at the class, level. Dylan has no equivalent to *protected:* access
+   at the class, level. Dylan has no equivalent to ``protected:`` access
    control, in that a class that subclasses a class from another module
    does *not* have access to slots or other generic functions on its
    superclass from the other module, unless they are explicitly exported
@@ -617,19 +620,21 @@ the exported definitions of the module are *public*.
 
 Breaking out the ``sixty-unit`` substrate to a separate module creates a
 slightly more complicated structure to our diagram, as shown in
-`Internal modules of time library. <reuse.htm#27846>`_.
+:ref:`internal-modules-of-time-library`.
 
-Internal modules of ``time`` library.
+.. _internal-modules-of-time-library:
 
-.. figure:: reuse-6.gif
+.. figure:: images/figure-13-4.png
    :align: center
 
-In `Internal modules of time library. <reuse.htm#27846>`_, we show
-the definitions of ``sixty-unit`` in a separate module. The ``sixty-unit``
-module is a client of ``dylan``, an interface and implementation of
-definitions used by *time-implementation* (that is,
-*time-implementation* is a client of ``sixty-unit``), and an
-implementation of part of the interface created by ``time``.
+   Internal modules of ``time`` library.
+
+In :ref:`internal-modules-of-time-library`, we show the definitions
+of ``sixty-unit`` in a separate module. The ``sixty-unit`` module is
+a client of ``dylan``, an interface and implementation of definitions
+used by ``time-implementation`` (that is, ``time-implementation`` is a
+client of ``sixty-unit``), and an implementation of part of the interface
+created by ``time``.
 
 Library definition
 ------------------
@@ -652,7 +657,7 @@ module, we make all the exported names from that module accessible to
 clients of this library. We also declare that the ``time`` library relies
 on the ``format-out`` and ``dylan`` libraries (that is, that those libraries
 have interface modules of which our modules will be clients). Notice
-that no mention is made of the *time-implementation*, or ``sixty-unit``
+that no mention is made of the ``time-implementation``, or ``sixty-unit``
 modules, because they are completely internal to our library and are not
 visible to any clients of our library.
 
@@ -706,10 +711,10 @@ ignore them, or may define additional keywords.
 So, for instance, if we wanted to publish our library source records, we
 might create the files shown in the following sections.
 
-The *time-library* file
------------------------
+The ``time-library`` file
+-------------------------
 
-The *time-library* file: *time-library.dylan*.
+The ``time-library`` file: ``time-library.dylan``.
 
 .. code-block:: dylan
 
@@ -914,7 +919,7 @@ The ``time`` implementation file: *time.dylan*.
       = make(<time-of-day>,
              total-seconds: encode-total-seconds(24, 0, 0));
 
-In the preceding implementation file, it is the *time-implementation*
+In the preceding implementation file, it is the ``time-implementation``
 module that specifies what we mean when we write Dylan expressions, and
 in which module namespace our definitions will appear.
 
@@ -963,10 +968,10 @@ and file, we can create this new organization by
 Note that no changes are required to the ``time`` implementation file, so
 we do not present it again.
 
-The *sixty-unit-library* file
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The ``sixty-unit-library`` file
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The ``sixty-unit`` library file: *sixty-unit-library.dylan*.
+The ``sixty-unit`` library file: ``sixty-unit-library.dylan``.
 
 .. code-block:: dylan
 
@@ -1004,17 +1009,17 @@ library in which they are created; we cannot use the create–define
 structure across libraries. We still want ``encode-total-seconds`` to be
 part of the interface of the ``time`` library, so we will have to change
 the ``time`` interface module to import it and to re-export it from the
-time library, as shown in `The updated time-library file`_.
+time library, as shown in `The updated ``time-library`` file`_.
 
 If we had followed our own recommendations in
 `The implementation module`_, we would probably have discovered that
 ``encode-total-seconds`` belonged in the ``sixty-unit`` interface, and we
 would have avoided most of this reorganization.
 
-The updated *time-library* file
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The updated ``time-library`` file
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The *time-library* file: *time-library.dylan*.
+The ``time-library`` file: ``time-library.dylan``.
 
 .. code-block:: dylan
 
@@ -1066,7 +1071,7 @@ The exact implications of this declaration are discussed in
 The updated ``sixty-unit`` implementation file
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The ``sixty-unit`` implementation file: *sixty-unit.dylan*.
+The ``sixty-unit`` implementation file: ``sixty-unit.dylan``.
 
 .. code-block:: dylan
 
@@ -1080,7 +1085,7 @@ The ``sixty-unit`` implementation file: *sixty-unit.dylan*.
     define method encode-total-seconds
         (max-unit :: <integer>, minutes :: <integer>, seconds :: <integer>)
      => (total-seconds :: <integer>)
-      ((max-unit \* 60) + minutes) \* 60 + seconds;
+      ((max-unit * 60) + minutes) * 60 + seconds;
     end method encode-total-seconds;
 
     define method decode-total-seconds
@@ -1097,24 +1102,26 @@ The ``sixty-unit`` implementation file: *sixty-unit.dylan*.
       values(hours, minutes, seconds);
     end method decode-total-seconds;
 
-`sixty-unit as a separate library. <reuse.htm#36394>`_ shows the
-relationships among our libraries and modules at this point. Note that
-``sixty-unit`` is now a separate library. It uses the ``dylan`` library and
-is used by the ``time`` library. We illustrate the ``time`` module importing
-and re-exporting part of the ``sixty-unit`` interface module (the method
-``encode-total-seconds``) by the darker grey area.
+:ref:`sixty-unit-as-separate-library` shows the relationships among our
+libraries and modules at this point. Note that ``sixty-unit`` is now a
+separate library. It uses the ``dylan`` library and is used by the ``time``
+library. We illustrate the ``time`` module importing and re-exporting part
+of the ``sixty-unit`` interface module (the method ``encode-total-seconds``)
+by the darker grey area.
 
-``sixty-unit`` as a separate library.
+.. _sixty-unit-as-separate-library:
 
-.. figure:: reuse-7.gif
+.. figure:: images/figure-13-5.png
    :align: center
+
+   ``sixty-unit`` as a separate library.
 
 Two LID files
 ~~~~~~~~~~~~~
 
 Here, we show the LID files for each library.
 
-The LID file: *sixty-unit.lid*.
+The LID file: ``sixty-unit.lid``.
 
 .. code-block:: dylan
 
@@ -1122,7 +1129,7 @@ The LID file: *sixty-unit.lid*.
     files: sixty-unit-library
            sixty-unit
 
-The LID file: *time.lid*.
+The LID file: ``time.lid``.
 
 .. code-block:: dylan
 
@@ -1153,10 +1160,10 @@ To create the ``say`` protocol, we define a library and implementation
 file as shown in Sections `The say-library file`_
 through `The angle library`_.
 
-The *say-library* file
-~~~~~~~~~~~~~~~~~~~~~~
+The ``say-library`` file
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-The *say-library* file: *say-library.dylan*.
+The ``say-library`` file: ``say-library.dylan``.
 
 .. code-block:: dylan
 
@@ -1191,7 +1198,7 @@ The *say-library* file: *say-library.dylan*.
 The ``say`` implementation file
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The ``say`` implementation file: *say.dylan*.
+The ``say`` implementation file: ``say.dylan``.
 
 .. code-block:: dylan
 

@@ -148,6 +148,8 @@ We add the time of day and the time offset::
      30
      59
 
+.. _multi-adding-other-times:
+
 Method for adding other kinds of times
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

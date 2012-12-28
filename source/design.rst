@@ -9,26 +9,29 @@ Goals of the airport application
 
 Throughout this book, we have been developing components for an airport
 application. This application deals with airports, aircraft, gates, and
-related objects. `Objects in a simple airport. <design.htm#83800>`_
-shows a diagram of a simple airport.
+related objects. :ref:`objects-in-simple-airport` shows a diagram of a
+simple airport.
 
-Objects in a simple airport.
+.. _objects-in-simple-airport:
 
-.. figure:: design-3.gif
+.. figure:: images/figure-15-1.png
    :align: center
 
-Transitions between sky and gate for outbound and inbound aircraft.
+   Objects in a simple airport.
 
-.. figure:: design-4.gif
+.. _transitions-sky-gate:
+
+.. figure:: images/figure-15-2.png
    :align: center
 
-In `Objects in a simple airport. <design.htm#83800>`_, we see a
+   Transitions between sky and gate for outbound and inbound aircraft.
+
+In :ref:`objects-in-simple-airport`, we see a
 single *terminal*, A. It has two *gates*, A1 and A2, a *taxiway*,
 Echo, a *runway*, 11R-29L, and an *aircraft* approaching the runway.
 
 When landing, an aircraft goes from the sky to a runway to a taxiway to
-a gate. `Transitions between sky and gate for outbound and inbound
-aircraft. <design.htm#41337>`_ is a state diagram showing these
+a gate. :ref:`transitions-sky-gate` is a state diagram showing these
 transitions for both inbound and outbound aircraft.
 
 Our first goal for this application is as follows: given a set of
@@ -55,13 +58,12 @@ Objects that model an airport
 -----------------------------
 
 We need to define classes that represent the objects in Figures
-`Objects in a simple airport. <design.htm#83800>`_ and `Transitions
-between sky and gate for outbound and inbound
-aircraft. <design.htm#41337>`_. Note that the application displays
-information about the path of an aircraft from gate to sky and sky to
-gate; the aircraft stops at the gate and does not enter the terminal
-itself. Therefore, we do not need to define a terminal class. Our design
-includes these airport classes:
+:ref:`objects-in-simple-airport` and :ref:`transitions-sky-gate`
+Note that the application displays information about the path of
+an aircraft from gate to sky and sky to gate; the aircraft stops at
+the gate and does not enter the terminal itself. Therefore, we do
+not need to define a terminal class. Our design includes these
+airport classes:
 
     ``<airport>``, ``<gate>``, ``<taxiway>``, ``<runway>``, ``<sky>``,
     ``<vehicle>``, ``<aircraft>``
@@ -79,10 +81,10 @@ containers:
 <vehicle-storage>
 
 In our design, containers are connected to other containers. In the
-airport diagram in `Objects in a simple airport. <design.htm#83800>`_,
-gate A1 is connected to taxiway Echo, which is connected to runway
-11R-29L.  We can use a slot in the ``<vehicle-storage>`` class to
-model these connections.
+airport diagram in :ref:`objects-in-simple-airport`, gate A1 is
+connected to taxiway Echo, which is connected to runway 11R-29L.
+We can use a slot in the ``<vehicle-storage>`` class to model these
+connections.
 
 Since some containers can hold only one aircraft, whereas other
 containers have more complex behavior, our design includes two
@@ -110,13 +112,14 @@ objects inherit:
 
 <physical-object>
 
-Inheritance relationships among classes that represent physical objects.
+.. _inheritance-relationships-physical:
 
-.. figure:: design-5.gif
+.. figure:: images/figure-15-3.png
    :align: center
 
-Figure `Inheritance relationships among classes that represent
-physical objects. <design.htm#11298>`_ shows the inheritance
+   Inheritance relationships among classes that represent physical objects.
+
+Figure :ref:`inheritance-relationships-physical` shows the inheritance
 relationships among the classes that represent physical objects.
 
 Behaviors of the objects

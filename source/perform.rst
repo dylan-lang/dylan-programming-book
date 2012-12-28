@@ -386,6 +386,8 @@ one-dimensional array of 8-bit bytes.
    the program requirements as efficiently as possible to the underlying
    architecture.
 
+.. _perform-enumerations:
+
 Enumerations
 ------------
 
