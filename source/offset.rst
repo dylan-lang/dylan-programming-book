@@ -427,6 +427,8 @@ and on instances of ``<time-offset>``::
 The result is as expected — ``decode-total-seconds`` returns the hours,
 minutes, and seconds. We now describe how this generic function works.
 
+.. _offset-method-dispatch:
+
 Method dispatch
 ---------------
 

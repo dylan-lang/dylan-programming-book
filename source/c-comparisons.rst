@@ -256,6 +256,8 @@ Dylan object example, with unique, immutable objects.
         (color-table[prototype] := prototype);
     end method make;
 
+.. _c-comparisons-concept-of-classes:
+
 The concept of classes
 ----------------------
 

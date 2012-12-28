@@ -320,6 +320,8 @@ iterate over any Dylan collection. The airport example in
 ` <nlanding.htm#11965>`_, demonstrates iteration over vectors using this
 kind of iteration clause.
 
+.. _collect-lists-and-efficiency:
+
 Lists and efficiency
 ~~~~~~~~~~~~~~~~~~~~
 

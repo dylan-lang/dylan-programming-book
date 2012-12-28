@@ -11,6 +11,8 @@ Dylan’s model of objects and classes differs significantly from the C++
 model. If you are familiar with C++, we recommend that you read
 :doc:`c-comparisons`.
 
+.. _oo-1-method-definitions:
+
 Method definitions
 ------------------
 
@@ -47,7 +49,7 @@ we see output and not a returned value (because no value is returned).
 *Usage note:* In this chapter, we define methods that call the
 ``format-out`` function. Because ``format-out`` is in the ``format-out``
 module, we need to make that module available. There are two ways to do
-so. The first way is to work in files, as described in` <start.htm#46770>`_.
+so. The first way is to work in files, as described in :ref:`start-complete-program`.
 The second way is to use a gesture or command in your Dylan environment to
 make the ``format-out`` module accessible. Then, you can simply enter the
 method definitions into the listener.
@@ -118,8 +120,8 @@ constraint ``<integer>``.
 A Dylan method is similar to a procedure or subroutine in other
 languages, but there is an important difference. You can define more
 than one method with the same name. Each one is a method for the same
-:term:`generic function`. `The say-greeting generic function and its
-methods. <oo-1.htm#16310>`_ shows how you can picture a generic
+:term:`generic function`. :ref:`The say-greeting generic function and its
+methods <say-greeting-methods>` shows how you can picture a generic
 function.
 
 When a generic function is called, it chooses the most appropriate
@@ -137,10 +139,17 @@ is called::
     ? say-greeting("Buenos Dias");
     Buenos Dias
 
-The ``say-greeting`` generic function and its methods.
+.. _say-greeting-methods:
 
-.. figure:: oo-1-3.gif
-   :align: center
+.. code-block:: dylan
+
+    define method say-greeting (greeting :: <object>)
+      format-out("%s\n", greeting);
+    end;
+
+    define method say-greeting (greeting :: <integer>)
+      format-out("Your lucky number is %s.\n", greeting);
+    end;
 
 Classes
 -------
@@ -163,8 +172,7 @@ depends on the Dylan environment. We have chosen a simple appearance of
 classes for this book.
 
 All the classes that we have seen so far are built-in classes, provided
-by Dylan. In ` <usr-class.htm#39530>`_, we show how to define new
-classes.
+by Dylan. In :doc:`usr-class`, we show how to define new classes.
 
 Class inheritance
 ~~~~~~~~~~~~~~~~~
@@ -186,7 +194,7 @@ data members. When a class inherits another class more than once
 is included. Each of the multiple-inheritance paths can contribute to
 the implementation of the derived class. The Dylan class model favors
 this mix-in style of programming. For more information, see
-` <c-comparisons.htm#12288>`_ in ` <c-comparisons.htm#89585>`_.
+:ref:`c-comparisons-concept-of-classes` in :doc:`c-comparisons`.
 
 In Dylan, we distinguish between two terms: *direct instance* and
 *general instance*. An object is a *direct instance* of exactly one
@@ -210,19 +218,21 @@ All objects are instances of the class ``<object>``::
     ? instance?("hello, world", <object>);
      #t
 
-`Classes and subclasses. Each arrow points from a class to a
-subclass. <oo-1.htm#37637>`_ shows the inheritance relationships among
+:ref:`classes-and-subclasses` shows the inheritance relationships among
 several of the built-in classes. If class A is a superclass of class B,
 then class B is a *subclass* of class A. For example, ``<object>`` is a
 superclass of ``<string>``, and ``<string>`` is a subclass of ``<object>``.
-For simplicity, `Classes and subclasses. Each arrow points from a
-class to a subclass. <oo-1.htm#37637>`_ omits certain classes that
+For simplicity, :ref:`classes-and-subclasses` omits certain classes that
 intervene between the classes shown.
 
-Classes and subclasses. Each arrow points from a class to a subclass.
+.. _classes-and-subclasses:
 
-.. figure:: oo-1-4.gif
+.. figure:: images/figure-3.2.png
    :align: center
+
+   Classes and subclasses.
+
+   Each arrow points from a class to a subclass.
 
 A typical Dylan environment provides a browser to explore inheritance
 relationships among classes; certain environments show the relationships
@@ -246,8 +256,9 @@ whether one class inherits from another class::
 
 It may be confusing that we use a function called ``subtype?`` here, but
 Dylan does not provide a function called ``subclass?``. Every class is a
-*type*, but certain types are not classes (see ` <classes.htm#56793>`_).
-The ``subtype?`` function works for both classes and other types.
+*type*, but certain types are not classes (see
+:ref:`classes-functions-create-nonclass-types`).  The ``subtype?``
+function works for both classes and other types.
 
 We can ask for all the superclasses of a given class::
 
@@ -281,19 +292,19 @@ decision enables these powerful features of Dylan:
 
 - You can define methods on built-in classes (because you do not
   have to modify the class definition to define a method intended for
-  use on the class). For an example, see ` <multi.htm#89993>`_. More
-  generally, you can define a method for a class that you did not
+  use on the class). For an example, see :ref:`multi-methods-for-plus-gf`.
+  More generally, you can define a method for a class that you did not
   define.
 - You can write multimethods. In a *multimethod*, the method dispatch
   is based on the classes of more than one argument to a generic
   function. For an introduction to method dispatch, see
-  ` <offset.htm#10035>`_. For information about multimethods, see
-  ` <multi.htm#30483>`_.
+  :ref:`offset-method-dispatch`. For information about multimethods, see
+  :doc:`multi`.
 - You can restrict generic functions to operate on specific classes of
   objects.
 
-In Dylan, a method belongs to a generic function, as shown in `The
-say-greeting generic function and its methods. <oo-1.htm#16310>`_.
+In Dylan, a method belongs to a generic function, as shown in :ref:`The
+say-greeting generic function and its methods <say-greeting-methods>`.
 Although methods are independent of classes, methods operate on
 instances of classes. A method states the types of objects for which it
 is applicable by the type constraint of each of its required parameters.
@@ -327,7 +338,7 @@ classes are objects. What does it mean to be an object?
   See `Bindings: Mappings between objects and names`_.
 - You can pass an object as an argument or return value — because
   generic functions and methods are objects, you can manipulate them
-  just as you can any other object. See ` <func.htm#96435>`_.
+  just as you can any other object. See :ref:`func-functions-as-objects`.
 
 *Comparison to C++ and Smalltalk:* In Dylan and Smalltalk, everything is
 an object (an instance of a class); we say that Dylan and Smalltalk have
@@ -350,6 +361,8 @@ objects, and can rely on the compiler to implement mathematical
 operations efficiently. Similarly, the ``Boolean`` class is used to
 encapsulate primitive ``boolean`` values as objects, and programmers must
 convert back and forth, depending on the context.
+
+.. _oo-1-equality-predicates:
 
 Predicates for testing equality
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -451,10 +464,8 @@ name and a method object::
 
 All the bindings that we have created in this section so far are
 accessible within a module. (For information about modules, see
-:doc:`reuse`.) `Bindings as links (shown as arrows) between
-names (enclosed in ovals) and objects (enclosed in rectangles) within a
-module. <oo-1.htm#20525>`_ shows how you can picture each binding as a
-link between a name and another object.
+:doc:`reuse`.) :ref:`Bindings as links <bindings-as-links>` shows how you
+can picture each binding as a link between a name and another object.
 
 Local variables are also bindings, but they are accessible only within a
 certain body of code; for example,
@@ -472,11 +483,13 @@ operator to change a variable binding, but you cannot change a constant
 binding. Module constants are constant bindings; module variables and
 local variables are variable bindings.
 
-Bindings as links (shown as arrows) between names (enclosed in ovals)
-and objects (enclosed in rectangles) within a module.
+.. _bindings-as-links:
 
-.. figure:: oo-1-5.gif
+.. figure:: images/figure-3.3.gif
    :align: center
+
+   Bindings as links (shown as arrows) between names (enclosed in ovals)
+   and objects (enclosed in rectangles) within a module.
 
 Summary
 -------

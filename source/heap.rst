@@ -202,7 +202,7 @@ The *sorted-sequence.dylan* file. *(continued)*
 
 The ``remove!`` method uses a form of the ``for`` loop that includes an
 ``until:`` clause, much like the ``my-copy-sequence`` method defined in
-` <collect.htm#38085>`_. Note that all termination checks are tested
+:ref:`collect-lists-and-efficiency`. Note that all termination checks are tested
 prior to the execution of the body.
 
 Although the ``pop`` method is not used in the airport application, it is

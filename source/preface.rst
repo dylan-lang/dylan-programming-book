@@ -121,7 +121,7 @@ Conventions used in this book
 
       // Method that says a greeting
       define method say-greeting (greeting :: <object>);
-        format-out("%s\\n", greeting);
+        format-out("%s\n", greeting);
       end;
 
 - Many Dylan environments provide a *listener* , which enables you to

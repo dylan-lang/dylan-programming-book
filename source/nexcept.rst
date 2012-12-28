@@ -211,7 +211,7 @@ represent any kind of time error, and we define a condition named
 
     define method say (condition :: <time-boundary-error>) => ()
       next-method();
-      format-out("\\nIt must not be less than ");
+      format-out("\nIt must not be less than ");
       say(condition.min-valid-time);
       format-out(" and must be less than ");
       say(condition.valid-time-limit);

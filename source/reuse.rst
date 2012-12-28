@@ -84,6 +84,8 @@ implementation of the library confidential.
 Dylan libraries are analogous to Modula packages — all the information
 necessary to use a library is contained in the library.
 
+.. _reuse-modules:
+
 Modules
 -------
 
@@ -101,20 +103,20 @@ Namespaces
 
 We mentioned in ` <start.htm#38677>`_, that Dylan has module variables
 and module constants. Every module contains its own set of module
-variables and constants. Two independent modules *a* and *b* might both
-have variables named *\*x\**. These are two different variables with
-possibly different values. Within module *a*, a reference to module
-variable *\*x\** is a reference to *a* ’s variable *\*x\**. Within
-module *b*, a reference to module variable *\*x\** is a reference to
-*b* ’s variable *\*x\**. In this sense, a module defines its own
+variables and constants. Two independent modules ``a`` and ``b`` might both
+have variables named ``*x*``. These are two different variables with
+possibly different values. Within module ``a``, a reference to module
+variable ``*x*`` is a reference to ``a`` ’s variable ``*x*``. Within
+module ``b``, a reference to module variable ``*x*`` is a reference to
+``b`` ’s variable ``*x*``. In this sense, a module defines its own
 namespace.
 
 Definitions
 ~~~~~~~~~~~
 
 A module variable or module constant is declared and initialized by a
-*definition*. We have already seen that *define variable* is a
-definition that establishes a module variable, and *define constant* is
+*definition*. We have already seen that ``define variable`` is a
+definition that establishes a module variable, and ``define constant`` is
 a definition that establishes a module constant. Dylan also uses module
 constants to refer to classes, generic functions, and macros. The
 definition for a class, ``define class``, establishes a module constant
@@ -151,7 +153,7 @@ renaming to give nicknames or shorthand names for imported names.
 
 *Comparison with C:* Exported variables in Dylan are like external
 variables and functions in C. (By *external*, we do not mean the
-*extern* storage declaration, but rather the concept of an external
+``extern`` storage declaration, but rather the concept of an external
 variable — one that is available for linking to.)
 
 Unexported variables in Dylan are like *static* variables and functions
@@ -204,40 +206,42 @@ Simple example of libraries and modules
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To illustrate these concepts, we repeat the definition of the
-*library.dylan* file, first shown in ` <start.htm#62969>`_. Here, we
+``library.dylan`` file, first shown in ` <start.htm#62969>`_. Here, we
 have used a more verbose, but also more precise, format.
 
-The library file: *library.dylan*.
+The library file: ``library.dylan``.
 
-module: dylan-user
+.. code-block:: dylan
 
-define library hello
- use dylan, import: { dylan };
- use format-out, import: { format-out };
- end library hello;
+    module: dylan-user
 
-define module hello
- use dylan, import: all;
- use format-out, import: all;
- end module hello;
+    define library hello
+      use dylan, import: { dylan };
+      use format-out, import: { format-out };
+    end library hello;
 
-The first line of *library.dylan* states that the expressions and
+    define module hello
+      use dylan, import: all;
+      use format-out, import: all;
+    end module hello;
+
+The first line of ``library.dylan`` states that the expressions and
 definitions in this file are in the ``dylan-user`` module. In this
 predefined module, you define the modules and library that make up your
 component or program. Every library has a unique ``dylan-user`` module. In
-the file *library.dylan*, we define a library named *hello* and a
-module named *hello*.
+the file ``library.dylan``, we define a library named ``hello`` and a
+module named ``hello``.
 
-The module definition names the other modules whose names the *hello*
-module will use. In this case, the *hello* module uses the ``dylan`` and
+The module definition names the other modules whose names the ``hello``
+module will use. In this case, the ``hello`` module uses the ``dylan`` and
 ``format-out`` modules. Here, we have explicitly stated that we are
 importing all the names from the modules that we use — using the
-*import: all* clause is not strictly necessary, because it is the
+``import: all`` clause is not strictly necessary, because it is the
 default that is used if we do not specify what to import. By using
 another module, we import the names exported from that module, making
 them available in our namespace. For example, ``format-out`` is exported
-from the ``format-out`` module, so the *use format-out* clause enables our
-program to call the ``format-out`` function. The *use dylan* clause in the
+from the ``format-out`` module, so the ``use format-out`` clause enables our
+program to call the ``format-out`` function. The ``use dylan`` clause in the
 module definition makes available all the built-in Dylan language
 elements exported from the ``dylan`` module. When we define a module, it
 must *use* all the modules that export the definitions used by the
@@ -249,19 +253,19 @@ only the ``dylan`` and ``format-out`` modules from these other libraries.
 This clause is not strictly necessary, since the module definition tells
 the compiler which modules it uses; but it is good practice to document
 our intent. For example, the ``format-out`` module is in the ``format-out``
-library. Therefore, our *hello* library must use the ``format-out``
-library, and must import the ``format-out`` module for the *hello* module
+library. Therefore, our ``hello`` library must use the ``format-out``
+library, and must import the ``format-out`` module for the ``hello`` module
 to use the ``format-out`` module. Similarly, the ``dylan`` module is in the
-``dylan`` library, and therefore our *hello* library must use the ``dylan``
-library and import the ``dylan`` module in order for the *hello* module to
+``dylan`` library, and therefore our ``hello`` library must use the ``dylan``
+library and import the ``dylan`` module in order for the ``hello`` module to
 use the ``dylan`` module. When we define a library, it must *use* all the
 libraries that export the modules used by the modules in our library.
 
 The module definition also specifies which variables and constants are
 exported from the module for use by other modules. The library
 definition specifies which modules are exported from the library for use
-by other libraries. In our simple example, the *hello* module exports no
-variables or constants, and the *hello* library exports no modules.
+by other libraries. In our simple example, the ``hello`` module exports no
+variables or constants, and the ``hello`` library exports no modules.
 
 `Libraries (heavy boxes) and modules (light boxes) in “Hello,
 world”. <reuse.htm#81752>`_ illustrates the relationships between
@@ -271,7 +275,7 @@ and in the other figures in this chapter, we draw libraries as heavy
 bold boxes and modules as light boxes. We have tried to illustrate how
 libraries and modules build on one another through their “use”
 relationships. A library that uses another library is shown above the
-library that it uses, so we show the *hello* library above the
+library that it uses, so we show the ``hello`` library above the
 ``format-out`` and ``dylan`` libraries. An exported module is illustrated as
 being on top of (overlapping) the library that
 
@@ -284,7 +288,7 @@ exports it (we have also shaded them, to illustrate this overlap). And a
 module that uses another module is illustrated as being on top of
 (overlapping) the used module. Try to envision the modules as
 semitransparent overlays, layered up from the surface of the paper.
-Thus, the *hello* module overlays the ``format-out`` and ``dylan`` modules
+Thus, the ``hello`` module overlays the ``format-out`` and ``dylan`` modules
 that it uses.
 
 Note that we intentionally do not show all the modules in the

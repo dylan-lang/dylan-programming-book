@@ -118,7 +118,7 @@ instances, so we redefine it to be abstract:
 .. code-block:: dylan
 
     define abstract class <time> (<object>)
-    slot total-seconds :: <integer>, init-keyword: total-seconds:;
+      slot total-seconds :: <integer>, init-keyword: total-seconds:;
     end class <time>;
 
 If we tried to make an instance of ``<position>`` or ``<time>`` now, ``make``
@@ -176,9 +176,9 @@ We could define the ``say`` method as follows:
 .. code-block:: dylan
 
     define method say (position :: <absolute-position>) => ()
-      format-out("%d degrees %d minutes %d seconds %s latitude\\n",
+      format-out("%d degrees %d minutes %d seconds %s latitude\n",
                  decode-total-seconds(position.latitude));
-      format-out("%d degrees %d minutes %d seconds %s longitude\\n",
+      format-out("%d degrees %d minutes %d seconds %s longitude\n",
                  decode-total-seconds(position.longitude));
     end method say;
 
@@ -208,9 +208,9 @@ method on ``<absolute-position>``:
 
     define method say (position :: <absolute-position>) => ()
       say(position.latitude);
-      format-out(" latitude\\n");
+      format-out(" latitude\n");
       say(position.longitude);
-      format-out(" longitude\\n");
+      format-out(" longitude\n");
     end method say;
 
 *Modularity note:* Our modularity is improved, now that the
@@ -266,12 +266,12 @@ We define these new ``say`` methods:
 
     define method say (latitude :: <latitude>) => ()
       next-method();
-      format-out(" latitude\\n");
+      format-out(" latitude\n");
     end method say;
 
     define method say (longitude :: <longitude>) => ()
       next-method();
-      format-out(" longitude\\n");
+      format-out(" longitude\n");
     end method say;
 
 The calls to ``next-method`` in the methods on ``<latitude>`` and

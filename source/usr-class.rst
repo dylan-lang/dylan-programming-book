@@ -292,8 +292,8 @@ minutes, and seconds. We can represent the instances with a single slot,
 and can provide methods that let users create and see ``<time-of-day>``
 instances as being hours, minutes, and seconds.
 
-Method for *encode-total-seconds*
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Method for ``encode-total-seconds``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We can provide a method that converts from hours, minutes, and seconds
 to total seconds:
@@ -359,35 +359,36 @@ We examine the value of the ``total-seconds`` slot::
 The result reminds us that it would be useful to convert in the other
 direction as well — from total seconds to hours, minutes, and seconds.
 
-Method for *decode-total-seconds*
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Method for ``decode-total-seconds``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We define *decode-total-seconds* to convert in the other direction —
+We define ``decode-total-seconds`` to convert in the other direction —
 from total seconds to hours, minutes, and seconds:
 
-define method decode-total-seconds *// 1
-* (total-seconds :: <integer>) *// 2
-* => (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)*//
-3
-* let(total-minutes, seconds) = truncate/(total-seconds, 60); *// 4
-* let(hours, minutes) = truncate/(total-minutes, 60); *// 5
-* values(hours, minutes, seconds); *// 6
-* end method decode-total-seconds; *// 7*
+.. code-block:: dylan
+    :linenos:
 
-We can use *decode-total-seconds* to see the value of the
-*total-seconds* slot:
+    define method decode-total-seconds
+        (total-seconds :: <integer>)
+     => (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)
+      let(total-minutes, seconds) = truncate/(total-seconds, 60);
+      let(hours, minutes) = truncate/(total-minutes, 60);
+      values(hours, minutes, seconds);
+    end method decode-total-seconds;
 
-*?* decode-total-seconds(\*your-time-of-day\*.total-seconds);
- *8
- 30
- 59*
+We can use ``decode-total-seconds`` to see the value of the
+``total-seconds`` slot::
 
-The value declaration on line 3 specifies that *decode-total-seconds*
+    ? decode-total-seconds(*your-time-of-day*.total-seconds);
+     8
+     30
+     59
+
+The value declaration on line 3 specifies that ``decode-total-seconds``
 returns three separate values: the hours, minutes, and seconds. This
 method illustrates how to return multiple values, and how to use *let*
 to initialize multiple local variables. We describe these techniques in
-Sections `Multiple return values <usr-class.htm#67459>`_ and
-`Use of let to declare local variables <usr-class.htm#95572>`_.
+Sections `Multiple return values`_ and `Use of let to declare local variables`_.
 
 Multiple return values
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -398,27 +399,19 @@ uses the ``values`` function as the expression executed last in the body.
 The ``values`` function simply returns all its arguments as separate
 values. The ability to return multiple values allows a natural symmetry
 between ``encode-total-seconds`` and ``decode-total-seconds``, as shown in
-`Symmetry of encode-total-seconds and decode-total-seconds. <usr-class.htm#97902>`_.
+`symmetry-of-encode-decode`_.
 
-Symmetry of *encode-total-seconds* and *decode-total-seconds*.
+.. _symmetry-of-encode-decode:
 
-Method
+.. table:: Symmetry of ``encode-total-seconds`` and ``decode-total-seconds``.
 
-Parameter(s)
-
-Return value(s)
-
-#. *encode-total-seconds*
-
-#. *hours, minutes, seconds*
-
-#. *total-seconds*
-
-#. *decode-total-seconds*
-
-#. *total-seconds*
-
-#. *hours, minutes, seconds*
+    +--------------------------+-----------------------------+-----------------------------+
+    | Method                   | Parameter(s)                | Return value(s)             |
+    +==========================+=============================+=============================+
+    | ``encode-total-seconds`` | ``hours, minutes, seconds`` | ``total-seconds``           |
+    +--------------------------+-----------------------------+-----------------------------+
+    | ``decode-total-seconds`` | ``total-seconds``           | ``hours, minutes, seconds`` |
+    +--------------------------+-----------------------------+-----------------------------+
 
 Lines 4 and 5 of the ``decode-total-seconds`` method contain calls to
 ``truncate/``. The ``truncate/`` function is a built-in Dylan function. It
@@ -455,8 +448,8 @@ scoped within the smallest body that surrounds them, so you can use
 ``begin`` and ``end`` within a method to define a smaller body for local
 variables, although doing so is usually not necessary.
 
-Second method for *decode-total-seconds*
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Second method for ``decode-total-seconds``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The ``decode-total-seconds`` method is called as follows::
 
@@ -484,7 +477,7 @@ argument:
 `The decode-total-seconds generic function and its methods.`_ shows the
 two methods for the ``decode-total-seconds`` generic function.
 
-The *decode-total-seconds* generic function and its methods.
+The ``decode-total-seconds`` generic function and its methods.
 
 .. code-block:: dylan
 
@@ -511,8 +504,8 @@ methods. <usr-class.htm#47266>`_, we analyze what happens in this call::
 #. The argument is an instance of ``<time-of-day>``, so the method on
    ``<time-of-day>`` is called.
 #. The body of the method on ``<time-of-day>`` calls
-   *decode-total-seconds* on an instance of ``<integer>``, the value of
-   the *total-seconds* slot of the ``<time-of-day>`` instance. In this
+   ``decode-total-seconds`` on an instance of ``<integer>``, the value of
+   the ``total-seconds`` slot of the ``<time-of-day>`` instance. In this
    call, the argument is an integer, so the method on ``<integer>`` is
    called.
 #. The method on ``<integer>`` returns three values to its caller — the
@@ -521,11 +514,11 @@ methods. <usr-class.htm#47266>`_, we analyze what happens in this call::
 
 The purpose of the method on ``<time-of-day>`` is simply to allow a
 different kind of argument to be used. The method extracts the integer
-from the ``<time-of-day>`` instance, and calls *decode-total-seconds* with
+from the ``<time-of-day>`` instance, and calls ``decode-total-seconds`` with
 that integer.
 
-Method for *say-time-of-day*
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Method for ``say-time-of-day``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We can provide a way to ask an instance of ``<time-of-day>`` to describe
 the time in a conventional format, such as 8:30. For the application

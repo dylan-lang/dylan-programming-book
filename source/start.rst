@@ -154,7 +154,7 @@ We can define variables for storing values::
 In Dylan, these variables are called *module variables*. A module
 variable has a name and a value. For now, you can consider module
 variables to be like global variables in other languages. (See
-` <reuse.htm#64746>`_, for information about modules.) Module variables
+:ref:`reuse-modules`, for information about modules.) Module variables
 can have different values assigned to them during the execution of a
 program. When you define a module variable, you must *initialize* it;
 that is, you must provide an initial value for it. For example, the
@@ -231,7 +231,7 @@ true::
      #t
 
 Dylan offers an identity predicate, which we discuss in
-` <oo-1.htm#31376>`_.
+:ref:`oo-1-equality-predicates`.
 
 Variables that have type constraints
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -316,7 +316,7 @@ the execution of a Dylan program. Here is an example::
 Both module variables and module constants are accessible within a
 *module*.
 
-(See ` <reuse.htm#64746>`_, for information about modules.) Dylan also
+(See :ref:`reuse-modules`, for information about modules.) Dylan also
 offers variables that are accessible within a smaller area, called
 *local variables*. There is no concept of a local constant; all
 constants are module constants. Therefore, throughout the rest of this
@@ -341,7 +341,7 @@ A *body* is a region of program code that delimits the scope of all
 local variables declared inside the body. When you are defining
 functions, usually there is an implicit body available. For example,
 ``define method`` creates an implicit body. (For information about method
-definitions, see ` <oo-1.htm#79796>`_.) Other control structures, such
+definitions, see :ref:`oo-1-method-definitions`.) Other control structures, such
 as ``if``, create implicit bodies. Bodies can be nested. If there is no
 body handy, or if you want to create a body smaller than the implicit
 one, you can create a body by using ``begin`` to start it and ``end``
@@ -403,14 +403,14 @@ following formatting characters in this book:
 
 Here are examples::
 
-    *?* format-out
+    ? format-out
      ("Your number is %= and mine is %d\n", *your-number*,
       *my-number*);
-     *Your number is 12.01 and mine is 7.*
+     Your number is 12.01 and mine is 7.
 
-    *?* format-out("The %s meeting will be held at %d:%d%d.\n", "Staff", 2,
+    ? format-out("The %s meeting will be held at %d:%d%d.\n", "Staff", 2,
      3, 0);
-     *The Staff meeting will be held at 2:30.*
+     The Staff meeting will be held at 2:30.
 
 In Dylan, functions do not need to return any values. The ``format-out``
 function returns no values. Thus, it is called only for its side effect
@@ -428,8 +428,9 @@ of your Dylan implementation.
 *Usage note:* The Apple Technology Release does not currently provide
 the ``format-out`` function. For information about how to run these
 examples in the Apple Technology Release, see Harlequin’s or
-Addison-Wesley’s Web page for our book. See ` <environ.htm#62322>`_. in
-` <environ.htm#30041>`_.
+Addison-Wesley’s Web page for our book. See :doc:`environ`.
+
+.. _start-complete-program:
 
 A complete Dylan program
 ------------------------
@@ -443,7 +444,7 @@ The Dylan expression that prints that output is
 
 .. code-block:: dylan
 
-    format-out("Hello, world\\n");
+    format-out("Hello, world\n");
 
 A Dylan *library* defines a software component — a separately compilable
 unit that can be either a stand-alone program or a component of a larger
@@ -511,7 +512,7 @@ We start with this simple Dylan expression:
 
 .. code-block:: dylan
 
-    format-out("Hello, world\\n");
+    format-out("Hello, world\n");
 
 All Dylan expressions must be in a module. Therefore, we use a text
 editor to create a file that contains the expression within a module:
@@ -522,7 +523,7 @@ The program file: *hello.dylan*.
 
     module: hello
 
-    format-out("Hello, world\\n");
+    format-out("Hello, world\n");
 
 The *hello.dylan* file is the top-level file; you can think of it as the
 program itself. When you run this program, Dylan executes all the

@@ -6,6 +6,8 @@ methods for built-in generic functions — in this case, for the functions ``+``
 ``<``, and ``=``. Second, we define multimethods. We describe how method
 dispatch works for multimethods.
 
+.. _multi-methods-for-plus-gf:
+
 Methods for the ``+`` generic function
 --------------------------------------
 
@@ -61,28 +63,30 @@ two instances. On line 5, we make and return a new instance of
 ``<time-offset>``. We initialize the ``total-seconds`` slot to contain the
 sum calculated in line 4.
 
-To test the method, we need to create two instances of ``<time-offset>`` :
+To test the method, we need to create two instances of ``<time-offset>``:
 
-define variable \*minus-2-hours\* =
- make(<time-offset>, total-seconds: - encode-total-seconds (2, 0, 0));
+.. code-block:: dylan
 
-define variable \*plus-15-20-45\* =
- make(<time-offset>, total-seconds: encode-total-seconds (15, 20, 45));
+    define variable *minus-2-hours* =
+      make(<time-offset>, total-seconds: - encode-total-seconds (2, 0, 0));
 
-We can add the time offsets:
+    define variable *plus-15-20-45* =
+      make(<time-offset>, total-seconds: encode-total-seconds (15, 20, 45));
 
-*?* \*minus-2-hours\* + \*plus-15-20-45\*;
- *{instance <time-offset>}*
+We can add the time offsets::
+
+    ? *minus-2-hours* + *plus-15-20-45*;
+     {instance <time-offset>}
 
 The result is a new instance of ``<time-offset>``. We did not save the
 value returned. (Many environments offer a way to access values returned
 by the listener.) We can add the time offsets again, and view the
-``total-seconds`` slot of the result:
+``total-seconds`` slot of the result::
 
-*?* decode-total-seconds(\*minus-2-hours\* + \*plus-15-20-45\*);
- *13
- 20
- 45*
+    ? decode-total-seconds(*minus-2-hours* + *plus-15-20-45*);
+     13
+     20
+     45
 
 Methods for adding a time of day to a time offset
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

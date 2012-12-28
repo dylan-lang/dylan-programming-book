@@ -140,7 +140,7 @@ protocol help us to generate and simulate the transitions of the
 aircraft from container to container.
 
 We summarize some of the operations in our design here; we summarize the
-vehicle-storage protocol in `The vehicle-container protocol <design.htm#18846>`_.
+vehicle-storage protocol in `The vehicle-container protocol`_.
 
 process-aircraft *airport time*
 '''''''''''''''''''''''''''''''

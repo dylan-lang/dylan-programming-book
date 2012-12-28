@@ -4,6 +4,8 @@ Nonclass Types
 Every class is a type, but not every type is a class. In this chapter,
 we describe how to create nonclass types, and how to make use of them.
 
+.. _classes-functions-create-nonclass-types:
+
 Functions that create nonclass types
 ------------------------------------
 
