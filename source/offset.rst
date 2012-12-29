@@ -302,11 +302,10 @@ Relationships of the time classes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 It is helpful to look at the relationships among the time classes. We
-show them in `Inheritance relationships of the time
-classes. <offset.htm#79793>`_.
+show them in :ref:`inheritance-of-time-classes`.
 
-Referring to `Inheritance relationships of the time
-classes. <offset.htm#79793>`_, we introduce terminology by example:
+Referring to :ref:`inheritance-of-time-classes`, we introduce terminology
+by example:
 
 - The ``<time-of-day>`` class is a *direct subclass* of the ``<time>``
   class.
@@ -317,10 +316,12 @@ classes. <offset.htm#79793>`_, we introduce terminology by example:
 - When you make an instance of the ``<time-of-day>`` class, the result is
   a *direct instance* of that class.
 
-Inheritance relationships of the time classes.
+.. _inheritance-of-time-classes:
 
-.. figure:: offset-3.gif
+.. figure:: images/figure-5-1.png
    :align: center
+
+   Inheritance relationships of the time classes.
 
 - A direct instance of ``<time-of-day>`` is an *indirect instance* of
   ``<time>`` and ``<object>``.
@@ -339,21 +340,54 @@ Inheritance relationships of the time classes.
 Methods for classes that use inheritance
 ----------------------------------------
 
-`Existing methods for decode-total-seconds. <offset.htm#49259>`_
+`Existing methods for decode-total-seconds <existing-decode-total-seconds>`_
 shows the methods that we now have defined for the
 ``decode-total-seconds`` generic function; `Desired methods for
-decode-total-seconds. <offset.htm#91002>`_ shows the methods that we
+decode-total-seconds <desired-decode-total-seconds>`_ shows the methods that we
 want to have.
 
-Existing methods for ``decode-total-seconds``.
+.. _existing-decode-total-seconds:
 
-.. figure:: offset-4.gif
-   :align: center
+Existing methods for ``decode-total-seconds``:
 
-Desired methods for ``decode-total-seconds``.
+.. code-block:: dylan
 
-.. figure:: offset-5.gif
-   :align: center
+
+    // Method on <integer>
+    define method decode-total-seconds
+        (total-seconds :: <integer>)
+     => (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)
+      let(total-minutes, seconds) = truncate/(total-minutes, 60);
+      values(hours, minutes, seconds);
+    end method decode-total-seconds;
+
+    // Method on <time-of-day>
+    define method decode-total-seconds
+        (time :: <time-of-day>)
+     => (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)
+      decode-total-seconds(time.total-seconds);
+    end method decode-total-seconds;
+
+.. _desired-total-seconds:
+
+Desired methods for ``decode-total-seconds``:
+
+.. code-block:: dylan
+
+    // Method on <integer>
+    define method decode-total-seconds
+        (total-seconds :: <integer>)
+     => (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)
+      let(total-minutes, seconds) = truncate/(total-minutes, 60);
+      values(hours, minutes, seconds);
+    end method decode-total-seconds;
+
+    // Method on <time>
+    define method decode-total-seconds
+        (time :: <time>)
+     => (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)
+      decode-total-seconds(abs(time.total-seconds));
+    end method decode-total-seconds;
 
 To take advantage of the redefined classes, we want to remove the method
 on ``<time-of-day>``, and to add a method on ``<time>``. The method on
@@ -492,7 +526,7 @@ signaled. There is no need to continue to step 2.
 
 In other cases, there can be several applicable methods. Consider the
 generic function ``say-greeting``, shown in `The say-greeting generic
-function and its methods. <offset.htm#99019>`_.
+function and its methods <say-greeting-gf-methods>`_.
 :ref:`applicable-methods-for-say-greeting` shows that, for certain
 arguments, one method is applicable, but that, for an integer argument,
 two methods are applicable.
@@ -503,10 +537,19 @@ on ``<object>`` is applicable, because ``7`` is an instance of ``<object>``
 applicable, because ``7`` is an instance of ``<integer>`` (the method’s
 parameter specializer).
 
-The ``say-greeting`` generic function and its methods.
+.. _say-greeting-gf-methods:
 
-.. figure:: offset-6.gif
-   :align: center
+The ``say-greeting`` generic function and its methods:
+
+.. code-block:: dylan
+
+    define method say-greeting (greeting :: <object>)
+      format-out("%s\n", greeting);
+    end;
+
+    define method say-greeting (greeting :: <integer>)
+      format-out("Your lucky number is %s.\n", greeting);
+    end;
 
 .. _applicable-methods-for-say-greeting:
 
@@ -561,7 +604,7 @@ class’s superclasses.
    compiler can usually compute the result of the dispatch rules at
    compile time, so the executed code is just as efficient as a normal
    function call in a language without generic functions and methods.
-   See ` <perform.htm#66157>`_, ` <perform.htm#66157>`_.
+   See :doc:`perform`.
 
 Definition of a generic function
 --------------------------------
@@ -676,13 +719,26 @@ replace ``say-time-offset``, which we remove.
                  minutes);
     end method say-time-offset;
 
-`Methods for the say generic function. <offset.htm#23128>`_ shows
-that the generic function ``say`` has two methods defined for it.
+.. _say-generic-function-methods:
 
-Methods for the ``say`` generic function.
+The generic function ``say`` has two methods defined for it:
 
-.. figure:: offset-7.gif
-   :align: center
+.. code-block:: dylan
+
+    define method say (time :: <time-of-day>) => ()
+      let (hours, minutes) = decode-total-seconds(time);
+      format-out
+        ("%d:%s%d", hours, if (minutes < 10) "0" else "" end, minutes);
+    end say;
+
+    define method say (time :: <time-offset>) => ()
+      let (hours, minutes) = decode-total-seconds(time);
+      format-out("%s %d:%s%d",
+                 if (past?(time)) "minus" else "plus" end,
+                 hours,
+                 if (minutes < 10) "0" else "" end,
+                 minutes);
+    end say;
 
 We can call ``say``::
 
@@ -706,7 +762,8 @@ Use of ``next-method`` to call another method
 ---------------------------------------------
 
 Notice that there is duplication of code in the two methods for ``say``,
-as shown in `Methods for the say generic function.`_ Both methods call
+as shown in `Methods for the say generic function
+<say-generic-function-methods>`_ Both methods call
 ``decode-total-seconds`` to get the hours and minutes, and call
 ``format-out`` to print the hours and minutes. Both methods
 print a leading zero for the minutes, if appropriate. These two tasks

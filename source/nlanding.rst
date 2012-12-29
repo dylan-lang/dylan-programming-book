@@ -3,10 +3,9 @@ The Airport Application
 
 In this chapter, we present the entire first draft of our airport
 example application. The code in this chapter is complete, and, given
-the libraries defined in ` <time-mod.htm#11385>`_, and
-` <heap.htm#15470>`_, the code should run in a standard Dylan
-implementation. This example pulls together many of the techniques
-presented so far.
+the libraries defined in :doc:`time-mod`, and :doc:`heap`, the code
+should run in a standard Dylan implementation. This example pulls
+together many of the techniques presented so far.
 
 The ``definitions.dylan`` file
 ------------------------------
@@ -902,9 +901,10 @@ The ``airport-test.dylan`` file
 
 The ``airport-test.dylan`` file contains test data, and the code that
 constructs a model of the simple airport described in
-` <design.htm#37313>`_. The final method is a top-level testing function
-that builds the airport model and executes the main aircraft scheduling
-function. After defining the test, we show the results of running it.
+:ref:`design-goals-airport-application`. The final method is a top-level
+testing function that builds the airport model and executes the main
+aircraft scheduling function. After defining the test, we show the results
+of running it.
 
 The ``airport-test.dylan`` file.
 
@@ -1067,8 +1067,8 @@ the libraries in the airport example.
 
 Note that this library and module, and the other libraries and modules
 that follow, do not separate the library implementation module from the
-library interface module, as discussed in ` <reuse.htm#51059>`_. Dylan
-allows several different approaches to library and module architecture.
+library interface module, as discussed in :ref`reuse-roles-of-modules`.
+Dylan allows several different approaches to library and module architecture.
 Here, we present an alternative organization.
 
 The ``definitions-library.dylan`` file.

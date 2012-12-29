@@ -410,6 +410,8 @@ Thus, five items (``<time>``, ``<time-of-day>``, ``<time-offset>``, ``say``,
 and ``encode-total-seconds``) define the external protocol of the time
 library.
 
+.. _reuse-roles-of-modules:
+
 Roles of modules
 ~~~~~~~~~~~~~~~~
 

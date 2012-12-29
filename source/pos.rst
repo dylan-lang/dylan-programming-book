@@ -198,6 +198,8 @@ stored in the latitude and longitude slots. Instead, we can define
 a ``say`` method on ``<directed-angle>``, and can call it in the
 method on ``<absolute-position>``:
 
+.. _say-directed-angle:
+
 .. code-block:: dylan
 
     define method say (angle :: <directed-angle>) => ()
@@ -249,16 +251,17 @@ We redefine ``<absolute-position>`` to use ``<latitude>`` and ``<longitude>``:
       slot longitude :: <longitude>, init-keyword: longitude:;
     end class <absolute-position>;
 
-Inheritance relationships among the position and angle classes. Abstract
-classes are shown in *oblique* *typewriter* *font*.
+.. _position-angle-relationships:
 
-.. figure:: pos-3.gif
+.. figure:: images/figure-7-1.png
    :align: center
 
-`Inheritance relationships among the position and angle classes.
-Abstract classes are shown in oblique typewriter font. <pos.htm#85432>`_
-shows the inheritance relationships among the position and angle
-classes.
+   Inheritance relationships among the position and angle classes. Abstract
+   classes are shown in *oblique* *typewriter* *font*.
+
+:ref:`Inheritance relationships among the position and angle classes
+<position-angle-relationships>` shows the inheritance relationships
+among the position and angle classes.
 
 We define these new ``say`` methods:
 
@@ -275,18 +278,8 @@ We define these new ``say`` methods:
     end method say;
 
 The calls to ``next-method`` in the methods on ``<latitude>`` and
-``<longitude>`` will call the method on ``<directed-angle>``, shown on page
-`define abstract class <directed-angle> (<object>) slot
-total-seconds :: <integer>, init-keyword: total-seconds:; slot direction
-:: <string>, init-keyword: direction:; end class
-<directed-angle>; <pos.htm#23811>`_`define method say (angle ::
-<directed-angle>) => () let(degrees, minutes, seconds) =
-decode-total-seconds(angle); format-out("%d degrees %d minutes %d
-seconds %s", degrees, minutes, seconds, angle.direction); end method
-say; <pos.htm#33994>`_`define method say (angle :: <directed-angle>)
-=> () let(degrees, minutes, seconds) = decode-total-seconds(angle);
-format-out("%d degrees %d minutes %d seconds %s", degrees, minutes,
-seconds, angle.direction); end method say; <pos.htm#33994>`_.
+``<longitude>`` will call the method on ``<directed-angle>``, shown
+:ref:`previously <say-directed-angle>`.
 
 We redefine the ``say`` method on ``<absolute-position>``:
 
@@ -467,30 +460,32 @@ the new ``<sixty-unit>`` class:
 To see the complete library, and the test code that creates position
 instances and calls ``say`` on them, see ` <time-code.htm#30483>`_.
 
-`Is-a relationships (inheritance) among classes, shown by arrows.
-Abstract classes are shown in oblique typewriter font. <pos.htm#86548>`_
+:ref:`Is-a relationships (inheritance) among classes <is-a-relationships>`
 shows the inheritance relationships of the classes. When one class
 inherits from another, the relationship is sometimes called the *is-a
 relationship*. For example, a direct instance of ``<time-offset>`` *is a*
 ``<time>`` as well, and it *is a* ``<sixty-unit>``.
 
-Is-a relationships (inheritance) among classes, shown by arrows.
-Abstract classes are shown in *oblique* *typewriter* *font*.
+.. _is-a-relationships:
 
-.. figure:: pos-4.gif
+.. figure:: images/figure-7-2.png
    :align: center
+
+   Is-a relationships (inheritance) among classes, shown by arrows.
+   Abstract classes are shown in *oblique* *typewriter* *font*.
 
 The classes have another kind of relationship as well — one class can
 use another class as the type of a slot, in what is called the *has-a
-relationship*. `Has-a relationships among classes, shown by dashed
-arrows. <pos.htm#89080>`_ shows both the inheritance relationships, and
-the relationships of one class using another class as the type of a
-slot.
+relationship*. :ref:`Has-a relationships among classes <has-a-relationships>`
+shows both the inheritance relationships, and the relationships of one
+class using another class as the type of a slot.
 
-Has-a relationships among classes, shown by dashed arrows.
+.. _has-a-relationships:
 
-.. figure:: pos-5.gif
+.. figure:: images/figure-7-2.png
    :align: center
+
+   Has-a relationships among classes, shown by dashed arrows.
 
 Abstract, concrete, and instantiable classes
 --------------------------------------------
@@ -546,9 +541,8 @@ The built-in Dylan classes follow a design principle in which concrete
 classes do not inherit from other concrete classes, but rather inherit
 from abstract classes only. In other words, the branches of the tree are
 abstract classes, and the leaves of the tree are concrete classes. We
-follow that design principle in this book as well. `Is-a
-relationships (inheritance) among classes, shown by arrows. Abstract
-classes are shown in oblique typewriter font. <pos.htm#86548>`_ shows
+follow that design principle in this book as well. :ref:`Is-a
+relationships (inheritance) among classes <is-a-relationships>` shows
 our classes graphically; the branches of the tree (abstract classes)
 appear in *oblique* *typewriter* *font*, and the leaves (concrete
 classes) appear in *bold typewriter font*.

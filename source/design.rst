@@ -4,6 +4,8 @@ Design of the Airport Application
 In this chapter, we explore the design of an airport application that
 uses the ``time``, ``angle``, and ``say`` libraries.
 
+.. _design-goals-airport-application:
+
 Goals of the airport application
 --------------------------------
 

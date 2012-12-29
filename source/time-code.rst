@@ -24,9 +24,8 @@ code — the test code would be in a separate library. However, when you
 are starting to implement your program or library, it is convenient to
 put all the code in one library, as we do here.
 
-We shall continue to develop the time and position library in Part
-` <part2.htm#19071>`_. The complete version is given in
-` <time-mod.htm#11385>`_.
+We shall continue to develop the time and position library in :doc:`part2`.
+The complete version is given in :doc:`time-mod`.
 
 The LID file
 ------------
