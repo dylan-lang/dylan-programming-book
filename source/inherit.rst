@@ -188,9 +188,9 @@ subclass of both ``<flying-vehicle>`` and ``<ground-vehicle>``.
       each-subclass slot standard-size :: <size>;
     end class <vehicle>;
 
-      define abstract class <ground-vehicle> (<vehicle>)
+    define abstract class <ground-vehicle> (<vehicle>)
       // The normal operating speed of this class of vehicle
-    each-subclass slot ground-cruising-speed :: <positive-integer>;
+      each-subclass slot ground-cruising-speed :: <positive-integer>;
     end class <ground-vehicle>;
 
     define abstract class <flying-vehicle> (<vehicle>)

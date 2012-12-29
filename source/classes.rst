@@ -53,11 +53,11 @@ the type of a return value:
 .. code-block:: dylan
 
     define method encode-total-seconds
-      (max-unit :: <nonnegative-integer>,
-       minutes :: <nonnegative-integer>,
-       seconds :: <nonnegative-integer>)
+        (max-unit :: <nonnegative-integer>,
+         minutes :: <nonnegative-integer>,
+         seconds :: <nonnegative-integer>)
      => (total-seconds :: <nonnegative-integer>)
-      ((max-unit \* 60) + minutes) \* 60 + seconds;
+      ((max-unit * 60) + minutes) * 60 + seconds;
     end method encode-total-seconds;
 
 To see how we use ``<nonnegative-integer>`` in the time library, see

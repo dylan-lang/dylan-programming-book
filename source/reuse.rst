@@ -346,7 +346,7 @@ Every module is in a library; therefore,
   visible to the module.
 
 Dylan implementations can associate a module with a library in different
-ways. The*library-interchange definition* (*LID)* format lists the
+ways. The *library-interchange definition* (*LID)* format lists the
 interchange files that make up a library. The module definitions in
 those interchange files are thus in that library.
 
@@ -558,7 +558,7 @@ Notice the distinction between the way that we handled the external
 ``time`` interface, and the shortcut we took with ``sixty-unit``. Although
 the ``sixty-unit`` module will *define* ``encode-total-seconds``, which is
 part of the ``time`` interface, it does not *export*
-``encode-total-seconds`` ; rather, it *uses* the ``time`` interface module,
+``encode-total-seconds``; rather, it *uses* the ``time`` interface module,
 which *created* ``encode-total-seconds`` (without defining that function).
 Because ``sixty-unit`` uses ``time``, the name ``encode-total-seconds`` is
 the same object in both modules. Effectively, ``encode-total-seconds`` is
@@ -588,17 +588,17 @@ that each created name has a definition.
 
 The ``sixty-unit`` module exports the class ``<sixty-unit>``, because
 ``time-implementation`` will subclass that class. The ``sixty-unit`` module
-also exports the generic functions *total-seconds*, and
-``decode-total-seconds``. The export of *total-seconds* might seem
+also exports the generic functions ``total-seconds``, and
+``decode-total-seconds``. The export of ``total-seconds`` might seem
 surprising at first, because, in many object-oriented languages, access
 to a class includes access to all the slots of a class. In Dylan, slots
 are simply methods on generic functions and names in the module
 namespace; hence, the functions must be exported if slot access from
-outside the module is to be allowed. Note that exporting *total-seconds*
+outside the module is to be allowed. Note that exporting ``total-seconds``
 allows other modules only to get the current value of the
-*total-seconds* slot. To allow other modules also to set the slot value,
-we would have to export *total-seconds-setter*. It is not necessary to
-export the init keyword *total-seconds:*, which allows the initial
+``total-seconds`` slot. To allow other modules also to set the slot value,
+we would have to export ``total-seconds-setter``. It is not necessary to
+export the init keyword ``total-seconds:``, which allows the initial
 value of the slot to be set when objects are created. Keywords, or
 symbols, all exist in a single global namespace that is separate from
 module variables.
@@ -700,7 +700,7 @@ hypertextlike mechanism for exploring them. Dylan does, however, specify
 a portable interchange format, based on files, for exchanging Dylan
 source records among Dylan implementations.
 
-A file in*interchange format* has a header and a body. The header
+A file in *interchange format* has a header and a body. The header
 consists of consecutive lines of keywords and values. The body consists
 of Dylan source records, and is separated from the header by at least
 one blank line. The only required keyword is one to specify to what
@@ -782,7 +782,7 @@ implementation-dependent format.
 The ``sixty-unit`` implementation file
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The ``sixty-unit`` implementation file: *sixty-unit.dylan*.
+The ``sixty-unit`` implementation file: ``sixty-unit.dylan``.
 
 .. code-block:: dylan
 
@@ -796,7 +796,7 @@ The ``sixty-unit`` implementation file: *sixty-unit.dylan*.
     define method encode-total-seconds
         (max-unit :: <integer>, minutes :: <integer>, seconds :: <integer>)
      => (total-seconds :: <integer>)
-      ((max-unit \* 60) + minutes) \* 60 + seconds;
+      ((max-unit * 60) + minutes) * 60 + seconds;
     end method encode-total-seconds;
 
     define method decode-total-seconds
@@ -807,7 +807,7 @@ The ``sixty-unit`` implementation file: *sixty-unit.dylan*.
 
     define method decode-total-seconds
         (total-seconds :: <integer>)
-     => (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)**
+     => (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)
       let(total-minutes, seconds) = truncate/(abs(total-seconds), 60);
       let(hours, minutes) = truncate/(total-minutes, 60);
       values(hours, minutes, seconds);
@@ -825,7 +825,7 @@ the ``time`` module, because ``sixty-unit`` uses that module.
 The ``time`` implementation file
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The ``time`` implementation file: *time.dylan*.
+The ``time`` implementation file: ``time.dylan``.
 
 .. code-block:: dylan
 
@@ -879,10 +879,10 @@ The ``time`` implementation file: *time.dylan*.
 
     define method \+
         (offset1 :: <time-offset>, offset2 :: <time-offset>)
-     => (sum :: <time-offset>) *
+     => (sum :: <time-offset>)
       let sum = offset1.total-seconds + offset2.total-seconds;
       make(<time-offset>, total-seconds: sum);
-    end method \+; **
+    end method \+;
 
     define method \+
         (offset :: <time-offset>, time-of-day :: <time-of-day>)
@@ -933,7 +933,7 @@ accept a LID file that enumerates the files of a library and the order
 in which those files will be initialized, if there are any top-level
 forms. The LID file for our ``time`` library would be as follows.
 
-The LID file: *time.lid*.
+The LID file: ``time.lid``.
 
 .. code-block:: dylan
 
@@ -1098,7 +1098,7 @@ The ``sixty-unit`` implementation file: ``sixty-unit.dylan``.
 
     define method decode-total-seconds
         (total-seconds :: <integer>)
-     => (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)**
+     => (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)
       let(total-minutes, seconds) = truncate/(abs(total-seconds), 60);
       let(hours, minutes) = truncate/(total-minutes, 60);
       values(hours, minutes, seconds);
@@ -1265,10 +1265,10 @@ To complete our restructuring, we must reorganize the ``time`` library and
 module files to use the ``say`` protocol, so that the ``say`` protocol is
 shared with the ``angle`` library that we intend to build.
 
-The updated *time-library* file
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The updated ``time-library`` file
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The *time-library* file: *time-library.dylan*.
+The ``time-library`` file: ``time-library.dylan``.
 
 .. code-block:: dylan
 

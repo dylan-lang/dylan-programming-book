@@ -29,9 +29,9 @@ both define a ``total-seconds`` slot. Why do we need to have two classes
 that are so similar?
 
 - A ``<time-of-day>`` is conceptually different from a ``<time-offset>``.
-  If the ``total-seconds`` slot of a ``<time-of-day>`` is ``180`` , that
+  If the ``total-seconds`` slot of a ``<time-of-day>`` is ``180``, that
   means the time of day at 0:03 (that is, 3 minutes past midnight). If
-  the ``total-seconds`` slot of a ``<time-offset>`` is ``180`` , that means 3
+  the ``total-seconds`` slot of a ``<time-offset>`` is ``180``, that means 3
   minutes in the future. If you ask what time it is, the answer is a
   ``<time-of-day>``. If you ask how long it takes to wash the dog, the
   answer is a ``<time-offset>``.
@@ -559,7 +559,6 @@ The ``say-greeting`` generic function and its methods:
    | Argument           | Applicable method(s)       |
    +====================+============================+
    | ``7``              | #. method on ``<object>``  |
-   +--------------------+----------------------------+
    |                    | #. method on ``<integer>`` |
    +--------------------+----------------------------+
    | ``$pi``            | method on ``<object>``     |
@@ -858,7 +857,7 @@ clearer to separate the underlying implementation (the definitions of
 classes, methods, and generic functions) from the test (where we create
 instances and call ``say`` on them).
 
-The LID file: *time.lid*.
+The LID file: ``time.lid``.
 
 .. code-block:: dylan
 
@@ -870,7 +869,7 @@ The LID file: *time.lid*.
 
 The library file defines the ``time`` library and the ``time`` module.
 
-The library file: *library.dylan*.
+The library file: ``library.dylan``.
 
 .. code-block:: dylan
 
@@ -889,7 +888,7 @@ The library file: *library.dylan*.
 The library implementation file defines the classes, methods, and
 generic functions.
 
-The implementation file: *library-implementation.dylan*.
+The implementation file: ``library-implementation.dylan``.
 
 .. code-block:: dylan
 
@@ -930,7 +929,7 @@ The implementation file: *library-implementation.dylan*.
 
     define method decode-total-seconds
         (total-seconds :: <integer>)
-     => (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)**
+     => (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)
       let(total-minutes, seconds) = truncate/(total-seconds, 60);
       let(hours, minutes) = truncate/(total-minutes, 60);
       values(hours, minutes, seconds);
@@ -956,7 +955,7 @@ The test file creates instances and calls ``say`` on the instances. The
 test file can access variables defined in the implementation file,
 because both files are in the ``time`` module.
 
-The test file: *test.dylan*.
+The test file: ``test.dylan``.
 
 .. code-block:: dylan
 
@@ -982,7 +981,7 @@ The test file: *test.dylan*.
 
     say(*your-time-of-day*);
 
-When we run the *test.dylan* file, Dylan creates two instances of
+When we run the ``test.dylan`` file, Dylan creates two instances of
 ``<time-offset>`` and two instances of ``<time-of-day>``. It calls ``say`` on
 all four instances. The output of the test is
 

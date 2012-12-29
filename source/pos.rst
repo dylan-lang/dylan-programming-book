@@ -412,7 +412,7 @@ to the unit that is hours for time, and degrees for positions.
     define method encode-total-seconds
         (max-unit :: <integer>, minutes :: <integer>, seconds :: <integer>)
      => (total-seconds :: <integer>)
-      ((max-unit \* 60) + minutes) \* 60 + seconds;
+      ((max-unit * 60) + minutes) * 60 + seconds;
     end method encode-total-seconds;
 
 We redefine the time and angle classes and methods to take advantage of

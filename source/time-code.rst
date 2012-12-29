@@ -4,7 +4,7 @@ A Simple Library
 In this chapter, we create a complete library that represents time and
 position. The ``timespace`` library provides the ``say`` generic function
 for all concrete classes, the mathematical function ``+`` on certain kinds
-of time, and the comparison functions ``<`` and ``=`` , which enable users
+of time, and the comparison functions ``<`` and ``=``, which enable users
 to call all other numerical comparisons, ``>``, ``>=``, ``<=``, and ``~=``.
 Our library consists of four files:
 
@@ -30,7 +30,7 @@ The complete version is given in :doc:`time-mod`.
 The LID file
 ------------
 
-The LID file: *timespace.lid*.
+The LID file: ``timespace.lid``.
 
 .. code-block:: dylan
 
@@ -42,7 +42,7 @@ The LID file: *timespace.lid*.
 The library file
 ----------------
 
-The library file: *library.dylan*.
+The library file: ``library.dylan``.
 
 .. code-block:: dylan
 
@@ -61,7 +61,7 @@ The library file: *library.dylan*.
 The implementation file
 -----------------------
 
-The implementation file: *library-implementation.dylan*.
+The implementation file: ``library-implementation.dylan``.
 
 .. code-block:: dylan
 
@@ -248,7 +248,7 @@ The implementation file: *library-implementation.dylan*.
 The test file
 -------------
 
-The test file: *test.dylan*.
+The test file: ``test.dylan``.
 
 .. code-block:: dylan
 

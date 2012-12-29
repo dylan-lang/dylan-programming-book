@@ -225,7 +225,7 @@ problem has occurred:
 .. code-block:: dylan
 
     define method \+ (offset :: <time-offset>, time-of-day :: <time-of-day>)
-    => (sum :: <time-of-day>)
+     => (sum :: <time-of-day>)
       let sum
         = make(<time-of-day>,
                total-seconds:
@@ -276,7 +276,7 @@ Simple condition handling
 
 A *handler* can potentially resolve an exceptional situation, although a
 handler can decline to resolve a particular exception. If an application
-provides no handlers, then the generic function *default-handler* is
+provides no handlers, then the generic function ``default-handler`` is
 called on the condition. There is a method on ``<condition>`` that just
 returns false, and there is a method on ``<serious-condition>`` (a
 superclass of ``<error>``) that causes some kind of

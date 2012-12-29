@@ -42,7 +42,7 @@ three major platforms: Windows, UNIX, and the Macintosh. Harlequin will
 provide a native Dylan development environment and technical support.
 
 Harlequin’s Dylan Web site contains a great deal of useful information
-about Dylan, including the FAQ, *The Dylan Reference Manual* , and
+about Dylan, including the FAQ, *The Dylan Reference Manual*, and
 pointers to public-domain implementations of Dylan and to the *comp.lang.dylan*
 newsgroup. The address of Harlequin’s Dylan Web page is
 
@@ -83,7 +83,7 @@ CB2 5RG
 Carnegie Mellon University
 --------------------------
 
-Carnegie Mellon provides a public-domain implementation called *Mindy* ,
+Carnegie Mellon provides a public-domain implementation called *Mindy*,
 which stands for “Mindy Is Not Dylan Yet.” Mindy is an experimental
 byte-compiler and interpreter written in C. Mindy implementations are
 available for UNIX, WindowsNT, OS/2, and the Macintosh (both 68000 and
@@ -91,7 +91,7 @@ PowerPC).
 
 Carnegie Mellon’s Gwydion and Dylan Web site contains a great deal of
 useful information about Dylan, including the FAQ, *The Dylan Reference
-Manual* , the *comp.lang.dylan* newsgroup, and releases of Mindy.
+Manual*, the *comp.lang.dylan* newsgroup, and releases of Mindy.
 Carnegie Mellon’s Web site about Gwydion and Dylan is located at
 
 http://legend.gwydion.cs.cmu.edu/gwydion/
@@ -122,7 +122,7 @@ environment. The software is unfinished, and will not be supported or
 updated by Apple.
 
 Apple’s Dylan Web page contains much useful information about Dylan,
-including the FAQ, *The Dylan Reference Manual* , mail archives,
+including the FAQ, *The Dylan Reference Manual*, mail archives,
 newsgroup archives, articles about Dylan, and pointers to public-domain
 implementations of Dylan:
 

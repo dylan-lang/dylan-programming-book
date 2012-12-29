@@ -169,7 +169,7 @@ to, but not exactly the same as, the definitions on which we settled in
     end class <sixty-unit>;
 
     define method decode-total-seconds
-      (sixty-unit :: <sixty-unit>)
+        (sixty-unit :: <sixty-unit>)
      => (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)
       let total-seconds = abs(sixty-unit.total-seconds);
       let (total-minutes, seconds) = truncate/(total-seconds, 60);
@@ -177,19 +177,19 @@ to, but not exactly the same as, the definitions on which we settled in
       values (max-unit, minutes, seconds);
     end method decode-total-seconds;
 
-Because we made the choice to store *total-seconds* as an integer, and
+Because we made the choice to store ``total-seconds`` as an integer, and
 because *60* is an integer constant, the compiler can infer that the
 *truncate/* calls are for an integer divided by integer. There is no
 need to consider whether to use floating-point or integer division.
 
 If we were more concerned with testing out ideas, we might have left
-unspecified the type of the *total-seconds* slot (implicitly, its type
+unspecified the type of the ``total-seconds`` slot (implicitly, its type
 would then be ``<object>``), or, if we wanted to keep the option of
 having times more accurate than just seconds, we might have specified
 that its type was ``<real>``, allowing for the possibility of using
 floating-point numbers, which can express fractional seconds.
 
-If we left the type of the *total-seconds* slot unspecified, the
+If we left the type of the ``total-seconds`` slot unspecified, the
 compiler would need to check the arguments to ``truncate/``, on the off
 chance that an argument was not numeric at all. In some compilers, you
 would be able to get a compile-time safety warning stating that a
@@ -230,11 +230,11 @@ compilers, we would be able to get a compile-time performance warning
 stating that this dispatch could be omitted if the compiler knew that
 ``total-seconds`` was of a more restricted type.
 
-Note that the type of the return value of *decode-total-seconds* can be
-inferred: *max-unit* and *minutes* must be ``<integer>`` (inferred from
-the definition of *truncate/*), and *seconds* must have the same type
-as *total-seconds* (``<integer>``, in our example); thus, the compiler does not have to
-insert any type checks on the return values of *decode-total-seconds*.
+Note that the type of the return value of ``decode-total-seconds`` can be
+inferred: ``max-unit`` and ``minutes`` must be ``<integer>`` (inferred from
+the definition of ``truncate/``), and ``seconds`` must have the same type
+as ``total-seconds`` (``<integer>``, in our example); thus, the compiler does not have to
+insert any type checks on the return values of ``decode-total-seconds``.
 Dylan enforces declared return types in the same way as it enforces
 parameter types, by eliminating the check where type inferencing can
 show it is not needed, and using the enforced types to make further
@@ -279,10 +279,10 @@ that you expect to store objects of a particular type in the collection,
 and to specify how many elements will be in the collection.
 
 As an example, in ` <nlanding.htm#77416>`_, page
-` <nlanding.htm#86919>`_, the *generate-gates* method returns a
+` <nlanding.htm#86919>`_, the ``generate-gates`` method returns a
 ``<vector>``. Without further information, the compiler must assume that
 that vector might contain objects of any types. As a result, the
-following code in the *build-simple-airport* method from
+following code in the ``build-simple-airport`` method from
 ` <nlanding.htm#48299>`_, page ` <nlanding.htm#32804>`_, will be
 inefficient:
 
@@ -304,7 +304,7 @@ must generate extra code to determine whether each ``gate`` has a
     define constant <gate-vector> = limited(<vector>, of: <gate>);
 
     define method generate-gates
-      (gates-per-terminal :: <vector>, default-gate-capacity :: <size>)
+        (gates-per-terminal :: <vector>, default-gate-capacity :: <size>)
      => (gates :: <gate-vector>)
       let result = make(<gate-vector>, size: reduce1(\+,
                                                      gates-per-terminal));
@@ -497,12 +497,12 @@ final operation in a method is a call to another function (called a
 function, rather than using a call-and-return sequence. Thus, the return
 from the called function returns to its caller’s caller.
 
-As an example, consider this *decode-total-seconds* method:
+As an example, consider this ``decode-total-seconds`` method:
 
 .. code-block:: dylan
 
     define method decode-total-seconds
-      (sixty-unit :: <sixty-unit>)
+        (sixty-unit :: <sixty-unit>)
      => (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)
       decode-total-seconds(sixty-unit.total-seconds);
     end method decode-total-seconds;
@@ -533,7 +533,7 @@ follows:
 .. code-block:: dylan
 
     define method next-landing-step
-      (storage :: <sky>, aircraft :: <aircraft>)
+        (storage :: <sky>, aircraft :: <aircraft>)
      => (next-class :: false-or(<class>), duration ::
          false-or(<time-offset>))
       ...
@@ -950,7 +950,7 @@ As an example, consider the class ``<sixty-unit>``, and its slot
 .. code-block:: dylan
 
     define method decode-total-seconds
-      (sixty-unit :: <sixty-unit>)
+        (sixty-unit :: <sixty-unit>)
      => (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)
       decode-total-seconds(sixty-unit.total-seconds);
     end method decode-total-seconds;

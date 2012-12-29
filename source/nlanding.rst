@@ -316,7 +316,7 @@ The ``airport-classes.dylan`` file. *(continued)*
     define class <flight> (<object>)
       slot airline :: <airline>, required-init-keyword: airline:;
       slot number :: <nonnegative-integer>,
-      required-init-keyword: number:;
+        required-init-keyword: number:;
     end class <flight>;
 
     define method say (object :: <flight>) => ()
@@ -331,7 +331,7 @@ The ``airport-classes.dylan`` file. *(continued)*
       slot direction :: <symbol>;
       // The next step this aircraft might be able to make
       slot next-transition :: <aircraft-transition>,
-      required-init-keyword: transition:, setter: #f;
+        required-init-keyword: transition:, setter: #f;
     end class <aircraft>;
 
     define method initialize (vehicle :: <aircraft>, #key)
@@ -419,7 +419,7 @@ The ``airport-classes.dylan`` file. *(continued)*
       // The three letter abbreviation, such as "SFO"
       slot code :: <string>, init-keyword: code:;
       // The airspace above the airport
-       slot sky-above :: <sky>;
+      slot sky-above :: <sky>;
     end class <airport>;
 
     define method say (airport :: <airport>) => ()

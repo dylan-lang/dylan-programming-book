@@ -517,7 +517,7 @@ We start with this simple Dylan expression:
 All Dylan expressions must be in a module. Therefore, we use a text
 editor to create a file that contains the expression within a module:
 
-The program file: *hello.dylan*.
+The program file: ``hello.dylan``.
 
 .. code-block:: dylan
 
@@ -525,7 +525,7 @@ The program file: *hello.dylan*.
 
     format-out("Hello, world\n");
 
-The *hello.dylan* file is the top-level file; you can think of it as the
+The ``hello.dylan`` file is the top-level file; you can think of it as the
 program itself. When you run this program, Dylan executes all the
 expressions in the file in the order that they appear in the file. There
 is only one expression in this program — the call to ``format-out``.
@@ -537,7 +537,7 @@ All modules must be in a library, so we must also define a library for
 our ``hello`` module. We create a second file, called the library file,
 and define the ``hello`` module and ``hello`` library in the library file:
 
-The library file: *library.dylan*.
+The library file: ``library.dylan``.
 
 .. code-block:: dylan
 
@@ -553,14 +553,14 @@ The library file: *library.dylan*.
       use format-out;
     end module hello;
 
-The first line of *library.dylan* states that the expressions in this
+The first line of ``library.dylan`` states that the expressions in this
 file are in the ``dylan-user`` module. Every Dylan expression and
 definition must be in a module, including the definitions of libraries
 and modules. The ``dylan-user`` module is the starting point — the
 predefined module that enables you to define the libraries and modules
 that your program uses.
 
-In the file *library.dylan*, we define a library named ``hello``, and
+In the file ``library.dylan``, we define a library named ``hello``, and
 a module named ``hello``. We define the ``hello`` library to use the
 ``dylan`` library and the ``format-out`` library, and we define the
 ``hello`` module to use the ``dylan`` module and the ``format-out`` module.
@@ -579,7 +579,7 @@ Finally, we create a LID file that enumerates the files that make up the
 library. This file does not contain Dylan expressions, but rather is
 simply a textual description of the library’s files:
 
-The LID file: *hello.lid*.
+The LID file: ``hello.lid``.
 
 .. code-block:: dylan
 

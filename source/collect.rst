@@ -91,7 +91,7 @@ We can use the assignment operator to change an element of a string::
      "jello, world."
 
 We copied the greeting before modifying it, because modifying a literal
-constant is an error. A*literal constant* is an object whose contents
+constant is an error. A *literal constant* is an object whose contents
 are known completely at compile time. Dylan has a special syntax for
 each class of literal constant, so that they can be identified easily.
 The literal constant ``"Hello, world."``, which is used to initialize the
@@ -355,7 +355,7 @@ elements of the list that we have already copied.
 
 .. code-block:: dylan
 
-   // Assumes that old-list is a proper list (that is, it ends with #())*
+   // Assumes that old-list is a proper list (that is, it ends with #())
    // and is not circular
    define method my-copy-sequence (old-list :: <list>) => (new-list :: <list>)
      let new-list = make(<list>, size: old-list.size);
@@ -965,7 +965,7 @@ age from a number representing years:
 
 The preceding method returns the string ``"youngster"`` when provided an
 age less then 13; returns ``"teenager"`` when the age is between 13 and
-20; and returns ``"adult"``when the age is between 20 and 60. In all
+20; and returns ``"adult"`` when the age is between 20 and 60. In all
 other cases, it returns ``"senior"``.
 
 Tables: Dynamic associations

@@ -559,7 +559,7 @@ might be. The expanded view of the preceding code might look like this:
 
     begin
       let i = 0;
-      block (``stop!``)
+      block (stop!)
         local method again()
           if (i == 100) stop!() end;
           i := i + 1;
@@ -624,7 +624,7 @@ is a workaround, an *auxiliary macro*:
 .. code-block:: dylan
 
     define macro aircraft-definer
-      { define aircraft ?identifier:name (?type:name) ?flights:\* end }
+      { define aircraft ?identifier:name (?type:name) ?flights:* end }
         => { register-aircraft (make("<" ## ?type ## ">", id: ?#"identifier"));
              define flights (?#"identifier", ?"type")
                ?flights

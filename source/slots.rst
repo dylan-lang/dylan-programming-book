@@ -339,7 +339,7 @@ valid when we are creating an instance::
 Slot options for initialization of slots
 ----------------------------------------
 
-Unlike variables and constants, slots can be *uninitialized* ; that is,
+Unlike variables and constants, slots can be *uninitialized*; that is,
 you can create an instance without initializing all the slots. If you
 call a getter for a slot that has not been initialized, Dylan signals an
 error. In the following sections, we describe a variety of techniques
@@ -697,7 +697,7 @@ Here are the setter methods for the virtual slot ``direction``:
     // Method 3
     define method direction-setter
         (dir :: <symbol>, latitude :: <latitude>) => (new-dir :: <symbol>)
-      if (dir == #"north" \| dir == #"south")
+      if (dir == #"north" | dir == #"south")
         next-method();
       else
         error("%= is not north or south", dir);
@@ -707,7 +707,7 @@ Here are the setter methods for the virtual slot ``direction``:
     // Method 4
     define method direction-setter
         (dir :: <symbol>, longitude :: <longitude>) => (new-dir :: <symbol>)
-      if (dir == #"east" \| dir == #"west")
+      if (dir == #"east" | dir == #"west")
         next-method();
       else
         error("%= is not east or west", dir);
@@ -720,8 +720,8 @@ The preceding methods work as follows:
   of its subclasses, method 1 is invoked. Method 1 calls the getter
   ``internal-direction``, and returns the value of the
   ``internal-direction`` slot.
-- When you call ``direction-setter`` on a direct instance of ``<latitude>``
-  , method 3 is invoked. Method 3 checks that the direction is valid
+- When you call ``direction-setter`` on a direct instance of ``<latitude>``,
+  method 3 is invoked. Method 3 checks that the direction is valid
   for latitude; if it finds that the direction is valid, it calls
   ``next-method``, which invokes method 2. Method 2 stores the direction
   in the ``internal-direction`` slot.
@@ -779,7 +779,7 @@ We can create a new instance of ``<absolute-position>``.
 
 ::
 
-    ? define variable \*my-absolute-position\* =
+    ? define variable *my-absolute-position* =
         make(<absolute-position>,
              latitude:
                make(<latitude>,

@@ -20,7 +20,7 @@ Glossary
 
     *assignment*
         The act of setting the value of an existing variable or slot, or of
-        setting an element of a collection. The assignment operator is *:=* .
+        setting an element of a collection. The assignment operator is *:=*.
 
     *binding*
         An association between a name and an object. For example, there is a
@@ -31,14 +31,14 @@ Glossary
     *body*
         A region of program code that delimits the scope of all local variables
         declared inside it. Bodies can be nested. An body is begun implicitly
-        with *define method* , and is ended by the corresponding *end* . You can
+        with *define method*, and is ended by the corresponding *end*. You can
         define a body explicitly by using *begin* to start it and *end* to
         finish it. A local variable has scope extending from its declaration to
         the end of the smallest body that surrounds it.
 
     built-in class
-        A class provided by Dylan, such as ``<object>`` , ``<integer>`` , or
-        ``<string>`` .
+        A class provided by Dylan, such as ``<object>``, ``<integer>``, or
+        ``<string>``.
 
     *class*
         A definition of a type of other objects, which are called its instances.
@@ -74,8 +74,8 @@ Glossary
 
     *const* ant*(also called* *module constant* *)*
         An unchanging binding whose scope is its module. You define a constant
-        explicitly with *define constant* , and implicitly with *define class* ,
-        *define generic* , *define macro* , or possibly *define method* . You
+        explicitly with *define constant*, and implicitly with *define class*,
+        *define generic*, *define macro*, or possibly *define method*. You
         must initialize the value of a constant, and you cannot assign another
         value to a constant during the execution of a Dylan program.
 
@@ -84,7 +84,7 @@ Glossary
 
     constructor
         A function that creates an instance. A constructor provides a shorthand
-        means for calling *make* . For example, you can call the constructor
+        means for calling *make*. For example, you can call the constructor
         function *vector* to create a vector, and to initialize that vector with
         data.
 
@@ -99,7 +99,7 @@ Glossary
         A declaration of a piece of program structure, such as a library,
         module, class, generic function, or method. A definition usually
         establishes a module variable or constant. Definitions include *define
-        variable* , *define class* , and *define method* .
+        variable*, *define class*, and *define method*.
 
     development environment
         A collection of tools for Dylan programmers that can include an editor
@@ -141,7 +141,7 @@ Glossary
         A piece of code that, when executed, can return (zero or more) values
         and can have side effects. Expressions include (among others) literals,
         references to variables or constants, function calls, and statements
-        (such as *if* , *while* , and *case* ).
+        (such as *if*, *while*, and *case*).
 
     ``#f``
         The canonical false value. This object is the only object that
@@ -150,7 +150,7 @@ Glossary
     general instance
         A member of a class. An object is a general instance of a class if it is
         either a direct or an indirect instance of that class. The term
-        *instance* is equivalent to the term *general instance* .
+        *instance* is equivalent to the term *general instance*.
 
     generic function
         A kind of function. A generic function defines an interface, and
@@ -180,9 +180,9 @@ Glossary
 
     infix function
         A function whose calling syntax has the function appearing between the
-        arguments. The arithmetic functions *+* , *-* , *\** , */* , *<* , *>* ,
-        and so on are infix functions, as is the assignment operator, *:=* . An
-        example of the calling syntax is: *3 + 2* .
+        arguments. The arithmetic functions *+*, *-*, *\**, */*, *<*, *>*,
+        and so on are infix functions, as is the assignment operator, *:=*. An
+        example of the calling syntax is: *3 + 2*.
 
     information hiding
         A principle of minimizing the information that is passed among
@@ -193,7 +193,7 @@ Glossary
         another to share the behaviors and data attributes that they have in
         common. Each class inherits from one or more other classes, called its
         superclasses. If no other class is an appropriate superclass, the class
-        inherits from the class ``<object>`` .
+        inherits from the class ``<object>``.
 
     init expression
         A technique for initializing slots. An init expression provides an
@@ -201,13 +201,13 @@ Glossary
         made and the slot needs a default value, this expression is evaluated,
         and its value is used as the default. The slot receives its default
         initial value when no init keyword is defined, or when the caller does
-        not supply the init-keyword argument to *make* .
+        not supply the init-keyword argument to *make*.
 
     init function
         A function of zero arguments that is to be called to return a default
         initial value for the slot. The function is called every time that an
         instance is created if no init keyword is defined, or if the caller does
-        not supply the init keyword argument to *make* . To define an init
+        not supply the init keyword argument to *make*. To define an init
         function for a slot, use the *init-function:* slot option in the class
         definition.
 
@@ -229,15 +229,15 @@ Glossary
     initialize method
         A method for the *initialize* generic function. The purpose of
         initialize methods is to initialize an instance before that instance is
-        returned by *make* .
+        returned by *make*.
 
     instance
         A member of a class. An object is an instance of a class if it is either
         a direct or an indirect instance of that class. The term *instance* is
-        equivalent to the term *general instance* .
+        equivalent to the term *general instance*.
 
     instantiable class
-        A class that can be used as the first argument to *make* . All concrete
+        A class that can be used as the first argument to *make*. All concrete
         classes are instantiable. You can make an abstract class be instantiable
         by defining a *make* method for the class; the *make* method must return
         an instance of a concrete subclass of the abstract class.
@@ -251,7 +251,7 @@ Glossary
         record of the file resides.
 
     keyword
-        A symbol name followed by a colon, such as *total-seconds:* .
+        A symbol name followed by a colon, such as *total-seconds:*.
 
     keyword argument
         An optional argument to a function consisting of a keyword followed by
@@ -274,11 +274,11 @@ Glossary
 
     *limited type*
         A type that is a more restricted version of its base type. For example,
-        a limited-integer type is based on ``<integer>`` , but has a given minimum
+        a limited-integer type is based on ``<integer>``, but has a given minimum
         or maximum value. Another example of a limited type is a
         limited-collection type, which is a collection type that specifies the
         type of elements, and/or the size of the collection. Limited types are
-        created via ``limited`` .
+        created via ``limited``.
 
     listener
         A tool that enables you to enter Dylan expressions, executes the
@@ -289,8 +289,8 @@ Glossary
 
     local declaration
         A declaration that establishes a local variable, local method, or local
-        condition handler. Local declarations include *let* , *local* , and *let
-        handler* .
+        condition handler. Local declarations include *let*, *local*, and *let
+        handler*.
 
     local variable
         A binding whose scope extends from its definition to the end of the
@@ -322,7 +322,7 @@ Glossary
     *module variable*
         A binding whose scope is its module. A module variable is much like a
         global variable in other languages. You define a module variable with
-        *define variable* . When you define a module variable, you must
+        *define variable*. When you define a module variable, you must
         initialize it (that is, provide an initial value for it). If a module
         variable is not exported from the module that defines it, then it is
         accessible only within the module. If the module variable is exported by
@@ -336,7 +336,7 @@ Glossary
         The class from which all classes inherit, either directly or indirectly.
 
     object
-        An individual datum. Also called an *instance* .
+        An individual datum. Also called an *instance*.
 
     *parameter list*
         A list of specifications for the arguments to a function. A parameter
@@ -353,8 +353,8 @@ Glossary
 
     *predicate*
         A function that returns true or false. False is always represented as
-        ``#f`` . True is represented by the canonical true value, *#t* , and by
-        any value other than ``#f`` .
+        ``#f``. True is represented by the canonical true value, *#t*, and by
+        any value other than ``#f``.
 
     protocol
         The interface definition of a software component. The purpose of
@@ -386,7 +386,7 @@ Glossary
         restart condition.
 
     root
-        The starting point of Dylan class inheritance — the class ``<object>`` ,
+        The starting point of Dylan class inheritance — the class ``<object>``,
         from which all Dylan classes inherit, either directly or indirectly.
 
     *setter*
@@ -398,7 +398,7 @@ Glossary
 
     *singleton type*
         A type whose only member is one particular instance. Singleton types are
-        created via ``singleton`` .
+        created via ``singleton``.
 
     single inheritance
         Inheritance in a class that has only one direct superclass.
@@ -461,7 +461,7 @@ Glossary
     type
         An object that describes the structure and behavior of its members. All
         classes are types, but not all types are classes. You can define new
-        nonclass types with ``limited`` , ``singleton`` , and ``type-union`` .
+        nonclass types with ``limited``, ``singleton``, and ``type-union``.
 
     type constraint
         A type associated with a binding or slot that ensures that the value of
@@ -469,7 +469,7 @@ Glossary
 
     *union type*
         A type whose members include all the members of one or more base types.
-        Union types are created via ``type-union`` .
+        Union types are created via ``type-union``.
 
     user-defined class
         A class defined by a Dylan user, and not provided by Dylan itself.

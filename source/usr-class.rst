@@ -304,7 +304,7 @@ to total seconds:
     define method encode-total-seconds
         (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)
      => (total-seconds :: <integer>)
-      ((hours \* 60) + minutes) \* 60 + seconds;
+      ((hours * 60) + minutes) * 60 + seconds;
     end method encode-total-seconds;
 
 Line 2 contains the parameter list of the method ``encode-total-seconds``.
@@ -482,7 +482,7 @@ The ``decode-total-seconds`` generic function and its methods.
 .. code-block:: dylan
 
     // Method on <integer>
-    define method deceode-total-seconds
+    define method decode-total-seconds
         (total-seconds :: <integer>)
      => (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)
       let(total-minutes, seconds) = truncate/(total-minutes, 60);
@@ -490,7 +490,7 @@ The ``decode-total-seconds`` generic function and its methods.
     end method decode-total-seconds;
 
     // Method on <time-of-day>
-    define method deceode-total-seconds
+    define method decode-total-seconds
         (time :: <time-of-day>)
      => (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)
       decode-total-seconds(time.total-seconds);

@@ -207,12 +207,12 @@ the separate sorted lists into an overall list of methods, sorted by
 specificity. In the overall method ordering, a method is more specific
 than another if it satisfies two constraints:
 
-# The method is *no less specific* than the other method for *all*
-  required parameters. (The two methods might have the same types for some
-  parameters.)
+#. The method is *no less specific* than the other method for *all*
+   required parameters. (The two methods might have the same types for some
+   parameters.)
 
-# The method is *more specific* than the other method for *some*
-  required parameter.
+#. The method is *more specific* than the other method for *some*
+   required parameter.
 
 One method might be more specific than another for one parameter, but
 less specific for another parameter. These two methods are *ambiguous*
@@ -256,7 +256,7 @@ the table applies. Two methods are applicable. The method on
 ``<time>``, ``<time>``. The parameter specializers of the method on
 ``<time-offset>``, ``<time-offset>`` are subtypes of the parameter
 specializers of the method on ``<time>``, ``<time>``. That is, for the
-first parameter, ``<time-offset>`` is a subtype of ``<time>`` ; for the
+first parameter, ``<time-offset>`` is a subtype of ``<time>``; for the
 second parameter, ``<time-offset>`` is a subtype of ``<time>``.
 
 Methods for comparison of times

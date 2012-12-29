@@ -23,10 +23,10 @@ of the standard Dylan collection generic functions that we covered in
 The airport application uses a sorted sequence to keep track of aircraft
 transition in time order. See :doc:`nlanding`, for more details.
 
-The *sorted-sequence.dylan* file
---------------------------------
+The ``sorted-sequence.dylan`` file
+----------------------------------
 
-The *sorted-sequence.dylan* file contains the module constants, classes,
+The ``sorted-sequence.dylan`` file contains the module constants, classes,
 and methods that build on Dylan’s collection framework to define the
 structure and behavior of the new ``<sorted-sequence>`` collection.
 
@@ -35,7 +35,7 @@ structure and behavior of the new ``<sorted-sequence>`` collection.
 A new collection class
 ~~~~~~~~~~~~~~~~~~~~~~
 
-The *sorted-sequence.dylan* file.
+The ``sorted-sequence.dylan`` file.
 
 .. code-block:: dylan
 
@@ -74,7 +74,7 @@ sequence data structure, we can define basic collection methods.
 Basic collection methods
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-The *sorted-sequence.dylan* file. *(continued)*
+The ``sorted-sequence.dylan`` file. *(continued)*
 
 .. code-block:: dylan
 
@@ -138,7 +138,7 @@ sequences.
 Adding and removing elements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The *sorted-sequence.dylan* file. *(continued)*
+The ``sorted-sequence.dylan`` file. *(continued)*
 
 .. code-block:: dylan
 
@@ -226,7 +226,7 @@ to the forward-iteration protocol is as simple as defining an
 appropriate method for the ``forward-iteration-protocol`` generic
 function. This method must return two objects and six functions.
 
-The *sorted-sequence.dylan* file. *(continued)*
+The ``sorted-sequence.dylan`` file. *(continued)*
 
 .. code-block:: dylan
 
@@ -301,7 +301,7 @@ key is the state object.
 
 The sixth value returned is a function that receives a collection and a
 state, and returns the current element of the collection. In this case,
-the *element* function is the obvious choice, since our state is just
+the ``element`` function is the obvious choice, since our state is just
 the key.
 
 The seventh value returned is a function that receives a new value, a
@@ -328,15 +328,15 @@ protocol, then this new iterator will work with sorted sequences.
 Dylan has several other related protocols for backward iteration and for
 tables. See the *The Dylan Reference Manual* for details.
 
-The *sorted-sequence-library.dylan* file
-----------------------------------------
+The ``sorted-sequence-library.dylan`` file
+------------------------------------------
 
 The definitions for the sorted sequence library and module are simple.
 The only module variable that we need to export is for the sorted
 sequence class itself. All the generic functions that we want clients to
-use on sorted sequences are exported by the *dylan* module.
+use on sorted sequences are exported by the ``dylan`` module.
 
-The *sorted-sequence-library.dylan* file.
+The ``sorted-sequence-library.dylan`` file.
 
 .. code-block:: dylan
 
@@ -356,17 +356,17 @@ The *sorted-sequence-library.dylan* file.
 
 The ``definitions`` library and module are defined in :doc:`nlanding`.
 
-The *sorted-sequence.lid* file
-------------------------------
+The ``sorted-sequence.lid`` file
+--------------------------------
 
 The LID file for sorted sequences is also straightforward. The entire
 library is contained within two files (in addition to the LID file
 itself). The library and module definitions are in the file
-*sorted-sequence-library.dylan*. The definitions of module constants,
+``sorted-sequence-library.dylan``. The definitions of module constants,
 classes, and methods are in the implementation file,
-*sorted-sequence.dylan*.
+``sorted-sequence.dylan``.
 
-The *sorted-sequence.lid* file.
+The ``sorted-sequence.lid`` file.
 
 .. code-block:: dylan
 

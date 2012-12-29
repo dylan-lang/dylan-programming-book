@@ -8,7 +8,7 @@ Dylan (DYnamic LANguage) is a new programming language invented by
 Apple Computer and several partners. Dylan is dynamic, is
 object-oriented, and delivers efficient applications.
 
-The Dylan language is defined by *The Dylan Reference Manual* ,
+The Dylan language is defined by *The Dylan Reference Manual*,
 written by Andrew Shalit, and published by Addison-Wesley (1996).
 That manual is the definitive reference on Dylan. *The Dylan
 Reference Manual* is available on the World Wide Web; see
@@ -53,12 +53,12 @@ programming in Dylan, and it does the following:
   inheritance, performance, exceptions, and macros.
 
 This book does not attempt to be as complete as *The Dylan Reference
-Manual* , and does not provide the following kinds of material:
+Manual*, and does not provide the following kinds of material:
 
 - Complete descriptions of all classes and functions provided by Dylan
 - Complete descriptions of the detailed mechanisms in Dylan
 - To make full use of Dylan, programmers need *The Dylan Reference
-  Manual* , as well as this book.
+  Manual*, as well as this book.
 
 Organization of this book
 -------------------------
@@ -111,10 +111,10 @@ available.
 Conventions used in this book
 -----------------------------
 
-- We use boldface when we introduce new terms, such as *library* .
+- We use boldface when we introduce new terms, such as *library*.
 
 - We use bold typewriter font for code examples and names of Dylan
-  functions and objects, such as *define method* . Code comments appear
+  functions and objects, such as ``define method``. Code comments appear
   in oblique typewriter font — for example,
 
   .. code-block:: dylan
@@ -124,7 +124,7 @@ Conventions used in this book
         format-out("%s\n", greeting);
       end;
 
-- Many Dylan environments provide a *listener* , which enables you to
+- Many Dylan environments provide a *listener*, which enables you to
   type in expressions and to see their return values and output. We use
   a hypothetical Dylan listener to show the result of evaluating Dylan
   expressions::
@@ -197,7 +197,7 @@ write this book as a way to explain the power of Dylan to a wider
 audience.
 
 We are grateful to Dylan experts outside of Harlequin who gave us
-ughtful and thorough reviews of the book: Scott Fahlman, Robert
+thoughtful and thorough reviews of the book: Scott Fahlman, Robert
 Futrelle, David Moon, and Andrew Shalit.
 
 Our editors at Addison-Wesley cheerfully and capably steered us

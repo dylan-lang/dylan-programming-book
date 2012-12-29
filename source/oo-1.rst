@@ -80,7 +80,7 @@ We can call ``say-greeting`` on a string:
 ::
 
      ? say-greeting("hi, there");
-     hi, there
+      hi, there
 
 We can call ``say-greeting`` on an integer, although the integer does not
 give a particularly friendly greeting:
@@ -90,7 +90,7 @@ give a particularly friendly greeting:
     ? define variable *my-number* :: <integer> = 7;
 
     ? say-greeting(*my-number*);
-    *7*
+     7
 
 Two methods with the same name
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

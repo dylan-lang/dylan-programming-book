@@ -80,7 +80,7 @@ Because these objects can hold vehicles, we can think of them as
 containers. Our design uses this class to represent all types of
 containers:
 
-<vehicle-storage>
+     ``<vehicle-storage>``
 
 In our design, containers are connected to other containers. In the
 airport diagram in :ref:`objects-in-simple-airport`, gate A1 is
@@ -92,7 +92,7 @@ Since some containers can hold only one aircraft, whereas other
 containers have more complex behavior, our design includes two
 subclasses of ``<vehicle-storage>``:
 
-<single-storage>*,* <multiple-storage>
+    ``<single-storage>``, ``<multiple-storage>``
 
 Instances of ``<single-storage>`` may hold a single aircraft regardless of
 the direction of travel. Instances of ``<multiple-storage>`` may hold more
@@ -112,7 +112,7 @@ and aircraft — represent physical objects. It may be useful to make that
 distinction in our classes, so we define a class from which all physical
 objects inherit:
 
-<physical-object>
+    ``<physical-object>``
 
 .. _inheritance-relationships-physical:
 

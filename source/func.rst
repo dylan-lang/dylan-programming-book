@@ -288,9 +288,11 @@ Element reference
 Except for the order of evaluation and returned values, the following
 examples are equivalent:
 
-\*my-position\*.distance := 3.0;
- distance(\*my-position\*) := 3.0;
- distance-setter(3.0, \*my-position\*);
+.. code-block:: dylan
+
+    *my-position*.distance := 3.0;
+    distance(*my-position*) := 3.0;
+    distance-setter(3.0, *my-position*);
 
 The first two examples return ``3.0``; the second returns whatever
 ``distance-setter`` returns. Usually, this value would be ``3.0``. Note that, if
@@ -439,7 +441,7 @@ A call to ``calling-function`` now produces the following output::
 
     In calling function, before call: x.test-slot = "before"
     In called function, before return: x.test-slot = "after"
-    In calling function, after call: x.test-slot = "after"*
+    In calling function, after call: x.test-slot = "after"
 
 In this case, ``x`` in the calling function and ``x`` in the called function
 are different variables. But the *values* of both variables are the same
@@ -802,7 +804,7 @@ returned value:
 .. code-block:: dylan
 
     define generic g
-    (arg1 :: <complex>, arg2 :: <integer>) => (result :: <integer>);
+        (arg1 :: <complex>, arg2 :: <integer>) => (result :: <integer>);
 
     define method g
         (arg1 :: <real>, arg2 :: <integer>) => (result :: <real>)
@@ -1004,7 +1006,7 @@ The ``apply`` function is perhaps most useful in the body of a function
 that receives a variable number of arguments and must pass those
 arguments to another function that also takes a variable number of
 arguments. For example, we can use ``apply`` to write a recursive version
-of the *sum* function that we defined iteratively in `Parameter lists`_:
+of the ``sum`` function that we defined iteratively in `Parameter lists`_:
 
 .. code-block:: dylan
 
@@ -1029,7 +1031,7 @@ objects to generate new functions.
 
 Three of these functions take predicates as arguments, and return the
 complement, disjunction, or conjunction of the predicates. For example,
-*complement* takes a predicate and returns the latter’s complement — a
+``complement`` takes a predicate and returns the latter’s complement — a
 function that returns ``#t`` when the original predicate would have
 returned ``#f``, and otherwise returns ``#f``.
 
