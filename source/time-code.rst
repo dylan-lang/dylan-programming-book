@@ -84,8 +84,8 @@ The implementation file: ``library-implementation.dylan``.
     define method decode-total-seconds
         (total-seconds :: <integer>)
      => (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)
-      let(total-minutes, seconds) = truncate/(total-seconds, 60);
-      let(hours, minutes) = truncate/(total-minutes, 60);
+      let (total-minutes, seconds) = truncate/(total-seconds, 60);
+      let (hours, minutes) = truncate/(total-minutes, 60);
       values(hours, minutes, seconds);
     end method decode-total-seconds;
 
@@ -177,7 +177,7 @@ The implementation file: ``library-implementation.dylan``.
     end class <angle>;
 
     define method say (angle :: <angle>) => ()
-      let(degrees, minutes, seconds) = decode-total-seconds(angle);
+      let (degrees, minutes, seconds) = decode-total-seconds(angle);
       format-out
         ("%d degrees %d minutes %d seconds",
          degrees, minutes, seconds);

@@ -808,8 +808,8 @@ The ``sixty-unit`` implementation file: ``sixty-unit.dylan``.
     define method decode-total-seconds
         (total-seconds :: <integer>)
      => (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)
-      let(total-minutes, seconds) = truncate/(abs(total-seconds), 60);
-      let(hours, minutes) = truncate/(total-minutes, 60);
+      let (total-minutes, seconds) = truncate/(abs(total-seconds), 60);
+      let (hours, minutes) = truncate/(total-minutes, 60);
       values(hours, minutes, seconds);
     end method decode-total-seconds;
 
@@ -1099,8 +1099,8 @@ The ``sixty-unit`` implementation file: ``sixty-unit.dylan``.
     define method decode-total-seconds
         (total-seconds :: <integer>)
      => (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)
-      let(total-minutes, seconds) = truncate/(abs(total-seconds), 60);
-      let(hours, minutes) = truncate/(total-minutes, 60);
+      let (total-minutes, seconds) = truncate/(abs(total-seconds), 60);
+      let (hours, minutes) = truncate/(total-minutes, 60);
       values(hours, minutes, seconds);
     end method decode-total-seconds;
 

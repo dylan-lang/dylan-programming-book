@@ -78,8 +78,8 @@ The ``sixty-unit`` implementation file: ``sixty-unit.dylan``.
     define method decode-total-seconds
         (total-seconds :: <integer>)
      => (max-unit :: <integer>, minutes :: <integer>, seconds :: <integer>)
-      let(total-minutes, seconds) = truncate/(abs(total-seconds), 60);
-      let(max-unit, minutes) = truncate/(total-minutes, 60);
+      let (total-minutes, seconds) = truncate/(abs(total-seconds), 60);
+      let (max-unit, minutes) = truncate/(total-minutes, 60);
       values(max-unit, minutes, seconds);
     end method decode-total-seconds;
 
@@ -438,7 +438,7 @@ The ``angle`` implementation file: ``angle.dylan``.
     end class <angle>;
 
     define method say (angle :: <angle>) => ()
-      let(degrees, minutes, seconds) = decode-total-seconds(angle);
+      let (degrees, minutes, seconds) = decode-total-seconds(angle);
       format-out("%d degrees %d minutes %d seconds",
                  degrees, minutes, seconds);
     end method say;

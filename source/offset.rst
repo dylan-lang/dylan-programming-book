@@ -108,7 +108,7 @@ We might define the method in this way:
 .. code-block:: dylan
 
     define method say-time-offset (time :: <time-offset>) => ()
-      let(hours, minutes) = decode-total-seconds(time);
+      let (hours, minutes) = decode-total-seconds(time);
       format-out("%s %d:%s%d",
                  if (past?(time)) "minus" else "plus" end,
                  hours,
@@ -139,7 +139,7 @@ call ``decode-total-seconds`` with an integer.
 
     // First approach: Call decode-total-seconds with an integer
     define method say-time-offset (time :: <time-offset>) => ()
-      let(hours, minutes) = decode-total-seconds(abs(time.total-seconds));
+      let (hours, minutes) = decode-total-seconds(abs(time.total-seconds));
       format-out("%s %d:%s%d",
                  if (past?(time)) "minus" else "plus" end,
                  hours,
@@ -174,7 +174,7 @@ as we did in the first place:
 .. code-block:: dylan
 
     define method say-time-offset (time :: <time-offset>) => ()
-      let(hours, minutes) = decode-total-seconds(time);
+      let (hours, minutes) = decode-total-seconds(time);
       format-out("%s %d:%s%d",
                  if (past?(time)) "minus" else "plus" end,
                  hours,
@@ -357,7 +357,7 @@ Existing methods for ``decode-total-seconds``:
     define method decode-total-seconds
         (total-seconds :: <integer>)
      => (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)
-      let(total-minutes, seconds) = truncate/(total-minutes, 60);
+      let (total-minutes, seconds) = truncate/(total-minutes, 60);
       values(hours, minutes, seconds);
     end method decode-total-seconds;
 
@@ -378,7 +378,7 @@ Desired methods for ``decode-total-seconds``:
     define method decode-total-seconds
         (total-seconds :: <integer>)
      => (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)
-      let(total-minutes, seconds) = truncate/(total-minutes, 60);
+      let (total-minutes, seconds) = truncate/(total-minutes, 60);
       values(hours, minutes, seconds);
     end method decode-total-seconds;
 
@@ -614,13 +614,13 @@ We repeat the definitions of the methods for ``say-time-of-day`` and
 .. code-block:: dylan
 
     define method say-time-of-day (time :: <time-of-day>) => ()
-      let(hours, minutes) = decode-total-seconds(time);
+      let (hours, minutes) = decode-total-seconds(time);
       format-out
         ("%d:%s%d", hours, if (minutes < 10) "0" else "" end, minutes);
     end method say-time-of-day;
 
     define method say-time-offset (time :: <time-offset>) => ()
-      let(hours, minutes) = decode-total-seconds(time);
+      let (hours, minutes) = decode-total-seconds(time);
       format-out("%s %d:%s%d",
                  if (past?(time)) "minus" else "plus" end,
                  hours,
@@ -710,7 +710,7 @@ replace ``say-time-offset``, which we remove.
 .. code-block:: dylan
 
     define method say (time :: <time-offset>) => ()
-      let(hours, minutes) = decode-total-seconds(time);
+      let (hours, minutes) = decode-total-seconds(time);
       format-out("%s %d:%s%d",
                  if (past?(time)) "minus" else "plus" end,
                  hours,
@@ -930,8 +930,8 @@ The implementation file: ``library-implementation.dylan``.
     define method decode-total-seconds
         (total-seconds :: <integer>)
      => (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)
-      let(total-minutes, seconds) = truncate/(total-seconds, 60);
-      let(hours, minutes) = truncate/(total-minutes, 60);
+      let (total-minutes, seconds) = truncate/(total-seconds, 60);
+      let (hours, minutes) = truncate/(total-minutes, 60);
       values(hours, minutes, seconds);
     end method decode-total-seconds;
 

@@ -371,8 +371,8 @@ from total seconds to hours, minutes, and seconds:
     define method decode-total-seconds
         (total-seconds :: <integer>)
      => (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)
-      let(total-minutes, seconds) = truncate/(total-seconds, 60);
-      let(hours, minutes) = truncate/(total-minutes, 60);
+      let (total-minutes, seconds) = truncate/(total-seconds, 60);
+      let (hours, minutes) = truncate/(total-minutes, 60);
       values(hours, minutes, seconds);
     end method decode-total-seconds;
 
@@ -485,7 +485,7 @@ The ``decode-total-seconds`` generic function and its methods.
     define method decode-total-seconds
         (total-seconds :: <integer>)
      => (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)
-      let(total-minutes, seconds) = truncate/(total-minutes, 60);
+      let (total-minutes, seconds) = truncate/(total-minutes, 60);
       values(hours, minutes, seconds);
     end method decode-total-seconds;
 
@@ -530,7 +530,7 @@ method named ``say-time-of-day``:
    :linenos:
 
     define method say-time-of-day (time :: <time-of-day>) => ()
-      let(hours, minutes) = decode-total-seconds(time);
+      let (hours, minutes) = decode-total-seconds(time);
       format-out
         ("%d:%s%d", hours, if (minutes < 10) "0" else "" end, minutes);
     end method say-time-of-day;

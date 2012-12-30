@@ -203,7 +203,7 @@ method on ``<absolute-position>``:
 .. code-block:: dylan
 
     define method say (angle :: <directed-angle>) => ()
-      let(degrees, minutes, seconds) = decode-total-seconds(angle);
+      let (degrees, minutes, seconds) = decode-total-seconds(angle);
       format-out("%d degrees %d minutes %d seconds %s",
                  degrees, minutes, seconds, angle.direction);
     end method say;
@@ -427,7 +427,7 @@ the new ``<sixty-unit>`` class:
     end class <angle>;
 
     define method say (angle :: <angle>) => ()
-      let(degrees, minutes, seconds) = decode-total-seconds(angle);
+      let (degrees, minutes, seconds) = decode-total-seconds(angle);
       format-out("%d degrees %d minutes %d seconds",
                  degrees, minutes, seconds);
     end method say;
