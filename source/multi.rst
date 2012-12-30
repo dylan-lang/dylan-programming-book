@@ -169,10 +169,10 @@ them. We define such a method here:
 .. code-block:: dylan
 
     // Method on <time>, <time>
-    define method \\+ (time1 :: <time>, time2 :: <time>)
+    define method \+ (time1 :: <time>, time2 :: <time>)
       error("Sorry, we can't add a %s to a %s.",
             object-class(time1), object-class(time2));
-    end method \\+;
+    end method \+;
 
 This method is called only when the arguments are both general instances
 of ``<time>``, and none of the more specific methods are applicable to
