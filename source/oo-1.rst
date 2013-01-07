@@ -46,13 +46,15 @@ returns what ``format-out`` returns — no value at all. In the call to
 ``say-hello``, we see the output of ``format-out`` in the listener;
 we see output and not a returned value (because no value is returned).
 
-*Usage note:* In this chapter, we define methods that call the
-``format-out`` function. Because ``format-out`` is in the ``format-out``
-module, we need to make that module available. There are two ways to do
-so. The first way is to work in files, as described in :ref:`start-complete-program`.
-The second way is to use a gesture or command in your Dylan environment to
-make the ``format-out`` module accessible. Then, you can simply enter the
-method definitions into the listener.
+.. topic:: Usage note:
+
+   In this chapter, we define methods that call the ``format-out``
+   function. Because ``format-out`` is in the ``format-out``
+   module, we need to make that module available. There are two ways to do
+   so. The first way is to work in files, as described in :ref:`start-complete-program`.
+   The second way is to use a gesture or command in your Dylan environment to
+   make the ``format-out`` module accessible. Then, you can simply enter the
+   method definitions into the listener.
 
 A method that takes an argument
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -186,15 +188,17 @@ inherits from the class ``<object>``. This class is the *root* of all
 classes: All classes inherit from it, either directly or indirectly, and
 it does not have any direct superclasses.
 
-*Comparison with C++:* If you are familiar with the class concepts of
-C++, you might initially be confused by Dylan’s class model. In Dylan,
-all base classes are effectively virtual base classes with “virtual”
-data members. When a class inherits another class more than once
-(because of multiple inheritance), only a single copy of that base class
-is included. Each of the multiple-inheritance paths can contribute to
-the implementation of the derived class. The Dylan class model favors
-this mix-in style of programming. For more information, see
-:ref:`c-comparisons-concept-of-classes` in :doc:`c-comparisons`.
+.. topic:: Comparison with C++:
+
+   If you are familiar with the class concepts of C++, you might initially
+   be confused by Dylan’s class model. In Dylan, all base classes are
+   effectively virtual base classes with “virtual” data members. When a
+   class inherits another class more than once (because of multiple
+   inheritance), only a single copy of that base class is included. Each
+   of the multiple-inheritance paths can contribute to the implementation
+   of the derived class. The Dylan class model favors this mix-in
+   style of programming. For more information, see
+   :ref:`c-comparisons-concept-of-classes` in :doc:`c-comparisons`.
 
 In Dylan, we distinguish between two terms: *direct instance* and
 *general instance*. An object is a *direct instance* of exactly one
@@ -285,23 +289,25 @@ Relationship between classes and methods
 The relationship between classes and methods in Dylan is different from
 that in C++ and Smalltalk, among other languages.
 
-*Comparison to C++ and Smalltalk:* In C++ and Smalltalk, a class
-contains the equivalent of methods. In Dylan, a class does not contain
-methods; instead, a method belongs to a generic function. This design
-decision enables these powerful features of Dylan:
+.. topic:: Comparison to C++ and Smalltalk:
 
-- You can define methods on built-in classes (because you do not
-  have to modify the class definition to define a method intended for
-  use on the class). For an example, see :ref:`multi-methods-for-plus-gf`.
-  More generally, you can define a method for a class that you did not
-  define.
-- You can write multimethods. In a *multimethod*, the method dispatch
-  is based on the classes of more than one argument to a generic
-  function. For an introduction to method dispatch, see
-  :ref:`offset-method-dispatch`. For information about multimethods, see
-  :doc:`multi`.
-- You can restrict generic functions to operate on specific classes of
-  objects.
+   In C++ and Smalltalk, a class contains the equivalent of methods. In
+   Dylan, a class does not contain methods; instead, a method belongs to
+   a generic function. This design decision enables these powerful
+   features of Dylan:
+
+   - You can define methods on built-in classes (because you do not
+     have to modify the class definition to define a method intended for
+     use on the class). For an example, see :ref:`multi-methods-for-plus-gf`.
+     More generally, you can define a method for a class that you did not
+     define.
+   - You can write multimethods. In a *multimethod*, the method dispatch
+     is based on the classes of more than one argument to a generic
+     function. For an introduction to method dispatch, see
+     :ref:`offset-method-dispatch`. For information about multimethods, see
+     :doc:`multi`.
+   - You can restrict generic functions to operate on specific classes of
+     objects.
 
 In Dylan, a method belongs to a generic function, as shown in :ref:`The
 say-greeting generic function and its methods <say-greeting-methods>`.
@@ -340,27 +346,31 @@ classes are objects. What does it mean to be an object?
   generic functions and methods are objects, you can manipulate them
   just as you can any other object. See :ref:`func-functions-as-objects`.
 
-*Comparison to C++ and Smalltalk:* In Dylan and Smalltalk, everything is
-an object (an instance of a class); we say that Dylan and Smalltalk have
-“objects all the way down.” In contrast, in C++, some values are not
-objects; they have primitive types that are not classes. For example, in
-Dylan, 7 is an instance of ``<integer>``. In C++, 7 is not an instance;
-it has the type ``int``.  This design decision enables Dylan users to
-define methods on built-in classes in the same way that they define
-methods on user-defined classes — a technique that cannot be done in C++.
+.. topic:: Comparison to C++ and Smalltalk:
 
-*Comparison to Java:* Java recognizes the need for object representation
-of all classes with the ``Number`` class and its subclasses. However, Java
-still requires the programmer to work with nonobjects when writing
-mathematical statements. The ``Number`` classes can be used to “wrap” an
-object cloak around the primitive ``integer``, ``float``, and other
-numeric types, to allow object-based programming. Dylan does not
-separate the mathematical manipulation of numbers from their other
-object properties. Programmers need only to think in terms of numerical
-objects, and can rely on the compiler to implement mathematical
-operations efficiently. Similarly, the ``Boolean`` class is used to
-encapsulate primitive ``boolean`` values as objects, and programmers must
-convert back and forth, depending on the context.
+   In Dylan and Smalltalk, everything is an object (an instance of a
+   class); we say that Dylan and Smalltalk have “objects all the way
+   down.” In contrast, in C++, some values are not objects; they have
+   primitive types that are not classes. For example, in Dylan, 7 is
+   an instance of ``<integer>``. In C++, 7 is not an instance;
+   it has the type ``int``.  This design decision enables Dylan users to
+   define methods on built-in classes in the same way that they define
+   methods on user-defined classes — a technique that cannot be done in C++.
+
+.. topic:: Comparison to Java:
+
+   Java recognizes the need for object representation of all classes with
+   the ``Number`` class and its subclasses. However, Java still requires
+   the programmer to work with nonobjects when writing mathematical
+   statements. The ``Number`` classes can be used to “wrap” an object
+   cloak around the primitive ``integer``, ``float``, and other numeric
+   types, to allow object-based programming. Dylan does not separate the
+   mathematical manipulation of numbers from their other object properties.
+   Programmers need only to think in terms of numerical objects, and can
+   rely on the compiler to implement mathematical operations efficiently.
+   Similarly, the ``Boolean`` class is used to encapsulate primitive
+   ``boolean`` values as objects, and programmers must convert back and
+   forth, depending on the context.
 
 .. _oo-1-equality-predicates:
 

@@ -454,45 +454,46 @@ integers, as being shared between a function and its caller. By
 definition, however, a function cannot make any changes to such objects
 that are visible to the function’s caller.
 
-#. *Comparison with C and C++:* As in Dylan, the parameters of a C
-   function are local to the body of the function, and assignment to a
-   parameter does not affect the value of a variable that has the same
-   name in the function’s caller. But the relationship between *objects*
-   and *values* is not the same in C and in Dylan. In C, a value can be
-   an object (roughly meaning the contents of the object) or a *pointer*
-   to an object (roughly meaning the location of the object in memory).
-   The value of a parameter in C is always a copy of the corresponding
-   argument. When a C structure is an argument to a function, the value
-   of the corresponding parameter is a copy of the structure; it is not
-   the structure itself. If the function changes the value of a member
-   of this structure, the change is not visible to the caller, because
-   the function is changing only its own copy of the structure. But if
-   the argument is a pointer to a structure, the function can gain
-   access to the caller’s structure (by *dereferencing* the pointer). If
-   the function changes the value of a member of such a structure by
-   dereferencing the pointer, the change is visible to the caller.
+.. topic:: Comparison with C and C++:
 
-In Dylan, a value is always an object, which has a unique identity. The
-value of a parameter is always the same object as the corresponding
-argument. When a function changes such an object (as by changing the
-value of a slot), the change is always visible to the caller. Dylan has
-no equivalent to C pointers.
+   As in Dylan, the parameters of a C function are local to the body of
+   the function, and assignment to a parameter does not affect the value
+   of a variable that has the same name in the function’s caller. But
+   the relationship between *objects* and *values* is not the same in
+   C and in Dylan. In C, a value can be an object (roughly meaning the
+   contents of the object) or a *pointer* to an object (roughly meaning
+   the location of the object in memory).  The value of a parameter in
+   C is always a copy of the corresponding argument. When a C structure
+   is an argument to a function, the value of the corresponding parameter
+   is a copy of the structure; it is not the structure itself. If the
+   function changes the value of a member of this structure, the change
+   is not visible to the caller, because the function is changing only
+   its own copy of the structure. But if the argument is a pointer to
+   a structure, the function can gain access to the caller’s structure
+   (by *dereferencing* the pointer). If the function changes the value
+   of a member of such a structure by dereferencing the pointer, the
+   change is visible to the caller.
 
-In C++, a parameter declared using ordinary C syntax also receives a
-copy of a structure or an instance that is the corresponding argument.
-C++ has additional syntax for declaring that a parameter is a
-*reference* — essentially an implicit pointer — to the corresponding
-argument. In this case the argument is not copied, and if the function
-changes the object that the parameter refers to, the changes are visible
-to the caller. In some ways Dylan’s argument-passing protocol is similar
-to C++ references.
+   In Dylan, a value is always an object, which has a unique identity. The
+   value of a parameter is always the same object as the corresponding
+   argument. When a function changes such an object (as by changing the
+   value of a slot), the change is always visible to the caller. Dylan has
+   no equivalent to C pointers.
 
-In both C and C++, array arguments are always passed as pointers. In
-Dylan, arrays are instances of the ``<array>`` class, and array arguments
-are treated like all other arguments.
+   In C++, a parameter declared using ordinary C syntax also receives a
+   copy of a structure or an instance that is the corresponding argument.
+   C++ has additional syntax for declaring that a parameter is a
+   *reference* — essentially an implicit pointer — to the corresponding
+   argument. In this case the argument is not copied, and if the function
+   changes the object that the parameter refers to, the changes are visible
+   to the caller. In some ways Dylan’s argument-passing protocol is similar
+   to C++ references.
 
-For more comparisons between Dylan and C objects, see
-` <c-comparisons.htm#89585>`_.
+   In both C and C++, array arguments are always passed as pointers. In
+   Dylan, arrays are instances of the ``<array>`` class, and array arguments
+   are treated like all other arguments.
+
+   For more comparisons between Dylan and C objects, see :doc:`c-comparisons`.
 
 Return and reception of multiple values
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

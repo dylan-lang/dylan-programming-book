@@ -45,18 +45,19 @@ designers have also planned for a full procedural macro capability, so
 that it can be added compatibly at a later time if there is sufficient
 demand.
 
-#. *Comparison with C and C++:* C and C++ macros are text substitutions,
-   performed by a preprocessor. The preprocessor has no understanding of
-   the language; it simply splices together text fragments to create
-   replacement phrases.
+.. topic:: Comparison with C and C++:
 
-Dylan macros are written in terms of Dylan language elements; the macros
-choose their transformation by pattern matching, and they substitute
-program fragments.
+   C and C++ macros are text substitutions, performed by a preprocessor.
+   The preprocessor has no understanding of the language; it simply
+   splices together text fragments to create replacement phrases.
 
-Language-based macros are more powerful than — and avoid a number of
-common pitfalls of — text-substitution macros. These pitfalls are
-described in later comparisons in this chapter.
+   Dylan macros are written in terms of Dylan language elements; the macros
+   choose their transformation by pattern matching, and they substitute
+   program fragments.
+
+   Language-based macros are more powerful than — and avoid a number of
+   common pitfalls of — text-substitution macros. These pitfalls are
+   described in later comparisons in this chapter.
 
 Patterns and templates
 ----------------------
@@ -243,14 +244,16 @@ case. Dylan’s hygienic macros solve this problem by differentiating
 between the ``value`` introduced by the macro and any other ``value``
 that might appear in the original code.
 
-#. *Comparison with C:* Because C (and C++) macros are simply text
-   substitutions performed by a preprocessor that has no understanding
-   of the C language, they are inherently unhygienic. C macro writers
-   reduce this problem by choosing unusual or unlikely names for local
-   variables in their macros (such as ``_swap_temp_value``), but even
-   this workaround can be insufficient in complex macros. Dylan macros
-   in effect automatically rename macro variables on each expansion to
-   guarantee unique names.
+.. topic:: Comparison with C:
+
+   Because C (and C++) macros are simply text substitutions performed
+   by a preprocessor that has no understanding of the C language, they
+   are inherently unhygienic. C macro writers reduce this problem by
+   choosing unusual or unlikely names for local variables in their
+   macros (such as ``_swap_temp_value``), but even this workaround
+   can be insufficient in complex macros. Dylan macros in effect
+   automatically rename macro variables on each expansion to guarantee
+   unique names.
 
 Evaluation in macros
 --------------------
@@ -320,11 +323,13 @@ you are designing macros for use by other people, those people may
 expect function-like behavior, and may be surprised if there are multiple
 or out-of-order evaluations of macro parameters.
 
-#. *Comparison with C:* Because it is more difficult to introduce local
-   variables in C macros than it is in Dylan macros, most C programmers
-   simply adopt the discipline of never using an expression with side
-   effects as an argument to a macro. The problem of multiple or
-   out-of-order evaluations of macro parameters is inherent in all macro
+.. topic:: Comparison with C:
+
+   Because it is more difficult to introduce local variables in C macros
+   than it is in Dylan macros, most C programmers simply adopt the
+   discipline of never using an expression with side effects as an
+   argument to a macro. The problem of multiple or out-of-order
+   evaluations of macro parameters is inherent in all macro
    systems, although some macro systems make it easier to handle.
 
 Constraints
@@ -427,11 +432,12 @@ Some development environments may display the implicit parentheses of an
 expression constraint. Thus, the macro will yield the expected result of
 28.
 
-#. *Comparison with C:* Because C macros are simple textual
-   substitutions, the macro writer must be sure to insert parentheses
-   around every macro variable when it is substituted, and around the
-   macro expansion itself, to prevent the resulting expansion from
-   taking on new meanings.
+.. topic:: Comparison with C:
+
+   Because C macros are simple textual substitutions, the macro writer
+   must be sure to insert parentheses around every macro variable when
+   it is substituted, and around the macro expansion itself, to prevent
+   the resulting expansion from taking on new meanings.
 
 More complex rules
 ------------------
@@ -576,11 +582,13 @@ to stop the repetition. The local variable ``again``, on the other hand,
 is not visible to the body code. We could use ``again`` instead of ``i`` as
 our repetition count without a problem.
 
-#. *Comparison with C:* All C macros have the syntax of function calls,
-   making it impossible to write language extensions such as ``repeat``.
-   By using language-based constraints, such as the ``body`` constraint
-   used here, Dylan macros can match language forms, and thus can create
-   extensions that are consistent with the base language.
+.. topic:: Comparison with C:
+
+   All C macros have the syntax of function calls, making it impossible to
+   write language extensions such as ``repeat``.  By using language-based
+   constraints, such as the ``body`` constraint used here, Dylan macros can
+   match language forms, and thus can create extensions that are consistent
+   with the base language.
 
 Note that we would have to document how ``repeat`` works for other users,
 or they might be surprised if they tried to use ``stop!`` instead of ``i``

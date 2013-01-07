@@ -141,10 +141,12 @@ Conventions used in this book
   as C or C++, environment notes, and automatic-storage-management notes.
   Here is an example:
 
-  #. *Environment note:* Our hypothetical development environment does not
-     represent any particular Dylan development environment. Also note
-     that the Dylan language does not require a development environment,
-     so any given implementation may not provide one.
+.. topic:: Environment note:
+
+   Our hypothetical development environment does not represent any
+   particular Dylan development environment. Also note that the Dylan
+   language does not require a development environment, so any given
+   implementation may not provide one.
 
 An image of Dylan
 -----------------

@@ -75,14 +75,16 @@ other software components to use the library. Thus, you can use
 libraries to deliver components in compiled form, keeping the
 implementation of the library confidential.
 
-#. *Comparison with C++ and Modula:* Dylan libraries are similar to C++
-   libraries in that they both are potentially shared components of many
-   programs. Unlike C++ libraries, Dylan libraries include all the
-   information needed to be used by another Dylan library — there is no
-   companion header file that must be kept up to date.
+.. topic:: Comparison with C++ and Modula:
 
-Dylan libraries are analogous to Modula packages — all the information
-necessary to use a library is contained in the library.
+   Dylan libraries are similar to C++ libraries in that they both
+   are potentially shared components of many programs. Unlike C++
+   libraries, Dylan libraries include all the information needed
+   to be used by another Dylan library — there is no companion
+   header file that must be kept up to date.
+
+   Dylan libraries are analogous to Modula packages — all the information
+   necessary to use a library is contained in the library.
 
 .. _reuse-modules:
 
@@ -151,23 +153,26 @@ which definitions are from another module, by giving them all a uniform
 prefix; you can use renaming to resolve name conflicts; or you can use
 renaming to give nicknames or shorthand names for imported names.
 
-*Comparison with C:* Exported variables in Dylan are like external
-variables and functions in C. (By *external*, we do not mean the
-``extern`` storage declaration, but rather the concept of an external
-variable — one that is available for linking to.)
+.. topic:: Comparison with C:
 
-Unexported variables in Dylan are like *static* variables and functions
-in C.
+   Exported variables in Dylan are like external variables and functions
+   in C. (By *external*, we do not mean the ``extern`` storage declaration,
+   but rather the concept of an external variable — one that is available
+   for linking to.)
 
-#. *Comparison with C++:* Dylan modules are similar to C++ namespaces in
-   that they eliminate the problem of global namespace pollution or
-   clashes between names used in individual libraries. Unlike C++
-   namespaces, Dylan modules also define a level of access control: Each
-   module decides what names are externally visible, and no module can
-   create or access names in another module, unless that other module
-   explicitly exports those names. In contrast, the C++ *using*
-   declaration allows the client of a namespace to access any name in
-   that namespace.
+   Unexported variables in Dylan are like *static* variables and functions
+   in C.
+
+.. topic:: Comparison with C++:
+
+   Dylan modules are similar to C++ namespaces in that they eliminate the
+   problem of global namespace pollution or clashes between names used in
+   individual libraries. Unlike C++ namespaces, Dylan modules also define
+   a level of access control: Each module decides what names are externally
+   visible, and no module can create or access names in another module,
+   unless that other module explicitly exports those names. In contrast,
+   the C++ *using* declaration allows the client of a namespace to access
+   any name in that namespace.
 
 Export and import of modules by libraries
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -475,8 +480,10 @@ interface. The ``create`` clause causes the names to be reserved in the
 ``time`` interface module, with the requisite that definitions be provided
 by some other module in the same library.
 
-#. *Comparison with C:* The Dylan ``create`` clause is roughly analogous
-   to the C ``extern`` declaration.
+.. topic:: Comparison with C:
+
+   The Dylan ``create`` clause is roughly analogous to the C ``extern``
+   declaration.
 
 The implementation module
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -603,22 +610,23 @@ value of the slot to be set when objects are created. Keywords, or
 symbols, all exist in a single global namespace that is separate from
 module variables.
 
-#. *Comparison with C++:* Dylan modules provide access control similar
-   to that provided by the ``private:`` and ``public:`` keywords in C++
-   classes, but Dylan access control is done at the module, rather than
-   at the class, level. Dylan has no equivalent to ``protected:`` access
-   control, in that a class that subclasses a class from another module
-   does *not* have access to slots or other generic functions on its
-   superclass from the other module, unless they are explicitly exported
-   from that module.
+.. topic:: Comparison with C++:
 
-Dylan does support multiple interfaces, however; different levels of
-access can be provided by having more than one interface module, each
-supplying the access needed for the particular interface.
+   Dylan modules provide access control similar to that provided by the
+   ``private:`` and ``public:`` keywords in C++ classes, but Dylan access
+   control is done at the module, rather than at the class, level. Dylan
+   has no equivalent to ``protected:`` access control, in that a class
+   that subclasses a class from another module does *not* have access
+   to slots or other generic functions on its superclass from the other
+   module, unless they are explicitly exported from that module.
 
-One way to think of Dylan access control in C++ terms is that all
-definitions in a module are *friend* s of all classes in the module, and
-the exported definitions of the module are *public*.
+   Dylan does support multiple interfaces, however; different levels of
+   access can be provided by having more than one interface module, each
+   supplying the access needed for the particular interface.
+
+   One way to think of Dylan access control in C++ terms is that all
+   definitions in a module are *friend*'s of all classes in the module, and
+   the exported definitions of the module are *public*.
 
 Breaking out the ``sixty-unit`` substrate to a separate module creates a
 slightly more complicated structure to our diagram, as shown in
@@ -682,10 +690,12 @@ another library to use our library without access to our source records.
 The details of this information also depend on the Dylan implementation
 that we are using.
 
-#. *Comparison with C++:* The library definition, which names the
-   modules exported and libraries used by a library, is similar to C++
-   header files and includes. The main difference is that the Dylan
-   development environment extracts the information that it needs about
+.. topic:: Comparison with C++:
+
+   The library definition, which names the modules exported and
+   libraries used by a library, is similar to C++ header files
+   and includes. The main difference is that the Dylan development
+   environment extracts the information that it needs about
    exported and imported variables directly, rather than requiring
    exports to be duplicated in a set of header files, and requiring
    those header files to be included in every source file that uses the
@@ -1246,20 +1256,22 @@ this case, we choose not to provide a default, so that an error will be
 signaled if ``say`` is called on a type that does not either provide or
 inherit a ``say`` method.
 
-#. *Comparison with C++:* Dylan modules enforce a structured design of
-   protocols. To create a shared protocol, to which methods can be added
-   from independent libraries, we must ensure that the module defining
-   the protocol (the module defining the generic function) is defined
-   first, in a separate, common library. The common library defines the
+.. topic:: Comparison with C++:
+
+   Dylan modules enforce a structured design of protocols. To create a
+   shared protocol, to which methods can be added from independent
+   libraries, we must ensure that the module defining the protocol
+   (the module defining the generic function) is defined first, in
+   a separate, common library. The common library defines the
    protocol in one place, easing documentation and maintenance.
 
-In C++ however, a *using* directive can create a local alias to overload
-a function in any other library, even if it is in another namespace.
+   In C++ however, a *using* directive can create a local alias to overload
+   a function in any other library, even if it is in another namespace.
 
-The library-use relationships of Dylan modules form a directed graph,
-centralizing shared functionality, whereas C++ namespaces can be
-interconnected arbitrarily, making documentation and maintenance of
-shared protocols difficult.
+   The library-use relationships of Dylan modules form a directed graph,
+   centralizing shared functionality, whereas C++ namespaces can be
+   interconnected arbitrarily, making documentation and maintenance of
+   shared protocols difficult.
 
 To complete our restructuring, we must reorganize the ``time`` library and
 module files to use the ``say`` protocol, so that the ``say`` protocol is

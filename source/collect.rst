@@ -677,8 +677,10 @@ object. Also note that ``reverse!`` may not return the same object as that
 you provide as its argument. Consider the case of using ``reverse!`` on a
 list to see how this behavior can be useful.
 
-#. *Convention:* Dylan has a convention of putting an exclamation point
-   at the ends of the names of functions that can destructively modify
+.. topic:: Convention:
+
+   Dylan has a convention of putting an exclamation point at the
+   ends of the names of functions that can destructively modify
    their arguments. For example, ``reverse!`` takes a sequence, and
    returns a sequence that has the same elements but in reverse order.
    The ``reverse!`` generic function may change the sequence that is its
@@ -867,21 +869,21 @@ of ``<nonnegative-integer>``. We use this type in the ``interpret-votes``
 method parameter list to ensure that no negative vote counts are
 accepted.
 
-#. *Quick summary of* ``&`` *infix operator* : *arg1* ``&`` *arg2*
+.. topic:: *Quick summary of* ``&`` *infix operator* : *arg1* ``&`` *arg2*
 
-The infix operator ``&`` does the *and* logical operation. If either or
-both of the arguments to the ``&`` operator are false, then ``&`` returns
-false.
+   The infix operator ``&`` does the *and* logical operation. If either or
+   both of the arguments to the ``&`` operator are false, then ``&`` returns
+   false.
 
-Note that the ``&`` operator is actually a control-flow operator. If the
-first argument to the ``&`` operator is false, then the value of the
-second argument is never computed, and false is returned. If the value
-of the first argument is true, then the value of the second argument is
-computed and returned.
+   Note that the ``&`` operator is actually a control-flow operator. If the
+   first argument to the ``&`` operator is false, then the value of the
+   second argument is never computed, and false is returned. If the value
+   of the first argument is true, then the value of the second argument is
+   computed and returned.
 
-The ``|`` operator (logical *or*) behaves in a similar manner, except
-that its second argument is computed and returned only if the first
-argument is false.
+   The ``|`` operator (logical *or*) behaves in a similar manner, except
+   that its second argument is computed and returned only if the first
+   argument is false.
 
 The syntax for the ``if`` control structure allows ``elseif`` clauses, which
 makes this style of conditionalization slightly more compact:

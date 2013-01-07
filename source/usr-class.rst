@@ -254,26 +254,29 @@ valid keyword for the class, you get an error; for example,
      ERROR: seconds: is not a valid keyword argument to make for
        {class <time-of-day>}
 
-*Automatic storage-management note:* Dylan provides automatic storage
-management (also called garbage collection). Thus, you do not need to
-deallocate memory explicitly. When an object becomes inaccessible,
-Dylan’s automatic storage management will recycle the storage used by
-that object. In this section, there are two examples of objects that
-become inaccessible:
+.. topic:: Automatic storage-management note:
 
--  We redefined the ``<time-of-day>`` class. The storage used by the old
-   class definition can be recycled.
--  We stored a new instance in ``*my-time-of-day*``. The storage used
-   by the instance previously stored in that variable can be recycled.
+   Dylan provides automatic storage management (also called garbage
+   collection). Thus, you do not need to deallocate memory explicitly.
+   When an object becomes inaccessible, Dylan’s automatic storage
+   management will recycle the storage used by that object. In this
+   section, there are two examples of objects that become inaccessible:
 
-Although redefinition is not part of the Dylan language, most Dylan
-development environments support redefinition.
+   -  We redefined the ``<time-of-day>`` class. The storage used by the old
+      class definition can be recycled.
+   -  We stored a new instance in ``*my-time-of-day*``. The storage used
+      by the instance previously stored in that variable can be recycled.
 
-*Comparison with Java:* Java recognizes that manual memory management
-can be the source of program errors and often can be exploited to breach
-security measures. Like Dylan, Java has an automatic garbage collector
-that correctly and efficiently recovers unused objects in a program —
-freeing the programmer of that mundane but difficult chore.
+   Although redefinition is not part of the Dylan language, most Dylan
+   development environments support redefinition.
+
+.. topic:: Comparison with Java:
+
+   Java recognizes that manual memory management can be the source of
+   program errors and often can be exploited to breach security measures.
+   Like Dylan, Java has an automatic garbage collector that correctly and
+   efficiently recovers unused objects in a program — freeing the
+   programmer of that mundane but difficult chore.
 
 Methods for handling time
 -------------------------
@@ -418,8 +421,10 @@ Lines 4 and 5 of the ``decode-total-seconds`` method contain calls to
 takes two arguments, divides the first by the second, and returns two
 values: the result of the truncating division, and the remainder.
 
-#. *Comparison with C:* In C, ``/`` on integers produces a truncated result.
-   In Dylan, ``/`` on integers is implementation defined, and is not
+.. topic:: Comparison with C:
+
+   In C, ``/`` on integers produces a truncated result.  In Dylan,
+   ``/`` on integers is implementation defined, and is not
    recommended for portable code. The Dylan functions named ``floor``,
    ``ceiling``, ``round``, and ``truncate`` convert a rational or
    floating-point result to an integer with the appropriate rounding.
@@ -550,14 +555,18 @@ receive the third value, so that value is simply ignored.
 On line 4, we use ``if`` to print a leading 0 for the minutes when there
 are fewer than 10 minutes, such as ``2:05``.
 
-*Comparison to C:* In C, ``if`` does not return a value. In Dylan, ``if``
-returns the value of the body that is selected, if any is.
+.. topic:: Comparison to C:
 
-*Note on* ``format-out`` *:* We have purposely used a limited subset of
-the ``format-out`` function’s features to allow our examples to run on as
-many Dylan implementations as possible. The printing of times could be
-done much more elegantly if we used the full power of the ``format-out``
-function.
+   In C, ``if`` does not return a value. In Dylan, ``if``
+   returns the value of the body that is selected, if any is.
+
+.. topic:: Note on ``format-out``:
+
+   We have purposely used a limited subset of the ``format-out``
+   function’s features to allow our examples to run on as many
+   Dylan implementations as possible. The printing of times could be
+   done much more elegantly if we used the full power of the ``format-out``
+   function.
 
 We can call ``say-time-of-day``::
 

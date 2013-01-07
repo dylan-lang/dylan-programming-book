@@ -257,11 +257,12 @@ We redefine ``<time-of-day>`` and ``<time-offset>`` to inherit from ``<time>``:
     define class <time-offset> (<time>)
     end class <time-offset>;
 
-#. *Dynamic feature — no need to recompile:* In C++, a complete
-   recompile of the program would be necessary to change the superclass
-   of a class. Most Dylan development environments support a mode that
-   requires only that you compile the new class definitions. The
-   difference between compiling only a few class definitions and
+.. topic:: Dynamic feature — no need to recompile:
+
+   In C++, a complete recompile of the program would be necessary to change
+   the superclass of a class. Most Dylan development environments support
+   a mode that requires only that you compile the new class definitions.
+   The difference between compiling only a few class definitions and
    compiling the whole program can be a time saver for complex
    applications.
 
@@ -597,13 +598,14 @@ rather than to the methods that are more general. This precedence
 ordering lets you adjust the behavior of a class with respect to that
 class’s superclasses.
 
-#. *Performance note:* The Dylan compiler and run-time system ensure
-   that the method-dispatch rules are followed for every call to a
-   generic function. Given accurate type declarations, however, a
-   compiler can usually compute the result of the dispatch rules at
-   compile time, so the executed code is just as efficient as a normal
-   function call in a language without generic functions and methods.
-   See :doc:`perform`.
+.. topic:: Performance note:
+
+   The Dylan compiler and run-time system ensure that the method-dispatch
+   rules are followed for every call to a generic function. Given accurate
+   type declarations, however, a compiler can usually compute the result
+   of the dispatch rules at compile time, so the executed code is just
+   as efficient as a normal function call in a language without generic
+   functions and methods. See :doc:`perform`.
 
 Definition of a generic function
 --------------------------------

@@ -237,18 +237,20 @@ superclasses, and duplicate slot definitions are not permitted. This
 rule holds, regardless of whether a class has one direct superclass or
 more than one.
 
-#. *Comparison with C++*: In C++, a data member of the same name can
-   appear in both a base class and a derived class. The name in the
-   scope of the derived class hides the same name in the base class, but
-   the base class slot can be accessed by qualifying its name.
+.. topic:: Comparison with C++:
 
-All access to Dylan class slots is through getter and setter methods,
-which are similar to C++ virtual functions. In Dylan, you can override
-access to an inherited slot by defining a getter or setter method
-specialized on the subclass (derived class).
+   In C++, a data member of the same name can appear in both a base class
+   and a derived class. The name in the scope of the derived class hides
+   the same name in the base class, but the base class slot can be accessed
+   by qualifying its name.
 
-For more information on inheritance in C++, see
-:ref:`c-comparisons-concept-of-classes`.
+   All access to Dylan class slots is through getter and setter methods,
+   which are similar to C++ virtual functions. In Dylan, you can override
+   access to an inherited slot by defining a getter or setter method
+   specialized on the subclass (derived class).
+
+   For more information on inheritance in C++, see
+   :ref:`c-comparisons-concept-of-classes`.
 
 There are ways, however, in which subclasses and superclasses can have
 distinct effects on the same slot. One way is by providing default
@@ -746,33 +748,37 @@ are *ambiguous* in specificity and cannot be ordered. If the
 method-dispatch procedure cannot find any method that is more specific
 than all other methods, Dylan signals an error.
 
-#. *Comparison with C++:* Multiple inheritance in C++ is different from
-   multiple inheritance in Dylan. In C++, unless a base class is
-   virtual, it is inherited multiple times if there is more than one
-   path to the base class as a result of multiple inheritance. In Dylan,
-   all base classes are effectively virtual.
+.. topic:: Comparison with C++:
 
-C++ has nothing like Dylan’s class precedence list for determining the
-precedence of two superclasses, neither of which is derived from the
-other. There is no implicit ordering of virtual members defined for such
-classes. C++ also has nothing like Dylan’s ``next-method`` for invoking
-the next most specific virtual function. A C++ programmer must often
-explicitly provide the sort of method dispatch and combination that
-Dylan implements automatically.
+   Multiple inheritance in C++ is different from multiple inheritance
+   in Dylan. In C++, unless a base class is virtual, it is inherited
+   multiple times if there is more than one path to the base class
+   as a result of multiple inheritance. In Dylan, all base classes
+   are effectively virtual.
 
-For examples of similar Dylan and C++ programs that use multiple
-inheritance, see :ref:`c-comparisons-concept-of-classes`.
+   C++ has nothing like Dylan’s class precedence list for determining the
+   precedence of two superclasses, neither of which is derived from the
+   other. There is no implicit ordering of virtual members defined for such
+   classes. C++ also has nothing like Dylan’s ``next-method`` for invoking
+   the next most specific virtual function. A C++ programmer must often
+   explicitly provide the sort of method dispatch and combination that
+   Dylan implements automatically.
 
-*Comparison with Java:* Java formalizes the concept of a *protocol* with
-its *interfaces*. An interface is like an abstract class and a set of
-required generic functions. A class that *implements* an interface must
-define methods for each of the generic functions specified by that
-interface. In a sense, an interface is like a specification for multiple
-inheritance, without the implementation. A class that implements an
-interface is considered to be of the interface type, but it must
-implement all the behaviors directly, rather than inheriting them from
-the interface — which may mean that code has to be duplicated, rather
-than shared and reused.
+   For examples of similar Dylan and C++ programs that use multiple
+   inheritance, see :ref:`c-comparisons-concept-of-classes`.
+
+.. topic:: Comparison with Java:
+
+   Java formalizes the concept of a *protocol* with its *interfaces*.
+   An interface is like an abstract class and a set of required generic
+   functions. A class that *implements* an interface must define methods
+   for each of the generic functions specified by that interface. In a
+   sense, an interface is like a specification for multiple inheritance,
+   without the implementation. A class that implements an interface is
+   considered to be of the interface type, but it must implement all the
+   behaviors directly, rather than inheriting them from the interface —
+   which may mean that code has to be duplicated, rather than shared and
+   reused.
 
 Use of multiple inheritance
 ---------------------------

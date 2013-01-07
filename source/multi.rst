@@ -20,20 +20,21 @@ built-in generic function ``+``. We can extend ``+`` by defining new
 methods for it. In certain languages, this technique is called *operator
 overloading*.
 
-*Comparison with C++ and Java:* In C++, operator overloading means
-customizing the action of any built-in operator for classes that you
-define. In Dylan, operators are just generic functions, and you can add
-methods to those generic functions for your classes. In C++, the meaning
-of an overloaded operator is resolved at compile time — the types of the
-operands must be known at compile time. Because Dylan operators are
-generic functions, the method is chosen dynamically according to the
-argument types —at run time, if the types may vary at run time.
+.. topic:: Comparison with C++ and Java:
 
-Java does not allow operator overloading. The Java designers believe
-that overloading of operators results in inscrutable code (because the
-meaning of the operator can vary). Dylan and C++ designers believe that,
-judiciously used, operator overloading permits clearer, more concise
-code.
+   In C++, operator overloading means customizing the action of any built-in
+   operator for classes that you define. In Dylan, operators are just generic
+   functions, and you can add methods to those generic functions for your
+   classes. In C++, the meaning of an overloaded operator is resolved at compile
+   time — the types of the operands must be known at compile time. Because Dylan
+   operators are generic functions, the method is chosen dynamically according
+   to the argument types —at run time, if the types may vary at run time.
+
+   Java does not allow operator overloading. The Java designers believe
+   that overloading of operators results in inscrutable code (because the
+   meaning of the operator can vary). Dylan and C++ designers believe that,
+   judiciously used, operator overloading permits clearer, more concise
+   code.
 
 Method for adding two time offsets
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -195,9 +196,10 @@ one of its parameters. The methods that we defined in
 `Methods for the + generic function`_ specialize two required
 parameters, and therefore are multimethods.
 
-*Comparison with C++ and Java:* Neither C++ nor Java supports
-multimethods. In both languages, method dispatch is based on the first
-argument of virtual functions.
+.. topic:: Comparison with C++ and Java:
+
+   Neither C++ nor Java supports multimethods. In both languages, method
+   dispatch is based on the first argument of virtual functions.
 
 The method dispatch considers all the required parameters, and sorts the
 applicable methods by specificity as follows: For each required

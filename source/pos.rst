@@ -84,14 +84,16 @@ Our requirements mention only ``<absolute-position>`` and
 ``<relative-position>``, but we choose to define a superclass of both of
 them, named ``<position>``.
 
-*Modularity note:* The benefits of defining the ``<position>`` class are
-these:
+.. topic:: Modularity note:
 
-- The ``<position>`` class creates an explicit relationship between the
-  other position classes, which are related conceptually.
-- We can use the ``<position>`` class as the type of a slot or other
-  object, in cases where either an absolute or relative position is
-  appropriate.
+   The benefits of defining the ``<position>`` class are
+   these:
+
+   - The ``<position>`` class creates an explicit relationship between the
+     other position classes, which are related conceptually.
+   - We can use the ``<position>`` class as the type of a slot or other
+     object, in cases where either an absolute or relative position is
+     appropriate.
 
 Abstract classes
 ----------------
@@ -152,24 +154,30 @@ We use the ``<directed-angle>`` class in the definition of
       slot longitude :: <directed-angle>, init-keyword: longitude:;
     end class <absolute-position>;
 
-*Modularity note:* The ``<directed-angle>`` class represents the
-characteristics that latitude and longitude have in common.
+.. topic:: Modularity note:
 
-*Comparison to C:* If you are familiar with a language that uses
-explicit pointers, such as C, you may be confused by Dylan’s object
-model. Although there is no pointer-to operation in Dylan, there are
-pointers in the implementation. If you are trying to imagine how Dylan
-objects are implemented, think in terms of always manipulating a pointer
-to the object — a Dylan variable (or slot) stores a pointer to an
-object, rather than a copy of the object’s slots. Similarly, assignment,
-argument passing, and identity comparison are in terms of pointers to
-objects. See ` <c-comparisons.htm#89585>`_.
+   The ``<directed-angle>`` class represents the characteristics
+   that latitude and longitude have in common.
 
-*Comparison to Java:* Java recognizes that pointers make it extremely
-difficult to enforce safety and for a compiler to reason about a program
-for optimization. Java supports an object model similar to that of
-Dylan, where pointers are used in the implementation of objects, but are
-not visible to Java programs.
+.. topic:: Comparison to C:
+
+   If you are familiar with a language that uses explicit pointers,
+   such as C, you may be confused by Dylan’s object model. Although
+   there is no pointer-to operation in Dylan, there are pointers in
+   the implementation. If you are trying to imagine how Dylan
+   objects are implemented, think in terms of always manipulating a pointer
+   to the object — a Dylan variable (or slot) stores a pointer to an
+   object, rather than a copy of the object’s slots. Similarly, assignment,
+   argument passing, and identity comparison are in terms of pointers to
+   objects. See :doc:`c-comparisons`.
+
+.. topic:: Comparison to Java:
+
+   Java recognizes that pointers make it extremely difficult to enforce
+   safety and for a compiler to reason about a program for optimization.
+   Java supports an object model similar to that of Dylan, where pointers
+   are used in the implementation of objects, but are not visible to
+   Java programs.
 
 We could define the ``say`` method as follows:
 
@@ -187,10 +195,12 @@ that is applicable to ``<directed-angle>`` (the type of the objects
 returned by ``position.latitude`` and ``position.longtude``). We define
 such a method in `Meeting of angles and times`_.
 
-*Modularity note:* The preceding ``say`` method does not take advantage of
-the similarity between latitude and longitude. One clue that there is a
-modularity problem is that the two calls to ``format-out`` are nearly
-identical.
+.. topic:: Modularity note:
+
+   The preceding ``say`` method does not take advantage of
+   the similarity between latitude and longitude. One clue that there is a
+   modularity problem is that the two calls to ``format-out`` are nearly
+   identical.
 
 The ``say`` method on ``<absolute-position>`` should not call
 ``format-out`` directly on the two instances of ``<directed-angle>``
@@ -215,16 +225,18 @@ method on ``<absolute-position>``:
       format-out(" longitude\n");
     end method say;
 
-*Modularity note:* Our modularity is improved, now that the
-``<directed-angle>`` class is responsible for describing its instances.
-This division of labor reduces duplication of code.
+.. topic:: Modularity note:
 
-There is still a problem with this approach, because the ``say`` method on
-``<absolute-position>`` must print “latitude” and “longitude” after
-calling ``say`` on the directed angles stored in its two slots. The
-modularity is still flawed, because the method on ``<absolute-position>``
-acts on the knowledge that the method on ``<directed-angle>`` does not
-print “latitude” or “longitude.”
+   Our modularity is improved, now that the ``<directed-angle>`` class
+   is responsible for describing its instances.  This division of labor
+   reduces duplication of code.
+
+   There is still a problem with this approach, because the ``say`` method on
+   ``<absolute-position>`` must print “latitude” and “longitude” after
+   calling ``say`` on the directed angles stored in its two slots. The
+   modularity is still flawed, because the method on ``<absolute-position>``
+   acts on the knowledge that the method on ``<directed-angle>`` does not
+   print “latitude” or “longitude.”
 
 We defined the ``<directed-angle>`` class to represent what latitude and
 longitude have in common. It is useful to recognize that latitude and
@@ -290,26 +302,28 @@ We redefine the ``say`` method on ``<absolute-position>``:
       say(position.longitude);
     end method say;
 
-*Modularity note:* The approach of defining the classes
-``<latitude>`` and ``<longitude>`` provides the following benefits:
+.. topic:: Modularity note:
 
-- Each class is responsible for describing its instances. Each method
-  depends on ``say`` working for all the classes. No method on one class
-  must understand the details of a method on another class.
-- We guard against any attempt to store a latitude in a slot designated
-  for a longitude, and vice versa. This type checking will be useful
-  when we introduce more differences between the classes. For example,
-  the direction of a latitude is north or south, and the direction of a
-  longitude is west or east. We can provide methods that ensure that
-  the directions stored in a ``<latitude>`` instance are appropriate for
-  latitude — and we can do the same for longitude. We show two
-  techniques for implementing that type checking: See
-  ` <slots.htm#97360>`_, and ` <perform.htm#95189>`_.
-- You can ask an object what its class is by using the ``object-class``
-  function. In this case, you can find out that an object is a latitude
-  or longitude, rather than just a directed angle. The data does not
-  stand alone; it is an instance that carries with it its type, its
-  identity, and the methods appropriate to it.
+   The approach of defining the classes ``<latitude>`` and ``<longitude>``
+   provides the following benefits:
+
+   - Each class is responsible for describing its instances. Each method
+     depends on ``say`` working for all the classes. No method on one class
+     must understand the details of a method on another class.
+   - We guard against any attempt to store a latitude in a slot designated
+     for a longitude, and vice versa. This type checking will be useful
+     when we introduce more differences between the classes. For example,
+     the direction of a latitude is north or south, and the direction of a
+     longitude is west or east. We can provide methods that ensure that
+     the directions stored in a ``<latitude>`` instance are appropriate for
+     latitude — and we can do the same for longitude. We show two
+     techniques for implementing that type checking: See
+     :ref:`slots-virtual-slots`, and :ref:`perform-enumerations`.
+   - You can ask an object what its class is by using the ``object-class``
+     function. In this case, you can find out that an object is a latitude
+     or longitude, rather than just a directed angle. The data does not
+     stand alone; it is an instance that carries with it its type, its
+     identity, and the methods appropriate to it.
 
 Relative position
 -----------------
@@ -348,23 +362,25 @@ define two new classes, and redefine ``<directed-angle>``:
       slot direction :: <string>, init-keyword: direction:;
     end class <directed-angle>;
 
-*Modularity note:* Why provide both the classes ``<angle>`` and
-``<relative-angle>``, when the ``<relative-angle>`` class has no additional
-slots? We need a class that has only the ``total-seconds`` slot, and no
-others. We need to use such a class as the type of the ``angle`` slot of
-``<relative-angle>``. We might consider making the ``<angle>`` class
-concrete, and using that class, which has only the ``total-seconds`` slot.
-However, that approach would not prevent someone from storing a
-``<directed-angle>`` instance in the ``angle`` slot of ``<relative-angle>``,
-because ``<directed-angle>`` instances are also instances of ``<angle>``.
+.. topic:: Modularity note:
 
-In Dylan, by defining classes as specifically as possible, you enhance
-the reliability of your program, because the compiler (or run-time
-system) can verify that only correct values are used. In contrast, you
-could write a program in Dylan or C in which you represented everything
-as an integer — in that style of program, someone could far too easily
-introduce a programming error in which a time was stored where a
-latitude was needed.
+   Why provide both the classes ``<angle>`` and ``<relative-angle>``,
+   when the ``<relative-angle>`` class has no additional slots? We need
+   a class that has only the ``total-seconds`` slot, and no others. We
+   need to use such a class as the type of the ``angle`` slot of
+   ``<relative-angle>``. We might consider making the ``<angle>`` class
+   concrete, and using that class, which has only the ``total-seconds`` slot.
+   However, that approach would not prevent someone from storing a
+   ``<directed-angle>`` instance in the ``angle`` slot of ``<relative-angle>``,
+   because ``<directed-angle>`` instances are also instances of ``<angle>``.
+
+   In Dylan, by defining classes as specifically as possible, you enhance
+   the reliability of your program, because the compiler (or run-time
+   system) can verify that only correct values are used. In contrast, you
+   could write a program in Dylan or C in which you represented everything
+   as an integer — in that style of program, someone could far too easily
+   introduce a programming error in which a time was stored where a
+   latitude was needed.
 
 The ``<angle>`` class looks remarkably similar to the ``<time>`` class
 defined earlier:

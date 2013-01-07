@@ -33,7 +33,9 @@ There are three functions that create types that are not classes:
   ``limited`` are to perform type checking and to increase efficiency. For
   information about the performance of limited types, see ` <perform.htm#95673>`_.
 
-#. *Convention:* Type names, like class names, are surrounded with angle
+.. topic:: Convention:
+
+   Type names, like class names, are surrounded with angle
    brackets — for example, ``<nonnegative-integer>``.
 
 Examples of types that are not classes

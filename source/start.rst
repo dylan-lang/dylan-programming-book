@@ -36,10 +36,12 @@ the expression and displays the value returned by that expression, which
 is ``19``. The listener displays any return values and output produced by
 the expression.
 
-*Environment note:* Our hypothetical development environment does not
-represent any particular Dylan development environment. The Dylan
-language does not require a development environment, so any given
-implementation may not provide one.
+.. topic:: Environment note:
+
+   Our hypothetical development environment does not represent any
+   particular Dylan development environment. The Dylan language does
+   not require a development environment, so any given implementation
+   may not provide one.
 
 Simple arithmetic operations
 ----------------------------
@@ -52,15 +54,15 @@ We can do other simple arithmetic::
     ? 7 - 12;
      -5
 
-#. *Caution: Spaces are needed!* In Dylan, it is legal to use characters
-   such as ``+``, ``-``, ``*``, ``<``, ``>``, and ``/`` in names of
-   variables.  Therefore, in most cases, you must leave spaces around
-   those characters in code, to make it clear that you are using them as
-   functions, and that they are not part of the name of a variable. For
-   example:
+.. topic:: Caution: Spaces are needed!
+
+   In Dylan, it is legal to use characters such as ``+``, ``-``, ``*``,
+   ``<``, ``>``, and ``/`` in names of variables.  Therefore, in most
+   cases, you must leave spaces around those characters in code, to
+   make it clear that you are using them as functions, and that they
+   are not part of the name of a variable. For example:
 
    * ``a + b`` means add ``a`` and ``b``.
-
    * ``a+b`` means the name ``a+b``.
 
 We can multiply several numbers together::
@@ -88,19 +90,23 @@ false. As you might guess, ``#t`` means true and ``#f`` means false. False
 is represented by the unique value ``#f`` only, but any object that is not
 ``#f`` is true (thus, ``0`` is a true value).
 
-#. *Comparison with C and C++: Caution!* C and C++ use integers to
-   represent Boolean values — ``0`` represents false, and any nonzero value
-   is considered true. Dylan has an explicit ``<boolean>`` type with two
-   instances: ``#f`` represents false, and ``#t`` represents the *canonical*
-   true value. However, any value other than ``#f`` is also considered
-   true in a Boolean test. Thus, in Dylan, 0 is considered true.
+.. topic:: Comparison with C and C++: Caution!
 
-#. *Comparison with Java*: Java has a separate type for Boolean values.
-   Unlike Dylan, C, or C++, the Java ``Boolean`` class has only two
-   values, ``true`` and ``false``. This design allows the compiler to issue
-   warnings for the common C error ``if (a=b) ...``, because an
-   assignment does not typically yield a Boolean result. An explicit
-   conversion is required to test nonzero in Java: ``if (a!=0) ...``.
+   C and C++ use integers to represent Boolean values — ``0`` represents
+   false, and any nonzero value is considered true. Dylan has an explicit
+   ``<boolean>`` type with two instances: ``#f`` represents false, and
+   ``#t`` represents the *canonical* true value. However, any value
+   other than ``#f`` is also considered true in a Boolean test. Thus,
+   in Dylan, 0 is considered true.
+
+.. topic:: Comparison with Java:
+
+   Java has a separate type for Boolean values.  Unlike Dylan, C, or C++,
+   the Java ``Boolean`` class has only two values, ``true`` and ``false``.
+   This design allows the compiler to issue warnings for the common C error
+   ``if (a=b) ...``, because an assignment does not typically yield a
+   Boolean result. An explicit conversion is required to test nonzero
+   in Java: ``if (a!=0) ...``.
 
 Infix syntax and function-call syntax
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -124,8 +130,10 @@ function-call syntax follow::
     ? zero?(0);
      #t
 
-#. *Convention:* The names of most predicates end with a question mark —
-   for example, ``even?``, ``odd?``, ``zero?``, ``positive?`` and ``negative?``.
+.. topic:: Convention:
+
+   The names of most predicates end with a question mark — for example,
+   ``even?``, ``odd?``, ``zero?``, ``positive?`` and ``negative?``.
    The question mark is part of the name, and does not have any
    special behavior. There are exceptions to this convention, such as
    the predicates named ``=``, ``<``, and ``>``.
@@ -160,9 +168,11 @@ program. When you define a module variable, you must *initialize* it;
 that is, you must provide an initial value for it. For example, the
 initial value of ``*my-number*`` is ``7``.
 
-*Convention:* Module variables have names that start and end with an
-asterisk — for example, ``*my-number*``. The asterisks are part of the
-name, and do not have any special behavior.
+.. topic:: Convention:
+
+   Module variables have names that start and end with an asterisk — for
+   example, ``*my-number*``. The asterisks are part of the name, and do
+   not have any special behavior.
 
 We can ask the listener for the values of module variables::
 
@@ -258,11 +268,12 @@ variables?
 Dylan signals an error because the ``+`` function does not know how to
 operate on string arguments.
 
-#. *Environment note:* The Dylan implementation defines the exact
-   wording of error messages, and what happens when an error is
-   signaled. If your implementation opens a Dylan debugger when an error
-   is signaled, you now have an opportunity to experiment with the
-   debugger!
+.. topic:: Environment note:
+
+   The Dylan implementation defines the exact wording of error messages,
+   and what happens when an error is signaled. If your implementation
+   opens a Dylan debugger when an error is signaled, you now have an
+   opportunity to experiment with the debugger!
 
 We can redefine the variables to include a type constraint, which
 ensures that the variables can hold only numbers. We specify that
@@ -284,9 +295,11 @@ Both ``<integer>`` and ``<single-float>`` are *classes*. For now, you can
 think of a class as being like a datatype in another language. Dylan
 provides a set of built-in classes, and you can also define new classes.
 
-#. *Convention:* Class names start with an open angle bracket and end
-   with a close angle bracket — for example, ``<integer>``. The angle
-   brackets are part of the name, and do not have any special behavior.
+.. topic:: Convention:
+
+   Class names start with an open angle bracket and end with a close
+   angle bracket — for example, ``<integer>``. The angle brackets are
+   part of the name, and do not have any special behavior.
 
 The ``+`` function can operate on numbers of different types::
 
@@ -309,9 +322,11 @@ the execution of a Dylan program. Here is an example::
 
     ? define constant $pi = 3.14159;
 
-#. *Convention:* Module constant names start with the dollar sign, ``$`` —
-   for example, ``$pi``. The dollar sign is part of the name, and does
-   not have any special behavior.
+.. topic:: Convention:
+
+   Module constant names start with the dollar sign, ``$`` — for example,
+   ``$pi``. The dollar sign is part of the name, and does not have any
+   special behavior.
 
 Both module variables and module constants are accessible within a
 *module*.
@@ -416,7 +431,9 @@ In Dylan, functions do not need to return any values. The ``format-out``
 function returns no values. Thus, it is called only for its side effect
 (printing output).
 
-*Comparison with C:* ``format-out`` is similar to ``printf``.
+.. topic:: Comparison with C:
+
+   ``format-out`` is similar to ``printf``.
 
 The ``format-out`` function is available from the ``format-out`` library,
 and is not part of the core Dylan language. We now describe how to make
@@ -425,10 +442,12 @@ the files that constitute the program. Many of the details depend on the
 implementation of Dylan, so you will need to consult the documentation
 of your Dylan implementation.
 
-*Usage note:* The Apple Technology Release does not currently provide
-the ``format-out`` function. For information about how to run these
-examples in the Apple Technology Release, see Harlequin’s or
-Addison-Wesley’s Web page for our book. See :doc:`environ`.
+.. topic:: Usage note:
+
+   The Apple Technology Release does not currently provide the
+   ``format-out`` function. For information about how to run these
+   examples in the Apple Technology Release, see Harlequin’s or
+   Addison-Wesley’s Web page for our book. See :doc:`environ`.
 
 .. _start-complete-program:
 
@@ -497,13 +516,15 @@ the files of the program. As shown below, we name our program directory
     - library.dylan
     - hello.dylan
 
-*Comparison with C:* The following analogies may help you to understand
-how the elements of Dylan programs correspond to elements of C programs:
+.. topic:: Comparison with C:
 
-- The *program files* are similar to *.c* files in C.
-- The *library file* is similar to a C header file.
-- The *LID file* is similar to a *makefile*, which is used in certain
-  C development environments.
+   The following analogies may help you to understand how the elements of
+   Dylan programs correspond to elements of C programs:
+
+   - The *program files* are similar to *.c* files in C.
+   - The *library file* is similar to a C header file.
+   - The *LID file* is similar to a *makefile*, which is used in certain
+     C development environments.
 
 Components of a Dylan program
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

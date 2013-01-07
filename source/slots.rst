@@ -59,12 +59,13 @@ As shown in ` <usr-class.htm#55586>`_, when you define a class, Dylan
 automatically defines a getter method to return the value of a slot, and
 defines a setter method to change the value of a slot.
 
-#. *Performance note:* For slot accesses, given accurate type
-   declarations, the compiler can typically optimize away not only the
-   method dispatch, but also the function call, making the executed code
-   just as efficient as it would be in a language such as C, where
-   structure or record slots are accessed directly. See
-   ` <perform.htm#66157>`_.
+.. topic:: Performance note:
+
+   For slot accesses, given accurate type declarations, the compiler can
+   typically optimize away not only the method dispatch, but also the
+   function call, making the executed code just as efficient as it would be
+   in a language such as C, where structure or record slots are accessed
+   directly. See :doc:`perform`.
 
 The name of the getter is always the name of the slot. Thus, the getter
 for the ``total-seconds`` slot is ``total-seconds``. Let’s look at an
@@ -290,10 +291,12 @@ Method 2 is more difficult to write and read than is Method 1, and is
 more fragile. If, at some point, all employees are allocated perks, then the
 use of the ``consultant-perks`` getter becomes a problem.
 
-*Comparison with C++:* In C++, the class is the namespace of its member
-functions. In Dylan, the module is the namespace of getters and setters.
-In general, the module is the namespace of all module bindings,
-including generic functions; getters and setters are generic functions.
+.. topic:: Comparison with C++:
+
+   In C++, the class is the namespace of its member functions. In Dylan,
+   the module is the namespace of getters and setters.  In general, the
+   module is the namespace of all module bindings, including generic
+   functions; getters and setters are generic functions.
 
 Initialize methods
 ------------------

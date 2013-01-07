@@ -140,18 +140,21 @@ return value, and slot. As a result, these compilers generate efficient
 code even if the programmer does not fully declare all types (as would
 be required in most static languages).
 
-#. *Comparison with C:* Static languages such as C have little need for
-   type inferencing, because the type of every value must be declared,
-   and the types can be checked easily at compile time. On the other
-   hand, when a problem domain is ill-specified, the program is evolving
-   through development, or a value may take on one of several types, the
-   programmer must construct union types, and must use variant records
-   or other bookkeeping to track the actual type of the value manually.
+.. topic:: Comparison with C:
 
-Dylan automatically handles this bookkeeping and uses type inferencing
-to minimize the associated overhead. At the same time, when the type of
-a variable can change at run time, Dylan also automatically tracks the
-changing type.
+   Static languages such as C have little need for type inferencing,
+   because the type of every value must be declared, and the types
+   can be checked easily at compile time. On the other hand, when a
+   problem domain is ill-specified, the program is evolving through
+   development, or a value may take on one of several types, the
+   programmer must construct union types, and must use variant
+   records or other bookkeeping to track the actual type of the
+   value manually.
+
+   Dylan automatically handles this bookkeeping and uses type inferencing
+   to minimize the associated overhead. At the same time, when the type of
+   a variable can change at run time, Dylan also automatically tracks the
+   changing type.
 
 Some compilers have a facility for generating *performance warnings*,
 which inform you when type inferencing is not able to determine types
@@ -198,30 +201,32 @@ in program failure), and that the check, and the possibility of a
 run-time error, could be avoided if the compiler knew that
 ``total-seconds`` was a ``<real>``.
 
-#. *What is a safe program?* Dylan is always safe in that a programming
-   error cannot cause a corruption of the program (or of other
-   programs). For example, an out-of-bound array access or passing an
-   argument of incompatible type simply cannot happen. The compiler will
-   either prove that the requested action is impossible, or will insert
-   code to verify bounds or type at run time, and will signal an error
-   if the bounds or type is incorrect.
+.. topic:: What is a safe program?
 
-When we discuss safety in this section, we are referring to whether or
-not such errors will be visible to the user. If we have not provided for
-a recovery action, signaling of an error will halt the program. See
-` <nexcept.htm#20153>`_, for an example of how run-time errors can be
-handled by the program.
+   Dylan is always safe in that a programming error cannot cause a
+   corruption of the program (or of other programs). For example,
+   an out-of-bound array access or passing an argument of incompatible
+   type simply cannot happen. The compiler will either prove that the
+   requested action is impossible, or will insert code to verify bounds
+   or type at run time, and will signal an error if the bounds or type
+   is incorrect.
 
-#. *Comparison with Java:* Java recognizes the need for safe operations,
-   and has eliminated many of the unsafe practices of C and C++, adding
-   such checks as array-bounds checks and type-cast checks at run time.
-   However, Java retains the C mathematical model that trades
-   performance for correctness. Java integers are of a fixed size, and
-   computations that cannot be represented in that size silently
-   overflow. In contrast, Dylan requires numeric operations to complete
-   correctly or to signal an error. Several Dylan implementations are
-   also expected to provide libraries for infinite-precision numerical
-   operations.
+   When we discuss safety in this section, we are referring to whether or
+   not such errors will be visible to the user. If we have not provided for
+   a recovery action, signaling of an error will halt the program. See
+   :doc:`nexcept`, for an example of how run-time errors can be handled
+   by the program.
+
+.. topic:: Comparison with Java:
+
+   Java recognizes the need for safe operations, and has eliminated many
+   of the unsafe practices of C and C++, adding such checks as array-bounds
+   checks and type-cast checks at run time.  However, Java retains the C
+   mathematical model that trades performance for correctness. Java integers
+   are of a fixed size, and computations that cannot be represented in that
+   size silently overflow. In contrast, Dylan requires numeric operations to
+   complete correctly or to signal an error. Several Dylan implementations
+   are also expected to provide libraries for infinite-precision numerical operations.
 
 If we specified the type of the ``total-seconds`` slot as ``<real>``,
 the compiler would have to dispatch on the type of ``total-seconds``,
@@ -334,14 +339,16 @@ details of what the compiler has to know to make this optimization, but
 it is worth noting that, if either the class or the generic function
 were open, the optimization could not be made.
 
-#. *Comparison with C++:* The Dylan limited-collection types provide a
-   capability similar to that offered by the C++ template classes.
-   Unlike in C++, the base type of a limited-collection type (the
-   equivalent of a C++ class template — in the example above, ``<vector>``)
-   is also a valid type. Dylan’s dynamic capabilities mean that Dylan
-   can defer determining the element type of a collection until run
-   time, in effect adapting the class template as it goes along. By
-   using a limited type, the compiler can generate more efficient code.
+.. topic:: Comparison with C++:
+
+   The Dylan limited-collection types provide a capability similar to
+   that offered by the C++ template classes.  Unlike in C++, the base
+   type of a limited-collection type (the equivalent of a C++ class
+   template — in the example above, ``<vector>``) is also a valid type.
+   Dylan’s dynamic capabilities mean that Dylan can defer determining
+   the element type of a collection until run time, in effect adapting
+   the class template as it goes along. By using a limited type, the
+   compiler can generate more efficient code.  
 
 Another use of limited types is to allow compact representations. We can
 use ``limited`` with the built-in type ``<integer>`` to specify numbers with
@@ -358,33 +365,36 @@ collection; for example,
 In the preceding example, we define a type that can be represented as a
 one-dimensional array of 8-bit bytes.
 
-#. *Comparison with C:* C provides efficient data representations,
-   because its data types typically map directly to underlying hardware
-   representations. A drawback of C is that its efficient data
-   representations are often not portable: The size of a ``short int`` may
-   vary across platforms, for instance. Dylan takes the more abstract
-   approach of describing the requirements of a data type, and letting
-   the compiler choose the most efficient underlying representation. A
-   drawback of the Dylan approach is that it cannot easily be used for
-   low-level systems programming, where data structures must map
-   reliably to the underlying hardware. Most Dylan systems provide a
-   foreign-function interface to allow calling out to C or some other
-   language more suitable to these low-level tasks. Some Dylan systems
-   augment the language with machine-level constructs that provide the
-   level of control necessary while staying within the object model as
-   much as possible.
+.. topic:: Comparison with C:
 
-#. *Comparison with Java:* Java recognizes that portable programs need
-   well-defined data types, rather than types that map to the particular
-   underlying hardware differently in each implementation. However, Java
-   retains some of C’s concreteness in simply specifying four distinct
-   sizes of integer (in terms of how many binary digits they hold), and
-   forcing the programmer to convert integer types to objects manually,
-   when object-oriented operations are to be performed. In contrast,
+   C provides efficient data representations, because its data types
+   typically map directly to underlying hardware representations. A
+   drawback of C is that its efficient data representations are often
+   not portable: The size of a ``short int`` may vary across platforms,
+   for instance. Dylan takes the more abstract approach of describing
+   the requirements of a data type, and letting the compiler choose
+   the most efficient underlying representation. A drawback of the
+   Dylan approach is that it cannot easily be used for low-level systems
+   programming, where data structures must map reliably to the underlying
+   hardware. Most Dylan systems provide a foreign-function interface to
+   allow calling out to C or some other language more suitable to these
+   low-level tasks. Some Dylan systems augment the language with
+   machine-level constructs that provide the level of control necessary
+   while staying within the object model as much as possible.
+
+.. topic:: Comparison with Java:
+
+   Java recognizes that portable programs need well-defined data types,
+   rather than types that map to the particular underlying hardware
+   differently in each implementation. However, Java retains some of
+   C’s concreteness in simply specifying four distinct sizes of integer
+   (in terms of how many binary digits they hold), and forcing the
+   programmer to convert integer types to objects manually, when
+   object-oriented operations are to be performed. In contrast,
    Dylan’s limited-integer types specify, at the program level, the
-   abstract requirements of the type, giving the compiler freedom to map
-   the program requirements as efficiently as possible to the underlying
-   architecture.
+   abstract requirements of the type, giving the compiler freedom to
+   map the program requirements as efficiently as possible to the
+   underlying architecture.
 
 .. _perform-enumerations:
 
@@ -695,11 +705,13 @@ optimizations that would be possible if the classes and generic
 functions were sealed, but only for the particular subset or branch in
 question.
 
-#. *Advanced topic:* Sealed domains are one of the most difficult
-   concepts of the Dylan language to understand fully. It is reasonable
-   to defer careful reading of this section until you are faced with a
-   situation similar to the example — an imported open class and generic
-   function that will be specialized by your library.
+.. topic:: Advanced topic:
+
+   Sealed domains are one of the most difficult concepts of the Dylan
+   language to understand fully. It is reasonable to defer careful
+   reading of this section until you are faced with a situation similar
+   to the example — an imported open class and generic function that
+   will be specialized by your library.
 
 As an example, consider the ``say`` protocol as used in the ``time``
 library. Because the ``say`` generic function is defined to be open, even
@@ -763,26 +775,28 @@ You can avoid this restriction by ensuring that at least one of the
 specializers of your method is a subtype of a type defined in your
 library.
 
-#. *Comparison with C++:* A C++ compiler could optimize out the
-   dispatching of a virtual function by analyzing the entire scope of
-   the argument on which the virtual function dispatches, and proving
-   that argument’s exact class. Unfortunately, that scope is often the
-   entire program, so this optimization often can be performed only by a
-   linker. Even a linker cannot make this optimization when a library is
-   compiled, because the classes of a library can be subclassed by a
-   client. The complexity is compounded for dynamic-link libraries,
-   where there may be multiple clients at once. As a result, this
+.. topic:: Comparison with C++:
+
+   A C++ compiler could optimize out the dispatching of a virtual
+   function by analyzing the entire scope of the argument on which
+   the virtual function dispatches, and proving that argument’s exact
+   class. Unfortunately, that scope is often the entire program, so
+   this optimization often can be performed only by a linker. Even a
+   linker cannot make this optimization when a library is compiled,
+   because the classes of a library can be subclassed by a client.
+   The complexity is compounded for dynamic-link libraries, where
+   there may be multiple clients at once. As a result, this
    optimization is rarely achieved in C++.
 
-In Dylan, sealed classes, sealed generic functions, and sealed domains
-explicitly state which generic functions and classes may be extended,
-and, more important, which cannot. The library designer plans in advance
-exactly what extensibility the library will have. The Dylan compiler can
-then optimize dispatching on sealed generic functions and classes and
-within sealed domains with the assurance that no client will violate the
-assumptions of the optimization. The sealing restrictions against
-subclassing or changing method applicability are automatically enforced
-on each client of a Dylan library.
+   In Dylan, sealed classes, sealed generic functions, and sealed domains
+   explicitly state which generic functions and classes may be extended,
+   and, more important, which cannot. The library designer plans in advance
+   exactly what extensibility the library will have. The Dylan compiler can
+   then optimize dispatching on sealed generic functions and classes and
+   within sealed domains with the assurance that no client will violate the
+   assumptions of the optimization. The sealing restrictions against
+   subclassing or changing method applicability are automatically enforced
+   on each client of a Dylan library.
 
 When you seal a domain of a generic function imported from another
 library, you will not cause conflicts with other libraries, as long as
@@ -866,11 +880,13 @@ primary classes (see `Primary classes`_) to guarantee efficient slot
 access. When a program defines explicit methods for a slot getter or
 setter generic function, of course, the overhead is greater.
 
-#. *Comparison with C++:* Dylan classes are similar to virtual base
-   classes with virtual data members in that the offsets of their data
-   members are not fixed, and access to the data members can be
-   overridden. See ` <c-comparisons.htm#12288>`_ in
-   ` <c-comparisons.htm#89585>`_, for a more detailed analogy.
+.. topic:: Comparison with C++:
+
+   Dylan classes are similar to virtual base classes with virtual
+   data members in that the offsets of their data members are not
+   fixed, and access to the data members can be overridden. See
+   :ref:`c-comparisons-concept-of-classes` in :doc:`c-comparisons`,
+   for a more detailed analogy.
 
 In the ``<sixty-unit>`` class, we specified an initial value for
 ``total-seconds``; hence, there is no need to check that the slot has
@@ -897,13 +913,14 @@ obey the type constraint of ``<integer>``. The compiler can still make the
 inference that the slot will always be initialized and will always have
 an integer value.
 
-#. *Comparison with C:* Dylan always ensures that a slot is initialized
-   before that slot is accessed, automatically inserting a run-time
-   check when it cannot prove at compile time that the slot is always
-   properly initialized. C puts this burden of safety on the programmer,
-   and that can be the source of subtle bugs. A number of debugging and
-   analysis tools are available as addons to C, to help the programmer
-   with this task.
+.. topic:: Comparison with C:
+
+   Dylan always ensures that a slot is initialized before that slot is
+   accessed, automatically inserting a run-time check when it cannot
+   prove at compile time that the slot is always properly initialized.
+   C puts this burden of safety on the programmer, and that can be the
+   source of subtle bugs. A number of debugging and analysis tools are
+   available as addons to C, to help the programmer with this task.
 
 Always initializing slots, either with a default value or required
 init-keyword, will make slot access efficient.
@@ -984,11 +1001,12 @@ same offset. Hence, the compiler can turn the call
 constant offset), without concern over which subclass of ``<sixty-unit>``
 was passed as an argument.
 
-#. *Comparison with C++:* A primary class is like an ordinary base class
-   in C++. Because only one primary class is allowed as a base class,
-   its data members can be assigned the same fixed offset for all
-   derived classes. See ` <c-comparisons.htm#12288>`_, for a more
-   detailed analogy.
+.. topic:: Comparison with C++:
+
+   A primary class is like an ordinary base class in C++. Because only one
+   primary class is allowed as a base class, its data members can be
+   assigned the same fixed offset for all derived classes. See
+   :ref:`c-comparisons-concept-of-classes`, for a more detailed analogy.
 
 It is permissible to make subclasses of a primary class also primary,
 essentially freezing the assignment of all the slots in the subclass
@@ -1115,14 +1133,15 @@ involving constant values at compile time) and inlining are just two of
 the *partial-evaluation* techniques that you should expect to find in
 any good Dylan compiler.
 
-#. *Comparison with C:* A programmer familiar with the optimizations
-   done in C compilers can think of partial evaluation as an extreme
-   combination of inlining and constant folding. One way in which Dylan
-   has an advantage over C for partial evaluation is that it hard for a
-   compiler to evaluate expressions that involve dereferencing pointers.
-   For example, in C, it is difficult to evaluate partially a call to
-   ``malloc``, but Dylan compilers can often evaluate a call to ``make``
-   at compile time.
+.. topic:: Comparison with C:
+
+   A programmer familiar with the optimizations done in C compilers can
+   think of partial evaluation as an extreme combination of inlining
+   and constant folding. One way in which Dylan has an advantage over
+   C for partial evaluation is that it hard for a compiler to evaluate
+   expressions that involve dereferencing pointers.  For example, in C,
+   it is difficult to evaluate partially a call to ``malloc``, but Dylan
+   compilers can often evaluate a call to ``make`` at compile time.
 
 Type inference
 ~~~~~~~~~~~~~~
