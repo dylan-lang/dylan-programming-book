@@ -39,8 +39,8 @@ that are so similar?
   value of ``total-seconds``. A ``<time-of-day>``, in contrast, should
   not have a negative value of ``total-seconds``. Later in this book, we
   provide methods that guarantee that the ``total-seconds`` slot of
-  ``<time-of-day>`` instances is not negative; see ` <slots.htm#88213>`_,
-  and ` <slots.htm#69979>`_.
+  ``<time-of-day>`` instances is not negative; see :ref:`slots-setter-methods`,
+  and :ref:`slots-initialize-methods`.
 - We need different methods for describing instances of ``<time-offset>``
   and instances of ``<time-of-day>``. The ``<time-of-day>`` method prints
   ``8:30``, and the ``<time-offset>`` method should print ``minus 8:30`` or
@@ -426,25 +426,25 @@ parameter lists are equivalent:
     (str :: <string>, num :: <integer>, any-old-thing :: <object>)
 
 Assume that we are working in a listener, and already have defined the
-methods shown in `Existing methods for
-decode-total-seconds. <offset.htm#49259>`_. Consider what happens when
-we define the method on ``<time>``. The parameter list of the new method
-is not equivalent to the parameter list of any of the existing methods,
-so the new method is added to the generic function. Thus,
+methods shown in `Existing methods for decode-total-seconds
+<existing-decode-total-seconds>`_. Consider what happens when we define
+the method on ``<time>``. The parameter list of the new method is not
+equivalent to the parameter list of any of the
+existing methods, so the new method is added to the generic function. Thus,
 ``decode-total-seconds`` has three methods: a method on
 ``<integer>``, a method on ``<time-of-day>``, and a method on ``<time>``.
 The environment may offer a way to remove a method from a generic
 function. When we remove the definition of the method on ``<time-of-day>``
 using the environment, the ``decode-total-seconds`` generic function
 contains only the desired methods, as shown in `Desired methods for
-decode-total-seconds. <offset.htm#91002>`_. A typical browser will help
-you to find the methods to remove.
+decode-total-seconds <desired-decode-total-seconds>`_. A typical browser
+will help you to find the methods to remove.
 
 If, however, we are working in source files rather than in a listener,
 we simply need to remove the method on ``<time-of-day>`` with the editor,
 and to type in the method on ``<time>``. When we next compile the file,
 the generic function will contain only the desired methods, as shown in
-`Desired methods for decode-total-seconds.`_.
+`Desired methods for decode-total-seconds <desired-decode-total-seconds>`_.
 
 We can now call ``decode-total-seconds`` on instances of ``<time-of-day>``
 and on instances of ``<time-offset>``::

@@ -186,6 +186,8 @@ information than that supplied by the “No applicable method” error.
 Therefore, we define the method in this chapter, but do not include it
 as part of the final library.
 
+.. _multi-method-dispatch:
+
 Method dispatch for multimethods
 --------------------------------
 

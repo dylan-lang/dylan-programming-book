@@ -43,7 +43,7 @@ In this chapter, we start by describing the basic concepts of libraries
 source records (`Source code, modules, and libraries`_). In the
 remainder of the chapter, we illustrate the concepts of libraries and
 modules by considering the classes and methods for times that we defined
-in ` <time-code.htm#30483>`_, and showing how they might be packaged
+in :doc:`time-code`, and showing how they might be packaged
 into a reusable software component or library. We also show how the
 ``sixty-unit`` classes and methods could be a component substrate that the
 ``time`` library uses and shares with an ``angle`` library. Finally, we
@@ -386,7 +386,7 @@ Module definition
 
 Enough theory. Let’s see how modules and libraries can be used in
 practice by considering the classes and methods for representing and
-manipulating times that we defined in ` <time-code.htm#30483>`_, and
+manipulating times that we defined in :doc:`time-code`, and
 showing how they might be packaged into a reusable software component.
 
 First, let’s examine what the external protocol of our time library
@@ -1078,7 +1078,7 @@ now in a separate library, it must be defined to be open to allow other
 libraries, such as ``time`` or ``angle``, to subclass it. Opening a class
 simply amounts to changing the ``define class`` to ``define open class``.
 The exact implications of this declaration are discussed in
-` <perform.htm#66157>`_.
+:doc:`perform`.
 
 The updated ``sixty-unit`` implementation file
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1248,11 +1248,10 @@ to define a default method for ``say``, which would also create an
 implicit generic-function definition. However, implicit generic-function
 definitions are *sealed*, and, for a protocol, we need an *open*
 generic function, because we intend clients to add methods to it. The
-exact implications of this declaration are discussed in
-` <perform.htm#66157>`_, *Performance and Flexibility*.) The designer
-of the ``say`` protocol still has to choose whether to require each type
-to define its own ``say`` method, or to provide a universal default. In
-this case, we choose not to provide a default, so that an error will be
+exact implications of this declaration are discussed in :doc:`perform`.)
+The designer of the ``say`` protocol still has to choose whether to require
+each type to define its own ``say`` method, or to provide a universal default.
+In this case, we choose not to provide a default, so that an error will be
 signaled if ``say`` is called on a type that does not either provide or
 inherit a ``say`` method.
 

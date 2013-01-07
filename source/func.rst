@@ -14,9 +14,9 @@ treatment of functions.
 This chapter discusses general aspects of the operation of functions in
 Dylan. It does not describe all aspects of functions. In particular, we
 discuss the process of method dispatch within generic functions
-elsewhere (see Sections ` <offset.htm#10035>`_, ` <multi.htm#10350>`_,
-` <classes.htm#60106>`_, and ` <inherit.htm#43848>`_). This chapter
-covers three main topics:
+elsewhere (see Sections :ref:`offset-method-dispatch`, :ref:`multi-method-dispatch`,
+:ref:`classes-method-dispatch-nonclass-types`, and :ref:`inherit-mi-and-md`).
+This chapter covers three main topics:
 
 #. The syntax of function calls, including abbreviations for function
    calls
@@ -246,7 +246,7 @@ following examples are equivalent:
     \+(a, b);
 
 The ``&`` and ``|`` operators are implemented as *macros*. (For
-information on macros, see ` <macros.htm#10055>`_.) In an expression
+information on macros, see :doc:`macros`.) In an expression
 that includes the ``&`` operator, if the first operand has a false value,
 the second operand is not evaluated. In an expression that includes the
 ``|`` operator, if the first operand has a true value, the second operand
@@ -321,8 +321,8 @@ that function’s caller, focusing on arguments, parameters, value
 declarations, and returned values. We discuss interactions between
 generic functions and their methods but do not describe the process of
 method dispatch. For information on method dispatch, see
-` <offset.htm#10035>`_; ` <multi.htm#10350>`_; ` <classes.htm#60106>`_;
-and ` <inherit.htm#43848>`_.
+:ref:`offset-method-dispatch`; :ref:`multi-method-dispatch`;
+:ref:`classes-method-dispatch-nonclass-types`; and :ref:`inherit-mi-and-md`.
 
 Parameters, arguments, and return values
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -831,7 +831,7 @@ arguments depends on whether or not a generic function is being called:
 When a generic function is called, one of its methods is *applicable* if
 every required argument is an instance of the type of the corresponding
 parameter of the method. For more information on applicable methods, see
-` <offset.htm#10035>`_.
+:ref:`offset-method-dispatch`.
 
 Consider the following definitions:
 
@@ -991,7 +991,7 @@ Creating a method by using ``local method`` is useful for a method that
 does not need to be part of a generic function, but does need to be
 given a name so that it can call itself recursively, or so that other
 code in the enclosing body can refer to it. For an example, see
-` <collect.htm#39033>`_.
+:ref:`collect-recursive-list-copier`.
 
 Application of a function to arguments
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1039,7 +1039,7 @@ returned ``#f``, and otherwise returns ``#f``.
 The ``curry`` function takes a function and any number of additional
 arguments. It returns a new function that applies the original function,
 first to the additional arguments to ``curry``, then to the arguments to
-the new function. In ` <collect.htm#22577>`_, we call ``curry`` with
+the new function. In :ref:`collect-using-map-curry`, we call ``curry`` with
 ``*`` and a number to return a function that multiplies that function’s
 argument by the given number. We then map this new function over the
 elements of a vector to perform a scalar multiplication of the vector.
@@ -1048,7 +1048,7 @@ In fact, Dylan has a set of functions that map other functions over the
 elements of collections in different ways. We used one of these,
 ``choose``, in `Creation of methods`_. Some of these functions return
 new collections; others return single values. For more examples, see
-` <collect.htm#68154>`_.
+:ref:`collect-iteration-over-sequence`.
 
 .. _func-closures:
 
@@ -1117,7 +1117,7 @@ local variable ``x`` is not defined in the lexical scope of the
 the captured binding of ``x``.
 
 For examples of closures as iteration or mapping functions for
-collections, see ` <collect.htm#69296>`_, and ` <collect.htm#22577>`_.
+collections, see :ref:`collect-mapping-functions`, and :ref:`collect-using-map-curry`.
 
 Summary
 -------

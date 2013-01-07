@@ -245,6 +245,8 @@ We use ``head`` and ``tail`` when we define a method for copying lists in
 `Lists and efficiency`_. We use ``pair`` in a method that copies lists
 recursively in `A recursive list copier`_.
 
+.. _collect-iteration-over-sequence:
+
 Iteration over a sequence
 -------------------------
 
@@ -409,6 +411,8 @@ just as they would for any other sequence. This polymorphism can be
 useful for keeping interfaces between components of a program simple and
 extensible.
 
+.. _collect-mapping-functions:
+
 Mapping functions
 ~~~~~~~~~~~~~~~~~
 
@@ -449,6 +453,8 @@ current pair of the new list, and moves to the next pair of the new
 list. Note that this method is actually a closure, which closes over the
 ``current-pair`` local variable. See :ref:`func-closures`, for more
 information about closures.
+
+.. _collect-recursive-list-copier:
 
 A recursive list copier
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -494,6 +500,8 @@ that is exactly as efficient as if it was written with iteration.
 
 Alternative ways of defining the ``my-reverse`` function are discussed in
 `Reversal of sequences`_.
+
+.. _collect-using-map-curry:
 
 Using ``map`` and ``curry``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~

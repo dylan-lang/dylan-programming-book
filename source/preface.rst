@@ -87,17 +87,16 @@ This book includes many program examples. Our approach is to show how
 evolutionary programming might work by presenting an example simply
 at first, and then expanding it gradually.
 
-In ` <part1.htm#63538>`_, we develop an example of a simple library
+In :doc:`part1`, we develop an example of a simple library
 that represents time and position. That library is needed for the
-sample airport application that we develop in ` <part3.htm#35424>`_.
+sample airport application that we develop in :doc:`part3`.
 The airport application simulates airplanes, runways, gates, flights,
 and airports. Its goal is to schedule gates for arriving and
 departing aircraft. To do scheduling, we need the library that
 represents and manipulates time and position.
 
 Harlequin and Addison-Wesley provide World Wide Web pages containing
-the source code of the program examples. See ` <environ.htm#62322>`_
-in ` <environ.htm#30041>`_.
+the source code of the program examples. See ` <environ.htm#62322>`_.
 
 Dylan’s core language is lean. It does not include input–output
 facilities, support for a user interface, or interfaces for

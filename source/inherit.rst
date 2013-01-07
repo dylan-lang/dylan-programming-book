@@ -583,6 +583,8 @@ that appear later in the list. In general, if more than one superclass
 defines a behavior, the subclass behaves most like the first superclass
 in its class precedence list that defines that behavior.
 
+.. _inherit-mi-and-md:
+
 Multiple inheritance and method dispatch
 ----------------------------------------
 

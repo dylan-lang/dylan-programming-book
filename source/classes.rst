@@ -31,7 +31,8 @@ There are three functions that create types that are not classes:
   new collection type that specifies the type of elements, such as a type
   that is a vector of integers. The main reasons for defining types with
   ``limited`` are to perform type checking and to increase efficiency. For
-  information about the performance of limited types, see ` <perform.htm#95673>`_.
+  information about the performance of limited types, see
+  :ref:`perform-limited-types`.
 
 .. topic:: Convention:
 
@@ -63,7 +64,7 @@ the type of a return value:
     end method encode-total-seconds;
 
 To see how we use ``<nonnegative-integer>`` in the time library, see
-` <slots.htm#88213>`_.
+:ref:`slots-setter-methods`.
 
 We can define a type whose only member is the false value, ``#f``:
 
@@ -113,7 +114,7 @@ The ``<latitude-direction>`` type has two valid values: the keywords
 ``#"north"`` and ``#"south"``. For an explanation of how we could use that
 type to enforce the correct values of a latitude slot, and for
 information about the performance of enumerations, see
-` <perform.htm#95189>`_.
+:ref:`perform-enumerations`.
 
 .. _classes-method-dispatch-nonclass-types:
 
@@ -145,7 +146,7 @@ that there is only one required argument:
    `Method dispatch and limited collections`_.
 
    (In the presence of multiple inheritance, the specificity rule is more
-   complex. For more information, see ` <inherit.htm#43848>`_.)
+   complex. For more information, see :ref:`inherit-mi-and-md`.)
 
 #. Call the most specific method.
 

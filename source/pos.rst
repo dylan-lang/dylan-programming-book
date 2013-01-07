@@ -474,7 +474,7 @@ the new ``<sixty-unit>`` class:
     end method say;
 
 To see the complete library, and the test code that creates position
-instances and calls ``say`` on them, see ` <time-code.htm#30483>`_.
+instances and calls ``say`` on them, see :doc:`time-code`.
 
 :ref:`Is-a relationships (inheritance) among classes <is-a-relationships>`
 shows the inheritance relationships of the classes. When one class
@@ -537,7 +537,7 @@ more concrete subclasses of it. You then define a method for ``make`` that
 specializes its first parameter on the abstract class, and that returns
 an instance of one of its concrete subclasses. To define ``make`` methods,
 you need to use the ``singleton`` function to create a type whose only
-instance is the class itself; see ` <classes.htm#19881>`_. Definition of
+instance is the class itself; see :doc:`classes`. Definition of
 ``make`` methods is an advanced topic that we do not cover in this book.
 
 What is the reason for enabling users to call ``make`` on an abstract

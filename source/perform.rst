@@ -19,8 +19,8 @@ Execution model
 ---------------
 
 Dylan is a dynamic language — everything in Dylan is defined in terms of
-a dynamic *execution model*. As we saw in ` <offset.htm#10035>`_, the
-execution model of how a method is chosen when a generic function is
+a dynamic *execution model*. As we saw in :ref:`offset-method-dispatch`,
+the execution model of how a method is chosen when a generic function is
 called with a particular set of arguments is highly dynamic: the
 arguments are evaluated; the types of the arguments are determined; the
 applicable methods are found and sorted according to specificity; and,
@@ -268,6 +268,8 @@ constants and local variables can be useful for enforcing program
 correctness, but is unlikely to create optimization opportunities, and
 might actually reduce performance, because the compiler will insert type
 checks to enforce such constraints if they are overly restrictive.
+
+.. _perform-limited-types:
 
 Limited types
 -------------

@@ -143,6 +143,8 @@ important advantages:
 - A slot access can involve arbitrary computation. For example, a slot
   can be *virtual*. See `Virtual slots`_.
 
+.. _slots-setter-methods:
+
 Setter methods
 ~~~~~~~~~~~~~~
 
@@ -297,6 +299,8 @@ use of the ``consultant-perks`` getter becomes a problem.
    the module is the namespace of getters and setters.  In general, the
    module is the namespace of all module bindings, including generic
    functions; getters and setters are generic functions.
+
+.. _slots-initialize-methods:
 
 Initialize methods
 ------------------
@@ -591,7 +595,7 @@ We can use virtual slots to control the access to a slot. For example,
 we want to ensure that the value of the ``direction`` slot is north or
 south for ``<latitude>``, and is east or west for ``<longitude>``. (An
 alternative technique is to use enumeration types, as shown in
-` <perform.htm#95189>`_.) To enforce this restriction, we must
+:ref:`perform-enumerations`.) To enforce this restriction, we must
 
 - Check the value when the setter method is invoked. In this section,
   we show how to do this check using a virtual slot. We also show how

@@ -12,8 +12,8 @@ In this chapter, we start to develop an example of a library that
 represents different kinds of time. A library is a complete unit of code
 that can be used by many different clients, where a client can be
 another library or an application program. In Chapters
-` <offset.htm#39530>`_ and ` <multi.htm#30483>`_, we expand and refine
-the example that we begin in this chapter. ` <time-code.htm#30483>`_,
+:doc:`offset` and :doc:`multi`, we expand and refine
+the example that we begin in this chapter. :doc:`time-code`,
 shows the result: a complete and working library.
 
 Requirements of the time and position classes and methods
@@ -22,7 +22,7 @@ Requirements of the time and position classes and methods
 Our eventual goal in this book is to develop a sample application based
 on an airport theme. The sample application handles the scheduling of
 aircraft that are arriving into and departing from an airport. For more
-information, see ` <design.htm#66297>`_.
+information, see :doc:`design`.
 
 We know that, for our airport application, we need to represent time.
 There are several ways to represent time. We could say that an event
@@ -31,22 +31,22 @@ happened at 21:30 (a time of day). We must represent both kinds of time
 in our time library, and we must provide a way to print representations
 of both. In this chapter, we define a class named ``<time-of-day>``, and
 we define a method that prints a representation of ``<time-of-day>``. In
-` <offset.htm#39530>`_, we define the ``<time-offset>`` class, and a
+:doc:`offset`, we define the ``<time-offset>`` class, and a
 method that prints a representation of ``<time-offset>``.
 
 The airport application also requires us to represent physical objects
 (such as aircraft), and the positions (locations) of physical objects.
-In ` <pos.htm#30483>`_, ` <pos.htm#30483>`_, we define classes that
-represent physical objects and positions.
+In :doc:`pos`, we define classes that represent physical objects and
+positions.
 
 Eventually, we need to be able to add times, to compare times for
 similarity, and to determine which of two times is greater than the
-other. We implement those operations in ` <multi.htm#30483>`_.
+other. We implement those operations in :doc:`multi`.
 
 We package the result of all our work into a complete and working
-library, in ` <time-code.htm#30483>`_. Later, we refine this library to
+library, in :doc:`time-code`. Later, we refine this library to
 achieve greater modularity and extensibility. The final result is given
-in ` <time-mod.htm#11385>`_.
+in :doc:`time-mod`.
 
 User-defined classes
 --------------------
@@ -113,7 +113,7 @@ explicit type constraint is equivalent to specifying ``<object>`` as the
 type constraint. A slot whose type constraint is ``<object>`` can hold any
 object. The ability to have slots with the type constraint ``<object>``
 provides flexibility that can be valuable; for more information, see
-` <perform.htm#66157>`_.
+:doc:`perform`.
 
 Use of *make* to create an instance
 -----------------------------------
