@@ -11,7 +11,7 @@ well.
 Dot-syntax abbreviation for simple function calls
 -------------------------------------------------
 
-The dot syntax that we have shown for getters in ` <usr-class.htm#55586>`_,
+The dot syntax that we have shown for getters in :ref:`usr-class-getters-setters`,
 is an abbreviation for a function call. The first expression is an
 abbreviation for the second expression:
 
@@ -32,7 +32,7 @@ third expression:
 
 You can use the dot syntax as an abbreviation for any function call that
 takes a single argument and returns a single value. For example, in
-` <offset.htm#91994>`_, we defined the following method:
+:ref:`offset-methods-on-time-offset`, we defined the following method:
 
 .. code-block:: dylan
 
@@ -55,7 +55,7 @@ single value.
 Getters and setters for slots
 -----------------------------
 
-As shown in ` <usr-class.htm#55586>`_, when you define a class, Dylan
+As shown in :ref:`usr-class-getters-setters`, when you define a class, Dylan
 automatically defines a getter method to return the value of a slot, and
 defines a setter method to change the value of a slot.
 
@@ -115,8 +115,8 @@ If you do not want Dylan to define a setter method for a slot, you can
 define the slot to be constant, using the ``constant`` slot adjective, or
 you can give the ``setter: #f`` slot option.
 
-For more information about accessing slots, see ` <func.htm#70240>`_,
-and ` <func.htm#14793>`_.
+For more information about accessing slots, see :ref:`func-slot-references`,
+and :ref:`func-assignment`.
 
 Advantages of accessing slots via generic functions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -161,7 +161,7 @@ for ``<time-of-day>`` to ensure that the new value for the total-seconds
 slot is 0 or greater.
 
 In our setter method, we will use the type defined in
-` <classes.htm#50813>`_, and repeated here:
+:ref:`classes-examples-types-not-classes`, and repeated here:
 
 .. code-block:: dylan
 
@@ -226,12 +226,12 @@ all client modules. There is no problem if two getters with the same
 name are defined by unrelated classes, because the appropriate getter is
 selected through method dispatch. There is a problem if a getter has the
 same name as a generic function with an incompatible parameter list or
-values declaration. (See ` <func.htm#18741>`_.) When such a problem
-occurs, the only way to resolve it is to use options to ``define module``
-to exclude or rename some of the problem bindings. This solution is
-undesirable, because it requires work on the part of the author of the
-client module, who must spot and resolve such clashes, and then use an
-interface that no longer matches its documentation.
+values declaration. (See :ref:`func-parameter-list-congruence`.) When
+such a problem occurs, the only way to resolve it is to use options to
+``define module`` to exclude or rename some of the problem bindings. This
+solution is undesirable, because it requires work on the part of the author
+of the client module, who must spot and resolve such clashes, and then use
+an interface that no longer matches its documentation.
 
 Therefore, for getters that you intend to export, it makes sense prevent
 clashes by considering the name of the slot carefully. One technique is
@@ -358,7 +358,7 @@ A slot can be uninitialized. Once a slot receives a value, however, it
 will always have a value: There is no way to return a slot to the
 uninitialized state. Sometimes it is useful to store in a slot a value
 that means none. To make that possible, you need to define a new type
-for that slot, as shown in ` <classes.htm#50813>`_. In Sections
+for that slot, as shown in :ref:`classes-examples-types-not-classes`. In Sections
 `The init-value: slot option`_ through `The init-function: slot option`_,
 we show techniques for initializing slots.
 

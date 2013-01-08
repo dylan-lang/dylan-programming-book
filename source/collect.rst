@@ -633,7 +633,7 @@ signature. In our example, we would have to fix the ``my-copy-sequence``
 method for lists to accept the ``start:`` and ``end:`` keyword arguments,
 and would have to change the methods to operate on only a portion of the
 list provided. For more information about the congruence rules for
-methods of a generic function, see ` <func.htm#18741>`_.
+methods of a generic function, see :ref:`func-parameter-list-congruence`.
 
 Manipulation of collections
 ---------------------------
@@ -833,8 +833,8 @@ or more tests.
 ``if``, ``else``, and ``elseif``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We showed the simplest use of ``if`` in ` <offset.htm#91994>`_. Consider
-the case where there is more than one test involved. Suppose that we
+We showed the simplest use of ``if`` in :ref:`offset-methods-on-time-offset`.
+Consider the case where there is more than one test involved. Suppose that we
 want to write a method that describes a vote. Here are sample calls to
 ``interpret-votes``::
 
@@ -871,7 +871,7 @@ structure and the ``else`` clause:
       end if;
     end method interpret-votes;
 
-We defined the ``<nonnegative-integer>`` type in ` <classes.htm#50813>`_,
+We defined the ``<nonnegative-integer>`` type in :ref:`classes-examples-types-not-classes`,
 using ``limited``. Only positive integers and the integer 0 are instances
 of ``<nonnegative-integer>``. We use this type in the ``interpret-votes``
 method parameter list to ensure that no negative vote counts are
@@ -1042,8 +1042,8 @@ Thus, if an element of ``2d-array`` is greater than ``value``, then this
 element will be returned immediately from the ``block``, and thus from
 the method. Array elements can be accessed with the square-bracket
 syntax, or with the function ``aref``. (For more information about
-referencing elements of an array, see ` <func.htm#54425>`_.) If the
-entire array is searched, and no element is found that is greater than
+referencing elements of an array, see :ref:`func-element-references`.) If
+the entire array is searched, and no element is found that is greater than
 ``value``, then the ``for`` loops exit normally and the ``block`` statement
 returns the last value in the ``block`` body, which in this case is false.
 We use the ``type-union`` type-generating function to create a type that

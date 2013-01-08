@@ -150,6 +150,8 @@ follows::
     ? mAx(0, 55.3, 92);
      92
 
+.. _start-variables-constants:
+
 Variables and constants
 -----------------------
 
@@ -490,6 +492,8 @@ To create a complete Dylan program, we need
 -  To write the program code, in the module; we shall put the
    ``format-out`` expression in the ``hello`` module of the
    ``hello`` library
+
+.. _start-files-of-dylan-program:
 
 Files of a Dylan program
 ~~~~~~~~~~~~~~~~~~~~~~~~

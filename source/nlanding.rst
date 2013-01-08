@@ -545,6 +545,8 @@ The ``vehicle-dynamics.dylan`` file.
       make(<time-offset>, total-seconds: $average-b707-gate-turnaround-time);
     end method gate-turnaround;
 
+.. _nlanding-schedule-file:
+
 The ``schedule.dylan`` file
 ---------------------------
 
@@ -895,6 +897,8 @@ vehicle classes and methods to schedule the aircraft arriving and
 departing from an airport. The ``generate-new-transitions`` method assists
 by examining the current state of all containers in the airport, and by
 noting any new steps that vehicles could take.
+
+.. _nlanding-airport-test-file:
 
 The ``airport-test.dylan`` file
 -------------------------------

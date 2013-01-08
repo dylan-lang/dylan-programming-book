@@ -132,6 +132,8 @@ the new instance.
 The instance stored in ``*my-time-of-day*`` has a ``total-seconds`` slot
 with no value. The next logical step is to store a value in that slot.
 
+.. _usr-class-getters-setters:
+
 Getters and setters of slot values
 ----------------------------------
 
@@ -152,7 +154,7 @@ getter and a setter. A *getter* is a method that retrieves the current
 value of a slot in an object. A *setter* is a method that stores a value
 in a slot. Each slot in a class automatically has a getter and a setter
 defined for it. You can see the function-call syntax, and other
-information about getters and setters, in ` <slots.htm#73248>`_.
+information about getters and setters, in :doc:`slots`.
 
 Initialization of slots when instances are made
 -----------------------------------------------
@@ -162,7 +164,7 @@ like to combine those two steps and to set the slot’s value while making
 the instance — in other words, to *initialize* the slot when we make the
 instance. One way to do that is to provide a *keyword argument* to
 ``make``. (Dylan offers several techniques for initializing slots; see
-` <slots.htm#73248>`_.)
+:doc:`slots`.)
 
 Keyword arguments in function calls
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -191,7 +193,7 @@ you call the function, you do not need to remember the order of the
 arguments. Keyword arguments are optional arguments, so they are useful
 for parameters that have a default value that you may want to override
 at times. For more information about keyword arguments, see
-` <func.htm#18170>`_.
+:ref:`func-parameter-lists`.
 
 How does ``make`` know that the value of the ``total-seconds:`` keyword
 should be used to initialize the ``total-seconds`` slot? The keyword and
@@ -329,7 +331,7 @@ value of the wrong type, can check receivers of the results of the
 method for correct type, and can usually produce more efficient code.
 These advantages are significant, so we use value declarations
 throughout the rest of this book. For more information about value
-declarations, see ` <func.htm#58933>`_.
+declarations, see :ref:`func-value-declarations`.
 
 Line 4 is the only expression in the body. It uses arithmetic functions
 to convert the hours, minutes, and seconds into total seconds. All
@@ -361,6 +363,8 @@ We examine the value of the ``total-seconds`` slot::
 
 The result reminds us that it would be useful to convert in the other
 direction as well — from total seconds to hours, minutes, and seconds.
+
+.. _method-for-decode-total-seconds:
 
 Method for ``decode-total-seconds``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -438,12 +442,11 @@ Use of *let* to declare local variables
 
 When a function returns multiple values, you can use ``let`` to store each
 returned value in a local variable, as shown in lines 2 and 3 of the
-``decode-total-seconds`` method in `Method for
-decode-total-seconds <usr-class.htm#28944>`_. On line 2, we use ``let`` to
-declare two local variables, named ``total-minutes`` and ``seconds``, and
-to initialize their values to the two values returned by the ``truncate/``
-function. Similarly, on line 3, we use ``let`` to declare the local
-variables ``hours`` and ``minutes``.
+``decode-total-seconds`` method in :ref:`method-for-decode-total-seconds`.
+On line 2, we use ``let`` to declare two local variables, named
+``total-minutes`` and ``seconds``, and to initialize their values to the
+two values returned by the ``truncate/`` function. Similarly, on line 3,
+we use ``let`` to declare the local variables ``hours`` and ``minutes``.
 
 The local variables declared by ``let`` can be used within the method
 until the method’s ``end``. Although there is no ``begin`` to define
@@ -452,6 +455,8 @@ begins a body, and its ``end`` finishes that body. Local variables are
 scoped within the smallest body that surrounds them, so you can use
 ``begin`` and ``end`` within a method to define a smaller body for local
 variables, although doing so is usually not necessary.
+
+.. _usr-class-second-method-decode-total-seconds:
 
 Second method for ``decode-total-seconds``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -479,8 +484,11 @@ argument:
       decode-total-seconds(time.total-seconds);
     end method decode-total-seconds;)
 
-`The decode-total-seconds generic function and its methods.`_ shows the
-two methods for the ``decode-total-seconds`` generic function.
+`The decode-total-seconds generic function and its methods
+<decode-total-seconds-methods>`_ shows the two methods for the
+``decode-total-seconds`` generic function.
+
+.. _decode-total-seconds-methods:
 
 The ``decode-total-seconds`` generic function and its methods.
 
@@ -501,8 +509,8 @@ The ``decode-total-seconds`` generic function and its methods.
       decode-total-seconds(time.total-seconds);
     end method decode-total-seconds;
 
-Looking at `The decode-total-seconds generic function and its
-methods. <usr-class.htm#47266>`_, we analyze what happens in this call::
+Looking at `The decode-total-seconds generic function and its methods
+<decode-total-seconds-methods>`_, we analyze what happens in this call::
 
     ? decode-total-seconds(*your-time-of-day*);
 

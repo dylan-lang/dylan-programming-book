@@ -163,7 +163,7 @@ for generating *safety warnings*, informing you when type inferencing
 is not able to determine types sufficiently to omit run-time type
 checking. As an example, consider these definitions (which are similar
 to, but not exactly the same as, the definitions on which we settled in
-` <time-mod.htm#11385>`_):
+:doc:`time-mod`):
 
 .. code-block:: dylan
 
@@ -285,13 +285,11 @@ arbitrary number of them. The ``limited`` mechanism is a way to specify
 that you expect to store objects of a particular type in the collection,
 and to specify how many elements will be in the collection.
 
-As an example, in ` <nlanding.htm#77416>`_, page
-` <nlanding.htm#86919>`_, the ``generate-gates`` method returns a
-``<vector>``. Without further information, the compiler must assume that
-that vector might contain objects of any types. As a result, the
-following code in the ``build-simple-airport`` method from
-` <nlanding.htm#48299>`_, page ` <nlanding.htm#32804>`_, will be
-inefficient:
+As an example, in :ref:`nlanding-vehicle-containers`, the ``generate-gates``
+method returns a ``<vector>``. Without further information, the compiler
+must assume that that vector might contain objects of any types. As a
+result, the following code in the ``build-simple-airport`` method from
+:ref:`nlanding-airport-test-file`, will be inefficient:
 
 .. code-block:: dylan
 
@@ -412,7 +410,7 @@ but you can easily construct enumerations using the ``type-union`` and
 For example, consider the ``<latitude>`` and ``<longitude>`` classes, where
 there are only two valid values for the ``direction`` slot in each class.
 Rather than enforcing the restrictions programmatically, as we did in
-` <slots.htm#97360>`_, we can create types that do the job for us:
+:ref:`slots-virtual-slots`, we can create types that do the job for us:
 
 .. code-block:: dylan
 
@@ -562,7 +560,7 @@ this:
     define generic next-landing-step (o1 :: <object>, o2 :: <object>)
       => (#rest r :: <object>);
 
-In ` <nlanding.htm#89754>`_, where we did define a generic function, we
+In :ref:`nlanding-schedule-file`, where we did define a generic function, we
 used a simple definition, just documenting the number of arguments, and
 giving them mnemonic names:
 
@@ -641,7 +639,7 @@ only when necessary. You need to balance the division of your program
 into libraries against the need to export and open more generic
 functions if the program is too finely divided. This balance is
 illustrated by the considerations we made in designing a protocol in
-` <reuse.htm#26511>`_. When we chose to split the ``time`` and ``angle``
+:ref:`reuse-protocol-design`. When we chose to split the ``time`` and ``angle``
 libraries, we were forced to create the ``say`` protocol library and open
 the generic function ``say``. In `Sealed domains`_, we show how to regain
 certain optimizations when you decide that opening a generic function is required.
@@ -1107,7 +1105,7 @@ free it explicitly, or the garbage collector has to do more work.
 It is obvious that calling a function such as ``make``, ``vector``, or
 ``pair`` in Dylan allocates memory, but there are operations that
 implicitly use memory. For example, creating a closure (see
-` <func.htm#60266>`_) will usually cause Dylan to allocate memory for
+:ref:`func-closures`) will usually cause Dylan to allocate memory for
 the closure.
 
 On the other hand, sometimes the compiler is able to prove that an

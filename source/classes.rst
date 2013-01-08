@@ -39,6 +39,8 @@ There are three functions that create types that are not classes:
    Type names, like class names, are surrounded with angle
    brackets — for example, ``<nonnegative-integer>``.
 
+.. _classes-examples-types-not-classes:
+
 Examples of types that are not classes
 --------------------------------------
 

@@ -87,6 +87,8 @@ constant ``$trunc``:
 
     operations[$trunc](n, 3);
 
+.. _func-slot-references:
+
 Slot references
 ~~~~~~~~~~~~~~~
 
@@ -140,6 +142,8 @@ In this book, we use slot-reference syntax for
 - A call to a getter generic function for a slot
 - A call to a function that takes one argument and returns one value
   that represents a property of an object
+
+.. _func-element-references:
 
 Element references
 ~~~~~~~~~~~~~~~~~~
@@ -251,6 +255,8 @@ that includes the ``&`` operator, if the first operand has a false value,
 the second operand is not evaluated. In an expression that includes the
 ``|`` operator, if the first operand has a true value, the second operand
 is not evaluated.
+
+.. _func-assignment:
 
 Assignment
 ~~~~~~~~~~
@@ -537,6 +543,8 @@ definition can contain multiple variables, and can receive multiple
 values from its initialization expression in the same way as a ``let``
 declaration.
 
+.. _func-parameter-lists:
+
 Parameter lists
 ~~~~~~~~~~~~~~~
 
@@ -664,6 +672,8 @@ parameter-list congruency and keyword-argument checking in generic
 function calls. For more information, see Sections `Parameter-list
 congruence`_ and `Keyword-argument checking`_.
 
+.. _func-value-declarations:
+
 Value declarations
 ~~~~~~~~~~~~~~~~~~
 
@@ -697,6 +707,8 @@ instance of that type, Dylan signals an error.) If the function’s body
 returns more values than are declared, the function returns the additional
 values if the declaration contains ``#rest``; otherwise, the function
 discards the additional values.
+
+.. _func-parameter-list-congruence:
 
 Parameter-list congruence
 ~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -34,9 +34,9 @@ simplest programs usually grow into projects or are reused in new
 projects, it is good practice to create a unique library and module for
 each program or component. If you are writing a simple, stand-alone
 program or a simple component, you can use the simple library and module
-structure illustrated in ` <start.htm#46770>`_. You may want to skim
-this chapter, however, so you have an idea of the options available for
-more complex situations.
+structure illustrated in :ref:`start-complete-program`. You may want
+to skim this chapter, however, so you have an idea of the options available
+for more complex situations.
 
 In this chapter, we start by describing the basic concepts of libraries
 (`Libraries`_), modules and namespaces ( `Modules`_), and programs and
@@ -103,8 +103,8 @@ and to prevent name clashes between constants and variables.
 Namespaces
 ~~~~~~~~~~
 
-We mentioned in ` <start.htm#38677>`_, that Dylan has module variables
-and module constants. Every module contains its own set of module
+We mentioned in :ref:`start-variables-constants`, that Dylan has module
+variables and module constants. Every module contains its own set of module
 variables and constants. Two independent modules ``a`` and ``b`` might both
 have variables named ``*x*``. These are two different variables with
 possibly different values. Within module ``a``, a reference to module
@@ -211,7 +211,7 @@ Simple example of libraries and modules
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To illustrate these concepts, we repeat the definition of the
-``library.dylan`` file, first shown in ` <start.htm#62969>`_. Here, we
+``library.dylan`` file, first shown in :doc:`start`. Here, we
 have used a more verbose, but also more precise, format.
 
 The library file: ``library.dylan``.
@@ -938,10 +938,11 @@ in which module namespace our definitions will appear.
 The library-interchange definition (LID)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-As described in ` <start.htm#97936>`_, most Dylan implementations also
-accept a LID file that enumerates the files of a library and the order
-in which those files will be initialized, if there are any top-level
-forms. The LID file for our ``time`` library would be as follows.
+As described in :ref:`start-files-of-dylan-program`, most Dylan
+implementations also accept a LID file that enumerates the files of a
+library and the order in which those files will be initialized, if
+there are any top-level forms. The LID file for our ``time`` library
+would be as follows.
 
 The LID file: ``time.lid``.
 
@@ -1149,6 +1150,8 @@ The LID file: ``time.lid``.
     files: time-library
            time
 
+.. _reuse-protocol-design:
+
 Protocol design
 ---------------
 
@@ -1331,7 +1334,7 @@ The ``angle`` library
 
 At this point, we are ready to define the ``angle`` library, which will
 share the ``sixty-unit`` and ``say`` libraries with the ``time`` library. In
-` <time-mod.htm#11385>`_, we present the consolidated changes to the
+:doc:`time-mod`, we present the consolidated changes to the
 ``sixty-unit``, ``say``, and ``time`` libraries that we have developed in
 this chapter, followed by the complete definition of the ``angle``
 library.

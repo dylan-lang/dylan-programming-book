@@ -70,6 +70,8 @@ negative of the value that follows it::
        = make(<time-offset>, total-seconds: - encode-total-seconds(6, 45,
                                                                    30));
 
+.. _offset-methods-on-time-offset:
+
 Methods on ``<time-offset>``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -125,9 +127,9 @@ If we test this method in a listener, however, the result is different::
 “No applicable method” means that there is no method for this generic
 function that is appropriate for the arguments. To understand this
 error, we can look at the methods for ``decode-total-seconds`` in
-` <usr-class.htm#47266>`_. One method takes an argument of the type
-``<integer>``. Another method takes an argument of the type
-``<time-of-day>``. There is no method for instances of ``<time-offset>``,
+:ref:`usr-class-second-method-decode-total-seconds`.  One method takes an
+argument of the type ``<integer>``. Another method takes an argument of the
+type ``<time-of-day>``. There is no method for instances of ``<time-offset>``,
 so Dylan signals an error. There are three possible approaches to
 solving this problem.
 
@@ -186,9 +188,9 @@ This approach works, and it preserves the flexibility of calling
 ``decode-total-seconds`` on instances of ``<integer>``, ``<time-of-day>``,
 and ``<time-offset>``. However, the body of the method on ``<time-offset>``
 (defined in this section) is nearly identical to the body of the method
-on ``<time-of-day>`` (defined in ` <usr-class.htm#93508>`_). The only
-difference is that we use ``abs`` in the method on ``<time-offset>`` but not
-in the method on ``<time-of-day>``. If we used it in the method on
+on ``<time-of-day>`` (defined in :ref:`usr-class-second-method-decode-total-seconds`).
+The only difference is that we use ``abs`` in the method on ``<time-offset>``
+but not in the method on ``<time-of-day>``. If we used it in the method on
 ``<time-of-day>``, it would be harmless. Duplication of code is ugly,
 adds maintenance overhead, and is particularly undesirable when
 programming in an object-oriented language, where it may indicate a flaw
@@ -691,7 +693,7 @@ of the type ``<object>``. It prints a description of the object. The
 ``say`` generic function returns no values.
 
 Dylan requires all the methods for a generic function to have congruent
-parameter lists and values declarations. See ` <func.htm#18741>`_.
+parameter lists and values declarations. See :ref:`func-parameter-list-congruence`.
 
 Now, we define two methods for ``say``. The method for ``say`` on
 ``<time-of-day>`` fulfills the same purpose (and has the same body) as the
@@ -837,12 +839,12 @@ provide a keyword argument with a value that each method can manipulate
 (such as adding a value to a number, or appending an element to a list).
 If you provide arguments to ``next-method``, the arguments must be
 compatible with the generic function, as described in
-` <func.htm#18741>`_. In addition, you cannot supply required arguments
-that have classes different from those of the original required
-arguments to the generic function, if doing so would have changed the
+:ref:`func-parameter-list-congruence`. In addition, you cannot supply
+required arguments that have classes different from those of the original
+required arguments to the generic function, if doing so would have changed the
 method dispatch in any way. Providing arguments to ``next-method`` is an
-advanced technique; see ` <func.htm#18170>`_, and
-` <nlanding.htm#11965>`_, page ` <nlanding.htm#24172>`_.
+advanced technique; see :ref:`func-parameter-lists`, and
+:ref:`nlanding-vehicle-containers`.
 
 The time library (so far)
 -------------------------
