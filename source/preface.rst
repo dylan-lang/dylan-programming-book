@@ -96,7 +96,7 @@ departing aircraft. To do scheduling, we need the library that
 represents and manipulates time and position.
 
 Harlequin and Addison-Wesley provide World Wide Web pages containing
-the source code of the program examples. See ` <environ.htm#62322>`_.
+the source code of the program examples. See :doc:`source-code`.
 
 Dylan’s core language is lean. It does not include input–output
 facilities, support for a user interface, or interfaces for

@@ -13,6 +13,7 @@ Contents:
    part2
    part3
    part4
+   source-code
    environ
    c-comparisons
    glossary
