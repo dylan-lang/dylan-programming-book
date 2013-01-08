@@ -10,7 +10,7 @@ Part 1. Basic Concepts
    usr-class
    offset
    multi
-   pos
+   modularity
    time-code
 
 
@@ -25,7 +25,7 @@ Dylan program. You can type in these examples and experiment with Dylan.
 :doc:`oo-1`, introduces the concepts of methods, built-in
 classes, class inheritance, and explains what it means to be an object.
 
-In Chapters :doc:`usr-class` through :doc:`pos`, we start to develop
+In Chapters :doc:`usr-class` through :doc:`modularity`, we start to develop
 an example of a library that represents different kinds of time and
 position. A *library* is a complete unit of code that can be used by
 many different clients. Our eventual goal in this book is to develop
@@ -34,7 +34,7 @@ arriving at, and departing from, an airport. For more information, see
 :doc:`design`. The airport application will use the time and position
 library.
 
-Also in Chapters :doc:`usr-class` through :doc:`pos`, we show how to
+Also in Chapters :doc:`usr-class` through :doc:`modularity`, we show how to
 write object-oriented programs in Dylan. We explain class and method
 definition, class inheritance, method dispatch, and modularity.
 

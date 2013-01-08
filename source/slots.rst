@@ -749,7 +749,7 @@ the parameter name in these methods (because we do not call the
 be confusing to other people reading the code.
 
 The ``error`` function signals an error. For more information about
-signaling and handling errors, see :doc:`nexcept`.
+signaling and handling errors, see :doc:`exceptions`.
 
 The ``direction-setter`` methods check the direction when the setter is
 called. In `Initialize method for a virtual slot`_, we check the direction

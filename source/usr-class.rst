@@ -36,7 +36,7 @@ method that prints a representation of ``<time-offset>``.
 
 The airport application also requires us to represent physical objects
 (such as aircraft), and the positions (locations) of physical objects.
-In :doc:`pos`, we define classes that represent physical objects and
+In :doc:`modularity`, we define classes that represent physical objects and
 positions.
 
 Eventually, we need to be able to add times, to compare times for

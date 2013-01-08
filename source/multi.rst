@@ -178,7 +178,7 @@ them. We define such a method here:
 This method is called only when the arguments are both general instances
 of ``<time>``, and none of the more specific methods are applicable to
 the arguments. The ``error`` function signals an error. For more
-information about signaling and handling errors, see :doc:`nexcept`.
+information about signaling and handling errors, see :doc:`exceptions`.
 
 Note: This method is useful for explaining how method dispatch works for
 multimethods, but it does not really give the user any more useful

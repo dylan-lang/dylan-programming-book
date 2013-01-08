@@ -474,7 +474,7 @@ name and a method object::
 
 All the bindings that we have created in this section so far are
 accessible within a module. (For information about modules, see
-:doc:`reuse`.) :ref:`Bindings as links <bindings-as-links>` shows how you
+:doc:`libraries`.) :ref:`Bindings as links <bindings-as-links>` shows how you
 can picture each binding as a link between a name and another object.
 
 Local variables are also bindings, but they are accessible only within a

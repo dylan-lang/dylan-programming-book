@@ -8,7 +8,7 @@ Part 2. Intermediate Topics
    slots
    collect
    func
-   reuse
+   libraries
    time-mod
 
 :doc:`classes`, discusses types that are not classes, including
@@ -26,7 +26,7 @@ statement execution, including performing iteration.
 :doc:`func`, describes the syntax of function calls, the
 function-calling protocol, and the uses of functions as objects.
 
-:doc:`reuse`, shows how you can package your code into a
+:doc:`libraries`, shows how you can package your code into a
 reusable software component by designing libraries and modules.
 
 :doc:`time-mod`, pulls together the techniques shown in :doc:`part2`

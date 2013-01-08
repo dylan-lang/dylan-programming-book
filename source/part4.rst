@@ -6,7 +6,7 @@ Part 4. Advanced Topics
 
    inherit
    perform
-   nexcept
+   exceptions
    macros
 
 :doc:`inherit`, describes how multiple inheritance works in
@@ -21,7 +21,7 @@ application is nearing completion, you can optimize the performance of
 the program (and sacrifice flexibility, which presumably is no longer
 needed).
 
-:doc:`nexcept`, describes how to use Dylan facilities to help
+:doc:`exceptions`, describes how to use Dylan facilities to help
 create reliable programs in the face of exceptions — unexpected events
 that occur during program execution.
 

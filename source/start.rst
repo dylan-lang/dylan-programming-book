@@ -164,7 +164,7 @@ We can define variables for storing values::
 In Dylan, these variables are called *module variables*. A module
 variable has a name and a value. For now, you can consider module
 variables to be like global variables in other languages. (See
-:ref:`reuse-modules`, for information about modules.) Module variables
+:ref:`libraries-modules`, for information about modules.) Module variables
 can have different values assigned to them during the execution of a
 program. When you define a module variable, you must *initialize* it;
 that is, you must provide an initial value for it. For example, the
@@ -333,7 +333,7 @@ the execution of a Dylan program. Here is an example::
 Both module variables and module constants are accessible within a
 *module*.
 
-(See :ref:`reuse-modules`, for information about modules.) Dylan also
+(See :ref:`libraries-modules`, for information about modules.) Dylan also
 offers variables that are accessible within a smaller area, called
 *local variables*. There is no concept of a local constant; all
 constants are module constants. Therefore, throughout the rest of this
@@ -480,7 +480,7 @@ you choose to export that module variable, you can make it accessible to
 other modules that import it. In this chapter, we give the bare minimum
 of information about libraries and modules — just enough for you to get
 started quickly. For a complete description of libraries and modules,
-see :doc:`reuse`.
+see :doc:`libraries`.
 
 To create a complete Dylan program, we need
 
@@ -629,7 +629,7 @@ We incur a fair amount of overhead in setting up the files that make up
 a simple program. Most environments automate this process — some of the
 complexity shown here occurs because we are working with the lowest
 common denominator: interchange files. The advantages of libraries and
-modules are significant for larger programs. See :doc:`reuse`.
+modules are significant for larger programs. See :doc:`libraries`.
 
 Summary
 -------

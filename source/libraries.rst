@@ -86,7 +86,7 @@ implementation of the library confidential.
    Dylan libraries are analogous to Modula packages — all the information
    necessary to use a library is contained in the library.
 
-.. _reuse-modules:
+.. _libraries-modules:
 
 Modules
 -------
@@ -415,7 +415,7 @@ Thus, five items (``<time>``, ``<time-of-day>``, ``<time-offset>``, ``say``,
 and ``encode-total-seconds``) define the external protocol of the time
 library.
 
-.. _reuse-roles-of-modules:
+.. _libraries-roles-of-modules:
 
 Roles of modules
 ~~~~~~~~~~~~~~~~
@@ -1152,7 +1152,7 @@ The LID file: ``time.lid``.
     files: time-library
            time
 
-.. _reuse-protocol-design:
+.. _libraries-protocol-design:
 
 Protocol design
 ---------------

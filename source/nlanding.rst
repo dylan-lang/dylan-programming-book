@@ -1071,7 +1071,7 @@ the libraries in the airport example.
 
 Note that this library and module, and the other libraries and modules
 that follow, do not separate the library implementation module from the
-library interface module, as discussed in :ref`reuse-roles-of-modules`.
+library interface module, as discussed in :ref:`libraries-roles-of-modules`.
 Dylan allows several different approaches to library and module architecture.
 Here, we present an alternative organization.
 

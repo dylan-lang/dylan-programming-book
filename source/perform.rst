@@ -214,7 +214,7 @@ run-time error, could be avoided if the compiler knew that
    When we discuss safety in this section, we are referring to whether or
    not such errors will be visible to the user. If we have not provided for
    a recovery action, signaling of an error will halt the program. See
-   :doc:`nexcept`, for an example of how run-time errors can be handled
+   :doc:`exceptions`, for an example of how run-time errors can be handled
    by the program.
 
 .. topic:: Comparison with Java:
@@ -622,7 +622,7 @@ call to the generic function, eliminating most or all of the overhead of
 run-time dispatching that would normally be expected of a dynamic
 language.
 
-We saw in :doc:`reuse`, that we must define a generic function
+We saw in :doc:`libraries`, that we must define a generic function
 that is part of a shared protocol using ``define open generic``, so that
 libraries sharing the protocol can implement the protocol for the
 classes that they define, by adding methods. If we do not define the
@@ -639,7 +639,7 @@ only when necessary. You need to balance the division of your program
 into libraries against the need to export and open more generic
 functions if the program is too finely divided. This balance is
 illustrated by the considerations we made in designing a protocol in
-:ref:`reuse-protocol-design`. When we chose to split the ``time`` and ``angle``
+:ref:`libraries-protocol-design`. When we chose to split the ``time`` and ``angle``
 libraries, we were forced to create the ``say`` protocol library and open
 the generic function ``say``. In `Sealed domains`_, we show how to regain
 certain optimizations when you decide that opening a generic function is required.
@@ -665,7 +665,7 @@ specialized on sealed classes. In this case, the compiler can usually
 choose the correct method of the generic function to call at compile
 time, eliminating any run-time overhead for using a generic function.
 
-We saw in :doc:`reuse`, that we must define a class that is a
+We saw in :doc:`libraries`, that we must define a class that is a
 shared substrate, such as ``<sixty-unit>``, using ``define open class``,
 if the libraries sharing the substrate are expected to subclass the
 class. If we did not define the class to be open, other libraries would
