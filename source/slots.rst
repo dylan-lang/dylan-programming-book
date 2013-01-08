@@ -818,11 +818,111 @@ Summary
 
 In this chapter, we covered the following:
 
-- We described techniques for initializing slots; see `Summary of
-  slot-initialization techniques. <slots.htm#45616>`_.
+- We described techniques for initializing slots; see
+  :ref:`summary-slot-initialization`.
 - We discussed the syntax of calling getters and setters; see
-  `Syntax of calling getters and setters. <slots.htm#68880>`_.
+  :ref:`syntax-calling-getters-setters`.
 - We showed how to define methods for getters and setters.
 - We showed how and why you can use symbols instead of strings.
-- We described the different kinds of slot allocation; see `Summary
-  of slot allocations. <slots.htm#35729>`_.
+- We described the different kinds of slot allocation; see
+  :ref:`summary-slot-allocations`.
+
+.. _summary-slot-initialization:
+
+.. table:: Summary of slot-initialization techniques
+
+   +-----------------------+-----------------------------------------------------------+
+   | Technique             | Summary                                                   |
+   +=======================+===========================================================+
+   | ``initialize`` method | You can define a method for ``initialize`` for a class to |
+   |                       | perform any actions to initialize the instance. The       |
+   |                       | ``make`` function calls the ``initialize`` generic        |
+   |                       | function after ``make`` creates an instance and supplies  |
+   |                       | those initial slot values that it can. If you need to do  |
+   |                       | any complex computation to determine and set the value of |
+   |                       | a slot, you can do it in an ``initialize`` method.        |
+   +-----------------------+-----------------------------------------------------------+
+   | Init keyword          | You can use the ``init-keyword:`` slot option to declare  |
+   |                       | an optional keyword argument, or the                      |
+   |                       | ``required-init-keyword:`` slot option to declare a       |
+   |                       | required keyword argument for ``make`` when you create an |
+   |                       | instance of the class. The value of the keyword argument  |
+   |                       | becomes the value of the slot.                            |
+   +-----------------------+-----------------------------------------------------------+
+   | Init value            | You can use the ``init-value:`` slot option to give a     |
+   |                       | default initial value for the slot. This option specifies |
+   |                       | an expression that is evaluated once, before the first    |
+   |                       | instance of the class is made, to yield a value. Every    |
+   |                       | time an instance is made and the slot needs a default     |
+   |                       | value, this same value is used as the default. The slot   |
+   |                       | receives its default initial value when no init keyword   |
+   |                       | is defined, or when the caller does not supply the        |
+   |                       | init-keyword argument to ``make``.                        |
+   +-----------------------+-----------------------------------------------------------+
+   | Init function         | You can use the ``init-function:`` slot option to provide |
+   |                       | a function that returns a default value. This option      |
+   |                       | specifies an expression that is evaluated once, before    |
+   |                       | the first instance of the class is made, to yield a       |
+   |                       | function. The function must have no required arguments    |
+   |                       | and must return at least one value. Every time that an    |
+   |                       | instance is made and the slot needs a default value, this |
+   |                       | function is called with no arguments, and the value that  |
+   |                       | it returns is used as the default. The slot receives its  |
+   |                       | default initial value when no init keyword is defined or  |
+   |                       | when the caller does not supply the init-keyword argument |
+   |                       | to ``make``.                                              |
+   +-----------------------+-----------------------------------------------------------+
+   | Init expression       | You can use an init expression to provide an expression   |
+   |                       | that yields a default value. Every time that an instance  |
+   |                       | is made and the slot needs a default value, this          |
+   |                       | expression is evaluated, and its value is used as the     |
+   |                       | default. The slot receives its default initial value when |
+   |                       | no init keyword is defined, or when the caller does not   |
+   |                       | supply the init-keyword argument to ``make``.             |
+   +-----------------------+-----------------------------------------------------------+
+
+.. _syntax-calling-getters-setters:
+
+.. table:: Syntax of calling getters and setters
+
+   +-------------------------------------------+-------------------------------------------------+
+   | Call                                      | Translation                                     |
+   +===========================================+=================================================+
+   | ``object.function-name``                  | ``function-name(object)``                       |
+   +-------------------------------------------+-------------------------------------------------+
+   | ``*my-time-of-day*.total-seconds;``       | ``total-seconds(*my-time-of-day*);``            |
+   +-------------------------------------------+-------------------------------------------------+
+   | ``object.name := new-value;``             | ``name-setter(new-value, object);``             |
+   +-------------------------------------------+-------------------------------------------------+
+   | ``name(object) := new-value;``            | ``name-setter(new-value, object);``             |
+   +-------------------------------------------+-------------------------------------------------+
+   | ``*my-time-of-day*.total-seconds := 0;``  | ``total-seconds-setter (0, *my-time-of-day*);`` |
+   +-------------------------------------------+-------------------------------------------------+
+   | ``total-seconds(*my-time-of-day*) := 0;`` | ``total-seconds-setter(0, *my-time-of-day*);``  |
+   +-------------------------------------------+-------------------------------------------------+
+
+.. _summary-slot-allocations:
+
+.. table:: Summary of slot allocations
+
+   +---------------+--------------------------------------------------------+
+   | Allocation    | Summary                                                |
+   +===============+========================================================+
+   | Instance      | Each instance allocates storage for the slot, and each |
+   |               | instance of the class that defines the slot has its    |
+   |               | own value of the slot. Instance allocation is the      |
+   |               | default.                                               |
+   +---------------+--------------------------------------------------------+
+   | Virtual       | No storage is allocated for the slot. You must provide |
+   |               | a getter method that computes the value of the virtual |
+   |               | slot.                                                  |
+   +---------------+--------------------------------------------------------+
+   | Class         | The class that defines the slot allocates storage for  |
+   |               | the slot. All general instances of the class share the |
+   |               | value of the slot.                                     |
+   +---------------+--------------------------------------------------------+
+   | Each-subclass | The class that defines the slot and each of its        |
+   |               | subclasses allocate storage for the slot. All the      |
+   |               | direct instances of each class share the value of the  |
+   |               | slot.                                                  |
+   +---------------+--------------------------------------------------------+
