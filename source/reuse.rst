@@ -1022,12 +1022,14 @@ library in which they are created; we cannot use the create–define
 structure across libraries. We still want ``encode-total-seconds`` to be
 part of the interface of the ``time`` library, so we will have to change
 the ``time`` interface module to import it and to re-export it from the
-time library, as shown in `The updated ``time-library`` file`_.
+time library, as shown in :ref:`updated-time-library-file`.
 
 If we had followed our own recommendations in
 `The implementation module`_, we would probably have discovered that
 ``encode-total-seconds`` belonged in the ``sixty-unit`` interface, and we
 would have avoided most of this reorganization.
+
+.. _updated-time-library-file:
 
 The updated ``time-library`` file
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
