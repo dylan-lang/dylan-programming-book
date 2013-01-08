@@ -378,31 +378,31 @@ passed:
   function’s body does not affect any variables outside the body that
   have the same name.
 
-For example, consider these definitions:
+  For example, consider these definitions:
 
-.. code-block:: dylan
+  .. code-block:: dylan
 
-    define method calling-function ()
-      let x = 1;
-      let y = 2;
-      format-out("In calling function, before call: x = %d, y = %d\n",
-                 x, y);
-      called-function(x, y);
-      format-out("In calling function, after call: x = %d, y = %d\n", x, y);
-    end method calling-function;
+      define method calling-function ()
+        let x = 1;
+        let y = 2;
+        format-out("In calling function, before call: x = %d, y = %d\n",
+                   x, y);
+        called-function(x, y);
+        format-out("In calling function, after call: x = %d, y = %d\n", x, y);
+      end method calling-function;
 
-    define method called-function (x, y)
-      x := 3;
-      y := 4;
-      format-out("In called function, before return: x = %d, y = %d\n",
-                 x, y);
-    end method called-function;
+      define method called-function (x, y)
+        x := 3;
+        y := 4;
+        format-out("In called function, before return: x = %d, y = %d\n",
+                   x, y);
+      end method called-function;
 
-A call to ``calling-function`` produces the following output::
+  A call to ``calling-function`` produces the following output::
 
-    In calling function, before call: x = 1, y = 2
-    In called function, before return: x = 3, y = 4
-    In calling function, after call: x = 1, y = 2
+      In calling function, before call: x = 1, y = 2
+      In called function, before return: x = 3, y = 4
+      In calling function, after call: x = 1, y = 2
 
 - Although *parameters* are local to a function, all *arguments* and
   *return values* are shared between a function and its caller. If an
@@ -410,55 +410,55 @@ A call to ``calling-function`` produces the following output::
   changed — then any changes that a function makes to that object are
   visible to its caller.
 
-Consider the following definitions:
+  Consider the following definitions:
 
-.. code-block:: dylan
+  .. code-block:: dylan
 
-    define class <test> (<object>)
-      slot test-slot, required-init-keyword: test-slot:;
-    end class <test>;
+      define class <test> (<object>)
+        slot test-slot, required-init-keyword: test-slot:;
+      end class <test>;
 
-    define method calling-function ()
-      let x = make(<test>, test-slot: "before");
-      format-out("In calling function, before call: x.test-slot = %s\n",
-                 x.test-slot);
-      called-function(x);
-      format-out("In calling function, after call: x.test-slot = %s\n",
-                 x.test-slot);
-    end method calling-function;
+      define method calling-function ()
+        let x = make(<test>, test-slot: "before");
+        format-out("In calling function, before call: x.test-slot = %s\n",
+                   x.test-slot);
+        called-function(x);
+        format-out("In calling function, after call: x.test-slot = %s\n",
+                   x.test-slot);
+      end method calling-function;
 
-    define method called-function (x :: <test>)
-      x.test-slot := "after";
-      format-out("In called function, before return: x.test-slot = %s\n",
-                 x.test-slot);
-    end method called-function;
+      define method called-function (x :: <test>)
+        x.test-slot := "after";
+        format-out("In called function, before return: x.test-slot = %s\n",
+                   x.test-slot);
+      end method called-function;
 
-Note here that we have redefined the ``calling-function`` method, and have
-defined a new ``called-function`` method, which we first defined in the
-previous example. Our new ``called-function`` method has one parameter,
-whereas the previous method had two. The parameter list of this new
-method is not compatible with that of the previous method, and, if we
-actually tried to define the second ``called-function`` method, Dylan
-would signal an error. For more information on compatibility of
-parameter lists for generic functions and methods, see
-`Parameter-list congruence`_.
+  Note here that we have redefined the ``calling-function`` method, and have
+  defined a new ``called-function`` method, which we first defined in the
+  previous example. Our new ``called-function`` method has one parameter,
+  whereas the previous method had two. The parameter list of this new
+  method is not compatible with that of the previous method, and, if we
+  actually tried to define the second ``called-function`` method, Dylan
+  would signal an error. For more information on compatibility of
+  parameter lists for generic functions and methods, see
+  `Parameter-list congruence`_.
 
-A call to ``calling-function`` now produces the following output::
+  A call to ``calling-function`` now produces the following output::
 
-    In calling function, before call: x.test-slot = "before"
-    In called function, before return: x.test-slot = "after"
-    In calling function, after call: x.test-slot = "after"
+      In calling function, before call: x.test-slot = "before"
+      In called function, before return: x.test-slot = "after"
+      In calling function, after call: x.test-slot = "after"
 
-In this case, ``x`` in the calling function and ``x`` in the called function
-are different variables. But the *values* of both variables are the same
-object: the instance of ``<test>`` that we make in the calling function.
-The change to the slot value of this object that we make in the called
-function is visible to the calling function.
+  In this case, ``x`` in the calling function and ``x`` in the called function
+  are different variables. But the *values* of both variables are the same
+  object: the instance of ``<test>`` that we make in the calling function.
+  The change to the slot value of this object that we make in the called
+  function is visible to the calling function.
 
-It is equally proper to think of arguments that are *immutable*, like
-integers, as being shared between a function and its caller. By
-definition, however, a function cannot make any changes to such objects
-that are visible to the function’s caller.
+  It is equally proper to think of arguments that are *immutable*, like
+  integers, as being shared between a function and its caller. By
+  definition, however, a function cannot make any changes to such objects
+  that are visible to the function’s caller.
 
 .. topic:: Comparison with C and C++:
 
