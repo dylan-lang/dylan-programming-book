@@ -15,7 +15,7 @@ other than east or west. (In :ref:`perform-enumerations` we changed the
 application such that this particular application-detected exception was
 transformed into one that is detected by Dylan.)
 
-When an an unusual event occurs in an application, there are many
+When an unusual event occurs in an application, there are many
 options available for responding to that event. The application can try
 to handle the situation in its own particular way, or it can use the
 *exception protocol* defined by Dylan. In this chapter, we explore
