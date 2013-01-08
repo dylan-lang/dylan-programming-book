@@ -158,6 +158,7 @@ process-aircraft *airport time*
    for example,
 
    ::
+
      12:30: Aircraft Cardinal at Runway 11R-29L
      12:43: Aircraft Cardinal at Taxiway Echo
      12:47: Aircraft Cardinal at Gate A2
