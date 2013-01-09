@@ -157,7 +157,7 @@ might yield
 
 .. code-block:: dylan
 
-    *y*:= if (*y* == 0) *x*:= 1 else *x*:= -1 end;
+    *y* := if (*y* == 0) *x* := 1 else *x* := -1 end;
 
 The exact format of the expanded view of the macro depends on the
 particular development environment. Here, we show the code that comes
