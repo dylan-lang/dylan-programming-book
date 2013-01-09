@@ -102,7 +102,7 @@ such text is useful for long or complex definitions, where it can be
 difficult to see which language construct is ending.
 
 .. index::
-   single: type constraints; of slots
+   single: type constraint; of slots
 
 The type constraint of a slot
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

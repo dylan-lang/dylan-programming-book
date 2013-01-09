@@ -103,7 +103,7 @@ of Dylan are costly, and which features enable the compiler to make
 optimizations.
 
 .. index::
-   single: type constraints; performance implications
+   single: type constraint; performance implications
    single: performance; type constraints
 
 Type constraints

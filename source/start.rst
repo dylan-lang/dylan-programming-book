@@ -261,8 +261,8 @@ Dylan offers an identity predicate, which we discuss in
 :ref:`oo-1-equality-predicates`.
 
 .. index::
-   single: variables; type constraints
-   single: type constraints
+   single: variable; type constraints
+   single: type constraint
 
 Variables that have type constraints
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
