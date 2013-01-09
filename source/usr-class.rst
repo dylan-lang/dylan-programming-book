@@ -101,6 +101,9 @@ must match the definition ending, such as ``end class <time-of-day>``, or
 such text is useful for long or complex definitions, where it can be
 difficult to see which language construct is ending.
 
+.. index::
+   single: type constraints; of slots
+
 The type constraint of a slot
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -115,8 +118,10 @@ object. The ability to have slots with the type constraint ``<object>``
 provides flexibility that can be valuable; for more information, see
 :doc:`perform`.
 
-Use of *make* to create an instance
------------------------------------
+.. index:: make
+
+Use of ``make`` to create an instance
+-------------------------------------
 
 We want to make an instance of ``<time-of-day>``, but first we need a
 place to store it. We define a module variable called

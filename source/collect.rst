@@ -56,6 +56,9 @@ In Sections `Creation of strings and access to elements`_ through
 `Creation of lists and access to elements`_, we show how to create
 collections, and how to access the elements of a collection.
 
+.. index::
+   single: vectors; creation and access to elements
+
 Creation of strings and access to elements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -256,6 +259,8 @@ show how to process each element of a sequence using different techniques.
 
 Building our own ``copy-sequence``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. index:: while
 
 How would we write our own ``copy-sequence`` function, if Dylan did not
 already provide one? There are many possible approaches. One way would
@@ -506,6 +511,8 @@ Alternative ways of defining the ``my-reverse`` function are discussed in
 Using ``map`` and ``curry``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. index:: map
+
 Perhaps the easiest way to implement our simple sequence copier is to
 use the ``map`` function. The ``map`` function takes the same arguments as
 does ``do``. However, instead of ignoring the return value of the
@@ -547,6 +554,8 @@ The ``map`` iterator then calls that function on each element of
 rather than creating a new collection for the results. See
 :ref:`heap-basic-collection-methods`, for an example of the use of
 ``map-into``.
+
+.. index:: curry
 
 We can define this method more succinctly using ``curry``, which is a
 function that generates a function:

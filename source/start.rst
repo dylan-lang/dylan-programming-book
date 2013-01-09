@@ -122,13 +122,22 @@ of its arguments::
 
 The function name appears first, followed by its arguments, which are
 surrounded by parentheses and separated by commas. Other examples of the
-function-call syntax follow::
+function-call syntax follow:
+
+.. index::
+   single: even?
+   single: zero?
+
+::
 
     ? even?(3);
      #f
 
     ? zero?(0);
      #t
+
+.. index::
+   pair: naming conventions; predicate
 
 .. topic:: Convention:
 
@@ -161,6 +170,9 @@ We can define variables for storing values::
 
     ? define variable *your-number* = 12;
 
+.. index::
+   single: module variable; introduction
+
 In Dylan, these variables are called *module variables*. A module
 variable has a name and a value. For now, you can consider module
 variables to be like global variables in other languages. (See
@@ -169,6 +181,9 @@ can have different values assigned to them during the execution of a
 program. When you define a module variable, you must *initialize* it;
 that is, you must provide an initial value for it. For example, the
 initial value of ``*my-number*`` is ``7``.
+
+.. index::
+   pair: variable; naming conventions
 
 .. topic:: Convention:
 
@@ -245,6 +260,10 @@ true::
 Dylan offers an identity predicate, which we discuss in
 :ref:`oo-1-equality-predicates`.
 
+.. index::
+   single: variables; type constraints
+   single: type constraints
+
 Variables that have type constraints
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -297,6 +316,9 @@ Both ``<integer>`` and ``<single-float>`` are *classes*. For now, you can
 think of a class as being like a datatype in another language. Dylan
 provides a set of built-in classes, and you can also define new classes.
 
+.. index::
+   pair: class; naming conventions
+
 .. topic:: Convention:
 
    Class names start with an open angle bracket and end with a close
@@ -307,6 +329,10 @@ The ``+`` function can operate on numbers of different types::
 
     ? *my-number* + *your-number*;
      19.01
+
+.. index::
+   single: constant; module constant
+   single: module constant
 
 Module constants
 ~~~~~~~~~~~~~~~~
@@ -323,6 +349,9 @@ the value of the constant, and you cannot change that value throughout
 the execution of a Dylan program. Here is an example::
 
     ? define constant $pi = 3.14159;
+
+.. index::
+   pair: constant; naming conventions
 
 .. topic:: Convention:
 

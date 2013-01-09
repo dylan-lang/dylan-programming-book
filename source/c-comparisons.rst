@@ -213,6 +213,8 @@ calling our ``=`` method altogether if the same object is compared to
 itself. It can do so because, with the exception of IEEE NaNs
 (nonnumbers), values that are ``==`` must also be ``=``.
 
+.. index:: make; methods
+
 Another approach that you can use if your objects are immutable is to
 make sure that they are unique. The ``make`` function is not required to
 return a new object each time, as shown in the Dylan object example,

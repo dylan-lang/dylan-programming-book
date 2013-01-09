@@ -1,6 +1,8 @@
 Macros
 ======
 
+.. index:: ! macro
+
 The term *macro*, as used in computer programming, originally stood for
 *macro-instruction*, meaning an instruction that represented a
 sequence of several machine (or micro) instructions. Over time, the term
@@ -59,6 +61,13 @@ demand.
    common pitfalls of — text-substitution macros. These pitfalls are
    described in later comparisons in this chapter.
 
+.. index::
+   single: patterns
+   single: macro; patterns
+   single: templates
+   single: macro; templates
+   single: macro; rules
+
 Patterns and templates
 ----------------------
 
@@ -75,6 +84,10 @@ three possible formats: the function macro, the statement macro, and the
 defining macro. The macro format determines the overall fragment that is
 matched against the macro’s rules at each macro invocation.
 
+.. index::
+   single: macro; function macro
+   single: function macro
+
 The simplest macro format that the compiler can match is that of a
 function call. A *function macro* is invoked in exactly the same way
 that a function is invoked. The name of the macro is a module variable
@@ -82,6 +95,9 @@ that can be used anywhere a function call can occur. Typically, it is
 simply the name followed by a parenthesized list of arguments, but
 recall that slot-style abbreviations and unary and binary operators are
 also function calls.
+
+.. index::
+   single: macro; delay of evaluation of arguments
 
 The most important use of function macros is to rearrange or delay
 evaluation of arguments. The fragment that is matched against the
@@ -125,6 +141,10 @@ evaluated, before ``if-else`` was called. When a macro is used, the
 assignments are just substituted into the template ``if``, which
 evaluates the first clause only when the condition is true.
 
+.. index::
+   single: macro; pattern variables
+   single: pattern variables
+
 Looking at the macro definition of ``if-else``, we can infer basic ideas
 about macros. A macro is introduced by ``define macro``, followed by the
 *macro name* — in this case, ``if-else``. The definition of the macro
@@ -167,6 +187,9 @@ presented in our conventional *code font*. Note that the ``if-else``
 macro we have defined is just syntactic sugar — Dylan’s built-in ``if``
 statement is perfectly sufficient for the job.
 
+.. index::
+   single: macro; delay of evaluation of arguments
+
 Another reason to delay evaluation is to change the value of an argument
 — for example, to implement an operator similar in spirit to C’s ``++``
 and ``+=`` operators:
@@ -206,6 +229,9 @@ are tried in order until an appropriate match is found. This allows the
 ``inc!`` macro to have two forms. The one-argument form increments the
 argument by 1. The two-argument form allows the increment amount to be
 specified.
+
+.. index::
+   single: macro; hygiene
 
 Macro hygiene
 -------------
@@ -254,6 +280,9 @@ that might appear in the original code.
    can be insufficient in complex macros. Dylan macros in effect
    automatically rename macro variables on each expansion to guarantee
    unique names.
+
+.. index::
+   single: macro; evaluation in
 
 Evaluation in macros
 --------------------
@@ -332,8 +361,15 @@ or out-of-order evaluations of macro parameters.
    evaluations of macro parameters is inherent in all macro
    systems, although some macro systems make it easier to handle.
 
+.. index::
+   single: macro; constraints
+
 Constraints
 -----------
+
+.. index::
+   single: macro; statement macro
+   single: statement macro
 
 So far, in our macros, we have seen the constraint *expression* used for
 the pattern variables. Except for a few unusual cases, pattern variables
@@ -442,6 +478,10 @@ expression constraint. Thus, the macro will yield the expected result of
 More complex rules
 ------------------
 
+.. index::
+   single: macro; defining macro
+   single: defining macro
+
 The macros shown so far have all been simple: a single pattern
 transformed into a single template. To get a flavor of the full power of
 the Dylan macro system, consider this *defining macro*:
@@ -470,6 +510,9 @@ We might use the macro ``define aircraft`` as follows:
       flight UA11, from: #"BOS", to: #"SFO";
       flight UA12, from: #"SFO", to: #"BOS";
     end aircraft UA4906H;
+
+.. index:
+   single: macro; auxiliary rules
 
 This macro shows a number of the more esoteric features of Dylan macros.
 First, notice the pattern variable ``?flights``, which has no constraint,
@@ -506,6 +549,9 @@ using *coercion*; the program can use the symbol ``#"UA1306"`` to look up
 an aircraft in the registry by name. The template for ``flights`` collects
 all the individual flights into a comma-separated list that is passed to
 ``register-flights`` as a ``#rest`` argument.
+
+.. index::
+   single: macro; hygiene
 
 More hygiene
 ------------
@@ -593,6 +639,10 @@ our repetition count without a problem.
 Note that we would have to document how ``repeat`` works for other users,
 or they might be surprised if they tried to use ``stop!`` instead of ``i``
 in the example.
+
+.. index::
+   single: auxiliary macros
+   single: macro; auxiliary macros
 
 Auxiliary macros
 ----------------
@@ -697,6 +747,11 @@ particular problem domain more concisely.
 
 :ref:`pattern-constraints` summarizes how constraints control pattern-variable
 matches.
+
+.. index::
+   single: macro; constraints
+   single: macro; pattern variables
+   single: pattern variables
 
 .. _pattern-constraints:
 

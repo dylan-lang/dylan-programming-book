@@ -1,6 +1,10 @@
 Nonclass Types
 ==============
 
+.. index::
+   single: non-class types
+   single: type; non-class types
+
 Every class is a type, but not every type is a class. In this chapter,
 we describe how to create nonclass types, and how to make use of them.
 
@@ -33,6 +37,9 @@ There are three functions that create types that are not classes:
   ``limited`` are to perform type checking and to increase efficiency. For
   information about the performance of limited types, see
   :ref:`perform-limited-types`.
+
+.. index::
+   pair: type; naming conventions
 
 .. topic:: Convention:
 

@@ -102,6 +102,10 @@ Nonetheless, we shall try to give an intuitive feel for which features
 of Dylan are costly, and which features enable the compiler to make
 optimizations.
 
+.. index::
+   single: type constraints; performance implications
+   single: performance; type constraints
+
 Type constraints
 ----------------
 

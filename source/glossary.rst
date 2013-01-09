@@ -72,12 +72,14 @@ Glossary
         represents a problem or unusual situation encountered during program
         execution.
 
-    *constant* (also called *module constant*)
+    *constant*
         An unchanging binding whose scope is its module. You define a constant
         explicitly with ``define constant``, and implicitly with ``define class``,
         ``define generic``, ``define macro``, or possibly ``define method``. You
         must initialize the value of a constant, and you cannot assign another
         value to a constant during the execution of a Dylan program.
+
+        (Also called :term:`module constant`.)
 
     constituent
         A definition, a local declaration, or an expression.
@@ -318,7 +320,9 @@ Glossary
         outside the module. You can use modules both to do information hiding
         and to prevent name clashes between constants and variables.
 
-    *module constant* (see *constant*)
+    *module constant*
+        See :term:`constant`.
+
     *module variable*
         A binding whose scope is its module. A module variable is much like a
         global variable in other languages. You define a module variable with

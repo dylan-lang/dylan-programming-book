@@ -1048,6 +1048,8 @@ complement, disjunction, or conjunction of the predicates. For example,
 function that returns ``#t`` when the original predicate would have
 returned ``#f``, and otherwise returns ``#f``.
 
+.. index:: curry
+
 The ``curry`` function takes a function and any number of additional
 arguments. It returns a new function that applies the original function,
 first to the additional arguments to ``curry``, then to the arguments to

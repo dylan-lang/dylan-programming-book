@@ -525,6 +525,9 @@ slot determines where the storage for the slot’s value is allocated, and
 it determines which instances share the value of the slot. There are
 four kinds of allocation:
 
+.. index::
+   single: slot allocation; instance
+
 Instance:
   Each instance allocates storage for the slot, and each
   instance of the class that defines the slot has its own value for the
@@ -532,16 +535,26 @@ Instance:
   the same slot in a different instance. Instance allocation is the
   default, and is the most commonly used kind of allocation.
 
+.. index::
+   single: slot allocation; virtual
+   single: virtual slot allocation
+
 Virtual:
   No storage is allocated for the slot. You must provide a
   getter method that computes the value of the virtual slot. See
   `Virtual slots`_.
+
+.. index::
+   single: slot allocation; class
 
 Class:
   The class that defines the slot allocates storage for the slot.
   Instances of the class that defines the slot and instances of all
   that class’s subclasses see the same value for the slot. That is, all
   general instances of the class share the value for the slot.
+
+.. index::
+   single: slot allocation; each-subclass
 
 Each-subclass:
   The class that defines the slot and each of its subclasses allocate
@@ -567,6 +580,11 @@ example, all instances of Boeing 747 aircraft share a particular
 cruising speed, and all instances of McDonnell Douglas MD-80 aircraft
 share a particular cruising speed, but the cruising speed of 747s does
 not need to be the same as the cruising speeds of MD-80s.
+
+.. index::
+   single: virtual slots
+   single: virtual slot allocation
+   single: slots; virtual
 
 .. _slots-virtual-slots:
 
