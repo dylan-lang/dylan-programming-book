@@ -43,14 +43,16 @@ The slots of ``<relative-position>`` will include a distance (such
 as 200 miles), and a direction (such as south).
 
 We need to provide ``say`` methods for absolute and relative positions.
-The following sample calls show the output that we want to achieve::
+The following sample calls show the output that we want to achieve:
+
+.. code-block:: dylan-console
 
     ? say(*my-absolute-position*);
-     42 degrees 19 minutes 34 seconds North latitude
-     70 degrees 56 minutes 26 seconds West longitude*
+    => 42 degrees 19 minutes 34 seconds North latitude
+    => 70 degrees 56 minutes 26 seconds West longitude*
 
     ? say(*her-relative-position*);
-     30 miles away at heading 90 degrees
+    => 30 miles away at heading 90 degrees
 
 Initial class definitions
 -------------------------

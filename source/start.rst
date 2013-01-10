@@ -25,10 +25,10 @@ Here is a sample dialog between a user and a listener. The *bold
 typewriter font* shows what the user types. The *bold-oblique typewriter
 font* shows what the listener displays.
 
-::
+.. code-block:: dylan-console
 
     ? 7 + 12;
-     19
+    => 19
 
 In our hypothetical listener, the Dylan prompt is the question mark, ``?``.
 The user types in ``7 + 12;`` and presses Enter. The listener executes
@@ -46,13 +46,15 @@ the expression.
 Simple arithmetic operations
 ----------------------------
 
-We can do other simple arithmetic::
+We can do other simple arithmetic:
+
+.. code-block:: dylan-console
 
     ? 7 * 52;
-     364
+    => 364
 
     ? 7 - 12;
-     -5
+    => -5
 
 .. topic:: Caution: Spaces are needed!
 
@@ -65,24 +67,28 @@ We can do other simple arithmetic::
    * ``a + b`` means add ``a`` and ``b``.
    * ``a+b`` means the name ``a+b``.
 
-We can multiply several numbers together::
+We can multiply several numbers together:
+
+.. code-block:: dylan-console
 
     ? 24 * 7 * 52;
-     8736
+    => 8736
 
 True and false
 ~~~~~~~~~~~~~~
 
-We can compare the magnitude of two numbers::
+We can compare the magnitude of two numbers:
+
+.. code-block:: dylan-console
 
     ? 1 = 1;
-     #t
+    => #t
 
     ? 3 < 30;
-     #t
+    => #t
 
     ? 15 > 16;
-     #f
+    => #f
 
 The functions ``=``, ``<``, and ``>`` are *predicates*. A predicate returns
 true if the condition it is testing is true; otherwise, it returns
@@ -115,10 +121,12 @@ The functions ``+``, ``-``, ``*``, ``<``, ``>``, and ``=`` use *infix syntax*;
 that is, the function name appears between the arguments to the
 function. Most other Dylan functions use the function-call syntax shown
 in the following call to the ``min`` function, which returns the smallest
-of its arguments::
+of its arguments:
+
+.. code-block:: dylan-console
 
     ? min(2, 4, 6);
-     2
+    => 2
 
 The function name appears first, followed by its arguments, which are
 surrounded by parentheses and separated by commas. Other examples of the
@@ -128,13 +136,13 @@ function-call syntax follow:
    single: even?
    single: zero?
 
-::
+.. code-block:: dylan-console
 
     ? even?(3);
-     #f
+    => #f
 
     ? zero?(0);
-     #t
+    => #t
 
 .. index::
    pair: naming conventions; predicate
@@ -151,20 +159,24 @@ Case insensitivity
 ~~~~~~~~~~~~~~~~~~
 
 Dylan is case insensitive. Therefore, we can call the ``max`` function as
-follows::
+follows:
+
+.. code-block:: dylan-console
 
     ? MAX(-1, 1);
-     1
+    => 1
 
     ? mAx(0, 55.3, 92);
-     92
+    => 92
 
 .. _start-variables-constants:
 
 Variables and constants
 -----------------------
 
-We can define variables for storing values::
+We can define variables for storing values:
+
+.. code-block:: dylan-console
 
     ? define variable *my-number* = 7;
 
@@ -191,29 +203,37 @@ initial value of ``*my-number*`` is ``7``.
    example, ``*my-number*``. The asterisks are part of the name, and do
    not have any special behavior.
 
-We can ask the listener for the values of module variables::
+We can ask the listener for the values of module variables:
+
+.. code-block:: dylan-console
 
     ? *my-number*;
-     7
+    => 7
 
     ? *your-number*;
-     12
+    => 12
 
-We can add the values stored in these variables::
+We can add the values stored in these variables:
+
+.. code-block:: dylan-console
 
     ? *my-number* + *your-number*;
-     19
+    => 19
 
-We can multiply the values stored in these variables::
+We can multiply the values stored in these variables:
+
+.. code-block:: dylan-console
 
     ? *my-number* * *your-number*;
-     84
+    => 84
 
 We can use the *assignment operator*, ``:=``, to change the values
-stored in a variable::
+stored in a variable:
+
+.. code-block:: dylan-console
 
     ? *my-number* := 100;
-     100
+    => 100
 
 Assignment, initialization, and equality
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -225,37 +245,41 @@ The meaning of ``=`` depends on whether it appears an expression, or in a
 definition of a variable or constant. In an expression, ``=`` is a
 function that tests for equality; for example,
 
-::
+.. code-block:: dylan-console
 
     ? 3 = 3;
-     #t
+    => #t
 
 In a definition of a variable or constant, ``=`` precedes the initial
 value of the variable or constant; for example,
 
-::
+.. code-block:: dylan-console
 
     ? define variable *her-number* = 3;
 
 After you initialize a variable with ``=``, the ``=`` function returns
-true::
+true:
+
+.. code-block:: dylan-console
 
     ? *her-number* = 3;
-     #t
+    => #t
 
 The assignment operator, ``:=``, performs assignment, which is setting
 the value of an existing variable; for example,
 
-::
+.. code-block:: dylan-console
 
     ? *her-number* := 4;
-     4
+    => 4
 
 After you have assigned a value to a variable, the ``=`` function returns
-true::
+true:
+
+.. code-block:: dylan-console
 
     ? *her-number* = 4;
-     #t
+    => #t
 
 Dylan offers an identity predicate, which we discuss in
 :ref:`oo-1-equality-predicates`.
@@ -270,21 +294,23 @@ Variables that have type constraints
 We defined the variables ``*my-number*`` and ``*your-number*`` without
 giving a *type constraint* on the variables. Thus, we can store any type
 of value in these variables. For example, here we use the assignment
-operator, ``:=``, to store strings in these variables::
+operator, ``:=``, to store strings in these variables:
+
+.. code-block:: dylan-console
 
     ? *my-number* := "seven";
-     "seven"
+    => "seven"
 
     ? *your-number* := "twelve";
-     "twelve"
+    => "twelve"
 
 What happens if we try to add the string values stored in these
 variables?
 
-::
+.. code-block:: dylan-console
 
     ? *my-number* + *your-number*;
-     ERROR: No applicable method for + with arguments ("seven", "twelve")
+    => ERROR: No applicable method for + with arguments ("seven", "twelve")
 
 Dylan signals an error because the ``+`` function does not know how to
 operate on string arguments.
@@ -299,7 +325,7 @@ operate on string arguments.
 We can redefine the variables to include a type constraint, which
 ensures that the variables can hold only numbers. We specify that
 ``*my-number*`` can hold any integer, and that ``*your-number*`` can
-hold a single-precision floating-point number::
+hold a single-precision floating-point number:
 
     ? define variable *my-number* :: <integer> = 7;
 
@@ -307,10 +333,10 @@ hold a single-precision floating-point number::
 
 What happens if we try to store a string in one of the variables?
 
-::
+.. code-block:: dylan-console
 
     ? *my-number* := "seven";
-     ERROR: The value assigned to *my-number* must be of type <integer>
+    => ERROR: The value assigned to *my-number* must be of type <integer>
 
 Both ``<integer>`` and ``<single-float>`` are *classes*. For now, you can
 think of a class as being like a datatype in another language. Dylan
@@ -325,10 +351,12 @@ provides a set of built-in classes, and you can also define new classes.
    angle bracket — for example, ``<integer>``. The angle brackets are
    part of the name, and do not have any special behavior.
 
-The ``+`` function can operate on numbers of different types::
+The ``+`` function can operate on numbers of different types:
+
+.. code-block:: dylan-console
 
     ? *my-number* + *your-number*;
-     19.01
+    => 19.01
 
 .. index::
    single: constant; module constant
@@ -346,7 +374,9 @@ of an array.
 You use ``define constant`` to define a module constant, in the same way
 that you use ``define variable`` to define a variable. You must initialize
 the value of the constant, and you cannot change that value throughout
-the execution of a Dylan program. Here is an example::
+the execution of a Dylan program. Here is an example:
+
+.. code-block:: dylan-console
 
     ? define constant $pi = 3.14159;
 
@@ -391,23 +421,27 @@ definitions, see :ref:`oo-1-method-definitions`.) Other control structures, such
 as ``if``, create implicit bodies. Bodies can be nested. If there is no
 body handy, or if you want to create a body smaller than the implicit
 one, you can create a body by using ``begin`` to start it and ``end``
-to finish it::
+to finish it:
+
+.. code-block:: dylan-console
 
     ? begin
        let radius = 5;
        let circumference = 2 \* $pi \* radius;
        circumference;
      end;
-     31.4159
+    => 31.4159
 
 The local variables ``radius`` and ``circumference`` are declared,
 initialized, and used within the body. The value returned by the body is
 the value of the expression executed last in the body, which is
 ``circumference``. Outside the lexical scope of the body, the local
-variables are no longer declared, and trying to access them is an error::
+variables are no longer declared, and trying to access them is an error:
+
+.. code-block:: dylan-console
 
     ? radius
-     ERROR: The variable radius is undefined.
+    => ERROR: The variable radius is undefined.
 
 Formatted output
 ----------------
@@ -430,10 +464,10 @@ Ordinary text in the format string is sent to the destination verbatim.
 You can use the backslash character in the *string* argument to insert
 unusual characters, such as ``\n``, which prints the newline character.
 
-::
+.. code-block:: dylan-console
 
     ? format-out("Your future is filled with wondrous surprises.\n")
-     Your future is filled with wondrous surprises.
+    => Your future is filled with wondrous surprises.
 
 Formatting instructions begin with a percent sign, ``%``. For each ``%``,
 there is normally a corresponding argument giving an object to output.
@@ -447,16 +481,18 @@ following formatting characters in this book:
 - ``%=`` Prints an implementation-specific representation of the object;
   you can use ``%=`` for any class of object
 
-Here are examples::
+Here are examples:
+
+.. code-block:: dylan-console
 
     ? format-out
-     ("Your number is %= and mine is %d\n", *your-number*,
-      *my-number*);
-     Your number is 12.01 and mine is 7.
+        ("Your number is %= and mine is %d\n", *your-number*,
+         *my-number*);
+    => Your number is 12.01 and mine is 7.
 
     ? format-out("The %s meeting will be held at %d:%d%d.\n", "Staff", 2,
-     3, 0);
-     The Staff meeting will be held at 2:30.
+                 3, 0);
+    => The Staff meeting will be held at 2:30.
 
 In Dylan, functions do not need to return any values. The ``format-out``
 function returns no values. Thus, it is called only for its side effect

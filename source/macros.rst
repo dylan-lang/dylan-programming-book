@@ -120,20 +120,22 @@ construct similar in spirit to C’s ``?:`` operator:
 
 We could not write ``if-else`` as a function, because both the true and
 false expressions would be evaluated before the function was even
-called::
+called:
+
+.. code-block:: dylan-console
 
     ? define variable *x* = 0;
 
     ? define variable *y* = 0;
 
     ? *y* := if-else(*y* == 0, *x* := 1, *x* := -1);
-     1
+    => 1
 
     ? *y*;
-     1
+    => 1
 
     ? *x*;
-     1
+    => 1
 
 If we had defined ``if-else`` as a function, ``*x*`` would have been ``-1``,
 rather than ``1``, because both assignments to ``*x*`` would have been
@@ -203,15 +205,17 @@ and ``+=`` operators:
         => { ?place := ?place + 1; }
     end macro inc!;
 
-This macro might be used as follows::
+This macro might be used as follows:
+
+.. code-block:: dylan-console
 
     ? define variable *x* = 0;
 
     ? inc!(*x*, 3);
-     3
+    => 3
 
     ? *x*;
-     3
+    => 3
 
     ? inc!(*x*);
      4

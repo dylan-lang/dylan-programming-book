@@ -74,20 +74,24 @@ To test the method, we need to create two instances of ``<time-offset>``:
     define variable *plus-15-20-45* =
       make(<time-offset>, total-seconds: encode-total-seconds (15, 20, 45));
 
-We can add the time offsets::
+We can add the time offsets:
+
+.. code-block:: dylan-console
 
     ? *minus-2-hours* + *plus-15-20-45*;
-     {instance <time-offset>}
+    => {instance <time-offset>}
 
 The result is a new instance of ``<time-offset>``. We did not save the
 value returned. (Many environments offer a way to access values returned
 by the listener.) We can add the time offsets again, and view the
-``total-seconds`` slot of the result::
+``total-seconds`` slot of the result:
+
+.. code-block:: dylan-console
 
     ? decode-total-seconds(*minus-2-hours* + *plus-15-20-45*);
-     13
-     20
-     45
+    => 13
+    => 20
+    => 45
 
 Methods for adding a time of day to a time offset
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -135,19 +139,23 @@ which we define as follows:
     define variable *8-30-59* =
       make(<time-of-day>, total-seconds: encode-total-seconds(8, 30, 59));
 
-We add the time offset and the time of day::
+We add the time offset and the time of day:
+
+.. code-block:: dylan-console
 
     ? decode-total-seconds(*minus-2-hours* + *8-30-59*);
-     6
-     30
-     59
+    => 6
+    => 30
+    => 59
 
-We add the time of day and the time offset::
+We add the time of day and the time offset:
+
+.. code-block:: dylan-console
 
     ? decode-total-seconds(*8-30-59* + *minus-2-hours*);
-     6
-     30
-     59
+    => 6
+    => 30
+    => 59
 
 .. _multi-adding-other-times:
 
@@ -249,10 +257,12 @@ Dylan signals an error.
 various arguments to +. If two methods are applicable, we number the
 more specific method 1, and the less specific method 2.
 
-We call ``+`` on two instances of ``<time-offset>``::
+We call ``+`` on two instances of ``<time-offset>``:
+
+.. code-block:: dylan-console
 
     ? *minus-2-hours* + *plus-15-20-45*;
-     {instance of <time-offset>}
+    => {instance of <time-offset>}
 
 When both arguments are instances of ``<time-offset>``, the first row of
 the table applies. Two methods are applicable. The method on
@@ -288,21 +298,25 @@ comparisons we need:
       time1.total-seconds = time2.total-seconds;
     end method \=;
 
-We can call these methods::
+We can call these methods:
+
+.. code-block:: dylan-console
 
     ? *plus-15-20-45* = *minus-2-hours*;
-     #f
+    => #f
 
 To compare times, we need only to define methods for ``<`` and ``=``. All
 other numerical comparisons in Dylan are based on these two methods. So, we
 can call ``>``, ``>=``, ``<=``, and ``~=`` (the not-equal-to function). Here
-are examples::
+are examples:
+
+.. code-block:: dylan-console
 
     ? *plus-15-20-45* ~= *minus-2-hours*;
-     #t
+    => #t
 
     ? *plus-15-20-45* > *minus-2-hours*;
-     #t
+    => #t
 
 Summary
 -------

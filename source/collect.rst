@@ -62,36 +62,42 @@ collections, and how to access the elements of a collection.
 Creation of strings and access to elements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-First, we define a variable, initializing it with a string::
+First, we define a variable, initializing it with a string:
+
+.. code-block:: dylan-console
 
     ? define variable *greeting* = "Hello, world.";
 
     ? *greeting*;
-     "Hello, world."
+    => "Hello, world."
 
-We can access elements of the string::
+We can access elements of the string:
+
+.. code-block:: dylan-console
 
     ? *greeting*[0];
-     ’H’
+    => ’H’
 
     ? *greeting*[1];
-     ’e’
+    => ’e’
 
 The syntax ``*greeting*[n]`` refers to the *n* th element of the
 string in ``*greeting*``. You can use this syntax to access any
 element of any collection. In Dylan, double quotes are used to enclose
 literal strings, and single quotes are used to enclose characters.
 
-We can use the assignment operator to change an element of a string::
+We can use the assignment operator to change an element of a string:
+
+.. code-block:: dylan-console
 
     ? *greeting* := copy-sequence(*greeting*);
-     "Hello, world."
+    =>"Hello, world."
 
     ? *greeting*[0] := 'j';
-     ’j’
+    => ’j’
 
     ? *greeting*;
-     "jello, world."
+    => "jello, world."
 
 We copied the greeting before modifying it, because modifying a literal
 constant is an error. A *literal constant* is an object whose contents
@@ -109,13 +115,15 @@ listener presents all objects in literal-constant syntax, not everything
 displayed by the listener is a literal constant.
 
 The square-bracket syntax is an abbreviation for calling the generic
-function ``element``. The following examples are equivalent::
+function ``element``. The following examples are equivalent:
 
-    ?* *greeting*[0];
-     ’j’
+.. code-block:: dylan-console
+
+    ? *greeting*[0];
+      ’j’
 
     ? element(*greeting*, 0);
-     ’j’
+    => ’j’
 
 You can use either the square-bracket syntax or the ``element`` generic
 function on any collection. You must be careful if you use ``element`` as
@@ -128,20 +136,24 @@ Creation of vectors and access to elements
 
 There are several ways to create collections. One way is to create a
 collection by using ``make``. For example, here we create a vector that
-contains two elements::
+contains two elements:
+
+.. code-block:: dylan-console
 
     ? define variable *my-vector* = make(<vector>, size: 2);
 
-We can change the first and second elements::
+We can change the first and second elements:
+
+.. code-block:: dylan-console
 
     ? *my-vector*[0] := 5;
-     5
+    => 5
 
     ? *my-vector*[1] := 3;
-     3
+    => 3
 
     ? *my-vector*;
-     #[5, 3]
+    => #[5, 3]
 
 If you want to create a sequence of a certain size, with every element
 having the same value, you can specify a ``fill`` keyword argument to
@@ -155,21 +167,23 @@ an instance; using it is a shorthand for calling ``make``. Here, we use
 the ``vector`` constructor function to create a vector and to initialize
 it with data.
 
-::
+.. code-block:: dylan-console
 
     ? define variable *my-vector* = vector(5, 3);
 
     ? *my-vector*;
-     #[5, 3]
+    => #[5, 3]
 
 As we saw in `Creation of strings and access to elements`_, certain
 collections have a literal syntax that enables you to specify a
-particular data structure as part of the program::
+particular data structure as part of the program:
+
+.. code-block:: dylan-console
 
     ? define variable *my-vector* = #[5, 3];
 
     ? *my-vector*;
-     #[5, 3]
+    => #[5, 3]
 
 :ref:`diagram-of-vector` shows how you can picture the vector that
 we just created.
@@ -208,10 +222,12 @@ Normally, the final tail of the list is the empty list, represented by
 course, lists.
 
 The ``list`` constructor function creates a list whose elements are the
-arguments provided::
+arguments provided:
+
+.. code-block:: dylan-console
 
     ? list(4, 5, 6);
-     #(4, 5, 6)
+    => #(4, 5, 6)
 
 :ref:`diagram-of-list` is a diagram of the list that we just created.
 
@@ -223,23 +239,27 @@ arguments provided::
    Diagram of the list ``#(4, 5, 6)``.
 
 We can create a similar list by using the ``pair`` function, which creates
-one pair of the list at a time::
+one pair of the list at a time:
+
+.. code-block:: dylan-console
 
     ? pair(4, pair(5, pair(6, #())));
-     #(4, 5, 6)
+    => #(4, 5, 6)
 
 As you can see, using ``list`` instead of ``pair``, in this case, is much
 clearer. Note that Dylan provides functions called ``head`` and ``tail``,
-which operate on lists::
+which operate on lists:
+
+.. code-block:: dylan-console
 
     ? head(#(4, 5, 6));
-     4
+    => 4
 
     ? tail(#(4, 5, 6));
-     #(5, 6)
+    => #(5, 6)
 
     ? tail(tail(#(4, 5, 6)));
-     #(6)
+    => #(6)
 
 A reference to the first pair of a list is exactly the same as a
 reference to the entire list.
@@ -531,10 +551,12 @@ The ``identity`` function simply returns its argument without making any
 changes. A more interesting example is to define a method that
 multiplies a number by each element of a vector, yielding a new vector
 with the products. Here is a sample call to ``scalar-multiply``, which we
-define next::
+define next:
+
+.. code-block:: dylan-console
 
     ? scalar-multiply(3, #[4, 5, 6]);
-     #[12, 15, 18]
+    => #[12, 15, 18]
 
 Here is our definition of ``scalar-multiply``, using ``map``:
 
@@ -588,13 +610,15 @@ A sequence copier that can copy a portion of a sequence
 
 The ``copy-sequence`` generic function provided by Dylan actually takes
 keyword arguments that allow only a portion of the sequence to be
-copied. Here is an example::
+copied. Here is an example:
+
+.. code-block:: dylan-console
 
     ? copy-sequence("airport", start: 3);
-     "port"
+    => "port"
 
     ? copy-sequence("snow", start: 1, end: 3);
-     "no"
+    => "no"
 
 In the following, we use a ``for`` loop with two iteration clauses to
 implement the more flexible version of the general purpose
@@ -660,33 +684,33 @@ and ``reverse!``. They both achieve the same objective, but ``reverse!``
 is allowed to modify its argument, whereas ``reverse`` never modifies its
 argument.
 
-::
+.. code-block:: dylan-console
 
     ? reverse("lever");
-     "revel"
+    => "revel"
 
     ? define variable *switch* = vector("switch", "on");
 
     ? reverse(*switch*);
-     #["on", "switch"]
+    => #["on", "switch"]
 
     ? *switch*;
-     #["switch", "on"]
+    => #["switch", "on"]
 
     ? reverse!(*switch*);
-     #["on", "switch"]
+    => #["on", "switch"]
 
 After the call to ``reverse!``, the value of ``*switch*`` is not defined.
 Only the return value from ``reverse!`` will be meaningful. If we want
 ``*switch*`` to contain the reversed sequence, we must instead write
 
-::
+.. code-block:: dylan-console
 
     ? *switch* := reverse!(*switch*);
-     #["on", "switch"]
+    => #["on", "switch"]
 
     ? *switch*;
-     #["on", "switch"]
+    => #["on", "switch"]
 
 Note that ``reverse!`` cannot change the object to which ``*switch*``
 refers; however, ``reverse!`` is allowed to alter the contents of that
@@ -752,14 +776,14 @@ Destructive operations and shared structure
 Consider the following example, and Figures :ref:`state-before-element-changed`
 and :ref:`state-after-element-changed`.
 
-::
+.. code-block:: dylan-console
 
     // First we construct a vector of two vectors
     ? define variable *switch-states*
         = vector(vector("switch", "on"), vector("switch", "off"));
 
     ? *switch-states*;
-     #[#["switch", "on"], #["switch", "off"]]
+    => #[#["switch", "on"], #["switch", "off"]]
 
     // Now, we reverse the vector, holding on to the result
     ? define variable *rev-switch-states* =
@@ -768,15 +792,17 @@ and :ref:`state-after-element-changed`.
 At this point, the states of the variables and vectors correspond to
 :ref:`state-before-element-changed`.
 
-We examine the two sequences::
+We examine the two sequences:
+
+.. code-block:: dylan-console
 
     ? *rev-switch-states*;
-     #[#["switch", "off"], #["switch", "on"]]
+    => #[#["switch", "off"], #["switch", "on"]]
 
-    // Although *switch-states* and *rev-switch-states* are different vectors,
-    // they share elements
+      // Although *switch-states* and *rev-switch-states* are different vectors,
+      // they share elements
     ? *switch-states* == *rev-switch-states*;
-     #f
+    => #f
 
 .. _state-before-element-changed:
 
@@ -785,14 +811,16 @@ We examine the two sequences::
 
    State before the element is changed.
 
-Now, we change an element::
+Now, we change an element:
+
+.. code-block:: dylan-console
 
     ? *switch-states*[0] == *rev-switch-states*[1];
-     #t
+    => #t
 
-    // So, when we change an element in one, the same change occurs in the other
+      // So, when we change an element in one, the same change occurs in the other
     ? (*switch-states*[0])[0] := "master switch";
-     "master switch"
+    => "master switch"
 
 At this point, the states of the variables and vectors correspond to
 :ref:`state-after-element-changed`.
@@ -804,13 +832,15 @@ At this point, the states of the variables and vectors correspond to
 
    State after the element is changed.
 
-We can look at the values of the variables::
+We can look at the values of the variables:
+
+.. code-block:: dylan-console
 
     ? *switch-states*;
-     #[#["master switch", "on"], #["switch", "off"]]
+    => #[#["master switch", "on"], #["switch", "off"]]
 
     ? *rev-switch-states*;
-     #[#["switch", "off"], #["master switch", "on"]]
+    => #[#["switch", "off"], #["master switch", "on"]]
 
 Each object pictured in Figures :ref:`state-before-element-changed` and
 :ref:`state-after-element-changed` is a vector. The strings in the figures
@@ -845,19 +875,21 @@ or more tests.
 We showed the simplest use of ``if`` in :ref:`offset-methods-on-time-offset`.
 Consider the case where there is more than one test involved. Suppose that we
 want to write a method that describes a vote. Here are sample calls to
-``interpret-votes``::
+``interpret-votes``:
+
+.. code-block:: dylan-console
 
     ? interpret-votes(yes: 4, no: 0);
-     "unanimously approved"
+    => "unanimously approved"
 
     ? interpret-votes(yes: 3, no: 1);
-     "approved"
+    => "approved"
 
     ? interpret-votes(yes: 2, no: 2);
-     "tie"
+    => "tie"
 
     ? interpret-votes(yes: 1, no: 3);
-     "not approved"
+    => "not approved"
 
 We can define the ``interpret-votes`` method using the ``if`` control
 structure and the ``else`` clause:

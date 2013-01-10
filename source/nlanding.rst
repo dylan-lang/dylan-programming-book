@@ -1020,48 +1020,50 @@ The ``airport-test.dylan`` file.
        process-aircraft(build-simple-airport());
      end method test-airport;
 
-Now, we show the result of running ``test-airport``::
+Now, we show the result of running ``test-airport``:
+
+.. code-block:: dylan-console
 
     ? test-airport():
-     Detailed aircraft schedule for Airport BLA
-     6:00: Flight KN 62 at Runway 11R-29L
-     6:02: Flight KN 62 at Taxiway Echo
-     6:02: Flight KN 7 at Runway 11R-29L
-     6:03: Flight KN 62 at Gate A1
-     6:04: Flight KN 7 at Taxiway Echo
-     6:05: Flight KN 7 at Gate A2
-     6:28: Flight KN 29 at Runway 11R-29L
-     6:30: Flight KN 29 at Taxiway Echo
-     6:37: Flight KN 62 at Taxiway Echo
-     6:37: Flight KN 29 at Gate A1
-     6:38: Flight KN 62 at Runway 11R-29L
-     6:39: Flight KN 7 at Taxiway Echo
-     6:42: Flight KN 62 at Sky over BLA
-     6:42: Flight KN 7 at Runway 11R-29L
-     6:46: Flight KN 7 at Sky over BLA
-     7:11: Flight KN 29 at Taxiway Echo
-     7:12: Flight KN 29 at Runway 11R-29L
-     7:16: Flight KN 29 at Sky over BLA
-     7:16: Flight KN 12 at Runway 11R-29L
-     7:18: Flight KN 12 at Taxiway Echo
-     7:18: Flight KN 18 at Runway 11R-29L
+    => Detailed aircraft schedule for Airport BLA
+    => 6:00: Flight KN 62 at Runway 11R-29L
+    => 6:02: Flight KN 62 at Taxiway Echo
+    => 6:02: Flight KN 7 at Runway 11R-29L
+    => 6:03: Flight KN 62 at Gate A1
+    => 6:04: Flight KN 7 at Taxiway Echo
+    => 6:05: Flight KN 7 at Gate A2
+    => 6:28: Flight KN 29 at Runway 11R-29L
+    => 6:30: Flight KN 29 at Taxiway Echo
+    => 6:37: Flight KN 62 at Taxiway Echo
+    => 6:37: Flight KN 29 at Gate A1
+    => 6:38: Flight KN 62 at Runway 11R-29L
+    => 6:39: Flight KN 7 at Taxiway Echo
+    => 6:42: Flight KN 62 at Sky over BLA
+    => 6:42: Flight KN 7 at Runway 11R-29L
+    => 6:46: Flight KN 7 at Sky over BLA
+    => 7:11: Flight KN 29 at Taxiway Echo
+    => 7:12: Flight KN 29 at Runway 11R-29L
+    => 7:16: Flight KN 29 at Sky over BLA
+    => 7:16: Flight KN 12 at Runway 11R-29L
+    => 7:18: Flight KN 12 at Taxiway Echo
+    => 7:18: Flight KN 18 at Runway 11R-29L
 
-     7:19: Flight KN 12 at Gate A1
-     7:20: Flight KN 18 at Taxiway Echo
-     7:20: Flight KN 44 at Runway 11R-29L
-     7:21: Flight KN 18 at Gate A2
-     7:22: Flight KN 44 at Taxiway Echo
-     7:53: Flight KN 12 at Taxiway Echo
-     7:53: Flight KN 44 at Gate A1
-     7:54: Flight KN 12 at Runway 11R-29L
-     7:55: Flight KN 18 at Taxiway Echo
-     7:58: Flight KN 12 at Sky over BLA
-     7:58: Flight KN 18 at Runway 11R-29L
-     8:02: Flight KN 18 at Sky over BLA
-     8:27: Flight KN 44 at Taxiway Echo
-     8:28: Flight KN 44 at Runway 11R-29L
-     8:32: Flight KN 44 at Sky over BLA
-     {class <TIME-OF-DAY>}
+    => 7:19: Flight KN 12 at Gate A1
+    => 7:20: Flight KN 18 at Taxiway Echo
+    => 7:20: Flight KN 44 at Runway 11R-29L
+    => 7:21: Flight KN 18 at Gate A2
+    => 7:22: Flight KN 44 at Taxiway Echo
+    => 7:53: Flight KN 12 at Taxiway Echo
+    => 7:53: Flight KN 44 at Gate A1
+    => 7:54: Flight KN 12 at Runway 11R-29L
+    => 7:55: Flight KN 18 at Taxiway Echo
+    => 7:58: Flight KN 12 at Sky over BLA
+    => 7:58: Flight KN 18 at Runway 11R-29L
+    => 8:02: Flight KN 18 at Sky over BLA
+    => 8:27: Flight KN 44 at Taxiway Echo
+    => 8:28: Flight KN 44 at Runway 11R-29L
+    => 8:32: Flight KN 44 at Sky over BLA
+    => {class <TIME-OF-DAY>}
 
 The ``definitions-library.dylan`` file
 --------------------------------------

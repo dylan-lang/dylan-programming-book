@@ -57,14 +57,18 @@ Creation of instances of ``<time-offset>``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We can create an instance of ``<time-offset>`` representing 15:20:10 in
-the future::
+the future:
+
+.. code-block:: dylan-console
 
     ? define variable *my-time-offset* :: <time-offset>
      = make(<time-offset>, total-seconds: encode-total-seconds(15, 20, 10));
 
 We can create an instance of ``<time-offset>`` representing 6:45:30 in the
 past, by using the unary minus function, ``-``, which returns the
-negative of the value that follows it::
+negative of the value that follows it:
+
+.. code-block:: dylan-console
 
     ? define variable *your-time-offset* :: <time-offset>
        = make(<time-offset>, total-seconds: - encode-total-seconds(6, 45,
@@ -88,22 +92,26 @@ as follows:
 
 The ``past?`` method returns an instance of ``<boolean>``, which is
 ``#t`` if the time offset is in the past, and otherwise is ``#f``.
-Here is an example::
+Here is an example:
+
+.. code-block:: dylan-console
 
     ? past?(*my-time-offset*)
-     #f
+    => #f
 
     ? past?(*your-time-offset*)
-     #t
+    => #t
 
 We need a method to describe instances of ``<time-offset>``. The output
-should look like this::
+should look like this:
+
+.. code-block:: dylan-console
 
     ? say-time-offset(*my-time-offset*);
-     plus 15:20
+    => plus 15:20
 
     ? say-time-offset(*your-time-offset*);
-     minus 6:45
+    => minus 6:45
 
 We might define the method in this way:
 
@@ -118,11 +126,13 @@ We might define the method in this way:
                  minutes);
     end method say-time-offset;
 
-If we test this method in a listener, however, the result is different::
+If we test this method in a listener, however, the result is different:
+
+.. code-block:: dylan-console
 
     ? say-time-offset(*my-time-offset*);
-     ERROR: No applicable method for decode-total-seconds with argument
-       {instance <time-offset>}
+    => ERROR: No applicable method for decode-total-seconds with argument
+    =>   {instance <time-offset>}
 
 “No applicable method” means that there is no method for this generic
 function that is appropriate for the arguments. To understand this
@@ -288,7 +298,9 @@ of classes that have now been redefined. Some environments might be able
 to update instances of the old class definitions to conform to the new
 class definitions, but we will be conservative and assume that our
 environment does not update instances. Therefore, we create the
-instances again::
+instances again:
+
+.. code-block:: dylan-console
 
     ? *my-time-offset*
      := make(<time-offset>, total-seconds: encode-total-seconds(15, 20, 10));
@@ -449,17 +461,19 @@ the generic function will contain only the desired methods, as shown in
 `Desired methods for decode-total-seconds <desired-decode-total-seconds>`_.
 
 We can now call ``decode-total-seconds`` on instances of ``<time-of-day>``
-and on instances of ``<time-offset>``::
+and on instances of ``<time-offset>``:
+
+.. code-block:: dylan-console
 
     ? decode-total-seconds(*your-time-of-day*);
-     8
-     30
-     59
+    => 8
+    => 30
+    => 59
 
     ? decode-total-seconds(*your-time-offset*);
-     6
-     45
-     30
+    => 6
+    => 45
+    => 30
 
 The result is as expected — ``decode-total-seconds`` returns the hours,
 minutes, and seconds. We now describe how this generic function works.
@@ -634,19 +648,21 @@ We repeat the definitions of the methods for ``say-time-of-day`` and
 
 Now that ``decode-total-seconds`` has an applicable method for instances
 of ``<time-offset>`` and ``<time-of-day>``, both these methods work
-correctly::
+correctly:
+
+.. code-block:: dylan-console
 
     ? say-time-of-day(*my-time-of-day*);
-     0:02
+    => 0:02
 
     ? say-time-of-day(*your-time-of-day*);
-     8:30
+    => 8:30
 
     ? say-time-offset(*my-time-offset*);
-     plus 15:20
+    => plus 15:20
 
     ? say-time-offset(*your-time-offset*);
-     minus 6:45
+    => minus 6:45
 
 We have defined two methods: ``say-time-offset`` and ``say-time-of-day``. A
 method defined with ``define method`` cannot exist without a *generic
@@ -743,19 +759,21 @@ The generic function ``say`` has two methods defined for it:
                  minutes);
     end say;
 
-We can call ``say``::
+We can call ``say``:
+
+.. code-block:: dylan-console
 
     ? say(*my-time-of-day*);
-     0:02
+    => 0:02
 
 In the preceding call, the argument is of the type ``<time-of-day>``, so
 the method on ``<time-of-day>`` is the only applicable method. That method
 is invoked.
 
-::
+.. code-block:: dylan-console
 
     ? say(*my-time-offset*);
-     plus 15:20
+    => plus 15:20
 
 In the preceding call, the argument is of the type ``<time-offset>``, so
 the method on ``<time-offset>`` is the only applicable method. That method
@@ -805,19 +823,21 @@ these new methods:
       next-method();
     end method say;
 
-We can call ``say``::
+We can call ``say``:
+
+.. code-block:: dylan-console
 
     ? say(*my-time-of-day*);
-     0:02
+    => 0:02
 
 In the preceding call, the argument is of the type ``<time-of-day>``, so
 the method on ``<time>`` is the only applicable method. That method is
 invoked.
 
-::
+.. code-block:: dylan-console
 
     ? say(*my-time-offset*);
-     plus 15:20
+    => plus 15:20
 
 In the preceding call, the argument is of the type ``<time-offset>``, so
 two methods are applicable. The method on ``<time-offset>`` is more

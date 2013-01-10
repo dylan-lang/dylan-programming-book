@@ -612,13 +612,13 @@ implement a function to sum an arbitrary number of values:
       value;
     end method sum;
 
-::
+.. code-block:: dylan-console
 
     ? sum(3);
-     3
+    => 3
 
     ? sum(1, 2, 3, 4, 5);
-     15
+    => 15
 
 In the preceding example, the ``for`` iteration statement performs the
 addition once for every element of ``more-values``.
@@ -636,13 +636,13 @@ defining a method similar to ``encode-total-seconds``:
       ((hours * 60) + minutes) * 60 + seconds;
     end method convert-to-seconds;
 
-::
+.. code-block:: dylan-console
 
     ? convert-to-seconds(minutes: 3, seconds: 9);
-     189
+    => 189
 
     ? convert-to-seconds(minutes: 1, hours: 2);
-     7260
+    => 7260
 
 Note from the preceding example that we can supply keyword arguments in
 any order. Note also that all keyword arguments are optional; however,
@@ -1084,10 +1084,10 @@ Consider the following example:
       call-and-show(method () x + 1 end method);
     end method show-next;
 
-When we execute this code, we get the expected result::
+When we execute this code, we get the expected result:
 
     ? show-next(41);
-     The result is 42.
+    => The result is 42.
 
 But why did we get that result? We created an anonymous method in
 ``show-next``, and passed that anonymous method into a completely

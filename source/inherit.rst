@@ -565,13 +565,15 @@ cannot do so.
 To examine the class precedence list for a class, we use the
 ``all-superclasses`` function, which returns the class and its
 superclasses in the same order as they appear in the class precedence
-list::
+list:
+
+.. code-block:: dylan-console
 
     ? all-superclasses (<B707>)
-     #[{class <B707>}, {class <commercial-aircraft>}, {class <aircraft>},
-       {class <winged-vehicle>}, {class <flying-vehicle>},
-       {class <wheeled-vehicle>},{class <ground-vehicle>}, {class <vehicle>},
-       {class <physical-object>}, {class <object>}]
+    => #[{class <B707>}, {class <commercial-aircraft>}, {class <aircraft>},
+    =>   {class <winged-vehicle>}, {class <flying-vehicle>},
+    =>   {class <wheeled-vehicle>},{class <ground-vehicle>}, {class <vehicle>},
+    =>   {class <physical-object>}, {class <object>}]
 
 The details of the algorithm that Dylan uses to construct class
 precedence lists are complicated, and are beyond the scope of this book.

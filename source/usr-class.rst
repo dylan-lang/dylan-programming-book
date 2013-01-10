@@ -126,7 +126,9 @@ Use of ``make`` to create an instance
 We want to make an instance of ``<time-of-day>``, but first we need a
 place to store it. We define a module variable called
 ``*my-time-of-day*``, and initialize it to contain a new instance of
-``<time-of-day>``::
+``<time-of-day>``:
+
+.. code-block:: dylan-console
 
     ? define variable *my-time-of-day* = make(<time-of-day>);
 
@@ -143,15 +145,19 @@ Getters and setters of slot values
 ----------------------------------
 
 We can store a value in the ``total-seconds`` slot of the ``<time-of-day>``
-instance by using the assignment operator, ``:=``, as follows::
+instance by using the assignment operator, ``:=``, as follows:
+
+.. code-block:: dylan-console
 
     ? *my-time-of-day*.total-seconds := 180;
-     180
+    => 180
 
-We can examine the value of the slot in the instance::
+We can examine the value of the slot in the instance:
+
+.. code-block:: dylan-console
 
     ? *my-time-of-day*.total-seconds;
-     180
+    => 180
 
 Although these expressions may look like they are accessing the slots
 directly, they are not. They are abbreviations for function calls to a
@@ -174,7 +180,9 @@ instance. One way to do that is to provide a *keyword argument* to
 Keyword arguments in function calls
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We would like to be able to call ``make`` as follows::
+We would like to be able to call ``make`` as follows:
+
+.. code-block:: dylan-console
 
     ? make(<time-of-day>, total-seconds: 120);
 
@@ -235,10 +243,12 @@ of ``<time-of-day>``.
 In line 3, the ``init-keyword:`` slot option defines ``total-seconds:`` as a
 keyword parameter that we can give to ``make`` when we make an instance of
 this class. Now that we have defined ``total-seconds:`` as an init
-keyword, we can provide the keyword argument as follows::
+keyword, we can provide the keyword argument as follows:
+
+.. code-block:: dylan-console
 
     ? *my-time-of-day* := make(<time-of-day>, total-seconds: 120);
-     {instance of <time-of-day>}
+    => {instance of <time-of-day>}
 
 The preceding expression creates a new instance of ``<time-of-day>``, and
 stores that instance in the variable ``*my-time-of-day*``. The value of
@@ -247,19 +257,20 @@ assignment operator returns the new value stored; in the preceding call,
 the new value is the newly created instance of ``<time-of-day>``, which
 the listener displays as ``{instance of <time-of-day>}``.
 
-We can use the getter to verify that the slot has an initial value::
+We can use the getter to verify that the slot has an initial value:
+
+.. code-block:: dylan-console
 
     ? *my-time-of-day*.total-seconds;
-     120
+    => 120
 
 If you call ``make`` and provide a keyword that has not been declared as a
 valid keyword for the class, you get an error; for example,
 
-::
+.. code-block:: dylan-console
 
     ? make(<time-of-day>, seconds: 120);
-     ERROR: seconds: is not a valid keyword argument to make for
-       {class <time-of-day>}
+    => ERROR: seconds: is not a valid keyword argument to make for {class <time-of-day>}
 
 .. topic:: Automatic storage-management note:
 
@@ -349,22 +360,28 @@ of this book, we provide the extra words after the ``end`` of a
 definition.
 
 We can call ``encode-total-seconds`` with arguments representing 8 hours,
-30 minutes, and 59 seconds::
+30 minutes, and 59 seconds:
+
+.. code-block:: dylan-console
 
     ? encode-total-seconds(8, 30, 59);
-     30659
+    => 30659
 
 We find it convenient to call ``encode-total-seconds`` to initialize the
 ``total-seconds`` slot when we create an instance of ``<time-of-day>``, or when
-we store a new value in that slot. Here, for example, we create a new instance::
+we store a new value in that slot. Here, for example, we create a new instance:
+
+.. code-block:: dylan-console
 
     ? define variable *your-time-of-day*
       = make(<time-of-day>, total-seconds: encode-total-seconds(8, 30, 59));
 
-We examine the value of the ``total-seconds`` slot::
+We examine the value of the ``total-seconds`` slot:
+
+.. code-block:: dylan-console
 
     ? *your-time-of-day*.total-seconds;
-     30659
+    => 30659
 
 The result reminds us that it would be useful to convert in the other
 direction as well — from total seconds to hours, minutes, and seconds.
@@ -389,12 +406,14 @@ from total seconds to hours, minutes, and seconds:
     end method decode-total-seconds;
 
 We can use ``decode-total-seconds`` to see the value of the
-``total-seconds`` slot::
+``total-seconds`` slot:
+
+.. code-block:: dylan-console
 
     ? decode-total-seconds(*your-time-of-day*.total-seconds);
-     8
-     30
-     59
+    => 8
+    => 30
+    => 59
 
 The value declaration on line 3 specifies that ``decode-total-seconds``
 returns three separate values: the hours, minutes, and seconds. This
@@ -466,14 +485,18 @@ variables, although doing so is usually not necessary.
 Second method for ``decode-total-seconds``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The ``decode-total-seconds`` method is called as follows::
+The ``decode-total-seconds`` method is called as follows:
+
+.. code-block:: dylan-console
 
     ? decode-total-seconds(*your-time-of-day*.total-seconds);
 
 If we envision calling ``decode-total-seconds`` frequently to see the
 hours, minutes, and seconds stored in a ``<time-of-day>`` instance, we can
 make it possible to decode ``<time-of-day>`` instances, as well as
-integers. For example, we can make it possible to make this call::
+integers. For example, we can make it possible to make this call:
+
+.. code-block:: dylan-console
 
     ? decode-total-seconds(*your-time-of-day*);
 
@@ -515,7 +538,9 @@ The ``decode-total-seconds`` generic function and its methods.
     end method decode-total-seconds;
 
 Looking at `The decode-total-seconds generic function and its methods
-<decode-total-seconds-methods>`_, we analyze what happens in this call::
+<decode-total-seconds-methods>`_, we analyze what happens in this call:
+
+.. code-block:: dylan-console
 
     ? decode-total-seconds(*your-time-of-day*);
 
@@ -581,13 +606,15 @@ are fewer than 10 minutes, such as ``2:05``.
    done much more elegantly if we used the full power of the ``format-out``
    function.
 
-We can call ``say-time-of-day``::
+We can call ``say-time-of-day``:
+
+.. code-block:: dylan-console
 
     ? say-time-of-day(*your-time-of-day*);
-     8:30
+    => 8:30
 
     ? say-time-of-day(*my-time-of-day*);
-     0:02
+    => 0:02
 
 The listener displays the output (printed by ``format-out``), but
 displays no values, because ``say-time-of-day`` does not return any

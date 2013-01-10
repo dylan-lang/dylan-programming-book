@@ -192,13 +192,15 @@ which invokes the setter method on ``<sixty-unit>``. If the new value is
 less than 0, an error is signaled.
 
 The following example show what happens when you call
-``total-seconds-setter`` with a negative value for ``total-seconds``::
+``total-seconds-setter`` with a negative value for ``total-seconds``:
+
+.. code-block:: dylan-console
 
     ? begin
         let test-time-of-day = make(<time-of-day>);
         test-time-of-day.total-seconds := -15;
       end;
-     ERROR: -15 is invalid. total-seconds cannot be negative.
+    => ERROR: -15 is invalid. total-seconds cannot be negative.
 
 This setter method ensures that no one can assign an invalid value to
 the slot. For completeness, we must also ensure that no one can
@@ -338,10 +340,12 @@ Lines 3 through 6 contain the real action of this method. We check that
 the value is valid. If it is invalid, we signal an error.
 
 The following example shows what happens when ``total-seconds`` is not
-valid when we are creating an instance::
+valid when we are creating an instance:
+
+.. code-block:: dylan-console
 
     ? make(<time-of-day>, total-seconds: -15);
-     ERROR: -15 is invalid. total-seconds cannot be negative.
+    => ERROR: -15 is invalid. total-seconds cannot be negative.
 
 Slot options for initialization of slots
 ----------------------------------------
@@ -673,15 +677,19 @@ There are two equivalent syntaxes for specifying symbols:
 - Examples of use of the keyword syntax are: ``north:`` and ``south:``.
 - Examples of use of the hash syntax are:``#"north"`` and ``#"south"``.
 
-Here, we show that symbol comparison is not case sensitive::
+Here, we show that symbol comparison is not case sensitive:
+
+.. code-block:: dylan-console
 
     ? #"NORTH" == #"North";
-     #t
+    => #t
 
-Here, we show that the two syntaxes are equivalent::
+Here, we show that the two syntaxes are equivalent:
+
+.. code-block:: dylan-console
 
     ? north: == #"norTH";
-     #t
+    => #t
 
 It is our convention in this book to reserve the keyword syntax for
 keyword parameters, and otherwise to use the hash syntax. For example,
@@ -802,7 +810,7 @@ check the value.
 
 We can create a new instance of ``<absolute-position>``.
 
-::
+.. code-block:: dylan-console
 
     ? define variable *my-absolute-position* =
         make(<absolute-position>,
@@ -817,19 +825,23 @@ We can create a new instance of ``<absolute-position>``.
 
 The preceding example works, because the values for direction are
 appropriate for latitude and longitude. The following example shows what
-happens when the direction is not valid when an instance is created::
+happens when the direction is not valid when an instance is created:
+
+.. code-block:: dylan-console
 
     ? make(<latitude>, direction: #"nooth");
-     ERROR: nooth is not north or south
+    => ERROR: nooth is not north or south
 
 The following example shows what happens when the direction is not valid
-when the ``direction`` setter is used::
+when the ``direction`` setter is used:
+
+.. code-block:: dylan-console
 
     ? begin
         let my-longitude = make(<longitude>, direction: #"east");
         my-longitude.direction := #"north";
       end;
-     ERROR: north is not east or west
+    => ERROR: north is not east or west
 
 Summary
 -------

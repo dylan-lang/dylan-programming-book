@@ -126,10 +126,12 @@ Conventions used in this book
 - Many Dylan environments provide a *listener*, which enables you to
   type in expressions and to see their return values and output. We use
   a hypothetical Dylan listener to show the result of evaluating Dylan
-  expressions::
+  expressions:
+
+.. code-block:: dylan-console
 
      ? say-greeting("hi, there");
-      hi, there
+     => hi, there
 
   In our hypothetical listener, the Dylan prompt is the question mark, ``?``.
   The *bold typewriter font* shows what the user types. The

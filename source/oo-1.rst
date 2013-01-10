@@ -27,10 +27,10 @@ define a simple method, ``say-hello``, as follows:
 
 We call ``say-hello`` as follows:
 
-::
+.. code-block:: dylan-console
 
     ? say-hello();
-    hello, world
+    => hello, world
 
 We use ``define method`` to define a method named ``say-hello``. Just after
 the name ``say-hello``, we specify the method’s *parameter list*, ``()``.
@@ -79,20 +79,20 @@ required parameter; that omission has the same effect as specifying
 
 We can call ``say-greeting`` on a string:
 
-::
+.. code-block:: dylan-console
 
      ? say-greeting("hi, there");
-      hi, there
+     => hi, there
 
 We can call ``say-greeting`` on an integer, although the integer does not
 give a particularly friendly greeting:
 
-::
+.. code-block:: dylan-console
 
     ? define variable *my-number* :: <integer> = 7;
 
     ? say-greeting(*my-number*);
-     7
+    => 7
 
 Two methods with the same name
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -114,10 +114,10 @@ constraint ``<integer>``.
       format-out("Your lucky number is %s.\n", greeting);
     end;
 
-::
+.. code-block:: dylan-console
 
     ? say-greeting(*my-number*);
-    Your lucky number is 7.
+    => Your lucky number is 7.
 
 A Dylan method is similar to a procedure or subroutine in other
 languages, but there is an important difference. You can define more
@@ -129,17 +129,21 @@ function.
 When a generic function is called, it chooses the most appropriate
 method to call for the arguments. For example, when we call the
 ``say-greeting`` generic function with an integer, the method whose
-parameter is of the type ``<integer>`` is called::
+parameter is of the type ``<integer>`` is called:
+
+.. code-block:: dylan-console
 
     ? say-greeting(1000);
-    Your lucky number is 1000.
+    => Your lucky number is 1000.
 
 When we call the ``say-greeting`` generic function with an argument that
 is not an integer, the method whose parameter is of the type ``<object>``
-is called::
+is called:
+
+.. code-block:: dylan-console
 
     ? say-greeting("Buenos Dias");
-    Buenos Dias
+    => Buenos Dias
 
 .. _say-greeting-methods:
 
@@ -163,10 +167,12 @@ Individual values are called *objects*. Each object is a *direct
 instance* of one particular class. You can use the ``object-class``
 function to determine the direct class of an object. For example, in
 certain implementations, *7*, *12*, and *1000* are direct instances of
-the class ``<integer>``::
+the class ``<integer>``:
+
+.. code-block:: dylan-console
 
     ? object-class(1000);
-     {class <integer>}
+    => {class <integer>}
 
 The value returned by ``object-class`` is the ``<integer>`` class itself.
 The appearance of a class, method, or generic function in a listener
@@ -206,21 +212,25 @@ class: the class that ``object-class`` returns for that object. An object
 is a *general instance* of its direct class, and of all classes from
 which its direct class inherits. The term *instance* is equivalent to
 *general instance*. You can use the ``instance?`` predicate to ask
-whether an object is an instance of a given class::
+whether an object is an instance of a given class:
+
+.. code-block:: dylan-console
 
     ? instance?(1000, <integer>);
-     #t
+    => #t
 
     ? instance?("hello, world", <integer>);
-     #f
+    => #f
 
-All objects are instances of the class ``<object>``::
+All objects are instances of the class ``<object>``:
+
+.. code-block:: dylan-console
 
     ? instance?(1000, <object>);
-     #t
+    => #t
 
     ? instance?("hello, world", <object>);
-     #t
+    => #t
 
 :ref:`classes-and-subclasses` shows the inheritance relationships among
 several of the built-in classes. If class A is a superclass of class B,
@@ -244,19 +254,21 @@ graphically.
 
 The Dylan language includes functions that provide information about the
 inheritance relationships among classes. We can use ``subtype?`` to ask
-whether one class inherits from another class::
+whether one class inherits from another class:
+
+.. code-block:: dylan-console
 
     ? subtype?(<integer>, <number>);
-     #t
+    => #t
 
     ? subtype?(<integer>, <object>);
-     #t
+    => #t
 
     ? subtype?(<single-float>, <object>);
-     #t
+    => #t
 
     ? subtype?(<string>, <integer>);
-     #f
+    => #f
 
 It may be confusing that we use a function called ``subtype?`` here, but
 Dylan does not provide a function called ``subclass?``. Every class is a
@@ -264,19 +276,21 @@ Dylan does not provide a function called ``subclass?``. Every class is a
 :ref:`classes-functions-create-nonclass-types`).  The ``subtype?``
 function works for both classes and other types.
 
-We can ask for all the superclasses of a given class::
+We can ask for all the superclasses of a given class:
+
+.. code-block:: dylan-console
 
     ? all-superclasses(<string>);
-     #[{class <string>}, {class <mutable-sequence>}, {class <sequence>},
-       {class <mutable-collection>}, {class <collection>}, {class <object>}]
+    => #[{class <string>}, {class <mutable-sequence>}, {class <sequence>},
+    =>   {class <mutable-collection>}, {class <collection>}, {class <object>}]
 
     ? all-superclasses(<integer>);
-     #[{class <integer>}, {class <rational>}, {class <real>},
-       {class <number>}, {class <object>}]
+    => #[{class <integer>}, {class <rational>}, {class <real>},
+    =>   {class <number>}, {class <object>}]
 
     ? all-superclasses(<single-float>);
-     #[{class <single-float>}, {class <float>}, {class <real>},
-       {class <number>}, {class <object>}]
+    => #[{class <single-float>}, {class <float>}, {class <real>},
+    =>   {class <number>}, {class <object>}]
 
 The ``all-superclasses`` function returns a vector containing the class
 itself and all that class’s superclasses. The ``#[...]`` syntax
@@ -388,57 +402,71 @@ that is, whether the operands are the same object. The ``==`` predicate
 (identity) is a stronger test: two values may be similar but not
 identical, and two identical values are always similar.
 
-If two numbers are mathematically equal, then they are similar::
+If two numbers are mathematically equal, then they are similar:
+
+.. code-block:: dylan-console
 
     ? 100 = 100;
-     #t
+    => #t
 
     ? 100 = 100.0;
-     #t
+    => #t
 
 Two numbers that are similar, and have the same type, are the same
-object::
+object:
+
+.. code-block:: dylan-console
 
      ? 100 == 100;
-      #t
+     => #t
 
 Two numbers that are similar, but have different types, are not the same
-object::
+object:
+
+.. code-block:: dylan-console
 
     ? 100 == 100.0;
-     #f
+    => #f
 
 Characters are enclosed in single quotation marks. If two characters
-look the same, they are similar and identical::
+look the same, they are similar and identical:
+
+.. code-block:: dylan-console
 
     ? ’z’ = ’z’;
-     #t
+    => #t
 
     ? ’z’ == ’z’;
-     #t
+    => #t
 
 Strings are enclosed in double quotation marks. Strings that have
 identical elements are similar, but may or may not be identical. That
 is, strings can have identical elements, but not be the same string. For
-example, these strings are similar::
+example, these strings are similar:
+
+.. code-block:: dylan-console
 
     ? "apple" = "apple";
-     #t
+    => #t
 
 Just by looking at two strings, you cannot know whether or not they are
 the identical string. The only way to determine identity is to use the
-``==`` predicate. The following expression could return ``#t`` or ``#f``::
+``==`` predicate. The following expression could return ``#t`` or ``#f``:
+
+.. code-block:: dylan-console
 
     ? "apple" == "apple";
 
-A string is always identical to itself::
+A string is always identical to itself:
+
+.. code-block:: dylan-console
 
     ? begin
        let yours = "apple";
        let mine = yours;
        mine == yours;
      end;
-    #t
+    => #t
 
 Bindings: Mappings between objects and names
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -447,26 +475,34 @@ A *binding* is a mapping between an object and a name. The name can be a
 module variable, module constant, or local variable.
 
 Here, we give the object ``3.14159`` the name ``$pi``, where ``$pi`` is a
-module constant::
+module constant:
+
+.. code-block:: dylan-console
 
     ? define constant $pi = 3.14159;
 
 Here, we give the object ``"apple"`` the name ``*my-favorite-pie*``,
-where ``*my-favorite-pie*`` is a module variable::
+where ``*my-favorite-pie*`` is a module variable:
+
+.. code-block:: dylan-console
 
     ? define variable *my-favorite-pie* = "apple";
 
 More than one variable can contain a particular object, so, in effect,
 an object can have many names. Here, we define a new variable that
-contains the very same pie::
+contains the very same pie:
+
+.. code-block:: dylan-console
 
     ? define variable *your-favorite-pie* = *my-favorite-pie*;
 
     ? *your-favorite-pie* == *my-favorite-pie*;
-     #t
+    => #t
 
 When you define a method, ``define method`` creates a binding between a
-name and a method object::
+name and a method object:
+
+.. code-block:: dylan-console
 
     ? define method say-greeting (greeting :: <object>);
         format-out("%s\n", greeting);
@@ -480,7 +516,7 @@ can picture each binding as a link between a name and another object.
 Local variables are also bindings, but they are accessible only within a
 certain body of code; for example,
 
-::
+.. code-block:: dylan-console
 
     ? begin
      let radius = 5.0;
