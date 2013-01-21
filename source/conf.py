@@ -41,7 +41,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Dylan Programming'
-copyright = u'2011, Neal Feinberg, Sonya E. Keene, Robert O. Mathews, P. Tucker Withington'
+copyright = u'N Feinberg/S E Keene/R Mathews/P Tucker Withington, DYLAN PROGRAMMING, (c) 1997 Harlequin Inc. Reproduced by permission of Addison-Wesley Longman Publishing Company, Inc. All rights reserved. No further copying, downloading or transmitting of this material is allowed without the prior written permission of the publisher'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -208,47 +208,13 @@ latex_documents = [
 #latex_domain_indices = True
 
 
-# -- Options for manual page output --------------------------------------------
-
-# One entry per manual page. List of tuples
-# (source start file, name, description, authors, manual section).
-man_pages = [
-    ('index', 'dylanprogramming', u'Dylan Programming',
-     [u'Neal Feinberg, Sonya E. Keene, Robert O. Mathews, P. Tucker Withington'], 1)
-]
-
-# If true, show URL addresses after external links.
-#man_show_urls = False
-
-
-# -- Options for Texinfo output ------------------------------------------------
-
-# Grouping the document tree into Texinfo files. List of tuples
-# (source start file, target name, title, author,
-#  dir menu entry, description, category)
-texinfo_documents = [
-  ('index', 'DylanProgramming', u'Dylan Programming',
-   u'Neal Feinberg, Sonya E. Keene, Robert O. Mathews, P. Tucker Withington', 'DylanProgramming', 'One line description of project.',
-   'Miscellaneous'),
-]
-
-# Documents to append as an appendix to all manuals.
-#texinfo_appendices = []
-
-# If false, no module index is generated.
-#texinfo_domain_indices = True
-
-# How to display URL addresses: 'footnote', 'no', or 'inline'.
-#texinfo_show_urls = 'footnote'
-
-
 # -- Options for Epub output ---------------------------------------------------
 
 # Bibliographic Dublin Core info.
 epub_title = u'Dylan Programming'
 epub_author = u'Neal Feinberg, Sonya E. Keene, Robert O. Mathews, P. Tucker Withington'
 epub_publisher = u'Neal Feinberg, Sonya E. Keene, Robert O. Mathews, P. Tucker Withington'
-epub_copyright = u'2011, Neal Feinberg, Sonya E. Keene, Robert O. Mathews, P. Tucker Withington'
+epub_copyright = u'N Feinberg/S E Keene/R Mathews/P Tucker Withington, DYLAN PROGRAMMING, (c) 1997 Harlequin Inc. Reproduced by permission of Addison-Wesley Longman Publishing Company, Inc. All rights reserved. No further copying, downloading or transmitting of this material is allowed without the prior written permission of the publisher.'
 
 # The language of the text. It defaults to the language option
 # or en if the language is not set.

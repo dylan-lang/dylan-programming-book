@@ -1,13 +1,21 @@
-*****************
-Dylan Programming
-*****************
+.. figure:: images/dpg-cover.jpg
+   :align: center
 
-Contents:
+.. epigraph::
+
+    This book will be useful to anyone learning dynamic, object-oriented
+    programming, whether it be in Dylan, Java, Smalltalk, or Lisp.
+
+    -- Andrew Shalit, author of The Dylan Reference Manual.
+
+Contents
+========
 
 .. toctree::
    :maxdepth: 2
    :titlesonly:
 
+   front-matter
    preface
    part1
    part2
@@ -17,9 +25,6 @@ Contents:
    environ
    c-comparisons
    glossary
-
-Indices and tables
-==================
 
 * :ref:`genindex`
 * :ref:`search`
