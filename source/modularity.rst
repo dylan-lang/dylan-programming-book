@@ -500,7 +500,7 @@ class using another class as the type of a slot.
 
 .. _has-a-relationships:
 
-.. figure:: images/figure-7-2.png
+.. figure:: images/figure-7-3.png
    :align: center
 
    Has-a relationships among classes, shown by dashed arrows.
