@@ -20,7 +20,7 @@ The ``definitions.dylan`` file.
     module: definitions
 
     // This file contains constants and other definitions used in common with
-    // the other parts of the airport example*
+    // the other parts of the airport example
 
     // The capital letters of the alphabet
     define constant $letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
