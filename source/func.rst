@@ -229,7 +229,7 @@ Binary-operator calls
 Dylan has 16 built-in binary operators, of the following kinds:
 
 - Arithmetic operations: ``+``, ``-``, ``*``, ``/``, and ``^``
-- Comparisons: ``=``, ``==``, ``<``, ``>``, ``<=``, ``>=``, ``~=, and ``~==``
+- Comparisons: ``=``, ``==``, ``<``, ``>``, ``<=``, ``>=``, ``~=``, and ``~==``
 - Logical operations: ``&`` and ``|``
 - Assignment: ``:=``
 
