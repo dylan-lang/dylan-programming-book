@@ -552,7 +552,7 @@ in parallel. In that case, we might use the following module definitions:
       use dylan;
     end module time-implementation;
 
-Here, because the ``sixty-unit`` module is an internal interface, we forgo
+Here, because the ``sixty-unit`` module is an internal interface, we forgot
 the formality of creating a separate implementation module; we simply
 *export* the definitions that we expect to be used by other modules
 within the library. This approach is perhaps a short-sighted one. If
