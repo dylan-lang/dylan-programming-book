@@ -995,12 +995,12 @@ The ``airport-test.dylan`` file.
                   make(<absolute-position>,
                        latitude:
                          make(<latitude>,
-                       total-seconds: encode-total-seconds(40, 57, 43),
-                       direction: #"north"),
-                longitude:
-                  make(<longitude>,
-                       total-seconds: encode-total-seconds(77, 40, 24),
-                       direction: #"west")));
+                              total-seconds: encode-total-seconds(40, 57, 43),
+                              direction: #"north"),
+                       longitude:
+                         make(<longitude>,
+                              total-seconds: encode-total-seconds(77, 40, 24),
+                              direction: #"west")));
 
        let sky = make(<sky>, inbound-aircraft: aircraft, airport: airport,
                       id: concatenate("over ", airport.code));
