@@ -300,7 +300,7 @@ examples are equivalent:
     distance(*my-position*) := 3.0;
     distance-setter(3.0, *my-position*);
 
-The first two examples return ``3.0``; the second returns whatever
+The first two examples return ``3.0``; the third returns whatever
 ``distance-setter`` returns. Usually, this value would be ``3.0``. Note that, if
 ``distance`` is the name of a slot’s getter, and if the slot is constant
 or has a setter with a name other than ``distance-setter``, then the
