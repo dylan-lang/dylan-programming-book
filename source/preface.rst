@@ -128,7 +128,7 @@ Conventions used in this book
   a hypothetical Dylan listener to show the result of evaluating Dylan
   expressions:
 
-.. code-block:: dylan-console
+  .. code-block:: dylan-console
 
      ? say-greeting("hi, there");
      => hi, there
