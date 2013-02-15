@@ -677,7 +677,7 @@ How can we change our example to make ``<flying-vehicle>`` behavior add
 to, rather than override, ``<ground-vehicle>`` behavior? By using
 ``next-method`` in our ``say-cruising-speed`` methods for ``<flying-vehicle>``
 and ``<ground-vehicle>``, we can report all applicable kinds of cruising
-speed for any combination of either or both of those classes*.* To make
+speed for any combination of either or both of those classes. To make
 this behavior work, we also change the ``say-cruising-speed`` method for
 ``<vehicle>``, which will always be called last, to have no effect:
 
