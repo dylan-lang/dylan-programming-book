@@ -10,12 +10,10 @@ book. The address of the Addison-Wesley Web page for computer science
 and engineering is
 
 http://www.aw.com/cseng/
-^^^^^^^^^^^^^^^^^^^^^^^^
 
 The address of Harlequin’s Web page is
 
 http://www.harlequin.com/
-^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Newsgroup
 ---------
@@ -23,7 +21,6 @@ Newsgroup
 The name of the newsgroup about Dylan is
 
 comp.lang.dylan
-^^^^^^^^^^^^^^^
 
 The newsgroup is also available as an Internet mailing list. To
 subscribe to the *info-dylan* mailing list, send a message to
@@ -47,12 +44,10 @@ pointers to public-domain implementations of Dylan and to the *comp.lang.dylan*
 newsgroup. The address of Harlequin’s Dylan Web page is
 
 http://www.harlequin.com/full/dylan.html
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Harlequin’s main Web site is located at
 
 http://www.harlequin.com/
-^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Harlequin’s main telephone numbers are
 
@@ -95,22 +90,18 @@ Manual*, the *comp.lang.dylan* newsgroup, and releases of Mindy.
 Carnegie Mellon’s Web site about Gwydion and Dylan is located at
 
 http://legend.gwydion.cs.cmu.edu/gwydion/
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The address of Carnegie Mellon’s Gwydion and Dylan ftp site is
 
 ftp://legend.gwydion.cs.cmu.edu/usr/gwydion/ftp/
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Carnegie Mellon’s main Web site is located at
 
 http://www.cmu.edu/
-^^^^^^^^^^^^^^^^^^^
 
 Carnegie Mellon’s electronic mail address for Gwydion is
 
 gwydion-group@cs.cmu.edu
-^^^^^^^^^^^^^^^^^^^^^^^^
 
 Apple Computer, Inc.
 --------------------
@@ -127,18 +118,15 @@ newsgroup archives, articles about Dylan, and pointers to public-domain
 implementations of Dylan:
 
 http://www.cambridge.apple.com/
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Apple’s Dylan ftp site is located at
 
 ftp://ftp.cambridge.apple.com/pub/dylan/
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 You can order the Apple Dylan Technology Release from the Apple
 Developer Catalog Online, located at
 
 http://www.devcatalog.apple.com/
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The telephone numbers for the Apple Developer Catalog Online are
 
@@ -151,7 +139,6 @@ International: 1-716-871-6555
 Apple’s main Web site is located at
 
 http://www.apple.com/
-^^^^^^^^^^^^^^^^^^^^^
 
 Apple’s main address is
 
@@ -171,7 +158,6 @@ directly.
 Digitool’s main Web site is located at
 
 http://www.digitool.com/
-^^^^^^^^^^^^^^^^^^^^^^^^
 
 Digitool’s telephone number is
 
@@ -198,13 +184,11 @@ implementation of Marlais.
 The address of the Web site for Marlais is
 
 http://www.cise.ufl.edu:/~jnw/Marlais/
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The Web site for the Computer and Information Science and Engineering
 Department of the University of Florida is located at
 
 http://www.cise.ufl.edu/
-^^^^^^^^^^^^^^^^^^^^^^^^
 
 The telephone number of the department where Marlais is being developed
 is
