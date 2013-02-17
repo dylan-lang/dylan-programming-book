@@ -26,6 +26,8 @@ Contents
    c-comparisons
    glossary
 
-* :ref:`genindex`
-* :ref:`search`
+.. only:: html
+
+   * :ref:`genindex`
+   * :ref:`search`
 
