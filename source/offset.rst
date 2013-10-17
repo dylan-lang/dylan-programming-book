@@ -372,7 +372,7 @@ Existing methods for ``decode-total-seconds``:
     define method decode-total-seconds
         (total-seconds :: <integer>)
      => (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)
-      let (total-minutes, seconds) = truncate/(total-minutes, 60);
+      let (total-minutes, seconds) = truncate/(total-seconds, 60);
       values(hours, minutes, seconds);
     end method decode-total-seconds;
 
@@ -393,7 +393,7 @@ Desired methods for ``decode-total-seconds``:
     define method decode-total-seconds
         (total-seconds :: <integer>)
      => (hours :: <integer>, minutes :: <integer>, seconds :: <integer>)
-      let (total-minutes, seconds) = truncate/(total-minutes, 60);
+      let (total-minutes, seconds) = truncate/(total-seconds, 60);
       values(hours, minutes, seconds);
     end method decode-total-seconds;
 
