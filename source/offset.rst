@@ -119,7 +119,7 @@ We might define the method in this way:
 
     define method say-time-offset (time :: <time-offset>) => ()
       let (hours, minutes) = decode-total-seconds(time);
-      format-out("%s %d:%s%d",
+      format-out("%s %d:%s%d\n",
                  if (past?(time)) "minus" else "plus" end,
                  hours,
                  if (minutes < 10) "0" else "" end,
@@ -152,7 +152,7 @@ call ``decode-total-seconds`` with an integer.
     // First approach: Call decode-total-seconds with an integer
     define method say-time-offset (time :: <time-offset>) => ()
       let (hours, minutes) = decode-total-seconds(abs(time.total-seconds));
-      format-out("%s %d:%s%d",
+      format-out("%s %d:%s%d\n",
                  if (past?(time)) "minus" else "plus" end,
                  hours,
                  if (minutes < 10) "0" else "" end,
@@ -187,7 +187,7 @@ as we did in the first place:
 
     define method say-time-offset (time :: <time-offset>) => ()
       let (hours, minutes) = decode-total-seconds(time);
-      format-out("%s %d:%s%d",
+      format-out("%s %d:%s%d\n",
                  if (past?(time)) "minus" else "plus" end,
                  hours,
                  if (minutes < 10) "0" else "" end,
@@ -636,12 +636,12 @@ We repeat the definitions of the methods for ``say-time-of-day`` and
     define method say-time-of-day (time :: <time-of-day>) => ()
       let (hours, minutes) = decode-total-seconds(time);
       format-out
-        ("%d:%s%d", hours, if (minutes < 10) "0" else "" end, minutes);
+        ("%d:%s%d\n", hours, if (minutes < 10) "0" else "" end, minutes);
     end method say-time-of-day;
 
     define method say-time-offset (time :: <time-offset>) => ()
       let (hours, minutes) = decode-total-seconds(time);
-      format-out("%s %d:%s%d",
+      format-out("%s %d:%s%d\n",
                  if (past?(time)) "minus" else "plus" end,
                  hours,
                  if (minutes < 10) "0" else "" end,
@@ -723,7 +723,7 @@ editor or a gesture in the environment.
     define method say (time :: <time-of-day>) => ()
       let (hours, minutes) = decode-total-seconds(time);
       format-out
-        ("%d:%s%d", hours, if (minutes < 10) "0" else "" end, minutes);
+        ("%d:%s%d\n", hours, if (minutes < 10) "0" else "" end, minutes);
     end method say;
 
 Similarly, the method for ``say`` on ``<time-offset>`` is intended to
@@ -733,7 +733,7 @@ replace ``say-time-offset``, which we remove.
 
     define method say (time :: <time-offset>) => ()
       let (hours, minutes) = decode-total-seconds(time);
-      format-out("%s %d:%s%d",
+      format-out("%s %d:%s%d\n",
                  if (past?(time)) "minus" else "plus" end,
                  hours,
                  if (minutes < 10) "0" else "" end,
@@ -749,12 +749,12 @@ The generic function ``say`` has two methods defined for it:
     define method say (time :: <time-of-day>) => ()
       let (hours, minutes) = decode-total-seconds(time);
       format-out
-        ("%d:%s%d", hours, if (minutes < 10) "0" else "" end, minutes);
+        ("%d:%s%d\n", hours, if (minutes < 10) "0" else "" end, minutes);
     end say;
 
     define method say (time :: <time-offset>) => ()
       let (hours, minutes) = decode-total-seconds(time);
-      format-out("%s %d:%s%d",
+      format-out("%s %d:%s%d\n",
                  if (past?(time)) "minus" else "plus" end,
                  hours,
                  if (minutes < 10) "0" else "" end,
@@ -817,7 +817,7 @@ these new methods:
     define method say (time :: <time>) => ()
       let (hours, minutes) = decode-total-seconds(time);
       format-out
-        ("%d:%s%d", hours, if (minutes < 10) "0" else "" end, minutes);
+        ("%d:%s%d\n", hours, if (minutes < 10) "0" else "" end, minutes);
     end method say;
 
     define method say (time :: <time-offset>)
@@ -969,7 +969,7 @@ The implementation file: ``library-implementation.dylan``.
     define method say (time :: <time>) => ()
       let (hours, minutes) = decode-total-seconds(time);
       format-out
-        ("%d:%s%d", hours, if (minutes < 10) "0" else "" end, minutes);
+        ("%d:%s%d\n", hours, if (minutes < 10) "0" else "" end, minutes);
     end method say;
 
     define method say (time :: <time-offset>)
