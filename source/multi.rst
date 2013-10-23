@@ -282,19 +282,27 @@ comparisons we need:
 
 .. code-block:: dylan
 
-    define method \< (time1 :: <time-of-day>, time2 :: <time-of-day>)
+    define method \<
+        (time1 :: <time-of-day>, time2 :: <time-of-day>)
+     => (boolean :: <boolean>)
       time1.total-seconds < time2.total-seconds;
     end method \<;
 
-    define method \< (time1 :: <time-offset>, time2 :: <time-offset>)
+    define method \<
+        (time1 :: <time-offset>, time2 :: <time-offset>)
+     => (boolean :: <boolean>)
       time1.total-seconds < time2.total-seconds;
     end method \<;
 
-    define method \= (time1 :: <time-of-day>, time2 :: <time-of-day>)
+    define method \=
+        (time1 :: <time-of-day>, time2 :: <time-of-day>)
+     => (boolean :: <boolean>)
       time1.total-seconds = time2.total-seconds;
     end method \=;
 
-    define method \= (time1 :: <time-offset>, time2 :: <time-offset>)
+    define method \=
+        (time1 :: <time-offset>, time2 :: <time-offset>)
+     => (boolean :: <boolean>)
       time1.total-seconds = time2.total-seconds;
     end method \=;
 
