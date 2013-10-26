@@ -319,7 +319,7 @@ We define an ``initialize`` method:
 
 .. code-block:: dylan
 
-    define method initialize (time :: <time-of-day> #key)
+    define method initialize (time :: <time-of-day>, #key)
       next-method();
       if (time.total-seconds < 0)
         error("%d is invalid. total-seconds cannot be negative",
