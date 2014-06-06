@@ -519,9 +519,9 @@ certain body of code; for example,
 .. code-block:: dylan-console
 
     ? begin
-     let radius = 5.0;
-     let circumference = 2.0 * $pi * radius;
-     circumference;
+       let radius = 5.0;
+       let circumference = 2.0 * $pi * radius;
+       circumference;
      end;
 
 Bindings can be constant or variable. You can use the assignment
