@@ -99,7 +99,7 @@ html_theme = 'haiku'
 #html_theme_options = {}
 
 # Add any paths that contain custom themes here, relative to this directory.
-#html_theme_path = []
+html_theme_path = ['_themes']
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
@@ -229,6 +229,8 @@ epub_copyright = u'N Feinberg/S E Keene/R Mathews/P Tucker Withington, DYLAN PRO
 
 # A unique identification for the text.
 #epub_uid = ''
+
+epub_theme = 'dpg_epub'
 
 # A tuple containing the cover image and cover page html template filenames.
 #epub_cover = ()
