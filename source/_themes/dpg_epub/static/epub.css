@@ -342,9 +342,14 @@ dl.glossary dt {
 /* -- code displays --------------------------------------------------------- */
 
 pre {
-    font-family: "LiberationNarrow", monospace;
+    font-family: Menlo, Consolas, "Courier New", monospace;
     overflow: auto;
     overflow-y: hidden;
+    background-color: #f5f5f5;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    padding: 9.5px;
+    margin: 0 0 10px;
 }
 
 td.linenos pre {
@@ -363,7 +368,8 @@ table.highlighttable td {
 }
 
 tt {
-    font-family: "LiberationNarrow", monospace;
+    color: #333;
+    font-family: Menlo, Consolas, "Courier New", monospace;
 }
 
 tt.descname {
@@ -432,35 +438,3 @@ table .link-target {
     /* Do not show links in tables, there is not enough space */
     display: none;
 }
-
-/* -- font-face ------------------------------------------------------------- */
-
-@font-face {
-    font-family: "LiberationNarrow";
-    font-style: normal;
-    font-weight: normal;
-    src: url("res:///Data/fonts/LiberationNarrow-Regular.otf")
-        format("opentype");
-}
-@font-face {
-    font-family: "LiberationNarrow";
-    font-style: oblique, italic;
-    font-weight: normal;
-    src: url("res:///Data/fonts/LiberationNarrow-Italic.otf")
-        format("opentype");
-}
-@font-face {
-    font-family: "LiberationNarrow";
-    font-style: normal;
-    font-weight: bold;
-    src: url("res:///Data/fonts/LiberationNarrow-Bold.otf")
-        format("opentype");
-}
-@font-face {
-    font-family: "LiberationNarrow";
-    font-style: oblique, italic;
-    font-weight: bold;
-    src: url("res:///Data/fonts/LiberationNarrow-BoldItalic.otf")
-        format("opentype");
-}
-
