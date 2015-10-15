@@ -68,9 +68,9 @@ follows:
 .. code-block:: dylan
 
     // A specific time of day from 00:00 (midnight) to below 24:00 (tomorrow)
-    define class <time-of-day> (<object>) *// 1
-      slot total-seconds :: <integer>; *// 2
-    end class <time-of-day>; *// 3*
+    define class <time-of-day> (<object>) // 1
+      slot total-seconds :: <integer>; // 2
+    end class <time-of-day>; // 3
 
 The top line is a *comment*. The ``//`` characters begin a comment, which
 continues to the end of the line. We also provide comments that number
