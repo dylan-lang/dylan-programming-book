@@ -126,7 +126,7 @@ The implementation file: ``library-implementation.dylan``.
       time.total-seconds < 0;
     end method past?;
 
-    define method say (time :: <time-offset>)
+    define method say (time :: <time-offset>) => ()
       format-out("%s ", if (past?(time)) "minus" else "plus" end);
       next-method();
     end method say;
@@ -156,18 +156,22 @@ The implementation file: ``library-implementation.dylan``.
     // Methods for comparing times
 
     define method \< (time1 :: <time-of-day>, time2 :: <time-of-day>)
+     => (boolean :: <boolean>)
       time1.total-seconds < time2.total-seconds;
     end method \<;
 
     define method \< (time1 :: <time-offset>, time2 :: <time-offset>)
+     => (boolean :: <boolean>)
       time1.total-seconds < time2.total-seconds;
     end method \<;
 
     define method \= (time1 :: <time-of-day>, time2 :: <time-of-day>)
+     => (boolean :: <boolean>)
       time1.total-seconds = time2.total-seconds;
     end method \=;
 
     define method \= (time1 :: <time-offset>, time2 :: <time-offset>)
+     => (boolean :: <boolean>)
       time1.total-seconds = time2.total-seconds;
     end method \=;
 
