@@ -189,7 +189,7 @@ The implementation file: ``library-implementation.dylan``.
     // We need to show degrees for <relative-angle> but we do not need to
     // show minutes and seconds, so we override the method on <angle>
     define method say (angle :: <relative-angle>) => ()
-      format-out(" %d degrees", decode-total-seconds(angle));
+      format-out("%d degrees", decode-total-seconds(angle));
     end method say;
 
     define abstract class <directed-angle> (<angle>)
