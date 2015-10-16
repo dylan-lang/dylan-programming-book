@@ -78,7 +78,7 @@ The implementation file: ``library-implementation.dylan``.
     define method decode-total-seconds
         (sixty-unit :: <sixty-unit>)
      => (max-unit :: <integer>, minutes :: <integer>, seconds :: <integer>)
-      decode-total-seconds(abs(time.total-seconds));
+      decode-total-seconds(abs(sixty-unit.total-seconds));
     end method decode-total-seconds;
 
     define method decode-total-seconds
