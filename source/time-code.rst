@@ -315,17 +315,16 @@ The test file: ``test.dylan``.
 When we run the test file, we see the following output and values::
 
     Creating an instance of <absolute-position>:
-     42 degrees 19 minutes 34 seconds North latitude
-     70 degrees 56 minutes 26 seconds West longitude*
+    42 degrees 19 minutes 34 seconds North latitude
+    70 degrees 56 minutes 26 seconds West longitude
 
     Creating an instance of <relative-position>:
-     30 miles away at heading 90 degrees*
+    30.000000 miles away at heading 90 degrees
 
     Creating an instance of <time-offset> in *minus-2-hours*.
     Creating an instance of <time-offset> in *plus-15-20-45*.
     Creating an instance of <time-of-day> in *8-30-59*.
-    Adding <time-offset> + <time-offset>: *minus-2-hours* +
-    *plus-15-20-45":
+    Adding <time-offset> + <time-offset>: *minus-2-hours* + *plus-15-20-45*:
     13
     20
     45
