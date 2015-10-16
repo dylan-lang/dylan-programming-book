@@ -278,7 +278,7 @@ The test file: ``test.dylan``.
     define variable *her-relative-position*
       = make(<relative-position>,
              distance: 30,
-             angle: make(<angle>,
+             angle: make(<relative-angle>,
                          total-seconds: encode-total-seconds(90, 5, 0)));
 
     say(*her-relative-position*);
