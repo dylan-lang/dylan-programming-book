@@ -1086,6 +1086,8 @@ Consider the following example:
 
 When we execute this code, we get the expected result:
 
+.. code-block:: dylan-console
+
     ? show-next(41);
     => The result is 42.
 
