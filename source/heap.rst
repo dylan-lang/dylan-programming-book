@@ -10,7 +10,7 @@ with the element. Thus, it does not make sense to store an element in a
 sorted sequence at a specific key, because the sorted sequence will
 determine the correct key to satisfy the automatic-ordering constraint.
 
-We use Dylan’s ``forward-iteration protocol`` to implement the connection
+We use Dylan’s ``forward-iteration-protocol`` to implement the connection
 between our new collection class and Dylan’s standard collection generic
 functions. Dylan’s forward-iteration protocol is a well-defined
 interface that collection implementors and collection-iterator
