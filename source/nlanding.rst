@@ -987,38 +987,38 @@ The ``airport-test.dylan`` file.
               flights, *aircraft-distances*, *aircraft-headings*,
               *aircraft-altitudes*, *aircraft-ids*);
 
-       let airport
-         = make(<airport>,
-                name: "Belefonte Airport",
-                code: "BLA",
-                current-position:
-                  make(<absolute-position>,
-                       latitude:
-                         make(<latitude>,
-                              total-seconds: encode-total-seconds(40, 57, 43),
-                              direction: #"north"),
-                       longitude:
-                         make(<longitude>,
-                              total-seconds: encode-total-seconds(77, 40, 24),
-                              direction: #"west")));
+      let airport
+        = make(<airport>,
+               name: "Belefonte Airport",
+               code: "BLA",
+               current-position:
+                 make(<absolute-position>,
+                      latitude:
+                        make(<latitude>,
+                             total-seconds: encode-total-seconds(40, 57, 43),
+                             direction: #"north"),
+                      longitude:
+                        make(<longitude>,
+                             total-seconds: encode-total-seconds(77, 40, 24),
+                             direction: #"west")));
 
-       let sky = make(<sky>, inbound-aircraft: aircraft, airport: airport,
-                      id: concatenate("over ", airport.code));
-       airport.sky-above := sky;
-       runway.connected-to := vector(taxiway, sky);
-       let taxiway-vector = vector(taxiway);
-       for (gate in gates)
-         gate.connected-to := taxiway-vector;
-       end for;
-       let runway-vector = vector(runway);
-       taxiway.connected-to := concatenate(runway-vector, gates);
-       sky.connected-to := runway-vector;
-       airport;
-     end method build-simple-airport;
+      let sky = make(<sky>, inbound-aircraft: aircraft, airport: airport,
+                     id: concatenate("over ", airport.code));
+      airport.sky-above := sky;
+      runway.connected-to := vector(taxiway, sky);
+      let taxiway-vector = vector(taxiway);
+      for (gate in gates)
+        gate.connected-to := taxiway-vector;
+      end for;
+      let runway-vector = vector(runway);
+      taxiway.connected-to := concatenate(runway-vector, gates);
+      sky.connected-to := runway-vector;
+      airport;
+    end method build-simple-airport;
 
-     define method test-airport () => (last-transition :: <time-of-day>)
-       process-aircraft(build-simple-airport());
-     end method test-airport;
+    define method test-airport () => (last-transition :: <time-of-day>)
+      process-aircraft(build-simple-airport());
+    end method test-airport;
 
 Now, we show the result of running ``test-airport``:
 
