@@ -562,7 +562,7 @@ More hygiene
 
 We shall make one more note about hygiene: In a textual substitution
 macro, there is a chance that the global variables that the macro uses
-(in this case, the helper function ``define-aircraft``) could be confused
+(in this case, the helper function ``register-aircraft``) could be confused
 with a surrounding local variable of the same name where the macro is
 called. This confusion does not happen in a Dylan macro. The global
 variables used in a Dylan macro always denote what they denoted at the
