@@ -729,7 +729,7 @@ Expanding that code would result in the following:
 
 .. code-block:: dylan
 
-  register-aircraft (make(<DC10>, #"UA4096H"));
+  register-aircraft (make(<DC10>, id: #"UA4096H"));
   register-flights (#"UA4096H",
                     make(<flight>, equipment: "DC10",
                          id: #"UA11" from: #"BOS", to: #"SFO");
