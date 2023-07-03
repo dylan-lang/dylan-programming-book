@@ -78,7 +78,7 @@ The implementation file: ``library-implementation.dylan``.
     define method decode-total-seconds
         (sixty-unit :: <sixty-unit>)
      => (max-unit :: <integer>, minutes :: <integer>, seconds :: <integer>)
-      decode-total-seconds(abs(time.total-seconds));
+      decode-total-seconds(abs(sixty-unit.total-seconds));
     end method decode-total-seconds;
 
     define method decode-total-seconds
@@ -126,7 +126,7 @@ The implementation file: ``library-implementation.dylan``.
       time.total-seconds < 0;
     end method past?;
 
-    define method say (time :: <time-offset>)
+    define method say (time :: <time-offset>) => ()
       format-out("%s ", if (past?(time)) "minus" else "plus" end);
       next-method();
     end method say;
@@ -156,18 +156,22 @@ The implementation file: ``library-implementation.dylan``.
     // Methods for comparing times
 
     define method \< (time1 :: <time-of-day>, time2 :: <time-of-day>)
+     => (boolean :: <boolean>)
       time1.total-seconds < time2.total-seconds;
     end method \<;
 
     define method \< (time1 :: <time-offset>, time2 :: <time-offset>)
+     => (boolean :: <boolean>)
       time1.total-seconds < time2.total-seconds;
     end method \<;
 
     define method \= (time1 :: <time-of-day>, time2 :: <time-of-day>)
+     => (boolean :: <boolean>)
       time1.total-seconds = time2.total-seconds;
     end method \=;
 
     define method \= (time1 :: <time-offset>, time2 :: <time-offset>)
+     => (boolean :: <boolean>)
       time1.total-seconds = time2.total-seconds;
     end method \=;
 
@@ -189,7 +193,7 @@ The implementation file: ``library-implementation.dylan``.
     // We need to show degrees for <relative-angle> but we do not need to
     // show minutes and seconds, so we override the method on <angle>
     define method say (angle :: <relative-angle>) => ()
-      format-out(" %d degrees", decode-total-seconds(angle));
+      format-out("%d degrees", decode-total-seconds(angle));
     end method say;
 
     define abstract class <directed-angle> (<angle>)
@@ -273,8 +277,8 @@ The test file: ``test.dylan``.
 
     define variable *her-relative-position*
       = make(<relative-position>,
-             distance: 30,
-             angle: make(<angle>,
+             distance: 30.0,
+             angle: make(<relative-angle>,
                          total-seconds: encode-total-seconds(90, 5, 0)));
 
     say(*her-relative-position*);
@@ -311,17 +315,16 @@ The test file: ``test.dylan``.
 When we run the test file, we see the following output and values::
 
     Creating an instance of <absolute-position>:
-     42 degrees 19 minutes 34 seconds North latitude
-     70 degrees 56 minutes 26 seconds West longitude*
+    42 degrees 19 minutes 34 seconds North latitude
+    70 degrees 56 minutes 26 seconds West longitude
 
     Creating an instance of <relative-position>:
-     30 miles away at heading 90 degrees*
+    30.000000 miles away at heading 90 degrees
 
     Creating an instance of <time-offset> in *minus-2-hours*.
     Creating an instance of <time-offset> in *plus-15-20-45*.
     Creating an instance of <time-of-day> in *8-30-59*.
-    Adding <time-offset> + <time-offset>: *minus-2-hours* +
-    *plus-15-20-45":
+    Adding <time-offset> + <time-offset>: *minus-2-hours* + *plus-15-20-45*:
     13
     20
     45

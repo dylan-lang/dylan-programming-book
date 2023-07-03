@@ -49,7 +49,7 @@ The following sample calls show the output that we want to achieve:
 
     ? say(*my-absolute-position*);
     => 42 degrees 19 minutes 34 seconds North latitude
-    => 70 degrees 56 minutes 26 seconds West longitude*
+    => 70 degrees 56 minutes 26 seconds West longitude
 
     ? say(*her-relative-position*);
     => 30 miles away at heading 90 degrees
@@ -467,7 +467,7 @@ the new ``<sixty-unit>`` class:
     // we need to show degrees for <relative-angle>, but do not need to show
     // minutes and seconds,so we override the method on <angle>
     define method say (angle :: <relative-angle>) => ()
-      format-out(" %d degrees", decode-total-seconds(angle));
+      format-out("%d degrees", decode-total-seconds(angle));
     end method say;
 
     define method say (position :: <relative-position>) => ()
