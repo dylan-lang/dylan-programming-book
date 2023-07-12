@@ -1024,7 +1024,7 @@ Now, we show the result of running ``test-airport``:
 
 .. code-block:: dylan-console
 
-    ? test-airport():
+    ? test-airport();
     => Detailed aircraft schedule for Airport BLA
     => 6:00: Flight KN 62 at Runway 11R-29L
     => 6:02: Flight KN 62 at Taxiway Echo
@@ -1047,10 +1047,10 @@ Now, we show the result of running ``test-airport``:
     => 7:16: Flight KN 12 at Runway 11R-29L
     => 7:18: Flight KN 12 at Taxiway Echo
     => 7:18: Flight KN 18 at Runway 11R-29L
-
     => 7:19: Flight KN 12 at Gate A1
     => 7:20: Flight KN 18 at Taxiway Echo
     => 7:20: Flight KN 44 at Runway 11R-29L
+
     => 7:21: Flight KN 18 at Gate A2
     => 7:22: Flight KN 44 at Taxiway Echo
     => 7:53: Flight KN 12 at Taxiway Echo

@@ -120,7 +120,7 @@ function ``element``. The following examples are equivalent:
 .. code-block:: dylan-console
 
     ? *greeting*[0];
-      ’j’
+    => ’j’
 
     ? element(*greeting*, 0);
     => ’j’

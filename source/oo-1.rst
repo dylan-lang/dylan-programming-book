@@ -433,10 +433,10 @@ look the same, they are similar and identical:
 
 .. code-block:: dylan-console
 
-    ? ’z’ = ’z’;
+    ? 'z' = 'z';
     => #t
 
-    ? ’z’ == ’z’;
+    ? 'z' == 'z';
     => #t
 
 Strings are enclosed in double quotation marks. Strings that have
