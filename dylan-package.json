@@ -1,0 +1,9 @@
+{
+    "name": "dylan-programming-book",
+    "description": "The Dylan Programming guide (DPG)",
+    "version": "0.1.0",
+    "category": "documentation",
+    "contact": "dylan-lang@googlegroups.com",
+    "keywords": ["documentation"],
+    "url": "https://github.com/dylan-lang/dylan-programming-book"
+}
